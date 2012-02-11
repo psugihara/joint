@@ -1,4 +1,4 @@
-package pass.PhaseI;
+package PhaseI;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,9 +9,9 @@ package pass.PhaseI;
  */
 public class Lex {
     public static void main(String args[]){
-        System.out.println("TEST");
-        System.out.println("TEST");
-        System.out.println("TEST");
+        System.out.println("I");
+        System.out.println("Love");
+        System.out.println("PASS");
 
     }
 }

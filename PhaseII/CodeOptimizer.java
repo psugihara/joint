@@ -1,4 +1,4 @@
-package pass.PhaseII;
+package PhaseII;
 
 /**
  * Created by IntelliJ IDEA.
