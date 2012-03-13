@@ -62,7 +62,6 @@ tokens {
         System.out.println("too many indents");
         // TODO: report an error... too many indents
 
-    System.out.println("indentLevel: " + indentLevel + "\nindents: " + indents);
     if (indents > indentLevel)
       for (int i = 0; i < (indents - indentLevel); i++)
         emit(new CommonToken(INDENT, "INDENT"));              
@@ -83,43 +82,42 @@ block
     :   head LT body
     ;
 
-head:	FOR ID IN ID
-    |   WHILE //cond
+head:	'for' ID 'in' ID
+    |   'while' //cond
     ;
 
 body:   INDENT (block|expr)+ DEDENT
     ;
-	
-expr:   assign LT
-    ;
-    
-assign
-    :   ID '=' atom
-    ;
-    
-atom:   NUMBER
-    |   STRING
-    ;
-    
-FUNC:	'~'
+
+func:	args '~' body
+	|	args '~' LT body
+	|	args '~' expr
 	;
 
-POPEN
-	:	'('
+call:	('('func')'|ID) args LT
+	;
+
+args:	'(' ID (',' ID)* ')'
+	|	'()'
 	;
 	
-PCLOSE
-    :	')'
+expr:   assign
+    |   call
+    ;
+
+assign
+    :   ID '=' assignable
+    ;
+
+assignable
+    :	atom LT
+	|	func
+	|	ID LT
+	|   call
 	;
-		
-IN	:	'in'
-	;
-	
-FOR :	'for'
-	;
-	
-WHILE
-    :	'while'
+
+atom:   NUMBER
+    |   STRING
     ;
     
 INDENT

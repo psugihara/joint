@@ -1,4 +1,6 @@
-for i in list
-  y = 2
+f = (arg1, arg2) ~
+  for i in list
+    y = i
   for y in lis
-    x = 5
+    x = m
+g = (() ~ a=b)()
