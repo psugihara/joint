@@ -1,2 +1,4 @@
-x = 5
+for i in list
   y = 2
+  for y in lis
+    x = 5

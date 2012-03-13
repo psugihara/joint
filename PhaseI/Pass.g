@@ -80,9 +80,16 @@ prog:   (block|expr)* EOF
     ;
 
 block
-    :   INDENT (block|expr)+ DEDENT
+    :   head LT body
     ;
 
+head:	FOR ID IN ID
+    |   WHILE //cond
+    ;
+
+body:   INDENT (block|expr)+ DEDENT
+    ;
+	
 expr:   assign LT
     ;
     
@@ -93,7 +100,28 @@ assign
 atom:   NUMBER
     |   STRING
     ;
+    
+FUNC:	'~'
+	;
 
+POPEN
+	:	'('
+	;
+	
+PCLOSE
+    :	')'
+	;
+		
+IN	:	'in'
+	;
+	
+FOR :	'for'
+	;
+	
+WHILE
+    :	'while'
+    ;
+    
 INDENT
     :   
        {getCharPositionInLine()==0}?=>
@@ -130,7 +158,7 @@ COMMENT
     ;
 
 // Line termination.
-LT  :   ('\n'|';')
+LT  :   ('\n'|';')+
     ;
 
 WS  :  ( ' '
