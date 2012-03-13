@@ -1,8 +1,8 @@
 grammar Pass;
 
 tokens {
-	DEDENT;
-	INDENT;
+  DEDENT;
+  INDENT;
 }
 
 @lexer::members {
@@ -10,7 +10,7 @@ tokens {
   int DENT_SIZE = 2;
   
   boolean EOFTerminated = false; // Have we placed a terminal character at the EOL?
-    
+
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
 
   // Note that this will occur at the end of each production if it is not
@@ -26,7 +26,7 @@ tokens {
     super.nextToken();
     
     if (tokens.isEmpty()) { // Clean up and return EOF
-    
+
       if (!EOFTerminated) {
         EOFTerminated = true;
         return new CommonToken(LT, "\n");
@@ -39,24 +39,24 @@ tokens {
       
       return Token.EOF_TOKEN;
     }
-    	
+
     return tokens.poll();
   }
   
   
   // This is rediculous but for some reason the modulo operator isn't working here.
   int mod(int a, int b) {
-	while (a >= b)
-	  a -= b;
+   while (a >= b)
+      a -= b;
     return (a > 0)? a : 0;
   }
   
   void reindent(int spaces) {
-  	System.out.println("reindent()");
+    System.out.println("reindent()");
     if (mod(spaces, DENT_SIZE) != 0)
       System.out.println("Odd indentation (" + spaces + " spaces).");
       // TODO: report an error... sloppy indentation
-          	
+            
     int indents = spaces / DENT_SIZE;
       if ((indentLevel - indents) > 1)
         System.out.println("too many indents");
@@ -69,52 +69,52 @@ tokens {
     else if (indents < indentLevel)
       for (int i = 0; i < (indentLevel - indents); i++)
         emit(new CommonToken(DEDENT, "DEDENT"));
-	else
-	  skip();
-	
+    else
+      skip();
+    
     indentLevel = indents;
   }
 }
 
-prog:	(block|expr)* EOF
-	;
+prog:   (block|expr)* EOF
+    ;
 
 block
-	:   INDENT (block|expr)+ DEDENT
-	;
-
-expr:	assign LT
-	;
-	
-assign
-    :	ID '=' atom
+    :   INDENT (block|expr)+ DEDENT
     ;
-	
-atom:	NUMBER
-	|	STRING
-	;
+
+expr:   assign LT
+    ;
+    
+assign
+    :   ID '=' atom
+    ;
+    
+atom:   NUMBER
+    |   STRING
+    ;
 
 INDENT
     :   
-    	{getCharPositionInLine()==0}?=>
-        (' ')+
-        {
-          reindent(getText().length());
-        }
+       {getCharPositionInLine()==0}?=>
+       (' ')+
+       {
+         reindent(getText().length());
+       }
     ;
 
 DEDENT
-	:   '\n'
-		{getCharStream().mark();}
-	    (~' ')
-	    { 
-	      emit(new CommonToken(LT, "LT"));
-	      reindent(0);
-	      getCharStream().rewind();
-	    }
-	;
+    :  '\n'
+       {getCharStream().mark();}
+       (~' ')
+       { 
+         emit(new CommonToken(LT, "LT"));
+         reindent(0);
+         getCharStream().rewind();
+       }
+    ;
 
-ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 
 NUMBER
@@ -131,23 +131,27 @@ COMMENT
 
 // Line termination.
 LT  :   ('\n'|';')
-	;
-
-WS  :   ( ' '
-		| '\t'
-        | '\r'
-        ) {$channel=HIDDEN;}
     ;
-	
+
+WS  :  ( ' '
+       | '\t'
+       | '\r'
+       ) {$channel=HIDDEN;}
+    ;
+    
 STRING
     :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
     ;
 
 fragment
-EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
+EXPONENT
+    :   ('e'|'E') ('+'|'-')? ('0'..'9')+
+    ;
 
 fragment
-HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
+HEX_DIGIT
+    :   ('0'..'9'|'a'..'f'|'A'..'F')
+    ;
 
 fragment
 ESC_SEQ
