@@ -27,10 +27,6 @@ tokens {
     
     if (tokens.isEmpty()) { // Clean up and return EOF
 
-      if (!EOFTerminated) {
-        EOFTerminated = true;
-        return new CommonToken(LT, "\n");
-      }
       
       if (indentLevel != 0) {
         indentLevel--;
@@ -75,26 +71,31 @@ tokens {
   }
 }
 
-prog:   (block|expr)* EOF
+prog:   block EOF
     ;
 
 block
-    :   head LT body
+	:	(iblock|expr|LT)+
+	;
+	
+iblock
+    :	INDENT block DEDENT
+//    :   head LT body
     ;
 
-head:	'for' ID 'in' ID
+/*head:	'for' ID 'in' ID
     |   'while' //cond
     ;
 
 body:   INDENT (block|expr)+ DEDENT
     ;
-
-func:	args '~' body
-	|	args '~' LT body
-	|	args '~' expr
+*/
+func:	args '~' expr
+	|	args '~' LT iblock
 	;
 
-call:	('('func')'|ID) args LT
+call:	'('func')' args
+	|	ID args
 	;
 
 args:	'(' ID (',' ID)* ')'
@@ -103,16 +104,21 @@ args:	'(' ID (',' ID)* ')'
 	
 expr:   assign
     |   call
+    |	control
     ;
+    
+control
+	:   'for' ID 'in' ID LT iblock
+	;
 
 assign
     :   ID '=' assignable
     ;
 
 assignable
-    :	atom LT
+    :	atom
 	|	func
-	|	ID LT
+	|	ID
 	|   call
 	;
 
@@ -126,6 +132,7 @@ INDENT
        (' ')+
        {
          reindent(getText().length());
+         skip();
        }
     ;
 
@@ -134,7 +141,7 @@ DEDENT
        {getCharStream().mark();}
        (~' ')
        { 
-         emit(new CommonToken(LT, "LT"));
+         emit(new CommonToken(LT, "\n"));
          reindent(0);
          getCharStream().rewind();
        }
