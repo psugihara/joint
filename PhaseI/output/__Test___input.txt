@@ -1,0 +1,6 @@
+f = (arg1, arg2) ~
+  for i in list
+    y = i
+  for y in lis
+    x = m
+g = (() ~ a=b)()
