@@ -13,4 +13,5 @@ package pass;
  *
  */
 public enum SymbolTable {
+
 }
