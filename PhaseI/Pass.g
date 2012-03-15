@@ -91,15 +91,14 @@ iblock
 body:   INDENT (block|expr)+ DEDENT
     ;
 */
-func:	args '~' expr
-	|	args '~' LT iblock
+func:	(args '~')=> args '~' (expr|(LT iblock))
 	;
 
 call:	'('func')' args
 	|	ID args
 	;
 
-args:	'(' ID (',' ID)* ')'
+args:	('(' (ID|atom|func)) => '(' (ID|atom|func) (',' (ID|atom|func))* ')'
 	|	'()'
 	;
 	
@@ -119,7 +118,8 @@ bool:	((atom|ID|call) CMP) => (atom|ID|call) CMP bool
 	;
 
 assign
-    :   ID '=' (atom|func|ID|call)
+    :   ID '=' (atom|func|ID)
+    |   (ID '=' '(')=> ID '=' call
     ;
 
 atom:   NUMBER
