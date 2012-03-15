@@ -1,6 +1,2 @@
-f = (arg1, arg2) ~
-  for i in list
-    y = i
-  for j in list
-    x = j
-g = (() ~ a=b)()
+while x < y
+  log("heyhey")

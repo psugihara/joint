@@ -1,5 +1,6 @@
 grammar Pass;
 
+
 tokens {
   DEDENT;
   INDENT;
@@ -54,7 +55,7 @@ tokens {
       // TODO: report an error... sloppy indentation
             
     int indents = spaces / DENT_SIZE;
-      if ((indentLevel - indents) > 1)
+      if ((indents - indentLevel) > 1)
         System.out.println("too many indents");
         // TODO: report an error... too many indents
 
@@ -109,18 +110,17 @@ expr:   assign
     
 control
 	:   'for' ID 'in' ID LT iblock
+	|   'while' bool LT iblock
+	//|	'if' bool LT iblock ('else if' bool LT iblock)* ('else' LT iblock)?
+    ;
+
+bool:	((atom|ID|call) CMP) => (atom|ID|call) CMP bool
+    |   (atom|ID|call)
 	;
 
 assign
-    :   ID '=' assignable
+    :   ID '=' (atom|func|ID|call)
     ;
-
-assignable
-    :	atom
-	|	func
-	|	ID
-	|   call
-	;
 
 atom:   NUMBER
     |   STRING
@@ -147,6 +147,9 @@ DEDENT
        }
     ;
 
+CMP	:	'<'|'>'|'=='|'>='|'<='|'<>'|'!='
+	;
+	
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 
