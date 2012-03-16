@@ -81,16 +81,8 @@ block
 	
 iblock
     :	INDENT block DEDENT
-//    :   head LT body
     ;
 
-/*head:	'for' ID 'in' ID
-    |   'while' //cond
-    ;
-
-body:   INDENT (block|expr)+ DEDENT
-    ;
-*/
 func:	(args '~')=> args '~' (expr|(LT iblock))
 	;
 
@@ -111,10 +103,10 @@ expr:   assign
 control
 	:   'for' ID 'in' ID LT iblock
 	|   'while' bool LT iblock
-	//|	'if' bool LT iblock ('else if' bool LT iblock)* ('else' LT iblock)?
+	|	'if' bool LT iblock ('else if' bool LT iblock)* ('else' LT iblock)?
     ;
 
-bool:	((atom|ID|call) CMP) => (atom|ID|call) CMP bool
+bool:	((atom|ID|call) (CMP|BOP)) => (atom|ID|call) (CMP|BOP) bool
     |   (atom|ID|call)
 	;
 
@@ -148,7 +140,12 @@ DEDENT
        }
     ;
 
+// Comparator
 CMP	:	'<'|'>'|'=='|'>='|'<='|'<>'|'!='
+	;
+	
+// Boolean operation
+BOP	:	'||'|'&&'
 	;
 	
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
