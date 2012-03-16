@@ -98,7 +98,8 @@ call:	'('func')' args
 	|	ID args
 	;
 
-args:	('(' (ID|atom|func)) => '(' (ID|atom|func) (',' (ID|atom|func))* ')'
+args:   ('(' call)=> '(' call (',' call)* ')'
+    |   '(' (ID|atom|func) (',' (ID|atom|func))* ')'
 	|	'()'
 	;
 	
