@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-03-16 14:38:00
+// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-03-16 14:41:00
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -53,9 +53,9 @@ public class PassParser extends DebugParser {
 
 
 public static final String[] ruleNames = new String[] {
-    "invalidRule", "assign", "synpred3_Pass", "func", "control", "synpred1_Pass", 
-    "synpred2_Pass", "synpred4_Pass", "block", "bool", "expr", "atom", "prog", 
-    "iblock", "call", "args"
+    "invalidRule", "bool", "func", "atom", "expr", "args", "assign", "synpred2_Pass", 
+    "synpred3_Pass", "block", "synpred4_Pass", "prog", "iblock", "control", 
+    "synpred1_Pass", "call"
 };
 
 public static final boolean[] decisionCanBacktrack = new boolean[] {
