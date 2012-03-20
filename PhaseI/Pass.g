@@ -98,8 +98,22 @@ args:   ('(' call)=> '(' call (',' call)* ')'
 expr:   assign
     |   call
     |	control
+    |   arithmetic
     ;
-    
+
+arithmetic
+    : term (('+'|'-') term)*
+    ;
+ 
+term: factor (('*'|'/') factor)*
+    ;
+ 
+factor
+    : (ID|NUMBER)
+    | ((ID|func) '(')=> call
+    | '(' arithmetic ')'
+    ;
+
 control
 	:   'for' ID 'in' ID LT iblock
 	|   'while' bool LT iblock
@@ -147,7 +161,7 @@ CMP	:	'<'|'>'|'=='|'>='|'<='|'<>'|'!='
 // Boolean operation
 BOP	:	'||'|'&&'
 	;
-	
+
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 

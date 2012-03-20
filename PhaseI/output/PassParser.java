@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-03-16 14:41:00
+// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-03-16 15:46:34
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -12,7 +12,7 @@ import java.io.IOException;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class PassParser extends DebugParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BOP", "CMP", "COMMENT", "DEDENT", "ESC_SEQ", "EXPONENT", "HEX_DIGIT", "ID", "INDENT", "LT", "NUMBER", "OCTAL_ESC", "STRING", "UNICODE_ESC", "WS", "'('", "'()'", "')'", "','", "'='", "'else if'", "'else'", "'for'", "'if'", "'in'", "'while'", "'~'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "BOP", "CMP", "COMMENT", "DEDENT", "ESC_SEQ", "EXPONENT", "HEX_DIGIT", "ID", "INDENT", "LT", "NUMBER", "OCTAL_ESC", "STRING", "UNICODE_ESC", "WS", "'('", "'()'", "')'", "'*'", "'+'", "','", "'-'", "'/'", "'='", "'else if'", "'else'", "'for'", "'if'", "'in'", "'while'", "'~'"
     };
 
     public static final int EOF=-1;
@@ -28,6 +28,10 @@ public class PassParser extends DebugParser {
     public static final int T__28=28;
     public static final int T__29=29;
     public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
     public static final int BOP=4;
     public static final int CMP=5;
     public static final int COMMENT=6;
@@ -53,15 +57,16 @@ public class PassParser extends DebugParser {
 
 
 public static final String[] ruleNames = new String[] {
-    "invalidRule", "bool", "func", "atom", "expr", "args", "assign", "synpred2_Pass", 
-    "synpred3_Pass", "block", "synpred4_Pass", "prog", "iblock", "control", 
-    "synpred1_Pass", "call"
+    "invalidRule", "synpred4_Pass", "synpred1_Pass", "block", "args", "atom", 
+    "arithmetic", "assign", "synpred3_Pass", "control", "factor", "synpred5_Pass", 
+    "prog", "iblock", "func", "expr", "call", "term", "bool", "synpred2_Pass"
 };
 
 public static final boolean[] decisionCanBacktrack = new boolean[] {
     false, // invalid decision
     false, false, false, false, false, false, false, true, false, false, 
-        false, false, false, false, true, false, true, false
+        false, true, false, false, false, false, false, true, false, true, 
+        false, false
 };
 
  
@@ -180,10 +185,11 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     }
                     break;
                 case ID:
+                case NUMBER:
                 case 19:
-                case 26:
-                case 27:
-                case 29:
+                case 30:
+                case 31:
+                case 33:
                     {
                     alt1=2;
                     }
@@ -350,7 +356,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
             state._fsp--;
             if (state.failed) return ;
             dbg.location(86,25);
-            match(input,30,FOLLOW_30_in_func99); if (state.failed) return ;
+            match(input,34,FOLLOW_34_in_func99); if (state.failed) return ;
             dbg.location(86,29);
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:86:29: ( expr | ( LT iblock ) )
             int alt2=2;
@@ -359,7 +365,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==ID||LA2_0==19||(LA2_0 >= 26 && LA2_0 <= 27)||LA2_0==29) ) {
+            if ( (LA2_0==ID||LA2_0==NUMBER||LA2_0==19||(LA2_0 >= 30 && LA2_0 <= 31)||LA2_0==33) ) {
                 alt2=1;
             }
             else if ( (LA2_0==LT) ) {
@@ -619,7 +625,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
                         int LA4_0 = input.LA(1);
 
-                        if ( (LA4_0==22) ) {
+                        if ( (LA4_0==24) ) {
                             alt4=1;
                         }
 
@@ -633,7 +639,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:93:32: ',' call
                     	    {
                     	    dbg.location(93,32);
-                    	    match(input,22,FOLLOW_22_in_args152); if (state.failed) return ;
+                    	    match(input,24,FOLLOW_24_in_args152); if (state.failed) return ;
                     	    dbg.location(93,36);
                     	    pushFollow(FOLLOW_call_in_args154);
                     	    call();
@@ -752,7 +758,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
                         int LA7_0 = input.LA(1);
 
-                        if ( (LA7_0==22) ) {
+                        if ( (LA7_0==24) ) {
                             alt7=1;
                         }
 
@@ -766,7 +772,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:94:29: ',' ( ID | atom | func )
                     	    {
                     	    dbg.location(94,29);
-                    	    match(input,22,FOLLOW_22_in_args179); if (state.failed) return ;
+                    	    match(input,24,FOLLOW_24_in_args179); if (state.failed) return ;
                     	    dbg.location(94,33);
                     	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:94:33: ( ID | atom | func )
                     	    int alt6=3;
@@ -898,7 +904,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
     // $ANTLR start "expr"
-    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:1: expr : ( assign | call | control );
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:1: expr : ( assign | call | control | arithmetic );
     public final void expr() throws RecognitionException {
         try { dbg.enterRule(getGrammarFileName(), "expr");
         if ( getRuleLevel()==0 ) {dbg.commence();}
@@ -906,30 +912,14 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(98, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:5: ( assign | call | control )
-            int alt9=3;
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:5: ( assign | call | control | arithmetic )
+            int alt9=4;
             try { dbg.enterDecision(9, decisionCanBacktrack[9]);
 
             switch ( input.LA(1) ) {
             case ID:
                 {
-                int LA9_1 = input.LA(2);
-
-                if ( (LA9_1==23) ) {
-                    alt9=1;
-                }
-                else if ( ((LA9_1 >= 19 && LA9_1 <= 20)) ) {
-                    alt9=2;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return ;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 9, 1, input);
-
-                    dbg.recognitionException(nvae);
-                    throw nvae;
-
-                }
+                alt9=1;
                 }
                 break;
             case 19:
@@ -937,11 +927,16 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 alt9=2;
                 }
                 break;
-            case 26:
-            case 27:
-            case 29:
+            case 30:
+            case 31:
+            case 33:
                 {
                 alt9=3;
+                }
+                break;
+            case NUMBER:
+                {
+                alt9=4;
                 }
                 break;
             default:
@@ -999,6 +994,20 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
                     }
                     break;
+                case 4 :
+                    dbg.enterAlt(4);
+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:101:9: arithmetic
+                    {
+                    dbg.location(101,9);
+                    pushFollow(FOLLOW_arithmetic_in_expr236);
+                    arithmetic();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
 
             }
         }
@@ -1010,7 +1019,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(101, 4);
+        dbg.location(102, 4);
 
         }
         finally {
@@ -1025,33 +1034,265 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
 
-    // $ANTLR start "control"
-    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:103:1: control : ( 'for' ID 'in' ID LT iblock | 'while' bool LT iblock | 'if' bool LT iblock ( 'else if' bool LT iblock )* ( 'else' LT iblock )? );
-    public final void control() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "control");
+    // $ANTLR start "arithmetic"
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:104:1: arithmetic : term ( ( '+' | '-' ) term )* ;
+    public final void arithmetic() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "arithmetic");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(103, 0);
+        dbg.location(104, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:104:2: ( 'for' ID 'in' ID LT iblock | 'while' bool LT iblock | 'if' bool LT iblock ( 'else if' bool LT iblock )* ( 'else' LT iblock )? )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:5: ( term ( ( '+' | '-' ) term )* )
+            dbg.enterAlt(1);
+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:7: term ( ( '+' | '-' ) term )*
+            {
+            dbg.location(105,7);
+            pushFollow(FOLLOW_term_in_arithmetic253);
+            term();
+
+            state._fsp--;
+            if (state.failed) return ;
+            dbg.location(105,12);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:12: ( ( '+' | '-' ) term )*
+            try { dbg.enterSubRule(10);
+
+            loop10:
+            do {
+                int alt10=2;
+                try { dbg.enterDecision(10, decisionCanBacktrack[10]);
+
+                int LA10_0 = input.LA(1);
+
+                if ( (LA10_0==23||LA10_0==25) ) {
+                    alt10=1;
+                }
+
+
+                } finally {dbg.exitDecision(10);}
+
+                switch (alt10) {
+            	case 1 :
+            	    dbg.enterAlt(1);
+
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:13: ( '+' | '-' ) term
+            	    {
+            	    dbg.location(105,13);
+            	    if ( input.LA(1)==23||input.LA(1)==25 ) {
+            	        input.consume();
+            	        state.errorRecovery=false;
+            	        state.failed=false;
+            	    }
+            	    else {
+            	        if (state.backtracking>0) {state.failed=true; return ;}
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        dbg.recognitionException(mse);
+            	        throw mse;
+            	    }
+
+            	    dbg.location(105,23);
+            	    pushFollow(FOLLOW_term_in_arithmetic262);
+            	    term();
+
+            	    state._fsp--;
+            	    if (state.failed) return ;
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop10;
+                }
+            } while (true);
+            } finally {dbg.exitSubRule(10);}
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        dbg.location(106, 4);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "arithmetic");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return ;
+    }
+    // $ANTLR end "arithmetic"
+
+
+
+    // $ANTLR start "term"
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:108:1: term : factor ( ( '*' | '/' ) factor )* ;
+    public final void term() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "term");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(108, 0);
+
+        try {
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:108:5: ( factor ( ( '*' | '/' ) factor )* )
+            dbg.enterAlt(1);
+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:108:7: factor ( ( '*' | '/' ) factor )*
+            {
+            dbg.location(108,7);
+            pushFollow(FOLLOW_factor_in_term277);
+            factor();
+
+            state._fsp--;
+            if (state.failed) return ;
+            dbg.location(108,14);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:108:14: ( ( '*' | '/' ) factor )*
+            try { dbg.enterSubRule(11);
+
+            loop11:
+            do {
+                int alt11=2;
+                try { dbg.enterDecision(11, decisionCanBacktrack[11]);
+
+                int LA11_0 = input.LA(1);
+
+                if ( (LA11_0==22||LA11_0==26) ) {
+                    alt11=1;
+                }
+
+
+                } finally {dbg.exitDecision(11);}
+
+                switch (alt11) {
+            	case 1 :
+            	    dbg.enterAlt(1);
+
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:108:15: ( '*' | '/' ) factor
+            	    {
+            	    dbg.location(108,15);
+            	    if ( input.LA(1)==22||input.LA(1)==26 ) {
+            	        input.consume();
+            	        state.errorRecovery=false;
+            	        state.failed=false;
+            	    }
+            	    else {
+            	        if (state.backtracking>0) {state.failed=true; return ;}
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        dbg.recognitionException(mse);
+            	        throw mse;
+            	    }
+
+            	    dbg.location(108,25);
+            	    pushFollow(FOLLOW_factor_in_term286);
+            	    factor();
+
+            	    state._fsp--;
+            	    if (state.failed) return ;
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop11;
+                }
+            } while (true);
+            } finally {dbg.exitSubRule(11);}
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        dbg.location(109, 4);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "term");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return ;
+    }
+    // $ANTLR end "term"
+
+
+
+    // $ANTLR start "factor"
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:111:1: factor : ( ( ID | NUMBER ) | ( ( ID | func ) '(' )=> call | '(' arithmetic ')' );
+    public final void factor() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "factor");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(111, 0);
+
+        try {
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:112:5: ( ( ID | NUMBER ) | ( ( ID | func ) '(' )=> call | '(' arithmetic ')' )
             int alt12=3;
             try { dbg.enterDecision(12, decisionCanBacktrack[12]);
 
             switch ( input.LA(1) ) {
-            case 26:
+            case ID:
+                {
+                int LA12_1 = input.LA(2);
+
+                if ( (true) ) {
+                    alt12=1;
+                }
+                else if ( (synpred3_Pass()) ) {
+                    alt12=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 12, 1, input);
+
+                    dbg.recognitionException(nvae);
+                    throw nvae;
+
+                }
+                }
+                break;
+            case 19:
+                {
+                int LA12_2 = input.LA(2);
+
+                if ( (synpred3_Pass()) ) {
+                    alt12=2;
+                }
+                else if ( (true) ) {
+                    alt12=3;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 12, 2, input);
+
+                    dbg.recognitionException(nvae);
+                    throw nvae;
+
+                }
+                }
+                break;
+            case NUMBER:
                 {
                 alt12=1;
-                }
-                break;
-            case 29:
-                {
-                alt12=2;
-                }
-                break;
-            case 27:
-                {
-                alt12=3;
                 }
                 break;
             default:
@@ -1070,45 +1311,32 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:104:6: 'for' ID 'in' ID LT iblock
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:112:7: ( ID | NUMBER )
                     {
-                    dbg.location(104,6);
-                    match(input,26,FOLLOW_26_in_control246); if (state.failed) return ;
-                    dbg.location(104,12);
-                    match(input,ID,FOLLOW_ID_in_control248); if (state.failed) return ;
-                    dbg.location(104,15);
-                    match(input,28,FOLLOW_28_in_control250); if (state.failed) return ;
-                    dbg.location(104,20);
-                    match(input,ID,FOLLOW_ID_in_control252); if (state.failed) return ;
-                    dbg.location(104,23);
-                    match(input,LT,FOLLOW_LT_in_control254); if (state.failed) return ;
-                    dbg.location(104,26);
-                    pushFollow(FOLLOW_iblock_in_control256);
-                    iblock();
+                    dbg.location(112,7);
+                    if ( input.LA(1)==ID||input.LA(1)==NUMBER ) {
+                        input.consume();
+                        state.errorRecovery=false;
+                        state.failed=false;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return ;}
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        dbg.recognitionException(mse);
+                        throw mse;
+                    }
 
-                    state._fsp--;
-                    if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:6: 'while' bool LT iblock
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:113:7: ( ( ID | func ) '(' )=> call
                     {
-                    dbg.location(105,6);
-                    match(input,29,FOLLOW_29_in_control263); if (state.failed) return ;
-                    dbg.location(105,14);
-                    pushFollow(FOLLOW_bool_in_control265);
-                    bool();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    dbg.location(105,19);
-                    match(input,LT,FOLLOW_LT_in_control267); if (state.failed) return ;
-                    dbg.location(105,22);
-                    pushFollow(FOLLOW_iblock_in_control269);
-                    iblock();
+                    dbg.location(113,25);
+                    pushFollow(FOLLOW_call_in_factor329);
+                    call();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -1118,110 +1346,18 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:106:4: 'if' bool LT iblock ( 'else if' bool LT iblock )* ( 'else' LT iblock )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:7: '(' arithmetic ')'
                     {
-                    dbg.location(106,4);
-                    match(input,27,FOLLOW_27_in_control274); if (state.failed) return ;
-                    dbg.location(106,9);
-                    pushFollow(FOLLOW_bool_in_control276);
-                    bool();
+                    dbg.location(114,7);
+                    match(input,19,FOLLOW_19_in_factor337); if (state.failed) return ;
+                    dbg.location(114,11);
+                    pushFollow(FOLLOW_arithmetic_in_factor339);
+                    arithmetic();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(106,14);
-                    match(input,LT,FOLLOW_LT_in_control278); if (state.failed) return ;
-                    dbg.location(106,17);
-                    pushFollow(FOLLOW_iblock_in_control280);
-                    iblock();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    dbg.location(106,24);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:106:24: ( 'else if' bool LT iblock )*
-                    try { dbg.enterSubRule(10);
-
-                    loop10:
-                    do {
-                        int alt10=2;
-                        try { dbg.enterDecision(10, decisionCanBacktrack[10]);
-
-                        int LA10_0 = input.LA(1);
-
-                        if ( (LA10_0==24) ) {
-                            alt10=1;
-                        }
-
-
-                        } finally {dbg.exitDecision(10);}
-
-                        switch (alt10) {
-                    	case 1 :
-                    	    dbg.enterAlt(1);
-
-                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:106:25: 'else if' bool LT iblock
-                    	    {
-                    	    dbg.location(106,25);
-                    	    match(input,24,FOLLOW_24_in_control283); if (state.failed) return ;
-                    	    dbg.location(106,35);
-                    	    pushFollow(FOLLOW_bool_in_control285);
-                    	    bool();
-
-                    	    state._fsp--;
-                    	    if (state.failed) return ;
-                    	    dbg.location(106,40);
-                    	    match(input,LT,FOLLOW_LT_in_control287); if (state.failed) return ;
-                    	    dbg.location(106,43);
-                    	    pushFollow(FOLLOW_iblock_in_control289);
-                    	    iblock();
-
-                    	    state._fsp--;
-                    	    if (state.failed) return ;
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop10;
-                        }
-                    } while (true);
-                    } finally {dbg.exitSubRule(10);}
-
-                    dbg.location(106,52);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:106:52: ( 'else' LT iblock )?
-                    int alt11=2;
-                    try { dbg.enterSubRule(11);
-                    try { dbg.enterDecision(11, decisionCanBacktrack[11]);
-
-                    int LA11_0 = input.LA(1);
-
-                    if ( (LA11_0==25) ) {
-                        alt11=1;
-                    }
-                    } finally {dbg.exitDecision(11);}
-
-                    switch (alt11) {
-                        case 1 :
-                            dbg.enterAlt(1);
-
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:106:53: 'else' LT iblock
-                            {
-                            dbg.location(106,53);
-                            match(input,25,FOLLOW_25_in_control294); if (state.failed) return ;
-                            dbg.location(106,60);
-                            match(input,LT,FOLLOW_LT_in_control296); if (state.failed) return ;
-                            dbg.location(106,63);
-                            pushFollow(FOLLOW_iblock_in_control298);
-                            iblock();
-
-                            state._fsp--;
-                            if (state.failed) return ;
-
-                            }
-                            break;
-
-                    }
-                    } finally {dbg.exitSubRule(11);}
-
+                    dbg.location(114,22);
+                    match(input,21,FOLLOW_21_in_factor341); if (state.failed) return ;
 
                     }
                     break;
@@ -1236,97 +1372,48 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(107, 4);
+        dbg.location(115, 4);
 
         }
         finally {
-            dbg.exitRule(getGrammarFileName(), "control");
+            dbg.exitRule(getGrammarFileName(), "factor");
             decRuleLevel();
             if ( getRuleLevel()==0 ) {dbg.terminate();}
         }
 
         return ;
     }
-    // $ANTLR end "control"
+    // $ANTLR end "factor"
 
 
 
-    // $ANTLR start "bool"
-    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:1: bool : ( ( ( atom | ID | call ) ( CMP | BOP ) )=> ( atom | ID | call ) ( CMP | BOP ) bool | ( atom | ID | call ) );
-    public final void bool() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "bool");
+    // $ANTLR start "control"
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:117:1: control : ( 'for' ID 'in' ID LT iblock | 'while' bool LT iblock | 'if' bool LT iblock ( 'else if' bool LT iblock )* ( 'else' LT iblock )? );
+    public final void control() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "control");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(109, 0);
+        dbg.location(117, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:5: ( ( ( atom | ID | call ) ( CMP | BOP ) )=> ( atom | ID | call ) ( CMP | BOP ) bool | ( atom | ID | call ) )
-            int alt15=2;
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:118:2: ( 'for' ID 'in' ID LT iblock | 'while' bool LT iblock | 'if' bool LT iblock ( 'else if' bool LT iblock )* ( 'else' LT iblock )? )
+            int alt15=3;
             try { dbg.enterDecision(15, decisionCanBacktrack[15]);
 
             switch ( input.LA(1) ) {
-            case NUMBER:
-            case STRING:
+            case 30:
                 {
-                int LA15_1 = input.LA(2);
-
-                if ( (synpred3_Pass()) ) {
-                    alt15=1;
-                }
-                else if ( (true) ) {
-                    alt15=2;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return ;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 15, 1, input);
-
-                    dbg.recognitionException(nvae);
-                    throw nvae;
-
-                }
+                alt15=1;
                 }
                 break;
-            case ID:
+            case 33:
                 {
-                int LA15_2 = input.LA(2);
-
-                if ( (synpred3_Pass()) ) {
-                    alt15=1;
-                }
-                else if ( (true) ) {
-                    alt15=2;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return ;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 15, 2, input);
-
-                    dbg.recognitionException(nvae);
-                    throw nvae;
-
-                }
+                alt15=2;
                 }
                 break;
-            case 19:
+            case 31:
                 {
-                int LA15_3 = input.LA(2);
-
-                if ( (synpred3_Pass()) ) {
-                    alt15=1;
-                }
-                else if ( (true) ) {
-                    alt15=2;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return ;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 15, 3, input);
-
-                    dbg.recognitionException(nvae);
-                    throw nvae;
-
-                }
+                alt15=3;
                 }
                 break;
             default:
@@ -1345,118 +1432,21 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:7: ( ( atom | ID | call ) ( CMP | BOP ) )=> ( atom | ID | call ) ( CMP | BOP ) bool
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:118:6: 'for' ID 'in' ID LT iblock
                     {
-                    dbg.location(109,37);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:37: ( atom | ID | call )
-                    int alt13=3;
-                    try { dbg.enterSubRule(13);
-                    try { dbg.enterDecision(13, decisionCanBacktrack[13]);
-
-                    switch ( input.LA(1) ) {
-                    case NUMBER:
-                    case STRING:
-                        {
-                        alt13=1;
-                        }
-                        break;
-                    case ID:
-                        {
-                        int LA13_2 = input.LA(2);
-
-                        if ( ((LA13_2 >= BOP && LA13_2 <= CMP)) ) {
-                            alt13=2;
-                        }
-                        else if ( ((LA13_2 >= 19 && LA13_2 <= 20)) ) {
-                            alt13=3;
-                        }
-                        else {
-                            if (state.backtracking>0) {state.failed=true; return ;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("", 13, 2, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-
-                        }
-                        }
-                        break;
-                    case 19:
-                        {
-                        alt13=3;
-                        }
-                        break;
-                    default:
-                        if (state.backtracking>0) {state.failed=true; return ;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 13, 0, input);
-
-                        dbg.recognitionException(nvae);
-                        throw nvae;
-
-                    }
-
-                    } finally {dbg.exitDecision(13);}
-
-                    switch (alt13) {
-                        case 1 :
-                            dbg.enterAlt(1);
-
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:38: atom
-                            {
-                            dbg.location(109,38);
-                            pushFollow(FOLLOW_atom_in_bool331);
-                            atom();
-
-                            state._fsp--;
-                            if (state.failed) return ;
-
-                            }
-                            break;
-                        case 2 :
-                            dbg.enterAlt(2);
-
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:43: ID
-                            {
-                            dbg.location(109,43);
-                            match(input,ID,FOLLOW_ID_in_bool333); if (state.failed) return ;
-
-                            }
-                            break;
-                        case 3 :
-                            dbg.enterAlt(3);
-
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:46: call
-                            {
-                            dbg.location(109,46);
-                            pushFollow(FOLLOW_call_in_bool335);
-                            call();
-
-                            state._fsp--;
-                            if (state.failed) return ;
-
-                            }
-                            break;
-
-                    }
-                    } finally {dbg.exitSubRule(13);}
-
-                    dbg.location(109,52);
-                    if ( (input.LA(1) >= BOP && input.LA(1) <= CMP) ) {
-                        input.consume();
-                        state.errorRecovery=false;
-                        state.failed=false;
-                    }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return ;}
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        dbg.recognitionException(mse);
-                        throw mse;
-                    }
-
-                    dbg.location(109,62);
-                    pushFollow(FOLLOW_bool_in_bool344);
-                    bool();
+                    dbg.location(118,6);
+                    match(input,30,FOLLOW_30_in_control357); if (state.failed) return ;
+                    dbg.location(118,12);
+                    match(input,ID,FOLLOW_ID_in_control359); if (state.failed) return ;
+                    dbg.location(118,15);
+                    match(input,32,FOLLOW_32_in_control361); if (state.failed) return ;
+                    dbg.location(118,20);
+                    match(input,ID,FOLLOW_ID_in_control363); if (state.failed) return ;
+                    dbg.location(118,23);
+                    match(input,LT,FOLLOW_LT_in_control365); if (state.failed) return ;
+                    dbg.location(118,26);
+                    pushFollow(FOLLOW_iblock_in_control367);
+                    iblock();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -1466,92 +1456,124 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:9: ( atom | ID | call )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:119:6: 'while' bool LT iblock
                     {
-                    dbg.location(110,9);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:9: ( atom | ID | call )
-                    int alt14=3;
+                    dbg.location(119,6);
+                    match(input,33,FOLLOW_33_in_control374); if (state.failed) return ;
+                    dbg.location(119,14);
+                    pushFollow(FOLLOW_bool_in_control376);
+                    bool();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    dbg.location(119,19);
+                    match(input,LT,FOLLOW_LT_in_control378); if (state.failed) return ;
+                    dbg.location(119,22);
+                    pushFollow(FOLLOW_iblock_in_control380);
+                    iblock();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+                case 3 :
+                    dbg.enterAlt(3);
+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:120:4: 'if' bool LT iblock ( 'else if' bool LT iblock )* ( 'else' LT iblock )?
+                    {
+                    dbg.location(120,4);
+                    match(input,31,FOLLOW_31_in_control385); if (state.failed) return ;
+                    dbg.location(120,9);
+                    pushFollow(FOLLOW_bool_in_control387);
+                    bool();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    dbg.location(120,14);
+                    match(input,LT,FOLLOW_LT_in_control389); if (state.failed) return ;
+                    dbg.location(120,17);
+                    pushFollow(FOLLOW_iblock_in_control391);
+                    iblock();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    dbg.location(120,24);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:120:24: ( 'else if' bool LT iblock )*
+                    try { dbg.enterSubRule(13);
+
+                    loop13:
+                    do {
+                        int alt13=2;
+                        try { dbg.enterDecision(13, decisionCanBacktrack[13]);
+
+                        int LA13_0 = input.LA(1);
+
+                        if ( (LA13_0==28) ) {
+                            alt13=1;
+                        }
+
+
+                        } finally {dbg.exitDecision(13);}
+
+                        switch (alt13) {
+                    	case 1 :
+                    	    dbg.enterAlt(1);
+
+                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:120:25: 'else if' bool LT iblock
+                    	    {
+                    	    dbg.location(120,25);
+                    	    match(input,28,FOLLOW_28_in_control394); if (state.failed) return ;
+                    	    dbg.location(120,35);
+                    	    pushFollow(FOLLOW_bool_in_control396);
+                    	    bool();
+
+                    	    state._fsp--;
+                    	    if (state.failed) return ;
+                    	    dbg.location(120,40);
+                    	    match(input,LT,FOLLOW_LT_in_control398); if (state.failed) return ;
+                    	    dbg.location(120,43);
+                    	    pushFollow(FOLLOW_iblock_in_control400);
+                    	    iblock();
+
+                    	    state._fsp--;
+                    	    if (state.failed) return ;
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop13;
+                        }
+                    } while (true);
+                    } finally {dbg.exitSubRule(13);}
+
+                    dbg.location(120,52);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:120:52: ( 'else' LT iblock )?
+                    int alt14=2;
                     try { dbg.enterSubRule(14);
                     try { dbg.enterDecision(14, decisionCanBacktrack[14]);
 
-                    switch ( input.LA(1) ) {
-                    case NUMBER:
-                    case STRING:
-                        {
+                    int LA14_0 = input.LA(1);
+
+                    if ( (LA14_0==29) ) {
                         alt14=1;
-                        }
-                        break;
-                    case ID:
-                        {
-                        int LA14_2 = input.LA(2);
-
-                        if ( (LA14_2==LT) ) {
-                            alt14=2;
-                        }
-                        else if ( ((LA14_2 >= 19 && LA14_2 <= 20)) ) {
-                            alt14=3;
-                        }
-                        else {
-                            if (state.backtracking>0) {state.failed=true; return ;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("", 14, 2, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-
-                        }
-                        }
-                        break;
-                    case 19:
-                        {
-                        alt14=3;
-                        }
-                        break;
-                    default:
-                        if (state.backtracking>0) {state.failed=true; return ;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 14, 0, input);
-
-                        dbg.recognitionException(nvae);
-                        throw nvae;
-
                     }
-
                     } finally {dbg.exitDecision(14);}
 
                     switch (alt14) {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:10: atom
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:120:53: 'else' LT iblock
                             {
-                            dbg.location(110,10);
-                            pushFollow(FOLLOW_atom_in_bool355);
-                            atom();
-
-                            state._fsp--;
-                            if (state.failed) return ;
-
-                            }
-                            break;
-                        case 2 :
-                            dbg.enterAlt(2);
-
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:15: ID
-                            {
-                            dbg.location(110,15);
-                            match(input,ID,FOLLOW_ID_in_bool357); if (state.failed) return ;
-
-                            }
-                            break;
-                        case 3 :
-                            dbg.enterAlt(3);
-
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:18: call
-                            {
-                            dbg.location(110,18);
-                            pushFollow(FOLLOW_call_in_bool359);
-                            call();
+                            dbg.location(120,53);
+                            match(input,29,FOLLOW_29_in_control405); if (state.failed) return ;
+                            dbg.location(120,60);
+                            match(input,LT,FOLLOW_LT_in_control407); if (state.failed) return ;
+                            dbg.location(120,63);
+                            pushFollow(FOLLOW_iblock_in_control409);
+                            iblock();
 
                             state._fsp--;
                             if (state.failed) return ;
@@ -1576,78 +1598,119 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(111, 1);
+        dbg.location(121, 4);
 
         }
         finally {
-            dbg.exitRule(getGrammarFileName(), "bool");
+            dbg.exitRule(getGrammarFileName(), "control");
             decRuleLevel();
             if ( getRuleLevel()==0 ) {dbg.terminate();}
         }
 
         return ;
     }
-    // $ANTLR end "bool"
+    // $ANTLR end "control"
 
 
 
-    // $ANTLR start "assign"
-    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:113:1: assign : ( ID '=' ( atom | func | ID ) | ( ID '=' '(' )=> ID '=' call );
-    public final void assign() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "assign");
+    // $ANTLR start "bool"
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:1: bool : ( ( ( atom | ID | call ) ( CMP | BOP ) )=> ( atom | ID | call ) ( CMP | BOP ) bool | ( atom | ID | call ) );
+    public final void bool() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "bool");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(113, 0);
+        dbg.location(123, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:5: ( ID '=' ( atom | func | ID ) | ( ID '=' '(' )=> ID '=' call )
-            int alt17=2;
-            try { dbg.enterDecision(17, decisionCanBacktrack[17]);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:5: ( ( ( atom | ID | call ) ( CMP | BOP ) )=> ( atom | ID | call ) ( CMP | BOP ) bool | ( atom | ID | call ) )
+            int alt18=2;
+            try { dbg.enterDecision(18, decisionCanBacktrack[18]);
 
-            int LA17_0 = input.LA(1);
+            switch ( input.LA(1) ) {
+            case NUMBER:
+            case STRING:
+                {
+                int LA18_1 = input.LA(2);
 
-            if ( (LA17_0==ID) ) {
-                int LA17_1 = input.LA(2);
-
-                if ( (true) ) {
-                    alt17=1;
+                if ( (synpred4_Pass()) ) {
+                    alt18=1;
                 }
-                else if ( (synpred4_Pass()) ) {
-                    alt17=2;
+                else if ( (true) ) {
+                    alt18=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 17, 1, input);
+                        new NoViableAltException("", 18, 1, input);
 
                     dbg.recognitionException(nvae);
                     throw nvae;
 
                 }
-            }
-            else {
+                }
+                break;
+            case ID:
+                {
+                int LA18_2 = input.LA(2);
+
+                if ( (synpred4_Pass()) ) {
+                    alt18=1;
+                }
+                else if ( (true) ) {
+                    alt18=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 18, 2, input);
+
+                    dbg.recognitionException(nvae);
+                    throw nvae;
+
+                }
+                }
+                break;
+            case 19:
+                {
+                int LA18_3 = input.LA(2);
+
+                if ( (synpred4_Pass()) ) {
+                    alt18=1;
+                }
+                else if ( (true) ) {
+                    alt18=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 18, 3, input);
+
+                    dbg.recognitionException(nvae);
+                    throw nvae;
+
+                }
+                }
+                break;
+            default:
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 17, 0, input);
+                    new NoViableAltException("", 18, 0, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
 
             }
-            } finally {dbg.exitDecision(17);}
 
-            switch (alt17) {
+            } finally {dbg.exitDecision(18);}
+
+            switch (alt18) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:9: ID '=' ( atom | func | ID )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:7: ( ( atom | ID | call ) ( CMP | BOP ) )=> ( atom | ID | call ) ( CMP | BOP ) bool
                     {
-                    dbg.location(114,9);
-                    match(input,ID,FOLLOW_ID_in_assign376); if (state.failed) return ;
-                    dbg.location(114,12);
-                    match(input,23,FOLLOW_23_in_assign378); if (state.failed) return ;
-                    dbg.location(114,16);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:16: ( atom | func | ID )
+                    dbg.location(123,37);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:37: ( atom | ID | call )
                     int alt16=3;
                     try { dbg.enterSubRule(16);
                     try { dbg.enterDecision(16, decisionCanBacktrack[16]);
@@ -1659,13 +1722,28 @@ protected boolean evalPredicate(boolean result, String predicate) {
                         alt16=1;
                         }
                         break;
-                    case 19:
-                    case 20:
+                    case ID:
                         {
-                        alt16=2;
+                        int LA16_2 = input.LA(2);
+
+                        if ( ((LA16_2 >= BOP && LA16_2 <= CMP)) ) {
+                            alt16=2;
+                        }
+                        else if ( ((LA16_2 >= 19 && LA16_2 <= 20)) ) {
+                            alt16=3;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return ;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 16, 2, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+
+                        }
                         }
                         break;
-                    case ID:
+                    case 19:
                         {
                         alt16=3;
                         }
@@ -1686,10 +1764,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:17: atom
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:38: atom
                             {
-                            dbg.location(114,17);
-                            pushFollow(FOLLOW_atom_in_assign381);
+                            dbg.location(123,38);
+                            pushFollow(FOLLOW_atom_in_bool442);
                             atom();
 
                             state._fsp--;
@@ -1700,10 +1778,294 @@ protected boolean evalPredicate(boolean result, String predicate) {
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:22: func
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:43: ID
                             {
-                            dbg.location(114,22);
-                            pushFollow(FOLLOW_func_in_assign383);
+                            dbg.location(123,43);
+                            match(input,ID,FOLLOW_ID_in_bool444); if (state.failed) return ;
+
+                            }
+                            break;
+                        case 3 :
+                            dbg.enterAlt(3);
+
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:46: call
+                            {
+                            dbg.location(123,46);
+                            pushFollow(FOLLOW_call_in_bool446);
+                            call();
+
+                            state._fsp--;
+                            if (state.failed) return ;
+
+                            }
+                            break;
+
+                    }
+                    } finally {dbg.exitSubRule(16);}
+
+                    dbg.location(123,52);
+                    if ( (input.LA(1) >= BOP && input.LA(1) <= CMP) ) {
+                        input.consume();
+                        state.errorRecovery=false;
+                        state.failed=false;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return ;}
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        dbg.recognitionException(mse);
+                        throw mse;
+                    }
+
+                    dbg.location(123,62);
+                    pushFollow(FOLLOW_bool_in_bool455);
+                    bool();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+                case 2 :
+                    dbg.enterAlt(2);
+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:124:9: ( atom | ID | call )
+                    {
+                    dbg.location(124,9);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:124:9: ( atom | ID | call )
+                    int alt17=3;
+                    try { dbg.enterSubRule(17);
+                    try { dbg.enterDecision(17, decisionCanBacktrack[17]);
+
+                    switch ( input.LA(1) ) {
+                    case NUMBER:
+                    case STRING:
+                        {
+                        alt17=1;
+                        }
+                        break;
+                    case ID:
+                        {
+                        int LA17_2 = input.LA(2);
+
+                        if ( (LA17_2==LT) ) {
+                            alt17=2;
+                        }
+                        else if ( ((LA17_2 >= 19 && LA17_2 <= 20)) ) {
+                            alt17=3;
+                        }
+                        else {
+                            if (state.backtracking>0) {state.failed=true; return ;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("", 17, 2, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+
+                        }
+                        }
+                        break;
+                    case 19:
+                        {
+                        alt17=3;
+                        }
+                        break;
+                    default:
+                        if (state.backtracking>0) {state.failed=true; return ;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 17, 0, input);
+
+                        dbg.recognitionException(nvae);
+                        throw nvae;
+
+                    }
+
+                    } finally {dbg.exitDecision(17);}
+
+                    switch (alt17) {
+                        case 1 :
+                            dbg.enterAlt(1);
+
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:124:10: atom
+                            {
+                            dbg.location(124,10);
+                            pushFollow(FOLLOW_atom_in_bool466);
+                            atom();
+
+                            state._fsp--;
+                            if (state.failed) return ;
+
+                            }
+                            break;
+                        case 2 :
+                            dbg.enterAlt(2);
+
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:124:15: ID
+                            {
+                            dbg.location(124,15);
+                            match(input,ID,FOLLOW_ID_in_bool468); if (state.failed) return ;
+
+                            }
+                            break;
+                        case 3 :
+                            dbg.enterAlt(3);
+
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:124:18: call
+                            {
+                            dbg.location(124,18);
+                            pushFollow(FOLLOW_call_in_bool470);
+                            call();
+
+                            state._fsp--;
+                            if (state.failed) return ;
+
+                            }
+                            break;
+
+                    }
+                    } finally {dbg.exitSubRule(17);}
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        dbg.location(125, 1);
+
+        }
+        finally {
+            dbg.exitRule(getGrammarFileName(), "bool");
+            decRuleLevel();
+            if ( getRuleLevel()==0 ) {dbg.terminate();}
+        }
+
+        return ;
+    }
+    // $ANTLR end "bool"
+
+
+
+    // $ANTLR start "assign"
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:127:1: assign : ( ID '=' ( atom | func | ID ) | ( ID '=' '(' )=> ID '=' call );
+    public final void assign() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "assign");
+        if ( getRuleLevel()==0 ) {dbg.commence();}
+        incRuleLevel();
+        dbg.location(127, 0);
+
+        try {
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:128:5: ( ID '=' ( atom | func | ID ) | ( ID '=' '(' )=> ID '=' call )
+            int alt20=2;
+            try { dbg.enterDecision(20, decisionCanBacktrack[20]);
+
+            int LA20_0 = input.LA(1);
+
+            if ( (LA20_0==ID) ) {
+                int LA20_1 = input.LA(2);
+
+                if ( (true) ) {
+                    alt20=1;
+                }
+                else if ( (synpred5_Pass()) ) {
+                    alt20=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 20, 1, input);
+
+                    dbg.recognitionException(nvae);
+                    throw nvae;
+
+                }
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return ;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 20, 0, input);
+
+                dbg.recognitionException(nvae);
+                throw nvae;
+
+            }
+            } finally {dbg.exitDecision(20);}
+
+            switch (alt20) {
+                case 1 :
+                    dbg.enterAlt(1);
+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:128:9: ID '=' ( atom | func | ID )
+                    {
+                    dbg.location(128,9);
+                    match(input,ID,FOLLOW_ID_in_assign487); if (state.failed) return ;
+                    dbg.location(128,12);
+                    match(input,27,FOLLOW_27_in_assign489); if (state.failed) return ;
+                    dbg.location(128,16);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:128:16: ( atom | func | ID )
+                    int alt19=3;
+                    try { dbg.enterSubRule(19);
+                    try { dbg.enterDecision(19, decisionCanBacktrack[19]);
+
+                    switch ( input.LA(1) ) {
+                    case NUMBER:
+                    case STRING:
+                        {
+                        alt19=1;
+                        }
+                        break;
+                    case 19:
+                    case 20:
+                        {
+                        alt19=2;
+                        }
+                        break;
+                    case ID:
+                        {
+                        alt19=3;
+                        }
+                        break;
+                    default:
+                        if (state.backtracking>0) {state.failed=true; return ;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 19, 0, input);
+
+                        dbg.recognitionException(nvae);
+                        throw nvae;
+
+                    }
+
+                    } finally {dbg.exitDecision(19);}
+
+                    switch (alt19) {
+                        case 1 :
+                            dbg.enterAlt(1);
+
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:128:17: atom
+                            {
+                            dbg.location(128,17);
+                            pushFollow(FOLLOW_atom_in_assign492);
+                            atom();
+
+                            state._fsp--;
+                            if (state.failed) return ;
+
+                            }
+                            break;
+                        case 2 :
+                            dbg.enterAlt(2);
+
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:128:22: func
+                            {
+                            dbg.location(128,22);
+                            pushFollow(FOLLOW_func_in_assign494);
                             func();
 
                             state._fsp--;
@@ -1714,16 +2076,16 @@ protected boolean evalPredicate(boolean result, String predicate) {
                         case 3 :
                             dbg.enterAlt(3);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:27: ID
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:128:27: ID
                             {
-                            dbg.location(114,27);
-                            match(input,ID,FOLLOW_ID_in_assign385); if (state.failed) return ;
+                            dbg.location(128,27);
+                            match(input,ID,FOLLOW_ID_in_assign496); if (state.failed) return ;
 
                             }
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(16);}
+                    } finally {dbg.exitSubRule(19);}
 
 
                     }
@@ -1731,14 +2093,14 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:115:9: ( ID '=' '(' )=> ID '=' call
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:9: ( ID '=' '(' )=> ID '=' call
                     {
-                    dbg.location(115,24);
-                    match(input,ID,FOLLOW_ID_in_assign405); if (state.failed) return ;
-                    dbg.location(115,27);
-                    match(input,23,FOLLOW_23_in_assign407); if (state.failed) return ;
-                    dbg.location(115,31);
-                    pushFollow(FOLLOW_call_in_assign409);
+                    dbg.location(129,24);
+                    match(input,ID,FOLLOW_ID_in_assign516); if (state.failed) return ;
+                    dbg.location(129,27);
+                    match(input,27,FOLLOW_27_in_assign518); if (state.failed) return ;
+                    dbg.location(129,31);
+                    pushFollow(FOLLOW_call_in_assign520);
                     call();
 
                     state._fsp--;
@@ -1757,7 +2119,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(116, 4);
+        dbg.location(130, 4);
 
         }
         finally {
@@ -1773,20 +2135,20 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
     // $ANTLR start "atom"
-    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:118:1: atom : ( NUMBER | STRING );
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:132:1: atom : ( NUMBER | STRING );
     public final void atom() throws RecognitionException {
         try { dbg.enterRule(getGrammarFileName(), "atom");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
-        dbg.location(118, 0);
+        dbg.location(132, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:118:5: ( NUMBER | STRING )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:132:5: ( NUMBER | STRING )
             dbg.enterAlt(1);
 
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:
             {
-            dbg.location(118,5);
+            dbg.location(132,5);
             if ( input.LA(1)==NUMBER||input.LA(1)==STRING ) {
                 input.consume();
                 state.errorRecovery=false;
@@ -1811,7 +2173,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(120, 4);
+        dbg.location(134, 4);
 
         }
         finally {
@@ -1847,38 +2209,107 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
     // $ANTLR start synpred3_Pass
     public final void synpred3_Pass_fragment() throws RecognitionException {
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:7: ( ( atom | ID | call ) ( CMP | BOP ) )
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:113:7: ( ( ID | func ) '(' )
         dbg.enterAlt(1);
 
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:8: ( atom | ID | call ) ( CMP | BOP )
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:113:8: ( ID | func ) '('
         {
-        dbg.location(109,8);
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:8: ( atom | ID | call )
-        int alt18=3;
-        try { dbg.enterSubRule(18);
-        try { dbg.enterDecision(18, decisionCanBacktrack[18]);
+        dbg.location(113,8);
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:113:8: ( ID | func )
+        int alt21=2;
+        try { dbg.enterSubRule(21);
+        try { dbg.enterDecision(21, decisionCanBacktrack[21]);
+
+        int LA21_0 = input.LA(1);
+
+        if ( (LA21_0==ID) ) {
+            alt21=1;
+        }
+        else if ( ((LA21_0 >= 19 && LA21_0 <= 20)) ) {
+            alt21=2;
+        }
+        else {
+            if (state.backtracking>0) {state.failed=true; return ;}
+            NoViableAltException nvae =
+                new NoViableAltException("", 21, 0, input);
+
+            dbg.recognitionException(nvae);
+            throw nvae;
+
+        }
+        } finally {dbg.exitDecision(21);}
+
+        switch (alt21) {
+            case 1 :
+                dbg.enterAlt(1);
+
+                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:113:9: ID
+                {
+                dbg.location(113,9);
+                match(input,ID,FOLLOW_ID_in_synpred3_Pass320); if (state.failed) return ;
+
+                }
+                break;
+            case 2 :
+                dbg.enterAlt(2);
+
+                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:113:12: func
+                {
+                dbg.location(113,12);
+                pushFollow(FOLLOW_func_in_synpred3_Pass322);
+                func();
+
+                state._fsp--;
+                if (state.failed) return ;
+
+                }
+                break;
+
+        }
+        } finally {dbg.exitSubRule(21);}
+
+        dbg.location(113,18);
+        match(input,19,FOLLOW_19_in_synpred3_Pass325); if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred3_Pass
+
+    // $ANTLR start synpred4_Pass
+    public final void synpred4_Pass_fragment() throws RecognitionException {
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:7: ( ( atom | ID | call ) ( CMP | BOP ) )
+        dbg.enterAlt(1);
+
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:8: ( atom | ID | call ) ( CMP | BOP )
+        {
+        dbg.location(123,8);
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:8: ( atom | ID | call )
+        int alt22=3;
+        try { dbg.enterSubRule(22);
+        try { dbg.enterDecision(22, decisionCanBacktrack[22]);
 
         switch ( input.LA(1) ) {
         case NUMBER:
         case STRING:
             {
-            alt18=1;
+            alt22=1;
             }
             break;
         case ID:
             {
-            int LA18_2 = input.LA(2);
+            int LA22_2 = input.LA(2);
 
-            if ( ((LA18_2 >= BOP && LA18_2 <= CMP)) ) {
-                alt18=2;
+            if ( ((LA22_2 >= BOP && LA22_2 <= CMP)) ) {
+                alt22=2;
             }
-            else if ( ((LA18_2 >= 19 && LA18_2 <= 20)) ) {
-                alt18=3;
+            else if ( ((LA22_2 >= 19 && LA22_2 <= 20)) ) {
+                alt22=3;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 18, 2, input);
+                    new NoViableAltException("", 22, 2, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
@@ -1888,29 +2319,29 @@ protected boolean evalPredicate(boolean result, String predicate) {
             break;
         case 19:
             {
-            alt18=3;
+            alt22=3;
             }
             break;
         default:
             if (state.backtracking>0) {state.failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("", 18, 0, input);
+                new NoViableAltException("", 22, 0, input);
 
             dbg.recognitionException(nvae);
             throw nvae;
 
         }
 
-        } finally {dbg.exitDecision(18);}
+        } finally {dbg.exitDecision(22);}
 
-        switch (alt18) {
+        switch (alt22) {
             case 1 :
                 dbg.enterAlt(1);
 
-                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:9: atom
+                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:9: atom
                 {
-                dbg.location(109,9);
-                pushFollow(FOLLOW_atom_in_synpred3_Pass314);
+                dbg.location(123,9);
+                pushFollow(FOLLOW_atom_in_synpred4_Pass425);
                 atom();
 
                 state._fsp--;
@@ -1921,20 +2352,20 @@ protected boolean evalPredicate(boolean result, String predicate) {
             case 2 :
                 dbg.enterAlt(2);
 
-                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:14: ID
+                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:14: ID
                 {
-                dbg.location(109,14);
-                match(input,ID,FOLLOW_ID_in_synpred3_Pass316); if (state.failed) return ;
+                dbg.location(123,14);
+                match(input,ID,FOLLOW_ID_in_synpred4_Pass427); if (state.failed) return ;
 
                 }
                 break;
             case 3 :
                 dbg.enterAlt(3);
 
-                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:109:17: call
+                // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:123:17: call
                 {
-                dbg.location(109,17);
-                pushFollow(FOLLOW_call_in_synpred3_Pass318);
+                dbg.location(123,17);
+                pushFollow(FOLLOW_call_in_synpred4_Pass429);
                 call();
 
                 state._fsp--;
@@ -1944,9 +2375,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 break;
 
         }
-        } finally {dbg.exitSubRule(18);}
+        } finally {dbg.exitSubRule(22);}
 
-        dbg.location(109,23);
+        dbg.location(123,23);
         if ( (input.LA(1) >= BOP && input.LA(1) <= CMP) ) {
             input.consume();
             state.errorRecovery=false;
@@ -1963,29 +2394,45 @@ protected boolean evalPredicate(boolean result, String predicate) {
         }
 
     }
-    // $ANTLR end synpred3_Pass
+    // $ANTLR end synpred4_Pass
 
-    // $ANTLR start synpred4_Pass
-    public final void synpred4_Pass_fragment() throws RecognitionException {
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:115:9: ( ID '=' '(' )
+    // $ANTLR start synpred5_Pass
+    public final void synpred5_Pass_fragment() throws RecognitionException {
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:9: ( ID '=' '(' )
         dbg.enterAlt(1);
 
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:115:10: ID '=' '('
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:10: ID '=' '('
         {
-        dbg.location(115,10);
-        match(input,ID,FOLLOW_ID_in_synpred4_Pass397); if (state.failed) return ;
-        dbg.location(115,13);
-        match(input,23,FOLLOW_23_in_synpred4_Pass399); if (state.failed) return ;
-        dbg.location(115,17);
-        match(input,19,FOLLOW_19_in_synpred4_Pass401); if (state.failed) return ;
+        dbg.location(129,10);
+        match(input,ID,FOLLOW_ID_in_synpred5_Pass508); if (state.failed) return ;
+        dbg.location(129,13);
+        match(input,27,FOLLOW_27_in_synpred5_Pass510); if (state.failed) return ;
+        dbg.location(129,17);
+        match(input,19,FOLLOW_19_in_synpred5_Pass512); if (state.failed) return ;
 
         }
 
     }
-    // $ANTLR end synpred4_Pass
+    // $ANTLR end synpred5_Pass
 
     // Delegated rules
 
+    public final boolean synpred5_Pass() {
+        state.backtracking++;
+        dbg.beginBacktrack(state.backtracking);
+        int start = input.mark();
+        try {
+            synpred5_Pass_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        dbg.endBacktrack(state.backtracking, success);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred3_Pass() {
         state.backtracking++;
         dbg.beginBacktrack(state.backtracking);
@@ -2040,14 +2487,14 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
     public static final BitSet FOLLOW_block_in_prog36 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_prog38 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_iblock_in_block53 = new BitSet(new long[]{0x000000002C083802L});
-    public static final BitSet FOLLOW_expr_in_block55 = new BitSet(new long[]{0x000000002C083802L});
-    public static final BitSet FOLLOW_LT_in_block57 = new BitSet(new long[]{0x000000002C083802L});
-    public static final BitSet FOLLOW_INDENT_in_iblock74 = new BitSet(new long[]{0x000000002C083800L});
+    public static final BitSet FOLLOW_iblock_in_block53 = new BitSet(new long[]{0x00000002C0087802L});
+    public static final BitSet FOLLOW_expr_in_block55 = new BitSet(new long[]{0x00000002C0087802L});
+    public static final BitSet FOLLOW_LT_in_block57 = new BitSet(new long[]{0x00000002C0087802L});
+    public static final BitSet FOLLOW_INDENT_in_iblock74 = new BitSet(new long[]{0x00000002C0087800L});
     public static final BitSet FOLLOW_block_in_iblock76 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_DEDENT_in_iblock78 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_func97 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_func99 = new BitSet(new long[]{0x000000002C082800L});
+    public static final BitSet FOLLOW_args_in_func97 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_func99 = new BitSet(new long[]{0x00000002C0086800L});
     public static final BitSet FOLLOW_expr_in_func102 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LT_in_func105 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_iblock_in_func107 = new BitSet(new long[]{0x0000000000000002L});
@@ -2058,68 +2505,83 @@ protected boolean evalPredicate(boolean result, String predicate) {
     public static final BitSet FOLLOW_ID_in_call127 = new BitSet(new long[]{0x0000000000180000L});
     public static final BitSet FOLLOW_args_in_call129 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_19_in_args147 = new BitSet(new long[]{0x0000000000080800L});
-    public static final BitSet FOLLOW_call_in_args149 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_22_in_args152 = new BitSet(new long[]{0x0000000000080800L});
-    public static final BitSet FOLLOW_call_in_args154 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_call_in_args149 = new BitSet(new long[]{0x0000000001200000L});
+    public static final BitSet FOLLOW_24_in_args152 = new BitSet(new long[]{0x0000000000080800L});
+    public static final BitSet FOLLOW_call_in_args154 = new BitSet(new long[]{0x0000000001200000L});
     public static final BitSet FOLLOW_21_in_args158 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_19_in_args168 = new BitSet(new long[]{0x0000000000194800L});
-    public static final BitSet FOLLOW_ID_in_args171 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_atom_in_args173 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_func_in_args175 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_22_in_args179 = new BitSet(new long[]{0x0000000000194800L});
-    public static final BitSet FOLLOW_ID_in_args182 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_atom_in_args184 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_func_in_args186 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_ID_in_args171 = new BitSet(new long[]{0x0000000001200000L});
+    public static final BitSet FOLLOW_atom_in_args173 = new BitSet(new long[]{0x0000000001200000L});
+    public static final BitSet FOLLOW_func_in_args175 = new BitSet(new long[]{0x0000000001200000L});
+    public static final BitSet FOLLOW_24_in_args179 = new BitSet(new long[]{0x0000000000194800L});
+    public static final BitSet FOLLOW_ID_in_args182 = new BitSet(new long[]{0x0000000001200000L});
+    public static final BitSet FOLLOW_atom_in_args184 = new BitSet(new long[]{0x0000000001200000L});
+    public static final BitSet FOLLOW_func_in_args186 = new BitSet(new long[]{0x0000000001200000L});
     public static final BitSet FOLLOW_21_in_args191 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_20_in_args196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_assign_in_expr208 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_call_in_expr218 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_control_in_expr226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_control246 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_ID_in_control248 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_control250 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_ID_in_control252 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LT_in_control254 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_iblock_in_control256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_control263 = new BitSet(new long[]{0x0000000000094800L});
-    public static final BitSet FOLLOW_bool_in_control265 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LT_in_control267 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_iblock_in_control269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_control274 = new BitSet(new long[]{0x0000000000094800L});
-    public static final BitSet FOLLOW_bool_in_control276 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LT_in_control278 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_iblock_in_control280 = new BitSet(new long[]{0x0000000003000002L});
-    public static final BitSet FOLLOW_24_in_control283 = new BitSet(new long[]{0x0000000000094800L});
-    public static final BitSet FOLLOW_bool_in_control285 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LT_in_control287 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_iblock_in_control289 = new BitSet(new long[]{0x0000000003000002L});
-    public static final BitSet FOLLOW_25_in_control294 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LT_in_control296 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_iblock_in_control298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_bool331 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_ID_in_bool333 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_call_in_bool335 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_set_in_bool338 = new BitSet(new long[]{0x0000000000094800L});
-    public static final BitSet FOLLOW_bool_in_bool344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_bool355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_bool357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_call_in_bool359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_assign376 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_assign378 = new BitSet(new long[]{0x0000000000194800L});
-    public static final BitSet FOLLOW_atom_in_assign381 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_func_in_assign383 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_assign385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_assign405 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_assign407 = new BitSet(new long[]{0x0000000000080800L});
-    public static final BitSet FOLLOW_call_in_assign409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arithmetic_in_expr236 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_term_in_arithmetic253 = new BitSet(new long[]{0x0000000002800002L});
+    public static final BitSet FOLLOW_set_in_arithmetic256 = new BitSet(new long[]{0x0000000000084800L});
+    public static final BitSet FOLLOW_term_in_arithmetic262 = new BitSet(new long[]{0x0000000002800002L});
+    public static final BitSet FOLLOW_factor_in_term277 = new BitSet(new long[]{0x0000000004400002L});
+    public static final BitSet FOLLOW_set_in_term280 = new BitSet(new long[]{0x0000000000084800L});
+    public static final BitSet FOLLOW_factor_in_term286 = new BitSet(new long[]{0x0000000004400002L});
+    public static final BitSet FOLLOW_set_in_factor306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_call_in_factor329 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_factor337 = new BitSet(new long[]{0x0000000000084800L});
+    public static final BitSet FOLLOW_arithmetic_in_factor339 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_factor341 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_control357 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_ID_in_control359 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_control361 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_ID_in_control363 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LT_in_control365 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_iblock_in_control367 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_control374 = new BitSet(new long[]{0x0000000000094800L});
+    public static final BitSet FOLLOW_bool_in_control376 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LT_in_control378 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_iblock_in_control380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_control385 = new BitSet(new long[]{0x0000000000094800L});
+    public static final BitSet FOLLOW_bool_in_control387 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LT_in_control389 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_iblock_in_control391 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_28_in_control394 = new BitSet(new long[]{0x0000000000094800L});
+    public static final BitSet FOLLOW_bool_in_control396 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LT_in_control398 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_iblock_in_control400 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_29_in_control405 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LT_in_control407 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_iblock_in_control409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_bool442 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ID_in_bool444 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_call_in_bool446 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_set_in_bool449 = new BitSet(new long[]{0x0000000000094800L});
+    public static final BitSet FOLLOW_bool_in_bool455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_bool466 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_bool468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_call_in_bool470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_assign487 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_assign489 = new BitSet(new long[]{0x0000000000194800L});
+    public static final BitSet FOLLOW_atom_in_assign492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_func_in_assign494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_assign496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_assign516 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_assign518 = new BitSet(new long[]{0x0000000000080800L});
+    public static final BitSet FOLLOW_call_in_assign520 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_19_in_synpred2_Pass141 = new BitSet(new long[]{0x0000000000080800L});
     public static final BitSet FOLLOW_call_in_synpred2_Pass143 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_synpred3_Pass314 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_ID_in_synpred3_Pass316 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_call_in_synpred3_Pass318 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_set_in_synpred3_Pass321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_synpred4_Pass397 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_synpred4_Pass399 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_synpred4_Pass401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_synpred3_Pass320 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_func_in_synpred3_Pass322 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_synpred3_Pass325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_synpred4_Pass425 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ID_in_synpred4_Pass427 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_call_in_synpred4_Pass429 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_set_in_synpred4_Pass432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_synpred5_Pass508 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_synpred5_Pass510 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_synpred5_Pass512 = new BitSet(new long[]{0x0000000000000002L});
 
 }
