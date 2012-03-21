@@ -192,6 +192,8 @@ Finally, we can unsubscribe a client from a specified channel or, if no channel 
 
 With these functions, we have written a fully functional Publish-Subscribe server in under 20 lines of Pass code.
 
+Note that while these methods of accessing client dictionaries are the only ones native to Pass, a programmer is free to design a custom dictionary that may better suit the needs of a particular application -- for example, a dictionary where user names are the keys that map to that user’s client dictionary.
+
 ##Conclusion
 
 Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Pass, and how few lines of Pass code are required to build useful web applications. We have covered all the basic functionality of the language, and with some luck you should be able to have a simple application of your own up and running in just minutes. We hope you enjoy using our language as much as we enjoyed designing it.
