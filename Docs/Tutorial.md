@@ -152,4 +152,42 @@ In this way, control flow is synchronous but function calls are asynchronous. Si
 
 
 ##Publish-subscribe: grouping connections with *tags*
-What if we only want to broadcast certain things to certain clients? In this example, we will show you how to create
+What if we only want to broadcast certain things to certain clients? In this example, we will show you how to create a simple "Publish-Subscribe" application that allows clients to listen on and broadcast to different channels.
+
+You're probably wondering how we can write such an application in a reasonable amount of lines, and without tedious implementation of lots of data structures. Fortunately, the developers of Pass recognized that client grouping is a critical component when building scalable web applications, and have implemented support for them directly into the language. This support is provided through a small number of native functions which are all utilized and explained in the present example.
+
+First, we create an exposed function that serves two purposes: it subscribes the client to the specified channel, and stores the client’s handler for receiving messages in the client connection dictionary. We subscribe a client to a group through the use of the `tag()` function, which takes two arguments: the `conn` dictionary of the client, and the group name (a string).
+
+	server.subscribe = (channel, onMsg) ~
+	  tag(conn, channel)
+	  conn.onMsg = onMsg
+
+We can then create an exposed function that allows a client to publish a message to a channel:
+
+	server.publish = (message, channel) ~
+	  for connection in conns(channel)
+	    connection.onMsg(message)
+
+You've seen the `conns()` function before -- when called with no parameter, it returns an array of all client `conn` dictionaries. When a group name is provided as a parameter, it returns the array of client `conn` dictionaries that are tagged with the group name.
+
+Also, note that with the above implementation of `publish()`, we have the option to not specify a channel, in which case the function broadcasts to all open channels on the server.
+
+We can also easily implement a function that publishes a message to each channel that the client is currently subscribed to:
+
+	server.publishAllSubscribed = (message) ~
+	  for channel in tags(conn)
+	    for connection in conns(channel)
+	      connection.onMsg(message)
+
+The `tags()` function takes a client `conn` dictionary as a parameter and returns an array of group names that the client belongs to. Just like the `conns()` function, when no parameter is provided `tags()` returns an array of all open group names.
+
+Finally, we can unsubscribe a client from a specified channel or, if no channel is specified, all channels to which the client is subscribed. We do this by calling the `untag()` function as shown:
+
+	server.unsubscribe = (channel) ~
+	  if channel
+	    untag(conn, channel)
+	  else
+	    for channel in channels(conn)
+	      untag(conn, channel)
+
+With these functions, we have written a fully functional Publish-Subscribe server in under 20 lines of Pass code.
