@@ -3,11 +3,11 @@ Pass Language Tutorial
 
 ##Introduction
 
-The recent emergence of WebSockets has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the functions of the internet’s early origins as a distributed, static file system of one-way communications, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols and the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedius, time consuming and thanks to Pass, now unessasary.
+The recent emergence of WebSockets has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the the internet’s early role as a distributed, static file system, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedious, time consuming and thanks to Pass, now often unnecessary.
 
-The Pass language and it's libraries take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate easy, seamless communication between server and client. Pass also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides conient data structures to help organise, search through, and keep track of these connections.
+The Pass language and its libraries take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Pass also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides convenient data structures to help organize, search through, and keep track of them.
 
-The following is a brief introduction to these features as well as other nuances that the Pass language has to offer. It is by no means inclusive. It will, however, bring to light everything that is required to get a programmer moving in the right direction so that he/she may reach the most important stage that is development of logic and application in a hassle-free, significantly reduced amount of time.
+What follows is a brief introduction to these features as well as other nuances that the Pass language has to offer. It is by no means comprehensive. It will, however, bring to light everything that is required to get a programmer moving in the right direction so that he/she may reach the most important stage that is development of logic and application in a hassle-free, significantly reduced amount of time.
 
 ###Audience
 
@@ -31,7 +31,7 @@ The line `Hello world!` followed by a newline will now be printed to the console
 
 How about something a bit more practical? The basic function of every Pass program is to transparently start a server that listens and serves static files on a specified port. To accomplish this, we supply two additional command line arguments with the port number and a file directory to use as the root from which to serve static files.
 
-Before trying this, let's add a directory called *static* which contains an *index.html*. The HTML file will simply contain:
+Before trying this, let's add a directory at the current path called *static* that contains an *index.html*. The HTML file will simply contain:
 
 ```
 Hello outside world!
@@ -57,7 +57,7 @@ server.arrive = (name) ~
   log(name + “ arrived”)
 ```
 
-The first line declares a function which can be called by the client. The built-in variable server is a dictionary. Dictionaries in Pass, similar to objects in JavaScript, are data structures which map keys of type String to values of any type (function, number, string, array, or dictionary). Dictionary values can be accessed and assigned using the dot notation shown above. This assignment maps the key `“arrive”` to a function. Functions are denoted by a comma-delimited, parentheses-enclosed argument list (which may be empty) followed by a tilde. The function here takes the single argument `name`.The variable server is a special dictionary. Any functions that are mapped to keys in server can be called by the client.
+The first line declares a function which can be called by the client. The built-in variable `server` is a dictionary. Dictionaries in Pass, similar to objects in JavaScript, are data structures which map variable keys to values of any type (function, number, string, array, or dictionary). Dictionary values can be accessed and assigned using the dot notation shown above. This assignment maps the key `arrive` to a function. Functions are denoted by a comma-delimited, parentheses-enclosed argument list (which may be empty) followed by a tilde. The function here takes the single argument `name`.The variable server is a special dictionary. Any functions that are mapped to keys in server can be called by the client.
 
 The second line is the body block of our function. Enclosed blocks are indicated by a 2-space indent at the start of the line. The `log()` function should be familiar from the last example. The overloaded `+` operator, when used with strings, will create a new string which is a concatenation of the original two strings. When a string and a number are used with the `+` operator, the number is coerced to a string before being concatenated.
 
@@ -89,7 +89,7 @@ $ pass logger.pass 8080 static > activity.log
 We’ve created a simple activity logger in just two lines of code! One could imagine extending this example to collect analytics about user activity in real-time. For instance, perhaps each button press in a single-page web app could be logged in order to evaluate the effectiveness of a user interface.
 
 ### Numbers
-In Pass, all numbers are floating point numbers. All of the usual operators and operator assignments, familiar  from JavaScript, Java, or C are available with the exception of postfix and prefix incrementers. So if we wanted to add a counter for the total number of connections, we could simply add the line
+In Pass, all numbers are floating point numbers. All of the usual operations and operator assignments, familiar from JavaScript, Java, or C are available with the exception of postfix and prefix incrementation. So if we wanted to add a counter for the total number of connections, we could simply add the line
 
 ```
 count = 0
@@ -162,7 +162,7 @@ Console.log("Ready for more work!");
 
 Can you predict the difference in output? The first piece of code will block on the first line, waiting for `hardWork()` to return a value for the assignment before it prints to the console. In the second snippet, `x` is instantiated then `hardWorkAsync()` is called with a callback function as an argument. However, the interpreter does not wait for the function to complete or the assignment to occur before immediately printing to the console.
 
-In this way, control flow is synchronous but function calls are asynchronous. Since JavaScript executes on a single thread, waiting for a value to return from a function call will inevitable block the next statement from being executed. This is especially apparent with the *remote* function calls in Pass due to the reality of network latency.
+In this way, control flow is synchronous but function calls are asynchronous. Since Pass and JavaScript each execute on single threads, waiting for a value to return from a function call will inevitable block the next statement from being executed. This is especially apparent with the *remote* function calls in Pass due to the reality of network latency.
 
 ##Publish-subscribe: grouping connections with *tags*
 What if we only want to broadcast certain things to certain clients? In our final example, we will show you how to create a simple "Publish-Subscribe" application that allows clients to listen on and broadcast to different channels.
@@ -205,7 +205,22 @@ Finally, we can unsubscribe a client from a specified channel or, if no channel 
 
 With these functions, we have written a fully functional Publish-Subscribe server in under 20 lines of Pass code.
 
-Note that while these methods of accessing client dictionaries are the only ones native to Pass, a programmer is free to design a custom dictionary that may better suit the needs of a particular application -- for example, a dictionary where user names are the keys that map to that user’s client dictionary.
+Note that while these methods of accessing client dictionaries are the only ones native to Pass, a programmer is free to design a custom dictionary that may better suit the needs of a particular application. For example, one might create a dictionary where user names are the keys that map to that user’s client dictionary.
+
+###Making dictionaries and arrays
+The array literal consists of an open square bracket, followed by a comma-separated list of values, followed by a closing square bracket. Values may be of mixed type.
+
+```
+[0, "one", 2]
+```
+
+The dictionary literal consists of an open curly brace, followed by comma-separated paris of colon-separated key identifiers and values, followed by a closing curly brace. A dictionary literal may also contain mixed type values.
+
+```
+{user1: "John", user2: "Jim", user3: 0}
+```
+
+Arrays and dictionaries may be assigned to variables just like functions or numbers with the variable name and assignment operator on the left hand side. Like functions and numbers, they may also be passed into operations as literals.
 
 ###Passing to Pass
 When passing arguments into Pass functions from client-side JavaScript, it is important to know what data types they will take in the Pass function and vice versa. Pass datatypes have been designed with this in mind. The simple rule of thumb is that they are what they look like.
@@ -218,10 +233,10 @@ When passing arguments into Pass functions from client-side JavaScript, it is im
 
 ##Conclusion
 
-For a more detailed look at the language, please see the Pass Reference Manual.
-
 Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Pass, and how few lines of Pass code are required to build fully functional real-time web applications. We have covered all the basic functionality of the language. With some luck you should be able to have a simple application of your own up and running in just minutes. We hope you will enjoy using our language as much as we enjoyed designing it! 
+
+For a more detailed look at the language, please see the Pass Reference Manual.
 
 Best,
 
-*Rafael Castellanos | Cody De La Vara | Andy Lamping Nick Pizzoferrato | Peter Sugihara*
+*Rafael Castellanos | Cody De La Vara | Andy Lamping | Nick Pizzoferrato | Peter Sugihara*
