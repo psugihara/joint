@@ -3,7 +3,7 @@ Pass Language Tutorial
 
 ##Introduction
 
-With the recent emergence of WebSockets, developers now have a protocol which is built for two-way communication between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate a main function of the internet’s early origins as a distributed, static file system of one-way communications has been folded into most libraries that support this new protocol. As a result, in order to write a functional real-time web application, a programmer must first learn these older protocols and the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. 
+With the recent emergence of WebSockets, developers now have a protocol which is built for two-way communication between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the internet’s early role as a distributed, static file system of has been folded into most libraries that support this new protocol. As a result, in order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. 
 
 With the development of the Pass language, however, this repetitive, boilerplate configuration is taken care of by default so that the programmer may immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate easy, seamless communication between server and client. Pass also allows functions on the server to be called like any other function on the client, and vice versa.
 
@@ -11,7 +11,7 @@ The following is a brief introduction to these features as well as other nuances
 
 ###Audience
 
-The Pass language will prove useful to anyone who wants to write web applications that require real-time client-server communication. It is assumed that the reader of this document has some experience building interactive websites using JavaScript and HTML but knowledge of another server side language, or even experience with server-dependent applications, is not required.
+It is our hope that the Pass programming language will prove useful to anyone who wants to write web applications requiring real-time client-server communication. It is assumed that the reader of this document has some experience building interactive websites using JavaScript and HTML but knowledge of another server side language, or even experience with server-dependent applications, is not required.
 
 ##Hello world: writing to stdout
 
@@ -25,11 +25,11 @@ The built in function `log()` takes any number of arguments and writes them as n
 
 Assuming the Pass interpreter is in the user's path and we are in the same directory as *hello.pass*, we may now run our program from the command line with `$ pass ./hello.pass` (omitting the dollar sign).
 
-The line `Hello world!` will now be printed to the console.
+The line `Hello world!` followed by a newline will now be printed to the console.
 
 ##Hello outside world: serving static files
 
-How about something a bit more practical? The basic function of every Pass program is to transparently start a server that listens and serves static files on a specified port. To accomplish this, we supply two additional  command line arguments with the port number and a file directory to use as the root from which to serve static files.
+How about something a bit more practical? The basic function of every Pass program is to transparently start a server that listens and serves static files on a specified port. To accomplish this, we supply two additional command line arguments with the port number and a file directory to use as the root from which to serve static files.
 
 Before trying this, let's add a directory called *static* which contains an *index.html*. The HTML file will simply contain:
 
@@ -88,6 +88,20 @@ $ pass ./logger.pass 8080 ./static > activity.log
 
 We’ve created a simple activity logger in just two lines of code! One could imagine extending this example to collect analytics about user activity in real-time. For instance, perhaps each button press in a single-page web app could be logged in order to evaluate the effectiveness of a user interface.
 
+### Numbers
+In Pass, all numbers are floating point numbers. All of the usual operators and operator assignments, familiar  from JavaScript, Java, or C are available with the exception of postfix and prefix incrementers. So if we wanted to add a counter for the total number of connections, we could simply add the line
+
+```
+count = 0
+```
+
+to the top of our file, and
+
+```
+count += 1
+```
+
+somewhere inside the function.
 
 ##Real-time chat: *conn*, *conns()*, arrays, for, and callbacks
 
@@ -150,11 +164,10 @@ Can you predict the difference in output? The first piece of code will block on 
 
 In this way, control flow is synchronous but function calls are asynchronous. Since JavaScript executes on a single thread, waiting for a value to return from a function call will inevitable block the next statement from being executed. This is especially apparent with the *remote* function calls in Pass due to the reality of network latency.
 
-
 ##Publish-subscribe: grouping connections with *tags*
-What if we only want to broadcast certain things to certain clients? In this example, we will show you how to create a simple "Publish-Subscribe" application that allows clients to listen on and broadcast to different channels.
+What if we only want to broadcast certain things to certain clients? In our final example, we will show you how to create a simple "Publish-Subscribe" application that allows clients to listen on and broadcast to different channels.
 
-You're probably wondering how we can write such an application in a reasonable amount of lines, and without tedious implementation of lots of data structures. Fortunately, the developers of Pass recognized that client grouping is a critical component when building scalable web applications, and have implemented support for them directly into the language. This support is provided through a small number of native functions which are all utilized and explained in the present example.
+You're probably wondering how we can write such an application in a reasonable amount of lines, and without tedious implementation of lots of data structures. Client grouping is usually a critical component when building scalable web applications. Conveniently, this functionality is provided in Pass through a small number of native functions. These functions will be utilized and explained in the present example.
 
 First, we create an exposed function that serves two purposes: it subscribes the client to the specified channel, and stores the client’s handler for receiving messages in the client connection dictionary. We subscribe a client to a group through the use of the `tag()` function, which takes two arguments: the `conn` dictionary of the client, and the group name (a string).
 
@@ -162,13 +175,13 @@ First, we create an exposed function that serves two purposes: it subscribes the
 	  tag(conn, channel)
 	  conn.onMsg = onMsg
 
-We can then create an exposed function that allows a client to publish a message to a channel:
+We then create an exposed function that allows a client to publish a message to a channel:
 
 	server.publish = (message, channel) ~
 	  for connection in conns(channel)
 	    connection.onMsg(message)
 
-You've seen the `conns()` function before -- when called with no parameter, it returns an array of all client `conn` dictionaries. When a group name is provided as a parameter, it returns the array of client `conn` dictionaries that are tagged with the group name.
+You've seen the `conns()` function before--when called with no parameter, it returns an array of all client `conn` dictionaries. When a group name is provided as a parameter, it returns the array of client `conn` dictionaries that are tagged with the group name.
 
 Also, note that with the above implementation of `publish()`, we have the option to not specify a channel, in which case the function broadcasts to all open channels on the server.
 
@@ -193,6 +206,15 @@ Finally, we can unsubscribe a client from a specified channel or, if no channel 
 With these functions, we have written a fully functional Publish-Subscribe server in under 20 lines of Pass code.
 
 Note that while these methods of accessing client dictionaries are the only ones native to Pass, a programmer is free to design a custom dictionary that may better suit the needs of a particular application -- for example, a dictionary where user names are the keys that map to that user’s client dictionary.
+
+###Passing to Pass
+When passing arguments into Pass functions from client-side JavaScript, it is important to know what data types they will take in the Pass function and vice versa. Pass datatypes have been designed with this in mind. The simple rule of thumb is that they are what they look like.
+
+* JavaScript Strings ⟺ Pass strings with the same value.
+* JavaScript Numbers ⟺ Pass numbers with the same value.
+* JavaScript Arrays ⟺ Pass arrays.
+* Javascript Functions ⟺ Pass functions.
+* JavaScript Objects (except for those mentioned above) ⟺ Pass dictionaries.
 
 ##Conclusion
 
