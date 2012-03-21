@@ -3,11 +3,11 @@ Pass Language Tutorial
 
 ##Introduction
 
-With the recent emergence of WebSockets, developers now have a protocol which is built for two-way communication between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the internet’s early role as a distributed, static file system of has been folded into most libraries that support this new protocol. As a result, in order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. 
+The recent emergence of WebSockets has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the functions of the internet’s early origins as a distributed, static file system of one-way communications, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols and the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedius, time consuming and thanks to Pass, now unessasary.
 
-With the development of the Pass language, however, this repetitive, boilerplate configuration is taken care of by default so that the programmer may immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate easy, seamless communication between server and client. Pass also allows functions on the server to be called like any other function on the client, and vice versa.
+The Pass language and it's libraries take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate easy, seamless communication between server and client. Pass also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides conient data structures to help organise, search through, and keep track of these connections.
 
-The following is a brief introduction to these features as well as other nuances that the Pass language has to offer to the future of programming. We will not cover every detail of the language at this time. However, we will bring to light everything that is required to get a programmer moving in the right direction so that he/she may reach the most important stage that is development of logic and application in a hassle-free, significantly reduced amount of time.
+The following is a brief introduction to these features as well as other nuances that the Pass language has to offer. It is by no means inclusive. It will, however, bring to light everything that is required to get a programmer moving in the right direction so that he/she may reach the most important stage that is development of logic and application in a hassle-free, significantly reduced amount of time.
 
 ###Audience
 
@@ -23,7 +23,7 @@ log("Hello world!")
 
 The built in function `log()` takes any number of arguments and writes them as newline terminated strings to stdout. String literals such as `"Hello world!"` above are always enclosed in double quotes. One should note that the `log()` function can take arguments of any type and will convert them to string representations before printing. Lines in Pass are generally terminated with newline characters.
 
-Assuming the Pass interpreter is in the user's path and we are in the same directory as *hello.pass*, we may now run our program from the command line with `$ pass ./hello.pass` (omitting the dollar sign).
+Assuming the Pass interpreter is in the user's path and we are in the same directory as *hello.pass*, we may now run our program from the command line with `$ pass hello.pass` (omitting the dollar sign).
 
 The line `Hello world!` followed by a newline will now be printed to the console.
 
@@ -37,13 +37,13 @@ Before trying this, let's add a directory called *static* which contains an *ind
 Hello outside world!
 ```
 
-We now have two files *./hello.pass*, and *./static/index.html* and we can start our server with the following line.
+We now have two files *hello.pass*, and *static/index.html* and we can start our server with the following line.
 
 ```
-$ pass ./hello.pass 8080 ./static
+$ pass hello.pass 8080 static
 ```
 
-This will start a Pass server on port 8080 which serves files from the directory *./static*. We will see the same output as before on the console and in a browser, visiting the url [http://localhost:8080/](http://localhost:8080/) will retrieve our *index.html*.
+This will start a Pass server on port 8080 which serves files from the directory *static*. We will see the same output as before on the console and in a browser, visiting the url [http://localhost:8080/](http://localhost:8080/) will retrieve our *index.html*.
 
 ##Logger: using dictionaries, functions, and string concatenation
 
@@ -74,16 +74,16 @@ The client side code in our modified *index.html* will import the *pass.js* clie
 The script *pass.js* is automatically generated and served by the Pass server. Including it passes functions in the server dictionary to the client so that we can call `arrive()` in the client-side JavaScript. Before `arrive()` is called, the user will be prompted to enter their name as the argument so that we know who they are on the server.
 
 ####Run it!
-With this index.html in the *./static* directory, we can have the server start listening on port 8080 just as we did in the previous example:
+With this index.html in the *static* directory, we can have the server start listening on port 8080 just as we did in the previous example:
 
 ```
-$ pass ./logger.pass 8080 ./static
+$ pass logger.pass 8080 static
 ```
 
 If we visit [http://localhost:8080/](http://localhost:8080/) and enter our name, `ourName` arrived will be printed on the console. We can record the activity log by routing stdout to a file: 
 
 ```
-$ pass ./logger.pass 8080 ./static > activity.log
+$ pass logger.pass 8080 static > activity.log
 ```
 
 We’ve created a simple activity logger in just two lines of code! One could imagine extending this example to collect analytics about user activity in real-time. For instance, perhaps each button press in a single-page web app could be logged in order to evaluate the effectiveness of a user interface.
@@ -127,7 +127,7 @@ The bare bones GUI will consist of a text input box and a submit button. When th
 	<input id="msgInput">
 	<input type="submit" onClick="send()">
 	
-	<script src="/pass.js"></script>
+	<script src="pass.js"></script>
 	<script>
 		var inputBox = document.getElementById("msgInput");
 	    function send() {
@@ -218,6 +218,10 @@ When passing arguments into Pass functions from client-side JavaScript, it is im
 
 ##Conclusion
 
-Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Pass, and how few lines of Pass code are required to build useful web applications. We have covered all the basic functionality of the language, and with some luck you should be able to have a simple application of your own up and running in just minutes. We hope you enjoy using our language as much as we enjoyed designing it.
-
 For a more detailed look at the language, please see the Pass Reference Manual.
+
+Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Pass, and how few lines of Pass code are required to build fully functional real-time web applications. We have covered all the basic functionality of the language. With some luck you should be able to have a simple application of your own up and running in just minutes. We hope you will enjoy using our language as much as we enjoyed designing it! 
+
+Best,
+
+*Rafael Castellanos | Cody De La Vara | Andy Lamping Nick Pizzoferrato | Peter Sugihara*
