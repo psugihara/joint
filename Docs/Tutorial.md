@@ -191,3 +191,9 @@ Finally, we can unsubscribe a client from a specified channel or, if no channel 
 	      untag(conn, channel)
 
 With these functions, we have written a fully functional Publish-Subscribe server in under 20 lines of Pass code.
+
+##Conclusion
+
+Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Pass, and how few lines of Pass code are required to build useful web applications. We have covered all the basic functionality of the language, and with some luck you should be able to have a simple application of your own up and running in just minutes. We hope you enjoy using our language as much as we enjoyed designing it.
+
+For a more detailed look at the language, please see the Pass Reference Manual.
