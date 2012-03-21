@@ -21,7 +21,7 @@ We begin with the obligatory Hello World program, hello.pass:
 log("Hello world!")
 ```
 
-The built in function `log()` writes a string to stdout. String literals such as `"Hello world!"` above are always enclosed in double quotes. Lines are generally terminated with newline characters.
+The built in function `log()` takes any number of arguments and writes them as newline terminated strings to stdout. String literals such as `"Hello world!"` above are always enclosed in double quotes. One should note that the `log()` function can take arguments of any type and will convert them to string representations before printing. Lines in Pass are generally terminated with newline characters.
 
 Assuming the Pass interpreter is in the user's path and we are in the same directory as *hello.pass*, we may now run our program from the command line with `$ pass ./hello.pass` (omitting the dollar sign).
 
@@ -108,7 +108,7 @@ The first function takes a single argument,  `msgCallback` that is added as a va
 The second function also takes a single argument, msg which is a string to send to all other connected clients. Here we see a new flow control mechanism, the for loop. The built in function `conns()` returns an array containing all of the conn dictionaries for connected clients. Pass arrays are zero-indexed and may contain values of any type. The for construct iterates through values in an array, assigning each value to the variable `c` at the start of each iteration then executing the indented body block which starts on the next line.
 
 ####Client 
-The bare bones GUI will consist of a text input box and a submit button. When the submit button is clicked, the client will broadcast the string in the textbox then clear the textbox. The full code listing for the client file *index.html* is below.
+The bare bones GUI will consist of a text input box and a submit button. When the submit button is clicked, the client will broadcast the string in the text box then clear the text box. The full code listing for the client file *index.html* is below.
 
 	<input id="msgInput">
 	<input type="submit" onClick="send()">
@@ -123,15 +123,33 @@ The bare bones GUI will consist of a text input box and a submit button. When th
 	    function rcv(msg) {
 	        console.log(msg);
 	    }
-	    server.arrive(rcv); // register rcv callback
+	    server.arrive(rcv); // register rev callback
 	</script>
 
-We assume basic familiarity with JavaScript and HTML but there are a few important lines specific to Pass that the reader should note. Namely, the first `script` tag includes the clientside *pass.js* file which gives access to `server` functions.
+We assume basic familiarity with JavaScript and HTML but there are a few important lines specific to Pass that the reader should note. Namely, the first `script` tag includes the client side *pass.js* file which gives access to `server` functions.
 
 ####Chat!
 This program can be run in the same matter as the previous few examples. Try opening the page in two browser windows and watch as your chat instantly appears in the console of one after you send it from the other.
 
 ###Why callbacks?
-An astute reader may have noticed that our `server` functions never "return" values. Rather they are written in continuation-passing style. A callback function is passed to the server which passes results as arguments to the callback function when it is done with the computation. This style, which should be familiar to JavaScript programers who have done event-oriented user interfaces, has a number of advantages. For instance, it makes it impossible to make blocking calls to the server. Since JavaScript executes on a single thread, waiting for a value to return from a function call will inevitable block the next statement from being executed. This is especially apparent with the *remote* function calls in Pass due to the reality of network latency.
+An astute reader may have noticed that our `server` functions never "return" values. Rather they are written in a continuation-passing style. A callback function is passed to the server which passes results as arguments to the callback function when it is done with the computation. This style, which should be familiar to JavaScript programers who have written event-oriented user interfaces, has a number of advantages. For instance, without "return" values, it impossible to make blocking calls to the server.
+
+As a quick exercise, consider the difference between the following two JavaScript snippets.
+
+```
+var x = hardWork();
+Console.log("Ready for more work!");
+```
+```
+var x;
+hardWorkAsync(function(result) { x = result; });
+Console.log("Ready for more work!");
+```
+
+Can you predict the difference in output? The first piece of code will block on the first line, waiting for `hardWork()` to return a value for the assignment before it prints to the console. In the second snippet, `x` is instantiated then `hardWorkAsync()` is called with a callback function as an argument. However, the interpreter does not wait for the function to complete or the assignment to occur before immediately printing to the console.
+
+In this way, control flow is synchronous but function calls are asynchronous. Since JavaScript executes on a single thread, waiting for a value to return from a function call will inevitable block the next statement from being executed. This is especially apparent with the *remote* function calls in Pass due to the reality of network latency.
+
 
 ##Publish-subscribe: grouping connections with *tags*
+What if we only want to broadcast certain things to certain clients? In this example, we will show you how to create
