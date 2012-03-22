@@ -7,7 +7,7 @@ The recent emergence of WebSockets has given developers a new tool to deploy dyn
 
 The Pass language and its libraries take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Pass also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides convenient data structures to help organize, search through, and keep track of them.
 
-What follows is a brief introduction to these features as well as other nuances that the Pass language has to offer. It is by no means comprehensive. It will, however, bring to light everything that is required to get a programmer moving in the right direction so that he/she may reach the most important stage that is development of logic and application in a hassle-free, significantly reduced amount of time.
+What follows is a brief introduction to these features as well as other nuances that the Pass language has to offer. It is by no means comprehensive. It will, however, bring to light everything that is required to get a programmer moving in the right direction so that he/she may begin developing web applications hassle-free in a significantly reduced amount of time.
 
 ###Audience
 
@@ -21,11 +21,11 @@ We begin with the obligatory Hello World program, hello.pass:
 log("Hello world!")
 ```
 
-The built in function `log()` takes any number of arguments and writes them as newline terminated strings to stdout. String literals such as `"Hello world!"` above are always enclosed in double quotes. One should note that the `log()` function can take arguments of any type and will convert them to string representations before printing. Lines in Pass are generally terminated with newline characters.
+The built in function `log()` takes any number of arguments and writes them as newline terminated strings to stdout. String literals such as `"Hello world!"` are always enclosed in double quotes. One should note that the `log()` function can take arguments of any type and will convert them to string representations before printing. Lines in Pass are generally terminated with newline characters.
 
 Assuming the Pass interpreter is in the user's path and we are in the same directory as *hello.pass*, we may now run our program from the command line with `$ pass hello.pass` (omitting the dollar sign).
 
-The line `Hello world!` followed by a newline will now be printed to the console.
+The line `Hello world!` followed by a newline will print to the console.  Congratulations, you have now written your first, albeit modest, program in Pass!
 
 ##Hello outside world: serving static files
 
@@ -57,7 +57,7 @@ server.arrive = (name) ~
   log(name + “ arrived”)
 ```
 
-The first line declares a function which can be called by the client. The built-in variable `server` is a dictionary. Dictionaries in Pass, similar to objects in JavaScript, are data structures which map variable keys to values of any type (function, number, string, array, or dictionary). Dictionary values can be accessed and assigned using the dot notation shown above. This assignment maps the key `arrive` to a function. Functions are denoted by a comma-delimited, parentheses-enclosed argument list (which may be empty) followed by a tilde. The function here takes the single argument `name`.The variable server is a special dictionary. Any functions that are mapped to keys in server can be called by the client.
+The first line declares a function which can be called by the client. The built-in variable `server` is a dictionary. Dictionaries in Pass, similar to objects in JavaScript, are data structures which map variable keys to values of any type (function, number, string, array, or dictionary). Dictionary values can be accessed and assigned using the dot notation shown above. This assignment maps the key `arrive` to a function. Functions are denoted by a comma-delimited, parentheses-enclosed argument list (which may be empty) followed by a tilde. The function here takes the single argument `name`. The variable server is a special dictionary. Any functions that are mapped to keys in server can be called by the client.
 
 The second line is the body block of our function. Enclosed blocks are indicated by a 2-space indent at the start of the line. The `log()` function should be familiar from the last example. The overloaded `+` operator, when used with strings, will create a new string which is a concatenation of the original two strings. When a string and a number are used with the `+` operator, the number is coerced to a string before being concatenated.
 
