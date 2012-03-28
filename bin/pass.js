@@ -5,7 +5,7 @@
 
 var sourcePath, port, staticPath;
 
-fetchArgs = function() {
+getArgs = function() {
   var USAGE = 'Usage: pass program.pass [port# static directory]';
   // print process.argv
   if (process.argv.length != 3 && process.argv.length != 5) {
@@ -23,4 +23,4 @@ fetchArgs = function() {
   }
 }
 
-fetchArgs();
+getArgs();
