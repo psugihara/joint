@@ -4,13 +4,15 @@
 // March 2012
 
 var path = require('path')
+var fs = require('fs')
 
 var sourcePath, port, staticPath
 
+// Print a diegnostic message followed by the usage line, then die.
 var usageDie = function(message) {
   if (message)
     console.log(message)
-  console.log('usage: pass program.pass [port# static directory]')
+  console.log('usage: pass program.pass [<port#> <static directory>]')
   process.exit()
 }
 
@@ -32,6 +34,8 @@ if (process.argv.length == 5) {
   staticPath = path.resolve(process.argv[4])
   if (!path.existsSync(staticPath))
     usageDie('file not found: ' + staticPath)
+  if (!fs.statSync(staticPath).isDirectory())
+    usageDie('static arg must be directory')
 }
 
 // function handler (req, res) {
