@@ -8,7 +8,7 @@ var fs = require('fs')
 
 var sourcePath, port, staticPath
 
-// Print a diegnostic message followed by the usage line, then die.
+// Print a diagnostic message followed by the usage line, then die.
 var usageDie = function(message) {
   if (message)
     console.log(message)
@@ -16,21 +16,22 @@ var usageDie = function(message) {
   process.exit()
 }
 
-if (process.argv.length != 3 && process.argv.length != 5) {
-  usageDie('invalid arguments')
+if (process.argv.length !== 3 && process.argv.length !== 5) {
+  usageDie('invalid number of arguments')
 }
 
 sourcePath = path.resolve(process.argv[2])
 if (!path.existsSync(sourcePath))
   usageDie('file not found: ' + sourcePath)
-if (!path.extname(sourcePath) == 'pass')
-  usageDie('Pass programs must have .pass extension.')
+if (!path.extname(sourcePath) === 'pass')
+  usageDie('Pass programs must have .pass extension')
 
-if (process.argv.length == 5) {
+if (process.argv.length === 5) {
   port = parseFloat(process.argv[3])
-  if (port == NaN) {
+  if (!port || port < 0 || port > 65535) {
     usageDie('invalid port number')
   }
+
   staticPath = path.resolve(process.argv[4])
   if (!path.existsSync(staticPath))
     usageDie('file not found: ' + staticPath)
