@@ -26,7 +26,7 @@ if (!path.extname(sourcePath) == 'pass')
 
 if (process.argv.length == 5) {
   port = parseFloat(process.argv[3])
-  if (port == Nan) {
+  if (port == NaN) {
     usageDie('invalid port number')
   }
   staticPath = path.resolve(process.argv[4])
