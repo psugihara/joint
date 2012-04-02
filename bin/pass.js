@@ -8,11 +8,6 @@ var fs = require('fs')
 
 var sourcePath, port, staticPath
 
-console.log('ARGS: '+process.argv.length)
-for(var i in process.argv)
-  console.log('ARG '+i+': '+process.argv[i])
-
-
 // Argument Validation
 // ___________________
 
@@ -50,6 +45,9 @@ if (process.argv.length === 5) {
   if (!fs.statSync(staticPath).isDirectory())
     usageDie('static arg must be directory')
 }
+else {
+ 
+}
 
 
 var fs = require('fs')
@@ -74,4 +72,4 @@ var app = require('http').createServer(handler).listen(port)
 var dnode = require('dnode')
 var server = dnode({
   testTimesTwenty : function (n, cb) { cb(n * 20) }
-}).listen(port)
+}).listen(app);
