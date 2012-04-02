@@ -9,8 +9,6 @@ tokens {
   int indentLevel = 0;
   int DENT_SIZE = 2;
 
-  boolean EOFTerminated = false; // Have we placed a terminal character at the EOL?
-
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
 
   // Note that this will occur at the end of each production if it is not
@@ -27,17 +25,13 @@ tokens {
     
     if (tokens.isEmpty()) { // Clean up and return EOF
       
-      if (!EOFTerminated) {
-        EOFTerminated = true;
-      	return new CommonToken(LT, "LT");	
-      }
-      
       if (indentLevel != 0) {
-        indentLevel--;
-        return new CommonToken(DEDENT, "DEDENT");
+        emit(new CommonToken(LT, "LT"));
+        reindent(0);
       }
 
-      return Token.EOF_TOKEN;
+      if (tokens.isEmpty()) // Still empty
+        return Token.EOF_TOKEN;
     }
 
     return tokens.poll();
@@ -100,7 +94,7 @@ args:   '(' (argument (',' argument)*)? ')'
 func:   args '~' (expr|(LT iblock))
     ;         
 
-expr:   (ID access? ('='|ARITH_ASSIGN)) => ID access? assign
+expr:   (ID access? ('='|ARITH_ASSIGN))=> ID access? assign
     |   (args '~')=>  func
     |   short_stmt
     |   bool

@@ -1,5 +1,3 @@
-add = (a, b) ~
-  return (a, b) ~
-    return a + b
-
-2 + 3
+x = () ~
+  return () ~
+    return 3
