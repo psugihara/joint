@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-// Peter Sugihara
-// March 2012
+// Peter Sugihara, March 2012
 
 var path = require('path')
 var fs = require('fs')
 
-var sourcePath, port, staticPath
 
-// Argument Validation
+// ####Argument Validation
 // ___________________
+
+var sourcePath, port, staticPath
 
 // Print a diagnostic message followed by the usage line, then die.
 var usageDie = function(message) {
@@ -44,9 +44,6 @@ if (process.argv.length === 5) {
     usageDie('file not found: ' + staticPath)
   if (!fs.statSync(staticPath).isDirectory())
     usageDie('static arg must be directory')
-}
-else {
- 
 }
 
 
