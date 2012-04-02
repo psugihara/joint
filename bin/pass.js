@@ -15,7 +15,7 @@ var sourcePath, port, staticPath
 var usageDie = function(message) {
   if (message)
     console.log(message)
-  console.log('usage: pass program.pass [<port#> <static directory>]')
+  console.log('usage: pass <path/program.pass> [<port#> <static directory>]')
   process.exit()
 }
 
@@ -45,3 +45,28 @@ if (process.argv.length === 5) {
   if (!fs.statSync(staticPath).isDirectory())
     usageDie('static arg must be directory')
 }
+
+
+var fs = require('fs')
+function handler (req, res) {
+
+  function response(err, data) {
+    if(!err) {
+      res.writeHead(200)
+      res.write(data)
+      res.end()
+    }
+  }
+
+  if(req.url == '/')
+    fs.readFile('index.html', response)
+  else
+    fs.readFile(__dirname + req.url, response)
+}
+
+var app = require('http').createServer(handler).listen(port)
+
+var dnode = require('dnode')
+var server = dnode({
+  testTimesTwenty : function (n, cb) { cb(n * 20) }
+}).listen(app);
