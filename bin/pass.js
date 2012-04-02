@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-// Peter Sugihara
-// March 2012
+// Peter Sugihara, March 2012
 
 var path = require('path')
 var fs = require('fs')
 
-var sourcePath, port, staticPath
 
-// Argument Validation
+// ####Argument Validation
 // ___________________
+
+var sourcePath, port, staticPath
 
 // Print a diagnostic message followed by the usage line, then die.
 var usageDie = function(message) {
@@ -45,17 +45,3 @@ if (process.argv.length === 5) {
   if (!fs.statSync(staticPath).isDirectory())
     usageDie('static arg must be directory')
 }
-
-// function handler (req, res) {
-//   fs.readFile(__dirname + '/index.html',
-//   function (err, data) {
-//     if (err) {
-//       res.writeHead(500)
-//       return res.end('Error loading index.html')
-//     }
-//     res.writeHead(200)
-//     res.end(data)
-//   });
-// }
-
-// var app = require('http').createServer(handler).listen(port)
