@@ -77,10 +77,10 @@ prog:   block EOF
     ;
 
 block
-    :   (statement|LT)+
+    :   (stmt|LT)+
     ;
     
-statement
+stmt
     :   expr (LT|EOF)
     |   control
     ;   

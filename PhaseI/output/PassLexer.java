@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-04-02 10:53:03
+// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-04-02 10:59:15
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -730,7 +730,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARITH_ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:2: ( '+=' | '-=' | '*=' | '/=' | '%=' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:5: ( '+=' | '-=' | '*=' | '/=' | '%=' )
             int alt2=5;
             switch ( input.LA(1) ) {
             case '+':
@@ -768,7 +768,7 @@ public class PassLexer extends Lexer {
 
             switch (alt2) {
                 case 1 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:4: '+='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:9: '+='
                     {
                     match("+="); 
 
@@ -777,7 +777,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:9: '-='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:14: '-='
                     {
                     match("-="); 
 
@@ -786,7 +786,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:14: '*='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:19: '*='
                     {
                     match("*="); 
 
@@ -795,7 +795,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:19: '/='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:24: '/='
                     {
                     match("/="); 
 
@@ -804,7 +804,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:24: '%='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:224:29: '%='
                     {
                     match("%="); 
 

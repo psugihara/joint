@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-04-02 10:53:03
+// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-04-02 10:59:15
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -65,12 +65,12 @@ public class PassParser extends DebugParser {
 
 
 public static final String[] ruleNames = new String[] {
-    "invalidRule", "dictionary_entry", "access", "break_stmt", "synpred1_Pass", 
-    "func", "value", "term", "factor", "eval", "block", "args", "short_stmt", 
-    "return_stmt", "statement", "else_test", "synpred3_Pass", "synpred2_Pass", 
-    "mod", "control", "synpred5_Pass", "iblock", "atom", "expr", "argument", 
-    "else_p", "bool", "dictionary_definition", "prog", "array_definition", 
-    "factor_p", "synpred4_Pass", "assign", "logic"
+    "invalidRule", "func", "factor_p", "synpred1_Pass", "bool", "value", 
+    "else_test", "dictionary_definition", "prog", "term", "logic", "assign", 
+    "access", "synpred2_Pass", "short_stmt", "else_p", "factor", "atom", 
+    "stmt", "synpred3_Pass", "argument", "array_definition", "break_stmt", 
+    "iblock", "synpred4_Pass", "eval", "expr", "dictionary_entry", "control", 
+    "args", "synpred5_Pass", "mod", "block", "return_stmt"
 };
 
 public static final boolean[] decisionCanBacktrack = new boolean[] {
@@ -167,7 +167,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
     // $ANTLR start "block"
-    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:79:1: block : ( statement | LT )+ ;
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:79:1: block : ( stmt | LT )+ ;
     public final void block() throws RecognitionException {
         try { dbg.enterRule(getGrammarFileName(), "block");
         if ( getRuleLevel()==0 ) {dbg.commence();}
@@ -175,13 +175,13 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(79, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:2: ( ( statement | LT )+ )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:5: ( ( stmt | LT )+ )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:6: ( statement | LT )+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:9: ( stmt | LT )+
             {
-            dbg.location(80,6);
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:6: ( statement | LT )+
+            dbg.location(80,9);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:9: ( stmt | LT )+
             int cnt1=0;
             try { dbg.enterSubRule(1);
 
@@ -206,11 +206,11 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:7: statement
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:10: stmt
             	    {
-            	    dbg.location(80,7);
-            	    pushFollow(FOLLOW_statement_in_block54);
-            	    statement();
+            	    dbg.location(80,10);
+            	    pushFollow(FOLLOW_stmt_in_block57);
+            	    stmt();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -220,10 +220,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	case 2 :
             	    dbg.enterAlt(2);
 
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:17: LT
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:80:15: LT
             	    {
-            	    dbg.location(80,17);
-            	    match(input,LT,FOLLOW_LT_in_block56); if (state.failed) return ;
+            	    dbg.location(80,15);
+            	    match(input,LT,FOLLOW_LT_in_block59); if (state.failed) return ;
 
             	    }
             	    break;
@@ -253,7 +253,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(81, 1);
+        dbg.location(81, 4);
 
         }
         finally {
@@ -268,16 +268,16 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
 
 
-    // $ANTLR start "statement"
-    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:83:1: statement : ( expr ( LT | EOF ) | control );
-    public final void statement() throws RecognitionException {
-        try { dbg.enterRule(getGrammarFileName(), "statement");
+    // $ANTLR start "stmt"
+    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:83:1: stmt : ( expr ( LT | EOF ) | control );
+    public final void stmt() throws RecognitionException {
+        try { dbg.enterRule(getGrammarFileName(), "stmt");
         if ( getRuleLevel()==0 ) {dbg.commence();}
         incRuleLevel();
         dbg.location(83, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:84:2: ( expr ( LT | EOF ) | control )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:84:5: ( expr ( LT | EOF ) | control )
             int alt2=2;
             try { dbg.enterDecision(2, decisionCanBacktrack[2]);
 
@@ -304,15 +304,15 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:84:6: expr ( LT | EOF )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:84:9: expr ( LT | EOF )
                     {
-                    dbg.location(84,6);
-                    pushFollow(FOLLOW_expr_in_statement72);
+                    dbg.location(84,9);
+                    pushFollow(FOLLOW_expr_in_stmt84);
                     expr();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(84,11);
+                    dbg.location(84,14);
                     if ( input.LA(1)==EOF||input.LA(1)==LT ) {
                         input.consume();
                         state.errorRecovery=false;
@@ -331,10 +331,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:85:6: control
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:85:9: control
                     {
-                    dbg.location(85,6);
-                    pushFollow(FOLLOW_control_in_statement85);
+                    dbg.location(85,9);
+                    pushFollow(FOLLOW_control_in_stmt100);
                     control();
 
                     state._fsp--;
@@ -353,18 +353,18 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(86, 1);
+        dbg.location(86, 4);
 
         }
         finally {
-            dbg.exitRule(getGrammarFileName(), "statement");
+            dbg.exitRule(getGrammarFileName(), "stmt");
             decRuleLevel();
             if ( getRuleLevel()==0 ) {dbg.terminate();}
         }
 
         return ;
     }
-    // $ANTLR end "statement"
+    // $ANTLR end "stmt"
 
 
 
@@ -383,15 +383,15 @@ protected boolean evalPredicate(boolean result, String predicate) {
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:89:9: INDENT block DEDENT
             {
             dbg.location(89,9);
-            match(input,INDENT,FOLLOW_INDENT_in_iblock103); if (state.failed) return ;
+            match(input,INDENT,FOLLOW_INDENT_in_iblock126); if (state.failed) return ;
             dbg.location(89,16);
-            pushFollow(FOLLOW_block_in_iblock105);
+            pushFollow(FOLLOW_block_in_iblock128);
             block();
 
             state._fsp--;
             if (state.failed) return ;
             dbg.location(89,22);
-            match(input,DEDENT,FOLLOW_DEDENT_in_iblock107); if (state.failed) return ;
+            match(input,DEDENT,FOLLOW_DEDENT_in_iblock130); if (state.failed) return ;
 
             }
 
@@ -434,7 +434,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:92:9: '(' ( argument ( ',' argument )* )? ')'
             {
             dbg.location(92,9);
-            match(input,21,FOLLOW_21_in_args121); if (state.failed) return ;
+            match(input,21,FOLLOW_21_in_args144); if (state.failed) return ;
             dbg.location(92,13);
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:92:13: ( argument ( ',' argument )* )?
             int alt4=2;
@@ -455,7 +455,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:92:14: argument ( ',' argument )*
                     {
                     dbg.location(92,14);
-                    pushFollow(FOLLOW_argument_in_args124);
+                    pushFollow(FOLLOW_argument_in_args147);
                     argument();
 
                     state._fsp--;
@@ -485,9 +485,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:92:24: ',' argument
                     	    {
                     	    dbg.location(92,24);
-                    	    match(input,25,FOLLOW_25_in_args127); if (state.failed) return ;
+                    	    match(input,25,FOLLOW_25_in_args150); if (state.failed) return ;
                     	    dbg.location(92,28);
-                    	    pushFollow(FOLLOW_argument_in_args129);
+                    	    pushFollow(FOLLOW_argument_in_args152);
                     	    argument();
 
                     	    state._fsp--;
@@ -510,7 +510,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
             } finally {dbg.exitSubRule(4);}
 
             dbg.location(92,41);
-            match(input,22,FOLLOW_22_in_args135); if (state.failed) return ;
+            match(input,22,FOLLOW_22_in_args158); if (state.failed) return ;
 
             }
 
@@ -523,7 +523,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(93, 1);
+        dbg.location(93, 4);
 
         }
         finally {
@@ -553,13 +553,13 @@ protected boolean evalPredicate(boolean result, String predicate) {
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:95:9: args '~' ( expr | ( LT iblock ) )
             {
             dbg.location(95,9);
-            pushFollow(FOLLOW_args_in_func147);
+            pushFollow(FOLLOW_args_in_func176);
             args();
 
             state._fsp--;
             if (state.failed) return ;
             dbg.location(95,14);
-            match(input,42,FOLLOW_42_in_func149); if (state.failed) return ;
+            match(input,42,FOLLOW_42_in_func178); if (state.failed) return ;
             dbg.location(95,18);
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:95:18: ( expr | ( LT iblock ) )
             int alt5=2;
@@ -592,7 +592,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:95:19: expr
                     {
                     dbg.location(95,19);
-                    pushFollow(FOLLOW_expr_in_func152);
+                    pushFollow(FOLLOW_expr_in_func181);
                     expr();
 
                     state._fsp--;
@@ -612,9 +612,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:95:25: LT iblock
                     {
                     dbg.location(95,25);
-                    match(input,LT,FOLLOW_LT_in_func155); if (state.failed) return ;
+                    match(input,LT,FOLLOW_LT_in_func184); if (state.failed) return ;
                     dbg.location(95,28);
-                    pushFollow(FOLLOW_iblock_in_func157);
+                    pushFollow(FOLLOW_iblock_in_func186);
                     iblock();
 
                     state._fsp--;
@@ -641,7 +641,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(96, 1);
+        dbg.location(96, 4);
 
         }
         finally {
@@ -743,7 +743,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:9: ( ID ( access )? ( '=' | ARITH_ASSIGN ) )=> ID ( access )? assign
                     {
                     dbg.location(98,44);
-                    match(input,ID,FOLLOW_ID_in_expr194); if (state.failed) return ;
+                    match(input,ID,FOLLOW_ID_in_expr226); if (state.failed) return ;
                     dbg.location(98,47);
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:47: ( access )?
                     int alt6=2;
@@ -764,7 +764,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:47: access
                             {
                             dbg.location(98,47);
-                            pushFollow(FOLLOW_access_in_expr196);
+                            pushFollow(FOLLOW_access_in_expr228);
                             access();
 
                             state._fsp--;
@@ -777,7 +777,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     } finally {dbg.exitSubRule(6);}
 
                     dbg.location(98,55);
-                    pushFollow(FOLLOW_assign_in_expr199);
+                    pushFollow(FOLLOW_assign_in_expr231);
                     assign();
 
                     state._fsp--;
@@ -791,7 +791,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:99:9: ( args '~' )=> func
                     {
                     dbg.location(99,23);
-                    pushFollow(FOLLOW_func_in_expr217);
+                    pushFollow(FOLLOW_func_in_expr249);
                     func();
 
                     state._fsp--;
@@ -805,7 +805,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:100:9: short_stmt
                     {
                     dbg.location(100,9);
-                    pushFollow(FOLLOW_short_stmt_in_expr227);
+                    pushFollow(FOLLOW_short_stmt_in_expr259);
                     short_stmt();
 
                     state._fsp--;
@@ -819,7 +819,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:101:9: bool
                     {
                     dbg.location(101,9);
-                    pushFollow(FOLLOW_bool_in_expr237);
+                    pushFollow(FOLLOW_bool_in_expr269);
                     bool();
 
                     state._fsp--;
@@ -862,7 +862,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(104, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:2: ( return_stmt | break_stmt )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:5: ( return_stmt | break_stmt )
             int alt8=2;
             try { dbg.enterDecision(8, decisionCanBacktrack[8]);
 
@@ -889,10 +889,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:6: return_stmt
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:105:9: return_stmt
                     {
-                    dbg.location(105,6);
-                    pushFollow(FOLLOW_return_stmt_in_short_stmt253);
+                    dbg.location(105,9);
+                    pushFollow(FOLLOW_return_stmt_in_short_stmt288);
                     return_stmt();
 
                     state._fsp--;
@@ -903,10 +903,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:106:6: break_stmt
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:106:9: break_stmt
                     {
-                    dbg.location(106,6);
-                    pushFollow(FOLLOW_break_stmt_in_short_stmt260);
+                    dbg.location(106,9);
+                    pushFollow(FOLLOW_break_stmt_in_short_stmt298);
                     break_stmt();
 
                     state._fsp--;
@@ -925,7 +925,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(107, 1);
+        dbg.location(107, 4);
 
         }
         finally {
@@ -949,13 +949,13 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(109, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:2: ( 'break' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:5: ( 'break' )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:6: 'break'
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:110:9: 'break'
             {
-            dbg.location(110,6);
-            match(input,33,FOLLOW_33_in_break_stmt274); if (state.failed) return ;
+            dbg.location(110,9);
+            match(input,33,FOLLOW_33_in_break_stmt321); if (state.failed) return ;
 
             }
 
@@ -968,7 +968,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(111, 1);
+        dbg.location(111, 4);
 
         }
         finally {
@@ -992,15 +992,15 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(113, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:2: ( 'return' argument )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:5: ( 'return' argument )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:4: 'return' argument
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:114:9: 'return' argument
             {
-            dbg.location(114,4);
-            match(input,38,FOLLOW_38_in_return_stmt285); if (state.failed) return ;
-            dbg.location(114,13);
-            pushFollow(FOLLOW_argument_in_return_stmt287);
+            dbg.location(114,9);
+            match(input,38,FOLLOW_38_in_return_stmt340); if (state.failed) return ;
+            dbg.location(114,18);
+            pushFollow(FOLLOW_argument_in_return_stmt342);
             argument();
 
             state._fsp--;
@@ -1017,7 +1017,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(115, 1);
+        dbg.location(115, 4);
 
         }
         finally {
@@ -1047,7 +1047,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:117:9: logic ( CMP logic )*
             {
             dbg.location(117,9);
-            pushFollow(FOLLOW_logic_in_bool298);
+            pushFollow(FOLLOW_logic_in_bool356);
             logic();
 
             state._fsp--;
@@ -1077,9 +1077,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:117:16: CMP logic
             	    {
             	    dbg.location(117,16);
-            	    match(input,CMP,FOLLOW_CMP_in_bool301); if (state.failed) return ;
+            	    match(input,CMP,FOLLOW_CMP_in_bool359); if (state.failed) return ;
             	    dbg.location(117,20);
-            	    pushFollow(FOLLOW_logic_in_bool303);
+            	    pushFollow(FOLLOW_logic_in_bool361);
             	    logic();
 
             	    state._fsp--;
@@ -1130,19 +1130,19 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(120, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:2: ( eval ( BOP eval )* )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:5: ( eval ( BOP eval )* )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:6: eval ( BOP eval )*
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:9: eval ( BOP eval )*
             {
-            dbg.location(121,6);
-            pushFollow(FOLLOW_eval_in_logic321);
+            dbg.location(121,9);
+            pushFollow(FOLLOW_eval_in_logic382);
             eval();
 
             state._fsp--;
             if (state.failed) return ;
-            dbg.location(121,11);
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:11: ( BOP eval )*
+            dbg.location(121,14);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:14: ( BOP eval )*
             try { dbg.enterSubRule(10);
 
             loop10:
@@ -1163,12 +1163,12 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:12: BOP eval
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:121:15: BOP eval
             	    {
-            	    dbg.location(121,12);
-            	    match(input,BOP,FOLLOW_BOP_in_logic324); if (state.failed) return ;
-            	    dbg.location(121,16);
-            	    pushFollow(FOLLOW_eval_in_logic326);
+            	    dbg.location(121,15);
+            	    match(input,BOP,FOLLOW_BOP_in_logic385); if (state.failed) return ;
+            	    dbg.location(121,19);
+            	    pushFollow(FOLLOW_eval_in_logic387);
             	    eval();
 
             	    state._fsp--;
@@ -1195,7 +1195,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(122, 1);
+        dbg.location(122, 4);
 
         }
         finally {
@@ -1219,19 +1219,19 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(124, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:2: ( term ( ( '+' | '-' ) term )* )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:5: ( term ( ( '+' | '-' ) term )* )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:6: term ( ( '+' | '-' ) term )*
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:9: term ( ( '+' | '-' ) term )*
             {
-            dbg.location(125,6);
-            pushFollow(FOLLOW_term_in_eval341);
+            dbg.location(125,9);
+            pushFollow(FOLLOW_term_in_eval408);
             term();
 
             state._fsp--;
             if (state.failed) return ;
-            dbg.location(125,11);
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:11: ( ( '+' | '-' ) term )*
+            dbg.location(125,14);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:14: ( ( '+' | '-' ) term )*
             try { dbg.enterSubRule(11);
 
             loop11:
@@ -1252,9 +1252,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:12: ( '+' | '-' ) term
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:125:15: ( '+' | '-' ) term
             	    {
-            	    dbg.location(125,12);
+            	    dbg.location(125,15);
             	    if ( input.LA(1)==24||input.LA(1)==26 ) {
             	        input.consume();
             	        state.errorRecovery=false;
@@ -1267,8 +1267,8 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	        throw mse;
             	    }
 
-            	    dbg.location(125,22);
-            	    pushFollow(FOLLOW_term_in_eval350);
+            	    dbg.location(125,25);
+            	    pushFollow(FOLLOW_term_in_eval417);
             	    term();
 
             	    state._fsp--;
@@ -1319,19 +1319,19 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(128, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:2: ( factor ( ( '*' | '/' | '%' ) factor )* )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:5: ( factor ( ( '*' | '/' | '%' ) factor )* )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:6: factor ( ( '*' | '/' | '%' ) factor )*
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:9: factor ( ( '*' | '/' | '%' ) factor )*
             {
-            dbg.location(129,6);
-            pushFollow(FOLLOW_factor_in_term369);
+            dbg.location(129,9);
+            pushFollow(FOLLOW_factor_in_term439);
             factor();
 
             state._fsp--;
             if (state.failed) return ;
-            dbg.location(129,13);
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:13: ( ( '*' | '/' | '%' ) factor )*
+            dbg.location(129,16);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:16: ( ( '*' | '/' | '%' ) factor )*
             try { dbg.enterSubRule(12);
 
             loop12:
@@ -1352,9 +1352,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:14: ( '*' | '/' | '%' ) factor
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:129:17: ( '*' | '/' | '%' ) factor
             	    {
-            	    dbg.location(129,14);
+            	    dbg.location(129,17);
             	    if ( input.LA(1)==20||input.LA(1)==23||input.LA(1)==28 ) {
             	        input.consume();
             	        state.errorRecovery=false;
@@ -1367,8 +1367,8 @@ protected boolean evalPredicate(boolean result, String predicate) {
             	        throw mse;
             	    }
 
-            	    dbg.location(129,28);
-            	    pushFollow(FOLLOW_factor_in_term380);
+            	    dbg.location(129,31);
+            	    pushFollow(FOLLOW_factor_in_term450);
             	    factor();
 
             	    state._fsp--;
@@ -1449,9 +1449,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:133:9: '(' factor_p
                     {
                     dbg.location(133,9);
-                    match(input,21,FOLLOW_21_in_factor402); if (state.failed) return ;
+                    match(input,21,FOLLOW_21_in_factor472); if (state.failed) return ;
                     dbg.location(133,13);
-                    pushFollow(FOLLOW_factor_p_in_factor404);
+                    pushFollow(FOLLOW_factor_p_in_factor474);
                     factor_p();
 
                     state._fsp--;
@@ -1465,7 +1465,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:134:10: value
                     {
                     dbg.location(134,10);
-                    pushFollow(FOLLOW_value_in_factor415);
+                    pushFollow(FOLLOW_value_in_factor485);
                     value();
 
                     state._fsp--;
@@ -1508,7 +1508,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(138, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:2: ( ( args '~' )=> func ')' args | bool ')' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:5: ( ( args '~' )=> func ')' args | bool ')' )
             int alt14=2;
             try { dbg.enterDecision(14, decisionCanBacktrack[14]);
 
@@ -1551,18 +1551,18 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:6: ( args '~' )=> func ')' args
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:9: ( args '~' )=> func ')' args
                     {
-                    dbg.location(139,20);
-                    pushFollow(FOLLOW_func_in_factor_p441);
+                    dbg.location(139,23);
+                    pushFollow(FOLLOW_func_in_factor_p514);
                     func();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(139,25);
-                    match(input,22,FOLLOW_22_in_factor_p443); if (state.failed) return ;
                     dbg.location(139,28);
-                    pushFollow(FOLLOW_args_in_factor_p444);
+                    match(input,22,FOLLOW_22_in_factor_p516); if (state.failed) return ;
+                    dbg.location(139,31);
+                    pushFollow(FOLLOW_args_in_factor_p517);
                     args();
 
                     state._fsp--;
@@ -1573,16 +1573,16 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:140:6: bool ')'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:140:9: bool ')'
                     {
-                    dbg.location(140,6);
-                    pushFollow(FOLLOW_bool_in_factor_p451);
+                    dbg.location(140,9);
+                    pushFollow(FOLLOW_bool_in_factor_p527);
                     bool();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(140,11);
-                    match(input,22,FOLLOW_22_in_factor_p453); if (state.failed) return ;
+                    dbg.location(140,14);
+                    match(input,22,FOLLOW_22_in_factor_p529); if (state.failed) return ;
 
                     }
                     break;
@@ -1597,7 +1597,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(141, 1);
+        dbg.location(141, 4);
 
         }
         finally {
@@ -1676,11 +1676,11 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:144:10: '[' NUMBER ']'
                     	    {
                     	    dbg.location(144,10);
-                    	    match(input,31,FOLLOW_31_in_access477); if (state.failed) return ;
+                    	    match(input,31,FOLLOW_31_in_access556); if (state.failed) return ;
                     	    dbg.location(144,14);
-                    	    match(input,NUMBER,FOLLOW_NUMBER_in_access479); if (state.failed) return ;
+                    	    match(input,NUMBER,FOLLOW_NUMBER_in_access558); if (state.failed) return ;
                     	    dbg.location(144,21);
-                    	    match(input,32,FOLLOW_32_in_access481); if (state.failed) return ;
+                    	    match(input,32,FOLLOW_32_in_access560); if (state.failed) return ;
 
                     	    }
                     	    break;
@@ -1707,9 +1707,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:145:9: '.' ID
                     {
                     dbg.location(145,9);
-                    match(input,27,FOLLOW_27_in_access493); if (state.failed) return ;
+                    match(input,27,FOLLOW_27_in_access572); if (state.failed) return ;
                     dbg.location(145,13);
-                    match(input,ID,FOLLOW_ID_in_access495); if (state.failed) return ;
+                    match(input,ID,FOLLOW_ID_in_access574); if (state.failed) return ;
 
                     }
                     break;
@@ -1724,7 +1724,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(146, 1);
+        dbg.location(146, 4);
 
         }
         finally {
@@ -1778,7 +1778,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:149:9: atom
                     {
                     dbg.location(149,9);
-                    pushFollow(FOLLOW_atom_in_value511);
+                    pushFollow(FOLLOW_atom_in_value593);
                     atom();
 
                     state._fsp--;
@@ -1789,12 +1789,12 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:150:6: ID ( mod )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:150:9: ID ( mod )?
                     {
-                    dbg.location(150,6);
-                    match(input,ID,FOLLOW_ID_in_value518); if (state.failed) return ;
                     dbg.location(150,9);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:150:9: ( mod )?
+                    match(input,ID,FOLLOW_ID_in_value603); if (state.failed) return ;
+                    dbg.location(150,12);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:150:12: ( mod )?
                     int alt17=2;
                     try { dbg.enterSubRule(17);
                     try { dbg.enterDecision(17, decisionCanBacktrack[17]);
@@ -1810,10 +1810,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:150:9: mod
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:150:12: mod
                             {
-                            dbg.location(150,9);
-                            pushFollow(FOLLOW_mod_in_value520);
+                            dbg.location(150,12);
+                            pushFollow(FOLLOW_mod_in_value605);
                             mod();
 
                             state._fsp--;
@@ -1893,7 +1893,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:153:9: args
                     {
                     dbg.location(153,9);
-                    pushFollow(FOLLOW_args_in_mod536);
+                    pushFollow(FOLLOW_args_in_mod621);
                     args();
 
                     state._fsp--;
@@ -1904,10 +1904,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:154:6: access
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:154:9: access
                     {
-                    dbg.location(154,6);
-                    pushFollow(FOLLOW_access_in_mod543);
+                    dbg.location(154,9);
+                    pushFollow(FOLLOW_access_in_mod631);
                     access();
 
                     state._fsp--;
@@ -1926,7 +1926,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(155, 1);
+        dbg.location(155, 4);
 
         }
         finally {
@@ -2043,13 +2043,13 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:162:9: 'for' ID 'in' ID ( mod )? LT iblock
                     {
                     dbg.location(162,9);
-                    match(input,35,FOLLOW_35_in_control583); if (state.failed) return ;
+                    match(input,35,FOLLOW_35_in_control674); if (state.failed) return ;
                     dbg.location(162,15);
-                    match(input,ID,FOLLOW_ID_in_control585); if (state.failed) return ;
+                    match(input,ID,FOLLOW_ID_in_control676); if (state.failed) return ;
                     dbg.location(162,18);
-                    match(input,37,FOLLOW_37_in_control587); if (state.failed) return ;
+                    match(input,37,FOLLOW_37_in_control678); if (state.failed) return ;
                     dbg.location(162,23);
-                    match(input,ID,FOLLOW_ID_in_control589); if (state.failed) return ;
+                    match(input,ID,FOLLOW_ID_in_control680); if (state.failed) return ;
                     dbg.location(162,26);
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:162:26: ( mod )?
                     int alt20=2;
@@ -2070,7 +2070,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:162:26: mod
                             {
                             dbg.location(162,26);
-                            pushFollow(FOLLOW_mod_in_control591);
+                            pushFollow(FOLLOW_mod_in_control682);
                             mod();
 
                             state._fsp--;
@@ -2083,9 +2083,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     } finally {dbg.exitSubRule(20);}
 
                     dbg.location(162,31);
-                    match(input,LT,FOLLOW_LT_in_control594); if (state.failed) return ;
+                    match(input,LT,FOLLOW_LT_in_control685); if (state.failed) return ;
                     dbg.location(162,34);
-                    pushFollow(FOLLOW_iblock_in_control596);
+                    pushFollow(FOLLOW_iblock_in_control687);
                     iblock();
 
                     state._fsp--;
@@ -2099,17 +2099,17 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:163:9: 'while' bool LT iblock
                     {
                     dbg.location(163,9);
-                    match(input,39,FOLLOW_39_in_control606); if (state.failed) return ;
+                    match(input,39,FOLLOW_39_in_control697); if (state.failed) return ;
                     dbg.location(163,17);
-                    pushFollow(FOLLOW_bool_in_control608);
+                    pushFollow(FOLLOW_bool_in_control699);
                     bool();
 
                     state._fsp--;
                     if (state.failed) return ;
                     dbg.location(163,22);
-                    match(input,LT,FOLLOW_LT_in_control610); if (state.failed) return ;
+                    match(input,LT,FOLLOW_LT_in_control701); if (state.failed) return ;
                     dbg.location(163,25);
-                    pushFollow(FOLLOW_iblock_in_control612);
+                    pushFollow(FOLLOW_iblock_in_control703);
                     iblock();
 
                     state._fsp--;
@@ -2123,9 +2123,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:9: 'if' bool ( return_stmt LT | LT iblock ) else_test
                     {
                     dbg.location(164,9);
-                    match(input,36,FOLLOW_36_in_control622); if (state.failed) return ;
+                    match(input,36,FOLLOW_36_in_control713); if (state.failed) return ;
                     dbg.location(164,14);
-                    pushFollow(FOLLOW_bool_in_control624);
+                    pushFollow(FOLLOW_bool_in_control715);
                     bool();
 
                     state._fsp--;
@@ -2162,13 +2162,13 @@ protected boolean evalPredicate(boolean result, String predicate) {
                             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:20: return_stmt LT
                             {
                             dbg.location(164,20);
-                            pushFollow(FOLLOW_return_stmt_in_control627);
+                            pushFollow(FOLLOW_return_stmt_in_control718);
                             return_stmt();
 
                             state._fsp--;
                             if (state.failed) return ;
                             dbg.location(164,32);
-                            match(input,LT,FOLLOW_LT_in_control629); if (state.failed) return ;
+                            match(input,LT,FOLLOW_LT_in_control720); if (state.failed) return ;
 
                             }
                             break;
@@ -2178,9 +2178,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:35: LT iblock
                             {
                             dbg.location(164,35);
-                            match(input,LT,FOLLOW_LT_in_control631); if (state.failed) return ;
+                            match(input,LT,FOLLOW_LT_in_control722); if (state.failed) return ;
                             dbg.location(164,38);
-                            pushFollow(FOLLOW_iblock_in_control633);
+                            pushFollow(FOLLOW_iblock_in_control724);
                             iblock();
 
                             state._fsp--;
@@ -2193,7 +2193,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     } finally {dbg.exitSubRule(21);}
 
                     dbg.location(164,46);
-                    pushFollow(FOLLOW_else_test_in_control636);
+                    pushFollow(FOLLOW_else_test_in_control727);
                     else_test();
 
                     state._fsp--;
@@ -2236,7 +2236,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(168, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:169:2: ( 'else' else_p |)
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:169:5: ( 'else' else_p |)
             int alt23=2;
             try { dbg.enterDecision(23, decisionCanBacktrack[23]);
 
@@ -2263,12 +2263,12 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:169:7: 'else' else_p
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:169:10: 'else' else_p
                     {
-                    dbg.location(169,7);
-                    match(input,34,FOLLOW_34_in_else_test655); if (state.failed) return ;
-                    dbg.location(169,14);
-                    pushFollow(FOLLOW_else_p_in_else_test657);
+                    dbg.location(169,10);
+                    match(input,34,FOLLOW_34_in_else_test749); if (state.failed) return ;
+                    dbg.location(169,17);
+                    pushFollow(FOLLOW_else_p_in_else_test751);
                     else_p();
 
                     state._fsp--;
@@ -2279,7 +2279,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:2: 
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:5: 
                     {
                     }
                     break;
@@ -2294,7 +2294,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(171, 1);
+        dbg.location(171, 4);
 
         }
         finally {
@@ -2318,7 +2318,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(173, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:2: ( 'if' bool ( return_stmt LT | LT iblock ) else_test | ( return_stmt LT | LT iblock ) )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:5: ( 'if' bool ( return_stmt LT | LT iblock ) else_test | ( return_stmt LT | LT iblock ) )
             int alt26=2;
             try { dbg.enterDecision(26, decisionCanBacktrack[26]);
 
@@ -2345,18 +2345,18 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:7: 'if' bool ( return_stmt LT | LT iblock ) else_test
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:10: 'if' bool ( return_stmt LT | LT iblock ) else_test
                     {
-                    dbg.location(174,7);
-                    match(input,36,FOLLOW_36_in_else_p674); if (state.failed) return ;
-                    dbg.location(174,12);
-                    pushFollow(FOLLOW_bool_in_else_p676);
+                    dbg.location(174,10);
+                    match(input,36,FOLLOW_36_in_else_p777); if (state.failed) return ;
+                    dbg.location(174,15);
+                    pushFollow(FOLLOW_bool_in_else_p779);
                     bool();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(174,17);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:17: ( return_stmt LT | LT iblock )
+                    dbg.location(174,20);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:20: ( return_stmt LT | LT iblock )
                     int alt24=2;
                     try { dbg.enterSubRule(24);
                     try { dbg.enterDecision(24, decisionCanBacktrack[24]);
@@ -2384,28 +2384,28 @@ protected boolean evalPredicate(boolean result, String predicate) {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:18: return_stmt LT
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:21: return_stmt LT
                             {
-                            dbg.location(174,18);
-                            pushFollow(FOLLOW_return_stmt_in_else_p679);
+                            dbg.location(174,21);
+                            pushFollow(FOLLOW_return_stmt_in_else_p782);
                             return_stmt();
 
                             state._fsp--;
                             if (state.failed) return ;
-                            dbg.location(174,30);
-                            match(input,LT,FOLLOW_LT_in_else_p681); if (state.failed) return ;
+                            dbg.location(174,33);
+                            match(input,LT,FOLLOW_LT_in_else_p784); if (state.failed) return ;
 
                             }
                             break;
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:33: LT iblock
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:174:36: LT iblock
                             {
-                            dbg.location(174,33);
-                            match(input,LT,FOLLOW_LT_in_else_p683); if (state.failed) return ;
                             dbg.location(174,36);
-                            pushFollow(FOLLOW_iblock_in_else_p685);
+                            match(input,LT,FOLLOW_LT_in_else_p786); if (state.failed) return ;
+                            dbg.location(174,39);
+                            pushFollow(FOLLOW_iblock_in_else_p788);
                             iblock();
 
                             state._fsp--;
@@ -2417,8 +2417,8 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     }
                     } finally {dbg.exitSubRule(24);}
 
-                    dbg.location(174,44);
-                    pushFollow(FOLLOW_else_test_in_else_p688);
+                    dbg.location(174,47);
+                    pushFollow(FOLLOW_else_test_in_else_p791);
                     else_test();
 
                     state._fsp--;
@@ -2429,10 +2429,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:7: ( return_stmt LT | LT iblock )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:10: ( return_stmt LT | LT iblock )
                     {
-                    dbg.location(175,7);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:7: ( return_stmt LT | LT iblock )
+                    dbg.location(175,10);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:10: ( return_stmt LT | LT iblock )
                     int alt25=2;
                     try { dbg.enterSubRule(25);
                     try { dbg.enterDecision(25, decisionCanBacktrack[25]);
@@ -2460,28 +2460,28 @@ protected boolean evalPredicate(boolean result, String predicate) {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:8: return_stmt LT
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:11: return_stmt LT
                             {
-                            dbg.location(175,8);
-                            pushFollow(FOLLOW_return_stmt_in_else_p697);
+                            dbg.location(175,11);
+                            pushFollow(FOLLOW_return_stmt_in_else_p803);
                             return_stmt();
 
                             state._fsp--;
                             if (state.failed) return ;
-                            dbg.location(175,20);
-                            match(input,LT,FOLLOW_LT_in_else_p699); if (state.failed) return ;
+                            dbg.location(175,23);
+                            match(input,LT,FOLLOW_LT_in_else_p805); if (state.failed) return ;
 
                             }
                             break;
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:23: LT iblock
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:26: LT iblock
                             {
-                            dbg.location(175,23);
-                            match(input,LT,FOLLOW_LT_in_else_p701); if (state.failed) return ;
                             dbg.location(175,26);
-                            pushFollow(FOLLOW_iblock_in_else_p703);
+                            match(input,LT,FOLLOW_LT_in_else_p807); if (state.failed) return ;
+                            dbg.location(175,29);
+                            pushFollow(FOLLOW_iblock_in_else_p809);
                             iblock();
 
                             state._fsp--;
@@ -2507,7 +2507,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(176, 1);
+        dbg.location(176, 4);
 
         }
         finally {
@@ -2561,7 +2561,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:179:9: '=' ( argument | dictionary_definition | array_definition )
                     {
                     dbg.location(179,9);
-                    match(input,30,FOLLOW_30_in_assign721); if (state.failed) return ;
+                    match(input,30,FOLLOW_30_in_assign833); if (state.failed) return ;
                     dbg.location(179,13);
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:179:13: ( argument | dictionary_definition | array_definition )
                     int alt27=3;
@@ -2606,7 +2606,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:179:14: argument
                             {
                             dbg.location(179,14);
-                            pushFollow(FOLLOW_argument_in_assign724);
+                            pushFollow(FOLLOW_argument_in_assign836);
                             argument();
 
                             state._fsp--;
@@ -2620,7 +2620,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:179:23: dictionary_definition
                             {
                             dbg.location(179,23);
-                            pushFollow(FOLLOW_dictionary_definition_in_assign726);
+                            pushFollow(FOLLOW_dictionary_definition_in_assign838);
                             dictionary_definition();
 
                             state._fsp--;
@@ -2634,7 +2634,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:179:45: array_definition
                             {
                             dbg.location(179,45);
-                            pushFollow(FOLLOW_array_definition_in_assign728);
+                            pushFollow(FOLLOW_array_definition_in_assign840);
                             array_definition();
 
                             state._fsp--;
@@ -2655,9 +2655,9 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:180:9: ARITH_ASSIGN bool
                     {
                     dbg.location(180,9);
-                    match(input,ARITH_ASSIGN,FOLLOW_ARITH_ASSIGN_in_assign739); if (state.failed) return ;
+                    match(input,ARITH_ASSIGN,FOLLOW_ARITH_ASSIGN_in_assign851); if (state.failed) return ;
                     dbg.location(180,22);
-                    pushFollow(FOLLOW_bool_in_assign741);
+                    pushFollow(FOLLOW_bool_in_assign853);
                     bool();
 
                     state._fsp--;
@@ -2700,15 +2700,15 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(183, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:2: ( '{' ( dictionary_entry ( ',' dictionary_entry )* )? '}' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:5: ( '{' ( dictionary_entry ( ',' dictionary_entry )* )? '}' )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:6: '{' ( dictionary_entry ( ',' dictionary_entry )* )? '}'
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:9: '{' ( dictionary_entry ( ',' dictionary_entry )* )? '}'
             {
-            dbg.location(184,6);
-            match(input,40,FOLLOW_40_in_dictionary_definition757); if (state.failed) return ;
-            dbg.location(184,10);
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:10: ( dictionary_entry ( ',' dictionary_entry )* )?
+            dbg.location(184,9);
+            match(input,40,FOLLOW_40_in_dictionary_definition872); if (state.failed) return ;
+            dbg.location(184,13);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:13: ( dictionary_entry ( ',' dictionary_entry )* )?
             int alt30=2;
             try { dbg.enterSubRule(30);
             try { dbg.enterDecision(30, decisionCanBacktrack[30]);
@@ -2724,16 +2724,16 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:11: dictionary_entry ( ',' dictionary_entry )*
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:14: dictionary_entry ( ',' dictionary_entry )*
                     {
-                    dbg.location(184,11);
-                    pushFollow(FOLLOW_dictionary_entry_in_dictionary_definition760);
+                    dbg.location(184,14);
+                    pushFollow(FOLLOW_dictionary_entry_in_dictionary_definition875);
                     dictionary_entry();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(184,28);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:28: ( ',' dictionary_entry )*
+                    dbg.location(184,31);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:31: ( ',' dictionary_entry )*
                     try { dbg.enterSubRule(29);
 
                     loop29:
@@ -2754,12 +2754,12 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:29: ',' dictionary_entry
+                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:184:32: ',' dictionary_entry
                     	    {
-                    	    dbg.location(184,29);
-                    	    match(input,25,FOLLOW_25_in_dictionary_definition763); if (state.failed) return ;
-                    	    dbg.location(184,33);
-                    	    pushFollow(FOLLOW_dictionary_entry_in_dictionary_definition765);
+                    	    dbg.location(184,32);
+                    	    match(input,25,FOLLOW_25_in_dictionary_definition878); if (state.failed) return ;
+                    	    dbg.location(184,36);
+                    	    pushFollow(FOLLOW_dictionary_entry_in_dictionary_definition880);
                     	    dictionary_entry();
 
                     	    state._fsp--;
@@ -2781,8 +2781,8 @@ protected boolean evalPredicate(boolean result, String predicate) {
             }
             } finally {dbg.exitSubRule(30);}
 
-            dbg.location(184,54);
-            match(input,41,FOLLOW_41_in_dictionary_definition771); if (state.failed) return ;
+            dbg.location(184,57);
+            match(input,41,FOLLOW_41_in_dictionary_definition886); if (state.failed) return ;
 
             }
 
@@ -2795,7 +2795,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(185, 1);
+        dbg.location(185, 4);
 
         }
         finally {
@@ -2819,17 +2819,17 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(187, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:188:2: ( ID ':' atom )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:188:5: ( ID ':' atom )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:188:6: ID ':' atom
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:188:9: ID ':' atom
             {
-            dbg.location(188,6);
-            match(input,ID,FOLLOW_ID_in_dictionary_entry784); if (state.failed) return ;
-            dbg.location(188,8);
-            match(input,29,FOLLOW_29_in_dictionary_entry785); if (state.failed) return ;
+            dbg.location(188,9);
+            match(input,ID,FOLLOW_ID_in_dictionary_entry905); if (state.failed) return ;
             dbg.location(188,11);
-            pushFollow(FOLLOW_atom_in_dictionary_entry786);
+            match(input,29,FOLLOW_29_in_dictionary_entry906); if (state.failed) return ;
+            dbg.location(188,14);
+            pushFollow(FOLLOW_atom_in_dictionary_entry907);
             atom();
 
             state._fsp--;
@@ -2846,7 +2846,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(189, 1);
+        dbg.location(189, 4);
 
         }
         finally {
@@ -2870,15 +2870,15 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(191, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:2: ( '[' ( argument ( ',' argument )* )? ']' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:5: ( '[' ( argument ( ',' argument )* )? ']' )
             dbg.enterAlt(1);
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:6: '[' ( argument ( ',' argument )* )? ']'
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:9: '[' ( argument ( ',' argument )* )? ']'
             {
-            dbg.location(192,6);
-            match(input,31,FOLLOW_31_in_array_definition801); if (state.failed) return ;
-            dbg.location(192,10);
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:10: ( argument ( ',' argument )* )?
+            dbg.location(192,9);
+            match(input,31,FOLLOW_31_in_array_definition931); if (state.failed) return ;
+            dbg.location(192,13);
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:13: ( argument ( ',' argument )* )?
             int alt32=2;
             try { dbg.enterSubRule(32);
             try { dbg.enterDecision(32, decisionCanBacktrack[32]);
@@ -2894,16 +2894,16 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:11: argument ( ',' argument )*
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:14: argument ( ',' argument )*
                     {
-                    dbg.location(192,11);
-                    pushFollow(FOLLOW_argument_in_array_definition804);
+                    dbg.location(192,14);
+                    pushFollow(FOLLOW_argument_in_array_definition934);
                     argument();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(192,20);
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:20: ( ',' argument )*
+                    dbg.location(192,23);
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:23: ( ',' argument )*
                     try { dbg.enterSubRule(31);
 
                     loop31:
@@ -2924,12 +2924,12 @@ protected boolean evalPredicate(boolean result, String predicate) {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:21: ',' argument
+                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:24: ',' argument
                     	    {
-                    	    dbg.location(192,21);
-                    	    match(input,25,FOLLOW_25_in_array_definition807); if (state.failed) return ;
-                    	    dbg.location(192,25);
-                    	    pushFollow(FOLLOW_argument_in_array_definition809);
+                    	    dbg.location(192,24);
+                    	    match(input,25,FOLLOW_25_in_array_definition937); if (state.failed) return ;
+                    	    dbg.location(192,28);
+                    	    pushFollow(FOLLOW_argument_in_array_definition939);
                     	    argument();
 
                     	    state._fsp--;
@@ -2951,8 +2951,8 @@ protected boolean evalPredicate(boolean result, String predicate) {
             }
             } finally {dbg.exitSubRule(32);}
 
-            dbg.location(192,38);
-            match(input,32,FOLLOW_32_in_array_definition815); if (state.failed) return ;
+            dbg.location(192,41);
+            match(input,32,FOLLOW_32_in_array_definition945); if (state.failed) return ;
 
             }
 
@@ -2965,7 +2965,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(193, 1);
+        dbg.location(193, 4);
 
         }
         finally {
@@ -2989,7 +2989,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         dbg.location(195, 0);
 
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:2: ( ( args '~' )=> func | ( '(' args '~' )=> '(' func ')' args | bool )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:5: ( ( args '~' )=> func | ( '(' args '~' )=> '(' func ')' args | bool )
             int alt33=3;
             try { dbg.enterDecision(33, decisionCanBacktrack[33]);
 
@@ -3035,10 +3035,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:6: ( args '~' )=> func
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:9: ( args '~' )=> func
                     {
-                    dbg.location(196,19);
-                    pushFollow(FOLLOW_func_in_argument836);
+                    dbg.location(196,22);
+                    pushFollow(FOLLOW_func_in_argument975);
                     func();
 
                     state._fsp--;
@@ -3049,20 +3049,20 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:6: ( '(' args '~' )=> '(' func ')' args
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:9: ( '(' args '~' )=> '(' func ')' args
                     {
-                    dbg.location(197,23);
-                    match(input,21,FOLLOW_21_in_argument852); if (state.failed) return ;
-                    dbg.location(197,27);
-                    pushFollow(FOLLOW_func_in_argument854);
+                    dbg.location(197,26);
+                    match(input,21,FOLLOW_21_in_argument994); if (state.failed) return ;
+                    dbg.location(197,30);
+                    pushFollow(FOLLOW_func_in_argument996);
                     func();
 
                     state._fsp--;
                     if (state.failed) return ;
-                    dbg.location(197,32);
-                    match(input,22,FOLLOW_22_in_argument856); if (state.failed) return ;
                     dbg.location(197,35);
-                    pushFollow(FOLLOW_args_in_argument857);
+                    match(input,22,FOLLOW_22_in_argument998); if (state.failed) return ;
+                    dbg.location(197,38);
+                    pushFollow(FOLLOW_args_in_argument999);
                     args();
 
                     state._fsp--;
@@ -3073,10 +3073,10 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:198:6: bool
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:198:9: bool
                     {
-                    dbg.location(198,6);
-                    pushFollow(FOLLOW_bool_in_argument864);
+                    dbg.location(198,9);
+                    pushFollow(FOLLOW_bool_in_argument1009);
                     bool();
 
                     state._fsp--;
@@ -3095,7 +3095,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         finally {
         	// do for sure before leaving
         }
-        dbg.location(199, 1);
+        dbg.location(199, 4);
 
         }
         finally {
@@ -3116,7 +3116,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
         // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:10: ID ( access )? ( '=' | ARITH_ASSIGN )
         {
         dbg.location(98,10);
-        match(input,ID,FOLLOW_ID_in_synpred1_Pass180); if (state.failed) return ;
+        match(input,ID,FOLLOW_ID_in_synpred1_Pass212); if (state.failed) return ;
         dbg.location(98,13);
         // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:13: ( access )?
         int alt34=2;
@@ -3137,7 +3137,7 @@ protected boolean evalPredicate(boolean result, String predicate) {
                 // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:98:13: access
                 {
                 dbg.location(98,13);
-                pushFollow(FOLLOW_access_in_synpred1_Pass182);
+                pushFollow(FOLLOW_access_in_synpred1_Pass214);
                 access();
 
                 state._fsp--;
@@ -3176,13 +3176,13 @@ protected boolean evalPredicate(boolean result, String predicate) {
         // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:99:10: args '~'
         {
         dbg.location(99,10);
-        pushFollow(FOLLOW_args_in_synpred2_Pass210);
+        pushFollow(FOLLOW_args_in_synpred2_Pass242);
         args();
 
         state._fsp--;
         if (state.failed) return ;
         dbg.location(99,15);
-        match(input,42,FOLLOW_42_in_synpred2_Pass212); if (state.failed) return ;
+        match(input,42,FOLLOW_42_in_synpred2_Pass244); if (state.failed) return ;
 
         }
 
@@ -3191,19 +3191,19 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
     // $ANTLR start synpred3_Pass
     public final void synpred3_Pass_fragment() throws RecognitionException {
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:6: ( args '~' )
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:9: ( args '~' )
         dbg.enterAlt(1);
 
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:7: args '~'
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:10: args '~'
         {
-        dbg.location(139,7);
-        pushFollow(FOLLOW_args_in_synpred3_Pass434);
+        dbg.location(139,10);
+        pushFollow(FOLLOW_args_in_synpred3_Pass507);
         args();
 
         state._fsp--;
         if (state.failed) return ;
-        dbg.location(139,12);
-        match(input,42,FOLLOW_42_in_synpred3_Pass436); if (state.failed) return ;
+        dbg.location(139,15);
+        match(input,42,FOLLOW_42_in_synpred3_Pass509); if (state.failed) return ;
 
         }
 
@@ -3212,19 +3212,19 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
     // $ANTLR start synpred4_Pass
     public final void synpred4_Pass_fragment() throws RecognitionException {
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:6: ( args '~' )
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:9: ( args '~' )
         dbg.enterAlt(1);
 
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:7: args '~'
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:196:10: args '~'
         {
-        dbg.location(196,7);
-        pushFollow(FOLLOW_args_in_synpred4_Pass830);
+        dbg.location(196,10);
+        pushFollow(FOLLOW_args_in_synpred4_Pass969);
         args();
 
         state._fsp--;
         if (state.failed) return ;
-        dbg.location(196,12);
-        match(input,42,FOLLOW_42_in_synpred4_Pass832); if (state.failed) return ;
+        dbg.location(196,15);
+        match(input,42,FOLLOW_42_in_synpred4_Pass971); if (state.failed) return ;
 
         }
 
@@ -3233,21 +3233,21 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
     // $ANTLR start synpred5_Pass
     public final void synpred5_Pass_fragment() throws RecognitionException {
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:6: ( '(' args '~' )
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:9: ( '(' args '~' )
         dbg.enterAlt(1);
 
-        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:7: '(' args '~'
+        // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:10: '(' args '~'
         {
-        dbg.location(197,7);
-        match(input,21,FOLLOW_21_in_synpred5_Pass844); if (state.failed) return ;
-        dbg.location(197,11);
-        pushFollow(FOLLOW_args_in_synpred5_Pass846);
+        dbg.location(197,10);
+        match(input,21,FOLLOW_21_in_synpred5_Pass986); if (state.failed) return ;
+        dbg.location(197,14);
+        pushFollow(FOLLOW_args_in_synpred5_Pass988);
         args();
 
         state._fsp--;
         if (state.failed) return ;
-        dbg.location(197,16);
-        match(input,42,FOLLOW_42_in_synpred5_Pass848); if (state.failed) return ;
+        dbg.location(197,19);
+        match(input,42,FOLLOW_42_in_synpred5_Pass990); if (state.failed) return ;
 
         }
 
@@ -3342,132 +3342,132 @@ protected boolean evalPredicate(boolean result, String predicate) {
 
     public static final BitSet FOLLOW_block_in_prog35 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_prog37 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_block54 = new BitSet(new long[]{0x000000DA0022D002L});
-    public static final BitSet FOLLOW_LT_in_block56 = new BitSet(new long[]{0x000000DA0022D002L});
-    public static final BitSet FOLLOW_expr_in_statement72 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_set_in_statement74 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_control_in_statement85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INDENT_in_iblock103 = new BitSet(new long[]{0x000000DA0022D000L});
-    public static final BitSet FOLLOW_block_in_iblock105 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_DEDENT_in_iblock107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_args121 = new BitSet(new long[]{0x0000000000629000L});
-    public static final BitSet FOLLOW_argument_in_args124 = new BitSet(new long[]{0x0000000002400000L});
-    public static final BitSet FOLLOW_25_in_args127 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_argument_in_args129 = new BitSet(new long[]{0x0000000002400000L});
-    public static final BitSet FOLLOW_22_in_args135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_func147 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_func149 = new BitSet(new long[]{0x000000420022D000L});
-    public static final BitSet FOLLOW_expr_in_func152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_func155 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_iblock_in_func157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_expr194 = new BitSet(new long[]{0x00000000C8000010L});
-    public static final BitSet FOLLOW_access_in_expr196 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_assign_in_expr199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_func_in_expr217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_short_stmt_in_expr227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_bool_in_expr237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_return_stmt_in_short_stmt253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_break_stmt_in_short_stmt260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_break_stmt274 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_return_stmt285 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_argument_in_return_stmt287 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_logic_in_bool298 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_CMP_in_bool301 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_logic_in_bool303 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_eval_in_logic321 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_BOP_in_logic324 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_eval_in_logic326 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_term_in_eval341 = new BitSet(new long[]{0x0000000005000002L});
-    public static final BitSet FOLLOW_set_in_eval344 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_term_in_eval350 = new BitSet(new long[]{0x0000000005000002L});
-    public static final BitSet FOLLOW_factor_in_term369 = new BitSet(new long[]{0x0000000010900002L});
-    public static final BitSet FOLLOW_set_in_term372 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_factor_in_term380 = new BitSet(new long[]{0x0000000010900002L});
-    public static final BitSet FOLLOW_21_in_factor402 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_factor_p_in_factor404 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_factor415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_func_in_factor_p441 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_factor_p443 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_args_in_factor_p444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_bool_in_factor_p451 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_factor_p453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_access477 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_NUMBER_in_access479 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_access481 = new BitSet(new long[]{0x0000000080000002L});
-    public static final BitSet FOLLOW_27_in_access493 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_ID_in_access495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_value511 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_value518 = new BitSet(new long[]{0x0000000088200002L});
-    public static final BitSet FOLLOW_mod_in_value520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_mod536 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_access_in_mod543 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_control583 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_ID_in_control585 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_control587 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_ID_in_control589 = new BitSet(new long[]{0x0000000088204000L});
-    public static final BitSet FOLLOW_mod_in_control591 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_LT_in_control594 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_iblock_in_control596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_control606 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_bool_in_control608 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_LT_in_control610 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_iblock_in_control612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_control622 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_bool_in_control624 = new BitSet(new long[]{0x0000004000004000L});
-    public static final BitSet FOLLOW_return_stmt_in_control627 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_LT_in_control629 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_LT_in_control631 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_iblock_in_control633 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_else_test_in_control636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_else_test655 = new BitSet(new long[]{0x0000005000004000L});
-    public static final BitSet FOLLOW_else_p_in_else_test657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_else_p674 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_bool_in_else_p676 = new BitSet(new long[]{0x0000004000004000L});
-    public static final BitSet FOLLOW_return_stmt_in_else_p679 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_LT_in_else_p681 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_LT_in_else_p683 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_iblock_in_else_p685 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_else_test_in_else_p688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_return_stmt_in_else_p697 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_LT_in_else_p699 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_else_p701 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_iblock_in_else_p703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_assign721 = new BitSet(new long[]{0x0000010080229000L});
-    public static final BitSet FOLLOW_argument_in_assign724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dictionary_definition_in_assign726 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_definition_in_assign728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARITH_ASSIGN_in_assign739 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_bool_in_assign741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_dictionary_definition757 = new BitSet(new long[]{0x0000020000001000L});
-    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition760 = new BitSet(new long[]{0x0000020002000000L});
-    public static final BitSet FOLLOW_25_in_dictionary_definition763 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition765 = new BitSet(new long[]{0x0000020002000000L});
-    public static final BitSet FOLLOW_41_in_dictionary_definition771 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_dictionary_entry784 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_dictionary_entry785 = new BitSet(new long[]{0x0000000000028000L});
-    public static final BitSet FOLLOW_atom_in_dictionary_entry786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_array_definition801 = new BitSet(new long[]{0x0000000100229000L});
-    public static final BitSet FOLLOW_argument_in_array_definition804 = new BitSet(new long[]{0x0000000102000000L});
-    public static final BitSet FOLLOW_25_in_array_definition807 = new BitSet(new long[]{0x0000000000229000L});
-    public static final BitSet FOLLOW_argument_in_array_definition809 = new BitSet(new long[]{0x0000000102000000L});
-    public static final BitSet FOLLOW_32_in_array_definition815 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_func_in_argument836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_argument852 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_func_in_argument854 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_argument856 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_args_in_argument857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_bool_in_argument864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_synpred1_Pass180 = new BitSet(new long[]{0x00000000C8000010L});
-    public static final BitSet FOLLOW_access_in_synpred1_Pass182 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_set_in_synpred1_Pass185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_synpred2_Pass210 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_synpred2_Pass212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_synpred3_Pass434 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_synpred3_Pass436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_synpred4_Pass830 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_synpred4_Pass832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_synpred5_Pass844 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_args_in_synpred5_Pass846 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_synpred5_Pass848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stmt_in_block57 = new BitSet(new long[]{0x000000DA0022D002L});
+    public static final BitSet FOLLOW_LT_in_block59 = new BitSet(new long[]{0x000000DA0022D002L});
+    public static final BitSet FOLLOW_expr_in_stmt84 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_set_in_stmt86 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_control_in_stmt100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INDENT_in_iblock126 = new BitSet(new long[]{0x000000DA0022D000L});
+    public static final BitSet FOLLOW_block_in_iblock128 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_DEDENT_in_iblock130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_args144 = new BitSet(new long[]{0x0000000000629000L});
+    public static final BitSet FOLLOW_argument_in_args147 = new BitSet(new long[]{0x0000000002400000L});
+    public static final BitSet FOLLOW_25_in_args150 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_argument_in_args152 = new BitSet(new long[]{0x0000000002400000L});
+    public static final BitSet FOLLOW_22_in_args158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_func176 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_func178 = new BitSet(new long[]{0x000000420022D000L});
+    public static final BitSet FOLLOW_expr_in_func181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LT_in_func184 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_func186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_expr226 = new BitSet(new long[]{0x00000000C8000010L});
+    public static final BitSet FOLLOW_access_in_expr228 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_assign_in_expr231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_func_in_expr249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_short_stmt_in_expr259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_bool_in_expr269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_return_stmt_in_short_stmt288 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_break_stmt_in_short_stmt298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_break_stmt321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_return_stmt340 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_argument_in_return_stmt342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_logic_in_bool356 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_CMP_in_bool359 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_logic_in_bool361 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_eval_in_logic382 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_BOP_in_logic385 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_eval_in_logic387 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_term_in_eval408 = new BitSet(new long[]{0x0000000005000002L});
+    public static final BitSet FOLLOW_set_in_eval411 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_term_in_eval417 = new BitSet(new long[]{0x0000000005000002L});
+    public static final BitSet FOLLOW_factor_in_term439 = new BitSet(new long[]{0x0000000010900002L});
+    public static final BitSet FOLLOW_set_in_term442 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_factor_in_term450 = new BitSet(new long[]{0x0000000010900002L});
+    public static final BitSet FOLLOW_21_in_factor472 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_factor_p_in_factor474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_factor485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_func_in_factor_p514 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_factor_p516 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_args_in_factor_p517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_bool_in_factor_p527 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_factor_p529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_access556 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_NUMBER_in_access558 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_access560 = new BitSet(new long[]{0x0000000080000002L});
+    public static final BitSet FOLLOW_27_in_access572 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_ID_in_access574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_value593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_value603 = new BitSet(new long[]{0x0000000088200002L});
+    public static final BitSet FOLLOW_mod_in_value605 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_mod621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_access_in_mod631 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_control674 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_ID_in_control676 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_control678 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_ID_in_control680 = new BitSet(new long[]{0x0000000088204000L});
+    public static final BitSet FOLLOW_mod_in_control682 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_control685 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_control687 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_control697 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_bool_in_control699 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_control701 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_control703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_control713 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_bool_in_control715 = new BitSet(new long[]{0x0000004000004000L});
+    public static final BitSet FOLLOW_return_stmt_in_control718 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_control720 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_LT_in_control722 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_control724 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_else_test_in_control727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_else_test749 = new BitSet(new long[]{0x0000005000004000L});
+    public static final BitSet FOLLOW_else_p_in_else_test751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_else_p777 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_bool_in_else_p779 = new BitSet(new long[]{0x0000004000004000L});
+    public static final BitSet FOLLOW_return_stmt_in_else_p782 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_else_p784 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_LT_in_else_p786 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_else_p788 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_else_test_in_else_p791 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_return_stmt_in_else_p803 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_else_p805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LT_in_else_p807 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_else_p809 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_assign833 = new BitSet(new long[]{0x0000010080229000L});
+    public static final BitSet FOLLOW_argument_in_assign836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dictionary_definition_in_assign838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_definition_in_assign840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARITH_ASSIGN_in_assign851 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_bool_in_assign853 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_dictionary_definition872 = new BitSet(new long[]{0x0000020000001000L});
+    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition875 = new BitSet(new long[]{0x0000020002000000L});
+    public static final BitSet FOLLOW_25_in_dictionary_definition878 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition880 = new BitSet(new long[]{0x0000020002000000L});
+    public static final BitSet FOLLOW_41_in_dictionary_definition886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_dictionary_entry905 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_dictionary_entry906 = new BitSet(new long[]{0x0000000000028000L});
+    public static final BitSet FOLLOW_atom_in_dictionary_entry907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_array_definition931 = new BitSet(new long[]{0x0000000100229000L});
+    public static final BitSet FOLLOW_argument_in_array_definition934 = new BitSet(new long[]{0x0000000102000000L});
+    public static final BitSet FOLLOW_25_in_array_definition937 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_argument_in_array_definition939 = new BitSet(new long[]{0x0000000102000000L});
+    public static final BitSet FOLLOW_32_in_array_definition945 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_func_in_argument975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_argument994 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_func_in_argument996 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_argument998 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_args_in_argument999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_bool_in_argument1009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_synpred1_Pass212 = new BitSet(new long[]{0x00000000C8000010L});
+    public static final BitSet FOLLOW_access_in_synpred1_Pass214 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_set_in_synpred1_Pass217 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_synpred2_Pass242 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred2_Pass244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_synpred3_Pass507 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred3_Pass509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_synpred4_Pass969 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred4_Pass971 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_synpred5_Pass986 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_args_in_synpred5_Pass988 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred5_Pass990 = new BitSet(new long[]{0x0000000000000002L});
 
 }
