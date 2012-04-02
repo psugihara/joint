@@ -91,10 +91,8 @@ args:   '(' ((eval) (',' (eval))*)? ')'
 func:   args '~' (expr|(LT iblock))
 	;
     
-expr
-    :   assign
+expr:   assign
     |   control
-    |   factor
     ;
 
 eval:   term (('+'|'-') term)*
