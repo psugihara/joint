@@ -1,1 +1,1 @@
-hey.func(a)(a, b)()() + 2
+f(((a, b) ~ return a + b)(2, 2))

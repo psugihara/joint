@@ -122,10 +122,10 @@ logic
 
 eval:   term (('+'|'-') term)*
     ;
- 
+
 term:   factor (('*'|'/'|'%') factor)*
     ;
- 
+
 factor
     :   '(' factor_p
     |    value
@@ -147,7 +147,7 @@ value
     |   ID mod*
     ;
 
-mod :   (args)=> args
+mod :   args
     |   access
     ;
 
@@ -182,7 +182,7 @@ dictionary_definition
     ;
 
 dictionary_entry
-    :   ID':'atom 
+    :   ID ':' atom 
     ;
     
 array_definition
@@ -191,7 +191,7 @@ array_definition
     
 argument
     :   (args '~')=> func
-    |   ('(' args '~')=> '(' func ')'args
+    |   ('(' args '~')=> '(' func ')' args
     |   bool
     ;
 
