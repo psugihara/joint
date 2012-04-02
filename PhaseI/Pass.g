@@ -80,8 +80,7 @@ block
     :   (stmt|LT)+
     ;
     
-stmt
-    :   expr (LT|EOF)
+stmt:   expr (LT|EOF)
     |   control
     ;   
     
@@ -121,12 +120,10 @@ logic
     :   eval (BOP eval)*
     ;
 
-eval
-    :   term (('+'|'-') term)*
+eval:   term (('+'|'-') term)*
     ;
  
-term
-    :   factor (('*'|'/'|'%') factor)*
+term:   factor (('*'|'/'|'%') factor)*
     ;
  
 factor
@@ -141,16 +138,16 @@ factor_p
     ;   
     
 access
-    :   ('[' NUMBER ']')+
+    :   '[' NUMBER ']'
     |   '.' ID
     ;
 
 value
     :   atom
-    |   ID mod?
+    |   ID mod*
     ;
 
-mod :   args
+mod :   (args)=> args
     |   access
     ;
 
@@ -219,7 +216,6 @@ DEDENT
         }
     ;
 
-
 ARITH_ASSIGN
     :   '+='|'-='|'*='|'/='|'%='
     ;
@@ -276,7 +272,6 @@ ESC_SEQ
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
     |   UNICODE_ESC
     |   OCTAL_ESC
-
     ;
 
 fragment
