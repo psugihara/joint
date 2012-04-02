@@ -78,29 +78,39 @@ prog:   block EOF
     ;
 
 block
-	:   (expr|LT)+
-	;
+    :   (expr|LT)+
+    ;
 	
 iblock
     :   INDENT block DEDENT
     ;
 
 args:   '(' ((eval) (',' (eval))*)? ')'
-	;
+    ;
 	
 func:   args '~' (expr|(LT iblock))
-	;
+    ;
     
 expr:   assign
     |   control
+    |   bool
+    ;
+
+// bool: something that could evaluate to 0
+bool:  logic (CMP logic)*
+    ;
+
+// logic: something that could evaluate to an atom
+logic
+    :	eval (BOP eval)?
     ;
 
 eval
-	:   term (('+'|'-') term)*
+    :   term (('+'|'-') term)*
     ;
  
 term
-	:   factor (('*'|'/') factor)*
+    :   factor (('*'|'/') factor)*
     ;
  
 factor
@@ -111,8 +121,7 @@ mod :   '[' val ']'
     |   args
 	;
 
-val :   (atom|ID)
-    |   (args '~')=>  func
+val :   atom
     |   '(' eval ')'
     ;
 
@@ -122,16 +131,13 @@ control
     |   'if' bool LT iblock ('else if' bool LT iblock)* ('else' LT iblock)?
     ;
 
-bool:   ((eval) (CMP|BOP)) => (eval) (CMP|BOP) bool
-    |   (eval)
-    ;
-
 assign
     :   ID '=' eval
     ;
 
 atom:   NUMBER
     |   STRING
+    |   ID
     ;
 
 INDENT

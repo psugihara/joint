@@ -2,3 +2,6 @@
 
 // Ugly but in the grammar.
 array[0](args1,args2)[0][1]()
+
+// should return 5
+((x, y) ~ return x + y)(2, 3)
