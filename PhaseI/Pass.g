@@ -97,10 +97,12 @@ expr
     |   factor
     ;
 
-eval:   term (('+'|'-') term)*
+eval
+	:   term (('+'|'-') term)*
     ;
  
-term:   factor (('*'|'/') factor)*
+term
+	:   factor (('*'|'/') factor)*
     ;
  
 factor
@@ -112,13 +114,13 @@ mod :   '[' val ']'
 	;
 
 val :   (atom|ID)
-    |   (args '~')=> '(' func ')'
+    |   (args '~')=>  func
     |   '(' eval ')'
     ;
 
 control
     :   'for' ID 'in' ID LT iblock
-    |   'while' bool LT iblock
+    |   'while' expr LT iblock
     |   'if' bool LT iblock ('else if' bool LT iblock)* ('else' LT iblock)?
     ;
 
@@ -179,7 +181,7 @@ COMMENT
     ;
 
 // Line termination.
-LT  :   ('\n')+
+LT  :   ('\n'|'\r\n')+
     ;
 
 WS  :   ( ' '
@@ -207,6 +209,7 @@ ESC_SEQ
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
     |   UNICODE_ESC
     |   OCTAL_ESC
+
     ;
 
 fragment
