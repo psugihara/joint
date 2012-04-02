@@ -46,7 +46,6 @@ if (process.argv.length === 5) {
     usageDie('static arg must be directory')
 }
 
-var fs = require('fs')
 function handler (req, res) {
 
   function response(err, data) {
