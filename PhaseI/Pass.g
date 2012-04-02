@@ -81,8 +81,8 @@ block
 	;
 	
 statement
-	:  expr LT
-	| control
+	:   expr (LT|EOF)
+	|   control
 	;	
 	
 iblock
@@ -95,31 +95,30 @@ args:   '(' (argument (',' argument)*)? ')'
 func:   args '~' (expr|(LT iblock))
 	;         
 
-expr
-    :   (ID access? ('='|ARITH_ASSIGN)) => ID access? assign
-    | 	(args '~')=>  func
-    | short_stmt
+expr:   (ID access? ('='|ARITH_ASSIGN)) => ID access? assign
+    |   (args '~')=>  func
+    |   short_stmt
     |   bool
     ;
 
 short_stmt
-	:	return_stmt
+	:   return_stmt
 	|   break_stmt
 	;
 	
 break_stmt
-	:	'break'
+	:   'break'
 	;
 
 return_stmt
 	:	'return' argument
 	;
 
-bool:  logic (CMP logic)*
+bool:   logic (CMP logic)*
     ;
 
 logic
-	:	eval (BOP eval)*
+	:   eval (BOP eval)*
 	;
 
 eval
@@ -137,20 +136,22 @@ factor
 
 /** factor_p tests whether an open parenthesis is either a lambda expression or a regular parenthesized statement**/
 factor_p
-	:  (args '~')=>  func ')'args
-	| bool ')'
+	:   (args '~')=>  func ')'args
+	|   bool ')'
 	;   
     
-access :   ('[' NUMBER ']')+
+access
+    :   ('[' NUMBER ']')+
     |   '.' ID
 	;
 
-value : atom
-	| ID mod?
+value
+    :   atom
+	|   ID mod?
     ;
 
-mod	: (args)=> args
-	| access
+mod	:   args
+	|   access
 	;
 
 atom:   NUMBER
@@ -165,22 +166,22 @@ control
 
 /** dangling else solution **/
 else_test
-	: 'else' else_p
+	:    'else' else_p
 	|
 	;
 
 else_p
-	: 'if' bool (return_stmt LT|LT iblock) else_test
-	| (return_stmt LT|LT iblock)
+	:    'if' bool (return_stmt LT|LT iblock) else_test
+	|    (return_stmt LT|LT iblock)
 	;
 	
 assign
-    : '=' (argument|dictionary_definition|array_definition)
-    | ARITH_ASSIGN bool
+    :   '=' (argument|dictionary_definition|array_definition)
+    |   ARITH_ASSIGN bool
     ;
 
 dictionary_definition
-	:	'{' (dictionary_entry (',' dictionary_entry)*)? '}'
+	:   '{' (dictionary_entry (',' dictionary_entry)*)? '}'
 	;
 
 dictionary_entry
@@ -188,12 +189,12 @@ dictionary_entry
 	;
 	
 array_definition
-	:	'[' (argument (',' argument)*)? ']'
+	:   '[' (argument (',' argument)*)? ']'
 	;
 	
 argument
-	:	(args '~')=> func
-	|    ('(' args '~')=> '(' func ')'args
+	:   (args '~')=> func
+	|   ('(' args '~')=> '(' func ')'args
 	|   bool
 	;
 
