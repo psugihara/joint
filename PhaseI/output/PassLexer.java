@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-04-01 23:35:49
+// $ANTLR 3.4 /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g 2012-04-02 02:31:29
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -497,14 +497,14 @@ public class PassLexer extends Lexer {
         try {
             int _type = INDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:138:5: ({...}? => ( ' ' )+ )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:139:8: {...}? => ( ' ' )+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:143:5: ({...}? => ( ' ' )+ )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:144:8: {...}? => ( ' ' )+
             {
             if ( !((getCharPositionInLine()==0)) ) {
                 throw new FailedPredicateException(input, "INDENT", "getCharPositionInLine()==0");
             }
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:140:9: ( ' ' )+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:145:9: ( ' ' )+
             int cnt1=0;
             loop1:
             do {
@@ -518,7 +518,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:140:10: ' '
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:145:10: ' '
             	    {
             	    match(' '); 
 
@@ -556,8 +556,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DEDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:148:5: ( '\\n' (~ ' ' ) )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:148:9: '\\n' (~ ' ' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:153:5: ( '\\n' (~ ' ' ) )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:153:9: '\\n' (~ ' ' )
             {
             match('\n'); 
 
@@ -595,7 +595,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = CMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:5: ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:5: ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' )
             int alt2=7;
             switch ( input.LA(1) ) {
             case '<':
@@ -649,21 +649,21 @@ public class PassLexer extends Lexer {
 
             switch (alt2) {
                 case 1 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:9: '<'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:9: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:13: '>'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:13: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:17: '=='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:17: '=='
                     {
                     match("=="); 
 
@@ -672,7 +672,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:22: '>='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:22: '>='
                     {
                     match(">="); 
 
@@ -681,7 +681,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:27: '<='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:27: '<='
                     {
                     match("<="); 
 
@@ -690,7 +690,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:32: '<>'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:32: '<>'
                     {
                     match("<>"); 
 
@@ -699,7 +699,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 7 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:159:37: '!='
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:164:37: '!='
                     {
                     match("!="); 
 
@@ -723,7 +723,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = BOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:163:5: ( '||' | '&&' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:168:5: ( '||' | '&&' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -742,7 +742,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:163:9: '||'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:168:9: '||'
                     {
                     match("||"); 
 
@@ -751,7 +751,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:163:14: '&&'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:168:14: '&&'
                     {
                     match("&&"); 
 
@@ -775,8 +775,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:166:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:166:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -788,7 +788,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:166:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop4:
             do {
                 int alt4=2;
@@ -838,14 +838,14 @@ public class PassLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:170:5: ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:5: ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT )
             int alt16=4;
             alt16 = dfa16.predict(input);
             switch (alt16) {
                 case 1 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:170:9: ( '-' )? ( '0' .. '9' )+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:9: ( '-' )? ( '0' .. '9' )+
                     {
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:170:9: ( '-' )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:9: ( '-' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -854,7 +854,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:170:9: '-'
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:9: '-'
                             {
                             match('-'); 
 
@@ -864,7 +864,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:170:13: ( '0' .. '9' )+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:175:13: ( '0' .. '9' )+
                     int cnt6=0;
                     loop6:
                     do {
@@ -906,9 +906,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:9: ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:176:9: ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
                     {
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:9: ( '-' )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:176:9: ( '-' )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -917,7 +917,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt7) {
                         case 1 :
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:9: '-'
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:176:9: '-'
                             {
                             match('-'); 
 
@@ -927,7 +927,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:13: ( '0' .. '9' )+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:176:13: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -968,7 +968,7 @@ public class PassLexer extends Lexer {
 
                     match('.'); 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:29: ( '0' .. '9' )*
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:176:29: ( '0' .. '9' )*
                     loop9:
                     do {
                         int alt9=2;
@@ -1002,7 +1002,7 @@ public class PassLexer extends Lexer {
                     } while (true);
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:41: ( EXPONENT )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:176:41: ( EXPONENT )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1011,7 +1011,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:171:41: EXPONENT
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:176:41: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1025,9 +1025,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:172:9: ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:9: ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )?
                     {
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:172:9: ( '-' )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:9: ( '-' )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -1036,7 +1036,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:172:9: '-'
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:9: '-'
                             {
                             match('-'); 
 
@@ -1048,7 +1048,7 @@ public class PassLexer extends Lexer {
 
                     match('.'); 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:172:17: ( '0' .. '9' )+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:17: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -1087,7 +1087,7 @@ public class PassLexer extends Lexer {
                     } while (true);
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:172:29: ( EXPONENT )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:29: ( EXPONENT )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1096,7 +1096,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:172:29: EXPONENT
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:29: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1110,9 +1110,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:173:9: ( '-' )? ( '0' .. '9' )+ EXPONENT
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:178:9: ( '-' )? ( '0' .. '9' )+ EXPONENT
                     {
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:173:9: ( '-' )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:178:9: ( '-' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1121,7 +1121,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:173:9: '-'
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:178:9: '-'
                             {
                             match('-'); 
 
@@ -1131,7 +1131,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:173:13: ( '0' .. '9' )+
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:178:13: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -1191,7 +1191,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1221,13 +1221,13 @@ public class PassLexer extends Lexer {
             }
             switch (alt20) {
                 case 1 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:14: (~ ( '\\n' | '\\r' ) )*
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:14: (~ ( '\\n' | '\\r' ) )*
                     loop17:
                     do {
                         int alt17=2;
@@ -1261,7 +1261,7 @@ public class PassLexer extends Lexer {
                     } while (true);
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:28: ( '\\r' )?
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:28: ( '\\r' )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -1270,7 +1270,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt18) {
                         case 1 :
-                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:177:28: '\\r'
+                            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:28: '\\r'
                             {
                             match('\r'); 
 
@@ -1287,13 +1287,13 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:178:9: '/*' ( options {greedy=false; } : . )* '*/'
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:183:9: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
 
 
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:178:14: ( options {greedy=false; } : . )*
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:183:14: ( options {greedy=false; } : . )*
                     loop19:
                     do {
                         int alt19=2;
@@ -1318,7 +1318,7 @@ public class PassLexer extends Lexer {
 
                         switch (alt19) {
                     	case 1 :
-                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:178:42: .
+                    	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:183:42: .
                     	    {
                     	    matchAny(); 
 
@@ -1355,26 +1355,38 @@ public class PassLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:5: ( ( '\\n' )+ )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:9: ( '\\n' )+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:187:5: ( ( '\\n' | '\\r\\n' )+ )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:187:9: ( '\\n' | '\\r\\n' )+
             {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:9: ( '\\n' )+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:187:9: ( '\\n' | '\\r\\n' )+
             int cnt21=0;
             loop21:
             do {
-                int alt21=2;
+                int alt21=3;
                 int LA21_0 = input.LA(1);
 
                 if ( (LA21_0=='\n') ) {
                     alt21=1;
                 }
+                else if ( (LA21_0=='\r') ) {
+                    alt21=2;
+                }
 
 
                 switch (alt21) {
             	case 1 :
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:182:10: '\\n'
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:187:10: '\\n'
             	    {
             	    match('\n'); 
+
+            	    }
+            	    break;
+            	case 2 :
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:187:15: '\\r\\n'
+            	    {
+            	    match("\r\n"); 
+
+
 
             	    }
             	    break;
@@ -1405,8 +1417,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:185:5: ( ( ' ' | '\\t' | '\\r' ) )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:185:9: ( ' ' | '\\t' | '\\r' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:190:5: ( ( ' ' | '\\t' | '\\r' ) )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:190:9: ( ' ' | '\\t' | '\\r' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1436,12 +1448,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
             loop22:
             do {
                 int alt22=3;
@@ -1457,7 +1469,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:14: ESC_SEQ
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:14: ESC_SEQ
             	    {
             	    mESC_SEQ(); 
 
@@ -1465,7 +1477,7 @@ public class PassLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:192:24: ~ ( '\\\\' | '\"' )
+            	    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:197:24: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1502,8 +1514,8 @@ public class PassLexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:198:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:198:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:203:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:203:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1515,7 +1527,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:198:19: ( '+' | '-' )?
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:203:19: ( '+' | '-' )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -1542,7 +1554,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:198:30: ( '0' .. '9' )+
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:203:30: ( '0' .. '9' )+
             int cnt24=0;
             loop24:
             do {
@@ -1594,7 +1606,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:203:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:208:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -1620,7 +1632,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:208:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:213:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt25=3;
             int LA25_0 = input.LA(1);
 
@@ -1673,7 +1685,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt25) {
                 case 1 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:208:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:213:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -1690,7 +1702,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:209:9: UNICODE_ESC
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:214:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -1698,7 +1710,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:210:9: OCTAL_ESC
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:215:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -1718,7 +1730,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:215:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:221:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt26=3;
             int LA26_0 = input.LA(1);
 
@@ -1769,7 +1781,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt26) {
                 case 1 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:215:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:221:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1806,7 +1818,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:216:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:222:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1833,7 +1845,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:217:9: '\\\\' ( '0' .. '7' )
+                    // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:223:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -1862,8 +1874,8 @@ public class PassLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:222:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:222:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:228:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // /Users/petersugihara/Documents/Academics/FU/PLT/Pass/pass/PhaseI/Pass.g:228:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 
@@ -1971,12 +1983,12 @@ public class PassLexer extends Lexer {
             int LA27_11 = input.LA(2);
 
             if ( (LA27_11=='l') ) {
-                int LA27_28 = input.LA(3);
+                int LA27_29 = input.LA(3);
 
-                if ( (LA27_28=='s') ) {
-                    int LA27_38 = input.LA(4);
+                if ( (LA27_29=='s') ) {
+                    int LA27_40 = input.LA(4);
 
-                    if ( (LA27_38=='e') ) {
+                    if ( (LA27_40=='e') ) {
                         switch ( input.LA(5) ) {
                         case ' ':
                             {
@@ -2073,12 +2085,12 @@ public class PassLexer extends Lexer {
             int LA27_12 = input.LA(2);
 
             if ( (LA27_12=='o') ) {
-                int LA27_29 = input.LA(3);
+                int LA27_30 = input.LA(3);
 
-                if ( (LA27_29=='r') ) {
-                    int LA27_39 = input.LA(4);
+                if ( (LA27_30=='r') ) {
+                    int LA27_41 = input.LA(4);
 
-                    if ( ((LA27_39 >= '0' && LA27_39 <= '9')||(LA27_39 >= 'A' && LA27_39 <= 'Z')||LA27_39=='_'||(LA27_39 >= 'a' && LA27_39 <= 'z')) ) {
+                    if ( ((LA27_41 >= '0' && LA27_41 <= '9')||(LA27_41 >= 'A' && LA27_41 <= 'Z')||LA27_41=='_'||(LA27_41 >= 'a' && LA27_41 <= 'z')) ) {
                         alt27=22;
                     }
                     else {
@@ -2099,9 +2111,9 @@ public class PassLexer extends Lexer {
             switch ( input.LA(2) ) {
             case 'f':
                 {
-                int LA27_30 = input.LA(3);
+                int LA27_31 = input.LA(3);
 
-                if ( ((LA27_30 >= '0' && LA27_30 <= '9')||(LA27_30 >= 'A' && LA27_30 <= 'Z')||LA27_30=='_'||(LA27_30 >= 'a' && LA27_30 <= 'z')) ) {
+                if ( ((LA27_31 >= '0' && LA27_31 <= '9')||(LA27_31 >= 'A' && LA27_31 <= 'Z')||LA27_31=='_'||(LA27_31 >= 'a' && LA27_31 <= 'z')) ) {
                     alt27=22;
                 }
                 else {
@@ -2111,9 +2123,9 @@ public class PassLexer extends Lexer {
                 break;
             case 'n':
                 {
-                int LA27_31 = input.LA(3);
+                int LA27_32 = input.LA(3);
 
-                if ( ((LA27_31 >= '0' && LA27_31 <= '9')||(LA27_31 >= 'A' && LA27_31 <= 'Z')||LA27_31=='_'||(LA27_31 >= 'a' && LA27_31 <= 'z')) ) {
+                if ( ((LA27_32 >= '0' && LA27_32 <= '9')||(LA27_32 >= 'A' && LA27_32 <= 'Z')||LA27_32=='_'||(LA27_32 >= 'a' && LA27_32 <= 'z')) ) {
                     alt27=22;
                 }
                 else {
@@ -2132,18 +2144,18 @@ public class PassLexer extends Lexer {
             int LA27_14 = input.LA(2);
 
             if ( (LA27_14=='h') ) {
-                int LA27_32 = input.LA(3);
+                int LA27_33 = input.LA(3);
 
-                if ( (LA27_32=='i') ) {
-                    int LA27_42 = input.LA(4);
+                if ( (LA27_33=='i') ) {
+                    int LA27_44 = input.LA(4);
 
-                    if ( (LA27_42=='l') ) {
-                        int LA27_45 = input.LA(5);
+                    if ( (LA27_44=='l') ) {
+                        int LA27_47 = input.LA(5);
 
-                        if ( (LA27_45=='e') ) {
-                            int LA27_48 = input.LA(6);
+                        if ( (LA27_47=='e') ) {
+                            int LA27_50 = input.LA(6);
 
-                            if ( ((LA27_48 >= '0' && LA27_48 <= '9')||(LA27_48 >= 'A' && LA27_48 <= 'Z')||LA27_48=='_'||(LA27_48 >= 'a' && LA27_48 <= 'z')) ) {
+                            if ( ((LA27_50 >= '0' && LA27_50 <= '9')||(LA27_50 >= 'A' && LA27_50 <= 'Z')||LA27_50=='_'||(LA27_50 >= 'a' && LA27_50 <= 'z')) ) {
                                 alt27=22;
                             }
                             else {
@@ -2199,16 +2211,26 @@ public class PassLexer extends Lexer {
             int LA27_17 = input.LA(2);
 
             if ( (LA27_17=='\n') ) {
-                int LA27_35 = input.LA(3);
+                int LA27_36 = input.LA(3);
 
-                if ( (LA27_35=='\n') ) {
+                if ( (LA27_36=='\n'||LA27_36=='\r') ) {
                     alt27=25;
                 }
                 else {
                     alt27=19;
                 }
             }
-            else if ( ((LA27_17 >= '\u0000' && LA27_17 <= '\t')||(LA27_17 >= '\u000B' && LA27_17 <= '\u001F')||(LA27_17 >= '!' && LA27_17 <= '\uFFFF')) ) {
+            else if ( (LA27_17=='\r') ) {
+                int LA27_38 = input.LA(3);
+
+                if ( (LA27_38=='\n') ) {
+                    alt27=25;
+                }
+                else {
+                    alt27=19;
+                }
+            }
+            else if ( ((LA27_17 >= '\u0000' && LA27_17 <= '\t')||(LA27_17 >= '\u000B' && LA27_17 <= '\f')||(LA27_17 >= '\u000E' && LA27_17 <= '\u001F')||(LA27_17 >= '!' && LA27_17 <= '\uFFFF')) ) {
                 alt27=19;
             }
             else {
@@ -2297,8 +2319,19 @@ public class PassLexer extends Lexer {
             alt27=23;
             }
             break;
-        case '\t':
         case '\r':
+            {
+            int LA27_22 = input.LA(2);
+
+            if ( (LA27_22=='\n') ) {
+                alt27=25;
+            }
+            else {
+                alt27=26;
+            }
+            }
+            break;
+        case '\t':
             {
             alt27=26;
             }
@@ -2592,7 +2625,7 @@ public class PassLexer extends Lexer {
             this.transition = DFA16_transition;
         }
         public String getDescription() {
-            return "169:1: NUMBER : ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT );";
+            return "174:1: NUMBER : ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT );";
         }
     }
  

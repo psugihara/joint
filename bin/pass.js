@@ -46,7 +46,6 @@ if (process.argv.length === 5) {
     usageDie('static arg must be directory')
 }
 
-
 var fs = require('fs')
 function handler (req, res) {
 
@@ -64,9 +63,14 @@ function handler (req, res) {
     fs.readFile(__dirname + req.url, response)
 }
 
+var clients = {};
+var callbacks = {};
+
 var app = require('http').createServer(handler).listen(port)
 
 var dnode = require('dnode')
-var server = dnode({
-  testTimesTwenty : function (n, cb) { cb(n * 20) }
-}).listen(app);
+var server = dnode(function (client, conn) {
+  this.register = function (name, cb) {conn.name = name; callbacks[conn.id] = cb; console.log(name + ' joined'); }
+  this.chat = function (message) { for(var i in callbacks) callbacks[i](conn.name, message); }
+
+}).listen(app)
