@@ -63,14 +63,78 @@ function handler (req, res) {
     fs.readFile(__dirname + req.url, response)
 }
 
-var clients = {};
-var callbacks = {};
+var groups = {}
+
+function contains (arr, obj) {
+  for(var i in arr)
+    if(arr[i] == obj)
+      return true
+  return false
+}
+
+function tag (connection, tag) {
+  if(!contains(connection.tags, tag)) {
+    connection.tags.push(tag)
+    if(!Boolean(groups[tag]))
+      groups[tag] = []
+    groups[tag].push(connection)
+  }
+}
+
+function untag (connection, tag) {
+  connection.tags.pop(tag)
+  groups[tag].pop(connection)
+}
+
+function tags (connection) {
+  return connection.tags
+}
+
+function conns (tag) {
+  return groups[tag]
+}
 
 var app = require('http').createServer(handler).listen(port)
 
 var dnode = require('dnode')
 var server = dnode(function (client, conn) {
-  this.register = function (name, cb) {conn.name = name; callbacks[conn.id] = cb; console.log(name + ' joined'); }
-  this.chat = function (message) { for(var i in callbacks) callbacks[i](conn.name, message); }
 
+  this.register = function (name, callbacks) {
+    conn.name = name
+    conn.tags = []
+    console.log('CONN ID: '+conn.id)
+    for(var i in callbacks) {
+      conn[i] = callbacks[i]
+    }
+  }
+
+  this.join = function (room) {
+    var rooms = tags(conn)
+    for(var i in rooms) {
+      untag(conn, rooms[i])
+      var connections = conns(rooms[i])
+      for(var c in connections)
+        connections[c].onLeave(conn.name)
+    }
+    tag(conn, room)
+    var connections = conns(room)
+    for(var c in connections) {
+      console.log('CONN ID: '+conn.id)
+      connections[c].onEnter(conn.name)
+    }
+  }
+
+  this.chat = function (message) {
+    var name = conn.name
+    var connections = conns(conn.tags)
+    for(var c in connections) {
+      console.log('sending to '+connections[c].name)
+      connections[c].receive(name, message)
+    }
+  }
+
+  this.log = function (message) {
+    console.log(message)
+  }
+  
 }).listen(app)

@@ -2,10 +2,26 @@
 <head>
   <script src="/dnode.js" type="text/javascript"></script>
   <script src="client.js"></script>
+  <style type="text/css">
+    #chat-message {
+      float: left;
+    }
+    #send-button {
+      float: left;
+    }
+    #room-name {
+      float: right;
+    }
+    #join-button {
+      float: right;
+    }
+  </style>
 </head>
-  <BODY><h1>
-    It works!
-  </h1>
+  <BODY><h1>Chat server</h1><br>
+    <input placeholder="type message here" id="chat-message" />
+    <button type="button" id="send-button" onClick="sendMessage();">Send</button>
+    <input placeholder="chatroom" id="room-name" />
+    <button type="button" id="join-button" onClick="joinRoom();">Join</button>
   </body>
 
 </HTML>
