@@ -8,6 +8,11 @@ var fs = require('fs')
 
 var sourcePath, port, staticPath
 
+console.log('ARGS: '+process.argv.length)
+for(var i in process.argv)
+  console.log('ARG '+i+': '+process.argv[i])
+
+
 // Argument Validation
 // ___________________
 
@@ -15,7 +20,7 @@ var sourcePath, port, staticPath
 var usageDie = function(message) {
   if (message)
     console.log(message)
-  console.log('usage: pass program.pass [<port#> <static directory>]')
+  console.log('usage: pass <path/program.pass> [<port#> <static directory>]')
   process.exit()
 }
 
@@ -46,16 +51,27 @@ if (process.argv.length === 5) {
     usageDie('static arg must be directory')
 }
 
-// function handler (req, res) {
-//   fs.readFile(__dirname + '/index.html',
-//   function (err, data) {
-//     if (err) {
-//       res.writeHead(500)
-//       return res.end('Error loading index.html')
-//     }
-//     res.writeHead(200)
-//     res.end(data)
-//   });
-// }
 
-// var app = require('http').createServer(handler).listen(port)
+var fs = require('fs')
+function handler (req, res) {
+
+  function response(err, data) {
+    if(!err) {
+      res.writeHead(200)
+      res.write(data)
+      res.end()
+    }
+  }
+
+  if(req.url == '/')
+    fs.readFile('index.html', response)
+  else
+    fs.readFile(__dirname + req.url, response)
+}
+
+var app = require('http').createServer(handler).listen(port)
+
+var dnode = require('dnode')
+var server = dnode({
+  testTimesTwenty : function (n, cb) { cb(n * 20) }
+}).listen(port)
