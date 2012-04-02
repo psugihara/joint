@@ -26,13 +26,17 @@ tokens {
     super.nextToken();
     
     if (tokens.isEmpty()) { // Clean up and return EOF
-
+      
+      if (!EOFTerminated) {
+        EOFTerminated = true;
+      	return new CommonToken(LT, "LT");	
+      }
       
       if (indentLevel != 0) {
         indentLevel--;
         return new CommonToken(DEDENT, "DEDENT");
       }
-      
+
       return Token.EOF_TOKEN;
     }
 
@@ -64,8 +68,10 @@ tokens {
       for (int i = 0; i < (indents - indentLevel); i++)
         emit(new CommonToken(INDENT, "INDENT"));              
     else if (indents < indentLevel)
-      for (int i = 0; i < (indentLevel - indents); i++)
+      for (int i = 0; i < (indentLevel - indents); i++) {
         emit(new CommonToken(DEDENT, "DEDENT"));
+        emit(new CommonToken(LT, "LT"));
+      }
     else
       skip();
     
@@ -80,7 +86,7 @@ block
     :   (stmt|LT)+
     ;
     
-stmt:   expr (LT|EOF)
+stmt:   expr LT
     |   control
     ;   
     
