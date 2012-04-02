@@ -77,23 +77,23 @@ prog:   block EOF
     ;
 
 block
-	:   (statement|LT)+
-	;
-	
+    :   (statement|LT)+
+    ;
+    
 statement
-	:   expr (LT|EOF)
-	|   control
-	;	
-	
+    :   expr (LT|EOF)
+    |   control
+    ;   
+    
 iblock
     :   INDENT block DEDENT
     ;
 
 args:   '(' (argument (',' argument)*)? ')'
-	;
-	
+    ;
+    
 func:   args '~' (expr|(LT iblock))
-	;         
+    ;         
 
 expr:   (ID access? ('='|ARITH_ASSIGN)) => ID access? assign
     |   (args '~')=>  func
@@ -102,31 +102,31 @@ expr:   (ID access? ('='|ARITH_ASSIGN)) => ID access? assign
     ;
 
 short_stmt
-	:   return_stmt
-	|   break_stmt
-	;
-	
+    :   return_stmt
+    |   break_stmt
+    ;
+    
 break_stmt
-	:   'break'
-	;
+    :   'break'
+    ;
 
 return_stmt
-	:	'return' argument
-	;
+    :   'return' argument
+    ;
 
 bool:   logic (CMP logic)*
     ;
 
 logic
-	:   eval (BOP eval)*
-	;
+    :   eval (BOP eval)*
+    ;
 
 eval
-	:   term (('+'|'-') term)*
+    :   term (('+'|'-') term)*
     ;
  
 term
-	:   factor (('*'|'/'|'%') factor)*
+    :   factor (('*'|'/'|'%') factor)*
     ;
  
 factor
@@ -136,23 +136,23 @@ factor
 
 /** factor_p tests whether an open parenthesis is either a lambda expression or a regular parenthesized statement**/
 factor_p
-	:   (args '~')=>  func ')'args
-	|   bool ')'
-	;   
+    :   (args '~')=>  func ')'args
+    |   bool ')'
+    ;   
     
 access
     :   ('[' NUMBER ']')+
     |   '.' ID
-	;
+    ;
 
 value
     :   atom
-	|   ID mod?
+    |   ID mod?
     ;
 
-mod	:   args
-	|   access
-	;
+mod :   args
+    |   access
+    ;
 
 atom:   NUMBER
     |   STRING
@@ -166,37 +166,37 @@ control
 
 /** dangling else solution **/
 else_test
-	:    'else' else_p
-	|
-	;
+    :    'else' else_p
+    |
+    ;
 
 else_p
-	:    'if' bool (return_stmt LT|LT iblock) else_test
-	|    (return_stmt LT|LT iblock)
-	;
-	
+    :    'if' bool (return_stmt LT|LT iblock) else_test
+    |    (return_stmt LT|LT iblock)
+    ;
+    
 assign
     :   '=' (argument|dictionary_definition|array_definition)
     |   ARITH_ASSIGN bool
     ;
 
 dictionary_definition
-	:   '{' (dictionary_entry (',' dictionary_entry)*)? '}'
-	;
+    :   '{' (dictionary_entry (',' dictionary_entry)*)? '}'
+    ;
 
 dictionary_entry
-	:   ID':'atom 
-	;
-	
+    :   ID':'atom 
+    ;
+    
 array_definition
-	:   '[' (argument (',' argument)*)? ']'
-	;
-	
+    :   '[' (argument (',' argument)*)? ']'
+    ;
+    
 argument
-	:   (args '~')=> func
-	|   ('(' args '~')=> '(' func ')'args
-	|   bool
-	;
+    :   (args '~')=> func
+    |   ('(' args '~')=> '(' func ')'args
+    |   bool
+    ;
 
 INDENT
     :   
@@ -221,16 +221,16 @@ DEDENT
 
 
 ARITH_ASSIGN
-	:	'+='|'-='|'*='|'/='|'%='
-	;
+    :   '+='|'-='|'*='|'/='|'%='
+    ;
 
 // Comparator
-CMP	:   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
-	;
-	
+CMP :   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
+    ;
+    
 // Boolean operation
-BOP	:   '||'|'&&'
-	;
+BOP :   '||'|'&&'
+    ;
 
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
