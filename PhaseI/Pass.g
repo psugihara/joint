@@ -9,7 +9,7 @@ tokens {
 @lexer::members {
   int indentLevel = 0;
   int DENT_SIZE = 2;
-  
+
   boolean EOFTerminated = false; // Have we placed a terminal character at the EOL?
 
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
@@ -50,14 +50,16 @@ tokens {
   
   void reindent(int spaces) {
     System.out.println("reindent()");
-    if (mod(spaces, DENT_SIZE) != 0)
+    if (mod(spaces, DENT_SIZE) != 0) {
       System.out.println("Odd indentation (" + spaces + " spaces).");
       // TODO: report an error... sloppy indentation
-            
+    }
+    
     int indents = spaces / DENT_SIZE;
-      if ((indents - indentLevel) > 1)
+      if ((indents - indentLevel) > 1) {
         System.out.println("too many indents");
         // TODO: report an error... too many indents
+      }
 
     if (indents > indentLevel)
       for (int i = 0; i < (indents - indentLevel); i++)
@@ -76,90 +78,95 @@ prog:   block EOF
     ;
 
 block
-	:	(iblock|expr|LT)+
-	;
+    :   (expr|LT)+
+    ;
 	
 iblock
-    :	INDENT block DEDENT
+    :   INDENT block DEDENT
     ;
 
-func:	(args '~')=> args '~' (expr|(LT iblock))
-	;
-
-call:	'('func')' args
-	|	ID args
-	;
-
-args:   ('(' call)=> '(' call (',' call)* ')'
-    |   '(' (ID|atom|func) (',' (ID|atom|func))* ')'
-	|	'()'
-	;
+args:   '(' ((eval) (',' (eval))*)? ')'
+    ;
 	
+func:   args '~' (expr|(LT iblock))
+    ;
+    
 expr:   assign
-    |   call
-    |	control
-    |   arithmetic
+    |   control
+    |   bool
     ;
 
-arithmetic
-    : term (('+'|'-') term)*
+// bool: something that could evaluate to 0
+bool:  logic (CMP logic)*
+    ;
+
+// logic: something that could evaluate to an atom
+logic
+    :	eval (BOP eval)?
+    ;
+
+eval
+    :   term (('+'|'-') term)*
     ;
  
-term: factor (('*'|'/') factor)*
+term
+    :   factor (('*'|'/') factor)*
     ;
  
 factor
-    : (ID|NUMBER)
-    | ((ID|func) '(')=> call
-    | '(' arithmetic ')'
+    :   val mod*
+    ;
+    
+mod :   '[' val ']'
+    |   args
+	;
+
+val :   atom
+    |   '(' eval ')'
     ;
 
 control
-	:   'for' ID 'in' ID LT iblock
-	|   'while' bool LT iblock
-	|	'if' bool LT iblock ('else if' bool LT iblock)* ('else' LT iblock)?
+    :   'for' ID 'in' ID LT iblock
+    |   'while' expr LT iblock
+    |   'if' bool LT iblock ('else if' bool LT iblock)* ('else' LT iblock)?
     ;
 
-bool:	((atom|ID|call) (CMP|BOP)) => (atom|ID|call) (CMP|BOP) bool
-    |   (atom|ID|call)
-	;
-
 assign
-    :   ID '=' (atom|func|ID)
-    |   (ID '=' '(')=> ID '=' call
+    :   ID '=' eval
     ;
 
 atom:   NUMBER
     |   STRING
+    |   ID
     ;
-    
+
 INDENT
     :   
        {getCharPositionInLine()==0}?=>
-       (' ')+
-       {
-         reindent(getText().length());
-         skip();
-       }
+        (' ')+
+        {
+          reindent(getText().length());
+          skip();
+        }
     ;
 
 DEDENT
-    :  '\n'
-       {getCharStream().mark();}
-       (~' ')
-       { 
-         emit(new CommonToken(LT, "\n"));
-         reindent(0);
-         getCharStream().rewind();
-       }
+    :   '\n'
+        {getCharStream().mark();}
+        (~' ')
+        { 
+          emit(new CommonToken(LT, "\n"));
+          reindent(0);
+          getCharStream().rewind();
+        }
     ;
 
 // Comparator
-CMP	:	'<'|'>'|'=='|'>='|'<='|'<>'|'!='
+CMP	:   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
 	;
 	
 // Boolean operation
-BOP	:	'||'|'&&'
+BOP	:   '||'|'&&'
 	;
 
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
@@ -178,13 +185,13 @@ COMMENT
     ;
 
 // Line termination.
-LT  :   ('\n'|';')+
+LT  :   ('\n'|'\r\n')+
     ;
 
-WS  :  ( ' '
-       | '\t'
-       | '\r'
-       ) {$channel=HIDDEN;}
+WS  :   ( ' '
+        | '\t'
+        | '\r'
+        ) {$channel=HIDDEN;}
     ;
     
 STRING
@@ -206,6 +213,7 @@ ESC_SEQ
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
     |   UNICODE_ESC
     |   OCTAL_ESC
+
     ;
 
 fragment

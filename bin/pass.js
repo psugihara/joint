@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-// Peter Sugihara
-// March 2012
+// Peter Sugihara, March 2012
 
 var path = require('path')
 var fs = require('fs')
 
-var sourcePath, port, staticPath
 
-// Argument Validation
+// ####Argument Validation
 // ___________________
+
+var sourcePath, port, staticPath
 
 // Print a diagnostic message followed by the usage line, then die.
 var usageDie = function(message) {
