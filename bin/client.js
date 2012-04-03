@@ -10,12 +10,12 @@
     append(name + ' : ' + message + '<br>');
   }
 
-  var onEnter = function (name) {
-    append(name + ' entered the room<br>');
+  var onEnter = function (name, room) {
+    append(name + ' entered \'' + room + '\'<br>');
   }
 
-  var onLeave = function (name) {
-    append(name + ' left the room<br>');
+  var onLeave = function (name, room) {
+    append(name + ' left \'' + room + '\'<br>');
   }
 
   var append = function (message) {
@@ -39,3 +39,13 @@
     if(message.length > 0)
       server.chat(message);
   }
+
+  var setName = function() {
+    var name = document.getElementById('name').value;
+    if(name.length > 0)
+      server.setName(name);
+  }
+
+  setTimeout(function() {
+    server.register(callbacks);
+  }, 1000);
