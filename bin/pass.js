@@ -62,14 +62,97 @@ function handler (req, res) {
     fs.readFile(__dirname + req.url, response)
 }
 
-var clients = {};
-var callbacks = {};
+var groups = {}
+
+function contains (arr, obj) {
+  for(var i in arr)
+    if(arr[i] == obj)
+      return true
+  return false
+}
+
+function tag (connection, name) {
+  console.log('tagging '+connection.name+' with tag '+name);
+  if(!Boolean(connection.tags))
+    connection.tags = []
+  if(!contains(connection.tags, name)) {
+    connection.tags.push(name)
+    if(!Boolean(groups[name]))
+      groups[name] = []
+    groups[name].push(connection)
+    console.log('members of group '+name+':');
+    for(var i in groups[name])
+      console.log('  '+groups[name][i].name);
+  }
+}
+
+function untag (connection, tag) {
+  console.log('untagging '+connection.name+' with tag '+tag);
+  connection.tags.splice(connection.tags.indexOf(tag), 1);
+  groups[tag].splice(groups[tag].indexOf(connection), 1);
+  console.log('members of group '+tag+':');
+  for(var i in groups[tag])
+    console.log('  '+groups[tag][i].name);
+}
+
+function tags (connection) {
+  return connection.tags
+}
+
+function conns (tag) {
+  console.log('members of group '+tag+':');
+  for(var i in groups[tag])
+    console.log('  '+groups[tag][i].name);
+  return groups[tag]
+}
 
 var app = require('http').createServer(handler).listen(port)
 
 var dnode = require('dnode')
 var server = dnode(function (client, conn) {
-  this.register = function (name, cb) {conn.name = name; callbacks[conn.id] = cb; console.log(name + ' joined'); }
-  this.chat = function (message) { for(var i in callbacks) callbacks[i](conn.name, message); }
 
+  this.register = function (callbacks) {
+    console.log('CONN ID: '+conn.id)
+    for(var i in callbacks) {
+      conn[i] = callbacks[i]
+    }
+  }
+
+  this.setName = function (name) {
+    conn.name = name;
+  }
+
+  this.join = function (room) {
+    var rooms = tags(conn)
+    for(var i in rooms)
+      if(rooms[i] == room) return;
+    for(var i in rooms) {
+      var connections = conns(rooms[i]);
+      for(var c in connections) {
+        if(conn != connections[c])
+          connections[c].onLeave(conn.name, rooms[i]);
+      }
+      untag(conn, rooms[i])
+    }
+    tag(conn, room)
+    var connections = conns(room)
+    for(var c in connections)
+      connections[c].onEnter(conn.name, room)
+  }
+
+  this.chat = function (message) {
+    var name = conn.name
+    var rooms = tags(conn)
+    console.log('tags for '+name+': '+rooms);
+    for(var i in rooms) {
+      var connections = conns(rooms[i])
+      for(var c in connections)
+        connections[c].receive(name, message)
+    }
+  }
+
+  this.log = function (message) {
+    console.log(message)
+  }
+  
 }).listen(app)
