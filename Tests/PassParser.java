@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 Pass.g 2012-04-05 20:58:03
+// $ANTLR 3.4 Pass.g 2012-04-05 22:26:43
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+
+@SuppressWarnings({"all", "warnings", "unchecked"})
 public class PassParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "DEDENT", "INDENT", "LT", "ID", "CMP", "BOP", "NUMBER", "STRING", "ARITH_ASSIGN", "EXPONENT", "COMMENT", "WS", "ESC_SEQ", "HEX_DIGIT", "UNICODE_ESC", "OCTAL_ESC", "'('", "','", "')'", "'~'", "'break'", "'return'", "'+'", "'-'", "'*'", "'/'", "'%'", "'['", "']'", "'.'", "'for'", "'in'", "'while'", "'if'", "'else'", "'='", "'{'", "'}'", "':'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITH_ASSIGN", "BOP", "CMP", "COMMENT", "DEDENT", "ESC_SEQ", "EXPONENT", "HEX_DIGIT", "ID", "INDENT", "LT", "NUMBER", "OCTAL_ESC", "STRING", "UNICODE_ESC", "WS", "'%'", "'('", "')'", "'*'", "'+'", "','", "'-'", "'.'", "'/'", "':'", "'='", "'['", "']'", "'break'", "'else'", "'for'", "'if'", "'in'", "'return'", "'while'", "'{'", "'}'", "'~'"
     };
+
     public static final int EOF=-1;
     public static final int T__20=20;
     public static final int T__21=21;
@@ -34,35 +37,37 @@ public class PassParser extends Parser {
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__42=42;
-    public static final int DEDENT=4;
-    public static final int INDENT=5;
-    public static final int LT=6;
-    public static final int ID=7;
-    public static final int CMP=8;
-    public static final int BOP=9;
-    public static final int NUMBER=10;
-    public static final int STRING=11;
-    public static final int ARITH_ASSIGN=12;
-    public static final int EXPONENT=13;
-    public static final int COMMENT=14;
-    public static final int WS=15;
-    public static final int ESC_SEQ=16;
-    public static final int HEX_DIGIT=17;
+    public static final int ARITH_ASSIGN=4;
+    public static final int BOP=5;
+    public static final int CMP=6;
+    public static final int COMMENT=7;
+    public static final int DEDENT=8;
+    public static final int ESC_SEQ=9;
+    public static final int EXPONENT=10;
+    public static final int HEX_DIGIT=11;
+    public static final int ID=12;
+    public static final int INDENT=13;
+    public static final int LT=14;
+    public static final int NUMBER=15;
+    public static final int OCTAL_ESC=16;
+    public static final int STRING=17;
     public static final int UNICODE_ESC=18;
-    public static final int OCTAL_ESC=19;
+    public static final int WS=19;
 
     // delegates
+    public Parser[] getDelegates() {
+        return new Parser[] {};
+    }
+
     // delegators
 
 
-        public PassParser(TokenStream input) {
-            this(input, new RecognizerSharedState());
-        }
-        public PassParser(TokenStream input, RecognizerSharedState state) {
-            super(input, state);
-             
-        }
-        
+    public PassParser(TokenStream input) {
+        this(input, new RecognizerSharedState());
+    }
+    public PassParser(TokenStream input, RecognizerSharedState state) {
+        super(input, state);
+    }
 
     public String[] getTokenNames() { return PassParser.tokenNames; }
     public String getGrammarFileName() { return "Pass.g"; }
@@ -81,6 +86,7 @@ public class PassParser extends Parser {
 
             state._fsp--;
             if (state.failed) return ;
+
             match(input,EOF,FOLLOW_EOF_in_prog37); if (state.failed) return ;
 
             }
@@ -90,11 +96,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "prog"
+
 
 
     // $ANTLR start "block"
@@ -111,7 +120,7 @@ public class PassParser extends Parser {
                 int alt1=3;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==ID||(LA1_0>=NUMBER && LA1_0<=STRING)||LA1_0==20||(LA1_0>=24 && LA1_0<=25)||LA1_0==34||(LA1_0>=36 && LA1_0<=37)) ) {
+                if ( (LA1_0==ID||LA1_0==NUMBER||LA1_0==STRING||LA1_0==21||LA1_0==33||(LA1_0 >= 35 && LA1_0 <= 36)||(LA1_0 >= 38 && LA1_0 <= 39)) ) {
                     alt1=1;
                 }
                 else if ( (LA1_0==LT) ) {
@@ -157,11 +166,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "block"
+
 
 
     // $ANTLR start "stmt"
@@ -172,10 +184,10 @@ public class PassParser extends Parser {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==ID||(LA2_0>=NUMBER && LA2_0<=STRING)||LA2_0==20||(LA2_0>=24 && LA2_0<=25)) ) {
+            if ( (LA2_0==ID||LA2_0==NUMBER||LA2_0==STRING||LA2_0==21||LA2_0==33||LA2_0==38) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==34||(LA2_0>=36 && LA2_0<=37)) ) {
+            else if ( ((LA2_0 >= 35 && LA2_0 <= 36)||LA2_0==39) ) {
                 alt2=2;
             }
             else {
@@ -184,6 +196,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
+
             }
             switch (alt2) {
                 case 1 :
@@ -194,6 +207,7 @@ public class PassParser extends Parser {
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     match(input,LT,FOLLOW_LT_in_stmt81); if (state.failed) return ;
 
                     }
@@ -216,11 +230,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "stmt"
+
 
 
     // $ANTLR start "iblock"
@@ -231,11 +248,13 @@ public class PassParser extends Parser {
             // Pass.g:88:9: INDENT block DEDENT
             {
             match(input,INDENT,FOLLOW_INDENT_in_iblock117); if (state.failed) return ;
+
             pushFollow(FOLLOW_block_in_iblock119);
             block();
 
             state._fsp--;
             if (state.failed) return ;
+
             match(input,DEDENT,FOLLOW_DEDENT_in_iblock121); if (state.failed) return ;
 
             }
@@ -245,11 +264,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "iblock"
+
 
 
     // $ANTLR start "args"
@@ -259,12 +281,13 @@ public class PassParser extends Parser {
             // Pass.g:91:5: ( '(' ( argument ( ',' argument )* )? ')' )
             // Pass.g:91:9: '(' ( argument ( ',' argument )* )? ')'
             {
-            match(input,20,FOLLOW_20_in_args135); if (state.failed) return ;
+            match(input,21,FOLLOW_21_in_args135); if (state.failed) return ;
+
             // Pass.g:91:13: ( argument ( ',' argument )* )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==ID||(LA4_0>=NUMBER && LA4_0<=STRING)||LA4_0==20) ) {
+            if ( (LA4_0==ID||LA4_0==NUMBER||LA4_0==STRING||LA4_0==21) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -276,13 +299,14 @@ public class PassParser extends Parser {
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     // Pass.g:91:23: ( ',' argument )*
                     loop3:
                     do {
                         int alt3=2;
                         int LA3_0 = input.LA(1);
 
-                        if ( (LA3_0==21) ) {
+                        if ( (LA3_0==25) ) {
                             alt3=1;
                         }
 
@@ -291,7 +315,8 @@ public class PassParser extends Parser {
                     	case 1 :
                     	    // Pass.g:91:24: ',' argument
                     	    {
-                    	    match(input,21,FOLLOW_21_in_args141); if (state.failed) return ;
+                    	    match(input,25,FOLLOW_25_in_args141); if (state.failed) return ;
+
                     	    pushFollow(FOLLOW_argument_in_args143);
                     	    argument();
 
@@ -312,6 +337,7 @@ public class PassParser extends Parser {
 
             }
 
+
             match(input,22,FOLLOW_22_in_args149); if (state.failed) return ;
 
             }
@@ -321,11 +347,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "args"
+
 
 
     // $ANTLR start "func"
@@ -340,12 +369,14 @@ public class PassParser extends Parser {
 
             state._fsp--;
             if (state.failed) return ;
-            match(input,23,FOLLOW_23_in_func169); if (state.failed) return ;
+
+            match(input,42,FOLLOW_42_in_func169); if (state.failed) return ;
+
             // Pass.g:94:18: ( expr | ( LT iblock ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==ID||(LA5_0>=NUMBER && LA5_0<=STRING)||LA5_0==20||(LA5_0>=24 && LA5_0<=25)) ) {
+            if ( (LA5_0==ID||LA5_0==NUMBER||LA5_0==STRING||LA5_0==21||LA5_0==33||LA5_0==38) ) {
                 alt5=1;
             }
             else if ( (LA5_0==LT) ) {
@@ -357,6 +388,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 5, 0, input);
 
                 throw nvae;
+
             }
             switch (alt5) {
                 case 1 :
@@ -377,6 +409,7 @@ public class PassParser extends Parser {
                     // Pass.g:94:25: LT iblock
                     {
                     match(input,LT,FOLLOW_LT_in_func175); if (state.failed) return ;
+
                     pushFollow(FOLLOW_iblock_in_func177);
                     iblock();
 
@@ -399,11 +432,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "func"
+
 
 
     // $ANTLR start "expr"
@@ -429,10 +465,11 @@ public class PassParser extends Parser {
                         new NoViableAltException("", 7, 1, input);
 
                     throw nvae;
+
                 }
                 }
                 break;
-            case 20:
+            case 21:
                 {
                 int LA7_2 = input.LA(2);
 
@@ -448,11 +485,12 @@ public class PassParser extends Parser {
                         new NoViableAltException("", 7, 2, input);
 
                     throw nvae;
+
                 }
                 }
                 break;
-            case 24:
-            case 25:
+            case 33:
+            case 38:
                 {
                 alt7=3;
                 }
@@ -469,6 +507,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
+
             }
 
             switch (alt7) {
@@ -476,11 +515,12 @@ public class PassParser extends Parser {
                     // Pass.g:97:9: ( ID ( access )? ( '=' | ARITH_ASSIGN ) )=> ID ( access )? assign
                     {
                     match(input,ID,FOLLOW_ID_in_expr216); if (state.failed) return ;
+
                     // Pass.g:97:46: ( access )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
-                    if ( (LA6_0==31||LA6_0==33) ) {
+                    if ( (LA6_0==27||LA6_0==31) ) {
                         alt6=1;
                     }
                     switch (alt6) {
@@ -497,6 +537,7 @@ public class PassParser extends Parser {
                             break;
 
                     }
+
 
                     pushFollow(FOLLOW_assign_in_expr221);
                     assign();
@@ -546,11 +587,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "expr"
+
 
 
     // $ANTLR start "short_stmt"
@@ -561,10 +605,10 @@ public class PassParser extends Parser {
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==25) ) {
+            if ( (LA8_0==38) ) {
                 alt8=1;
             }
-            else if ( (LA8_0==24) ) {
+            else if ( (LA8_0==33) ) {
                 alt8=2;
             }
             else {
@@ -573,6 +617,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
+
             }
             switch (alt8) {
                 case 1 :
@@ -604,11 +649,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "short_stmt"
+
 
 
     // $ANTLR start "break_stmt"
@@ -618,7 +666,7 @@ public class PassParser extends Parser {
             // Pass.g:109:5: ( 'break' )
             // Pass.g:109:9: 'break'
             {
-            match(input,24,FOLLOW_24_in_break_stmt311); if (state.failed) return ;
+            match(input,33,FOLLOW_33_in_break_stmt311); if (state.failed) return ;
 
             }
 
@@ -627,11 +675,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "break_stmt"
+
 
 
     // $ANTLR start "return_stmt"
@@ -641,7 +692,8 @@ public class PassParser extends Parser {
             // Pass.g:113:5: ( 'return' argument )
             // Pass.g:113:9: 'return' argument
             {
-            match(input,25,FOLLOW_25_in_return_stmt330); if (state.failed) return ;
+            match(input,38,FOLLOW_38_in_return_stmt330); if (state.failed) return ;
+
             pushFollow(FOLLOW_argument_in_return_stmt332);
             argument();
 
@@ -655,11 +707,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "return_stmt"
+
 
 
     // $ANTLR start "bool"
@@ -674,6 +729,7 @@ public class PassParser extends Parser {
 
             state._fsp--;
             if (state.failed) return ;
+
             // Pass.g:116:15: ( CMP logic )*
             loop9:
             do {
@@ -690,6 +746,7 @@ public class PassParser extends Parser {
             	    // Pass.g:116:16: CMP logic
             	    {
             	    match(input,CMP,FOLLOW_CMP_in_bool349); if (state.failed) return ;
+
             	    pushFollow(FOLLOW_logic_in_bool351);
             	    logic();
 
@@ -712,11 +769,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "bool"
+
 
 
     // $ANTLR start "logic"
@@ -731,6 +791,7 @@ public class PassParser extends Parser {
 
             state._fsp--;
             if (state.failed) return ;
+
             // Pass.g:120:14: ( BOP eval )*
             loop10:
             do {
@@ -747,6 +808,7 @@ public class PassParser extends Parser {
             	    // Pass.g:120:15: BOP eval
             	    {
             	    match(input,BOP,FOLLOW_BOP_in_logic375); if (state.failed) return ;
+
             	    pushFollow(FOLLOW_eval_in_logic377);
             	    eval();
 
@@ -769,11 +831,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "logic"
+
 
 
     // $ANTLR start "eval"
@@ -788,13 +853,14 @@ public class PassParser extends Parser {
 
             state._fsp--;
             if (state.failed) return ;
+
             // Pass.g:123:14: ( ( '+' | '-' ) term )*
             loop11:
             do {
                 int alt11=2;
                 int LA11_0 = input.LA(1);
 
-                if ( ((LA11_0>=26 && LA11_0<=27)) ) {
+                if ( (LA11_0==24||LA11_0==26) ) {
                     alt11=1;
                 }
 
@@ -803,15 +869,17 @@ public class PassParser extends Parser {
             	case 1 :
             	    // Pass.g:123:15: ( '+' | '-' ) term
             	    {
-            	    if ( (input.LA(1)>=26 && input.LA(1)<=27) ) {
+            	    if ( input.LA(1)==24||input.LA(1)==26 ) {
             	        input.consume();
-            	        state.errorRecovery=false;state.failed=false;
+            	        state.errorRecovery=false;
+            	        state.failed=false;
             	    }
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return ;}
             	        MismatchedSetException mse = new MismatchedSetException(null,input);
             	        throw mse;
             	    }
+
 
             	    pushFollow(FOLLOW_term_in_eval402);
             	    term();
@@ -835,11 +903,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "eval"
+
 
 
     // $ANTLR start "term"
@@ -854,13 +925,14 @@ public class PassParser extends Parser {
 
             state._fsp--;
             if (state.failed) return ;
+
             // Pass.g:126:16: ( ( '*' | '/' | '%' ) factor )*
             loop12:
             do {
                 int alt12=2;
                 int LA12_0 = input.LA(1);
 
-                if ( ((LA12_0>=28 && LA12_0<=30)) ) {
+                if ( (LA12_0==20||LA12_0==23||LA12_0==28) ) {
                     alt12=1;
                 }
 
@@ -869,15 +941,17 @@ public class PassParser extends Parser {
             	case 1 :
             	    // Pass.g:126:17: ( '*' | '/' | '%' ) factor
             	    {
-            	    if ( (input.LA(1)>=28 && input.LA(1)<=30) ) {
+            	    if ( input.LA(1)==20||input.LA(1)==23||input.LA(1)==28 ) {
             	        input.consume();
-            	        state.errorRecovery=false;state.failed=false;
+            	        state.errorRecovery=false;
+            	        state.failed=false;
             	    }
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return ;}
             	        MismatchedSetException mse = new MismatchedSetException(null,input);
             	        throw mse;
             	    }
+
 
             	    pushFollow(FOLLOW_factor_in_term429);
             	    factor();
@@ -901,11 +975,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "term"
+
 
 
     // $ANTLR start "factor"
@@ -916,10 +993,10 @@ public class PassParser extends Parser {
             int alt13=2;
             int LA13_0 = input.LA(1);
 
-            if ( (LA13_0==20) ) {
+            if ( (LA13_0==21) ) {
                 alt13=1;
             }
-            else if ( (LA13_0==ID||(LA13_0>=NUMBER && LA13_0<=STRING)) ) {
+            else if ( (LA13_0==ID||LA13_0==NUMBER||LA13_0==STRING) ) {
                 alt13=2;
             }
             else {
@@ -928,12 +1005,14 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
+
             }
             switch (alt13) {
                 case 1 :
                     // Pass.g:130:9: '(' factor_p
                     {
-                    match(input,20,FOLLOW_20_in_factor450); if (state.failed) return ;
+                    match(input,21,FOLLOW_21_in_factor450); if (state.failed) return ;
+
                     pushFollow(FOLLOW_factor_p_in_factor452);
                     factor_p();
 
@@ -960,22 +1039,25 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "factor"
 
 
+
     // $ANTLR start "factor_p"
-    // Pass.g:134:1: factor_p : ( ( args '~' )=> func ')' args | bool ')' );
+    // Pass.g:135:1: factor_p : ( ( args '~' )=> func ')' args | bool ')' );
     public final void factor_p() throws RecognitionException {
         try {
             // Pass.g:136:5: ( ( args '~' )=> func ')' args | bool ')' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==20) ) {
+            if ( (LA14_0==21) ) {
                 int LA14_1 = input.LA(2);
 
                 if ( (synpred3_Pass()) ) {
@@ -990,9 +1072,10 @@ public class PassParser extends Parser {
                         new NoViableAltException("", 14, 1, input);
 
                     throw nvae;
+
                 }
             }
-            else if ( (LA14_0==ID||(LA14_0>=NUMBER && LA14_0<=STRING)) ) {
+            else if ( (LA14_0==ID||LA14_0==NUMBER||LA14_0==STRING) ) {
                 alt14=2;
             }
             else {
@@ -1001,6 +1084,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
+
             }
             switch (alt14) {
                 case 1 :
@@ -1011,7 +1095,9 @@ public class PassParser extends Parser {
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     match(input,22,FOLLOW_22_in_factor_p494); if (state.failed) return ;
+
                     pushFollow(FOLLOW_args_in_factor_p495);
                     args();
 
@@ -1028,6 +1114,7 @@ public class PassParser extends Parser {
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     match(input,22,FOLLOW_22_in_factor_p507); if (state.failed) return ;
 
                     }
@@ -1039,11 +1126,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "factor_p"
+
 
 
     // $ANTLR start "access"
@@ -1057,7 +1147,7 @@ public class PassParser extends Parser {
             if ( (LA15_0==31) ) {
                 alt15=1;
             }
-            else if ( (LA15_0==33) ) {
+            else if ( (LA15_0==27) ) {
                 alt15=2;
             }
             else {
@@ -1066,13 +1156,16 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
+
             }
             switch (alt15) {
                 case 1 :
                     // Pass.g:141:9: '[' NUMBER ']'
                     {
                     match(input,31,FOLLOW_31_in_access533); if (state.failed) return ;
+
                     match(input,NUMBER,FOLLOW_NUMBER_in_access535); if (state.failed) return ;
+
                     match(input,32,FOLLOW_32_in_access537); if (state.failed) return ;
 
                     }
@@ -1080,7 +1173,8 @@ public class PassParser extends Parser {
                 case 2 :
                     // Pass.g:142:9: '.' ID
                     {
-                    match(input,33,FOLLOW_33_in_access547); if (state.failed) return ;
+                    match(input,27,FOLLOW_27_in_access547); if (state.failed) return ;
+
                     match(input,ID,FOLLOW_ID_in_access549); if (state.failed) return ;
 
                     }
@@ -1092,11 +1186,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "access"
+
 
 
     // $ANTLR start "value"
@@ -1107,7 +1204,7 @@ public class PassParser extends Parser {
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( ((LA17_0>=NUMBER && LA17_0<=STRING)) ) {
+            if ( (LA17_0==NUMBER||LA17_0==STRING) ) {
                 alt17=1;
             }
             else if ( (LA17_0==ID) ) {
@@ -1119,6 +1216,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
+
             }
             switch (alt17) {
                 case 1 :
@@ -1136,13 +1234,14 @@ public class PassParser extends Parser {
                     // Pass.g:147:9: ID ( mod )*
                     {
                     match(input,ID,FOLLOW_ID_in_value578); if (state.failed) return ;
+
                     // Pass.g:147:12: ( mod )*
                     loop16:
                     do {
                         int alt16=2;
                         int LA16_0 = input.LA(1);
 
-                        if ( (LA16_0==20||LA16_0==31||LA16_0==33) ) {
+                        if ( (LA16_0==21||LA16_0==27||LA16_0==31) ) {
                             alt16=1;
                         }
 
@@ -1175,11 +1274,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "value"
+
 
 
     // $ANTLR start "mod"
@@ -1190,10 +1292,10 @@ public class PassParser extends Parser {
             int alt18=2;
             int LA18_0 = input.LA(1);
 
-            if ( (LA18_0==20) ) {
+            if ( (LA18_0==21) ) {
                 alt18=1;
             }
-            else if ( (LA18_0==31||LA18_0==33) ) {
+            else if ( (LA18_0==27||LA18_0==31) ) {
                 alt18=2;
             }
             else {
@@ -1202,6 +1304,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 18, 0, input);
 
                 throw nvae;
+
             }
             switch (alt18) {
                 case 1 :
@@ -1233,11 +1336,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "mod"
+
 
 
     // $ANTLR start "atom"
@@ -1247,9 +1353,10 @@ public class PassParser extends Parser {
             // Pass.g:154:5: ( NUMBER | STRING )
             // Pass.g:
             {
-            if ( (input.LA(1)>=NUMBER && input.LA(1)<=STRING) ) {
+            if ( input.LA(1)==NUMBER||input.LA(1)==STRING ) {
                 input.consume();
-                state.errorRecovery=false;state.failed=false;
+                state.errorRecovery=false;
+                state.failed=false;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
@@ -1265,11 +1372,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "atom"
+
 
 
     // $ANTLR start "control"
@@ -1279,17 +1389,17 @@ public class PassParser extends Parser {
             // Pass.g:159:5: ( 'for' ID 'in' ID ( mod )? LT iblock | 'while' bool LT iblock | 'if' bool ( return_stmt LT | LT iblock ) else_test )
             int alt21=3;
             switch ( input.LA(1) ) {
-            case 34:
+            case 35:
                 {
                 alt21=1;
                 }
                 break;
-            case 36:
+            case 39:
                 {
                 alt21=2;
                 }
                 break;
-            case 37:
+            case 36:
                 {
                 alt21=3;
                 }
@@ -1300,21 +1410,26 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
+
             }
 
             switch (alt21) {
                 case 1 :
                     // Pass.g:159:9: 'for' ID 'in' ID ( mod )? LT iblock
                     {
-                    match(input,34,FOLLOW_34_in_control649); if (state.failed) return ;
+                    match(input,35,FOLLOW_35_in_control649); if (state.failed) return ;
+
                     match(input,ID,FOLLOW_ID_in_control651); if (state.failed) return ;
-                    match(input,35,FOLLOW_35_in_control653); if (state.failed) return ;
+
+                    match(input,37,FOLLOW_37_in_control653); if (state.failed) return ;
+
                     match(input,ID,FOLLOW_ID_in_control655); if (state.failed) return ;
+
                     // Pass.g:159:26: ( mod )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
-                    if ( (LA19_0==20||LA19_0==31||LA19_0==33) ) {
+                    if ( (LA19_0==21||LA19_0==27||LA19_0==31) ) {
                         alt19=1;
                     }
                     switch (alt19) {
@@ -1332,7 +1447,9 @@ public class PassParser extends Parser {
 
                     }
 
+
                     match(input,LT,FOLLOW_LT_in_control660); if (state.failed) return ;
+
                     pushFollow(FOLLOW_iblock_in_control662);
                     iblock();
 
@@ -1344,13 +1461,16 @@ public class PassParser extends Parser {
                 case 2 :
                     // Pass.g:160:9: 'while' bool LT iblock
                     {
-                    match(input,36,FOLLOW_36_in_control672); if (state.failed) return ;
+                    match(input,39,FOLLOW_39_in_control672); if (state.failed) return ;
+
                     pushFollow(FOLLOW_bool_in_control674);
                     bool();
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     match(input,LT,FOLLOW_LT_in_control676); if (state.failed) return ;
+
                     pushFollow(FOLLOW_iblock_in_control678);
                     iblock();
 
@@ -1362,17 +1482,19 @@ public class PassParser extends Parser {
                 case 3 :
                     // Pass.g:161:9: 'if' bool ( return_stmt LT | LT iblock ) else_test
                     {
-                    match(input,37,FOLLOW_37_in_control688); if (state.failed) return ;
+                    match(input,36,FOLLOW_36_in_control688); if (state.failed) return ;
+
                     pushFollow(FOLLOW_bool_in_control690);
                     bool();
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     // Pass.g:161:19: ( return_stmt LT | LT iblock )
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
-                    if ( (LA20_0==25) ) {
+                    if ( (LA20_0==38) ) {
                         alt20=1;
                     }
                     else if ( (LA20_0==LT) ) {
@@ -1384,6 +1506,7 @@ public class PassParser extends Parser {
                             new NoViableAltException("", 20, 0, input);
 
                         throw nvae;
+
                     }
                     switch (alt20) {
                         case 1 :
@@ -1394,6 +1517,7 @@ public class PassParser extends Parser {
 
                             state._fsp--;
                             if (state.failed) return ;
+
                             match(input,LT,FOLLOW_LT_in_control695); if (state.failed) return ;
 
                             }
@@ -1402,6 +1526,7 @@ public class PassParser extends Parser {
                             // Pass.g:161:35: LT iblock
                             {
                             match(input,LT,FOLLOW_LT_in_control697); if (state.failed) return ;
+
                             pushFollow(FOLLOW_iblock_in_control699);
                             iblock();
 
@@ -1412,6 +1537,7 @@ public class PassParser extends Parser {
                             break;
 
                     }
+
 
                     pushFollow(FOLLOW_else_test_in_control702);
                     else_test();
@@ -1428,25 +1554,28 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "control"
 
 
+
     // $ANTLR start "else_test"
-    // Pass.g:164:1: else_test : ( 'else' else_p | );
+    // Pass.g:165:1: else_test : ( 'else' else_p |);
     public final void else_test() throws RecognitionException {
         try {
-            // Pass.g:166:5: ( 'else' else_p | )
+            // Pass.g:166:5: ( 'else' else_p |)
             int alt22=2;
             int LA22_0 = input.LA(1);
 
-            if ( (LA22_0==38) ) {
+            if ( (LA22_0==34) ) {
                 alt22=1;
             }
-            else if ( (LA22_0==EOF||LA22_0==DEDENT||(LA22_0>=LT && LA22_0<=ID)||(LA22_0>=NUMBER && LA22_0<=STRING)||LA22_0==20||(LA22_0>=24 && LA22_0<=25)||LA22_0==34||(LA22_0>=36 && LA22_0<=37)) ) {
+            else if ( (LA22_0==EOF||LA22_0==DEDENT||LA22_0==ID||(LA22_0 >= LT && LA22_0 <= NUMBER)||LA22_0==STRING||LA22_0==21||LA22_0==33||(LA22_0 >= 35 && LA22_0 <= 36)||(LA22_0 >= 38 && LA22_0 <= 39)) ) {
                 alt22=2;
             }
             else {
@@ -1455,12 +1584,14 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 22, 0, input);
 
                 throw nvae;
+
             }
             switch (alt22) {
                 case 1 :
                     // Pass.g:166:10: 'else' else_p
                     {
-                    match(input,38,FOLLOW_38_in_else_test724); if (state.failed) return ;
+                    match(input,34,FOLLOW_34_in_else_test724); if (state.failed) return ;
+
                     pushFollow(FOLLOW_else_p_in_else_test726);
                     else_p();
 
@@ -1481,11 +1612,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "else_test"
+
 
 
     // $ANTLR start "else_p"
@@ -1496,10 +1630,10 @@ public class PassParser extends Parser {
             int alt25=2;
             int LA25_0 = input.LA(1);
 
-            if ( (LA25_0==37) ) {
+            if ( (LA25_0==36) ) {
                 alt25=1;
             }
-            else if ( (LA25_0==LT||LA25_0==25) ) {
+            else if ( (LA25_0==LT||LA25_0==38) ) {
                 alt25=2;
             }
             else {
@@ -1508,22 +1642,25 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
+
             }
             switch (alt25) {
                 case 1 :
                     // Pass.g:171:10: 'if' bool ( return_stmt LT | LT iblock ) else_test
                     {
-                    match(input,37,FOLLOW_37_in_else_p752); if (state.failed) return ;
+                    match(input,36,FOLLOW_36_in_else_p752); if (state.failed) return ;
+
                     pushFollow(FOLLOW_bool_in_else_p754);
                     bool();
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     // Pass.g:171:20: ( return_stmt LT | LT iblock )
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
-                    if ( (LA23_0==25) ) {
+                    if ( (LA23_0==38) ) {
                         alt23=1;
                     }
                     else if ( (LA23_0==LT) ) {
@@ -1535,6 +1672,7 @@ public class PassParser extends Parser {
                             new NoViableAltException("", 23, 0, input);
 
                         throw nvae;
+
                     }
                     switch (alt23) {
                         case 1 :
@@ -1545,6 +1683,7 @@ public class PassParser extends Parser {
 
                             state._fsp--;
                             if (state.failed) return ;
+
                             match(input,LT,FOLLOW_LT_in_else_p759); if (state.failed) return ;
 
                             }
@@ -1553,6 +1692,7 @@ public class PassParser extends Parser {
                             // Pass.g:171:36: LT iblock
                             {
                             match(input,LT,FOLLOW_LT_in_else_p761); if (state.failed) return ;
+
                             pushFollow(FOLLOW_iblock_in_else_p763);
                             iblock();
 
@@ -1563,6 +1703,7 @@ public class PassParser extends Parser {
                             break;
 
                     }
+
 
                     pushFollow(FOLLOW_else_test_in_else_p766);
                     else_test();
@@ -1579,7 +1720,7 @@ public class PassParser extends Parser {
                     int alt24=2;
                     int LA24_0 = input.LA(1);
 
-                    if ( (LA24_0==25) ) {
+                    if ( (LA24_0==38) ) {
                         alt24=1;
                     }
                     else if ( (LA24_0==LT) ) {
@@ -1591,6 +1732,7 @@ public class PassParser extends Parser {
                             new NoViableAltException("", 24, 0, input);
 
                         throw nvae;
+
                     }
                     switch (alt24) {
                         case 1 :
@@ -1601,6 +1743,7 @@ public class PassParser extends Parser {
 
                             state._fsp--;
                             if (state.failed) return ;
+
                             match(input,LT,FOLLOW_LT_in_else_p780); if (state.failed) return ;
 
                             }
@@ -1609,6 +1752,7 @@ public class PassParser extends Parser {
                             // Pass.g:172:26: LT iblock
                             {
                             match(input,LT,FOLLOW_LT_in_else_p782); if (state.failed) return ;
+
                             pushFollow(FOLLOW_iblock_in_else_p784);
                             iblock();
 
@@ -1630,11 +1774,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "else_p"
+
 
 
     // $ANTLR start "assign"
@@ -1645,7 +1792,7 @@ public class PassParser extends Parser {
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( (LA27_0==39) ) {
+            if ( (LA27_0==30) ) {
                 alt27=1;
             }
             else if ( (LA27_0==ARITH_ASSIGN) ) {
@@ -1657,19 +1804,21 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
+
             }
             switch (alt27) {
                 case 1 :
                     // Pass.g:176:9: '=' ( argument | dictionary_definition | array_definition )
                     {
-                    match(input,39,FOLLOW_39_in_assign808); if (state.failed) return ;
+                    match(input,30,FOLLOW_30_in_assign808); if (state.failed) return ;
+
                     // Pass.g:176:13: ( argument | dictionary_definition | array_definition )
                     int alt26=3;
                     switch ( input.LA(1) ) {
                     case ID:
                     case NUMBER:
                     case STRING:
-                    case 20:
+                    case 21:
                         {
                         alt26=1;
                         }
@@ -1690,6 +1839,7 @@ public class PassParser extends Parser {
                             new NoViableAltException("", 26, 0, input);
 
                         throw nvae;
+
                     }
 
                     switch (alt26) {
@@ -1736,6 +1886,7 @@ public class PassParser extends Parser {
                     // Pass.g:177:9: ARITH_ASSIGN bool
                     {
                     match(input,ARITH_ASSIGN,FOLLOW_ARITH_ASSIGN_in_assign826); if (state.failed) return ;
+
                     pushFollow(FOLLOW_bool_in_assign828);
                     bool();
 
@@ -1751,11 +1902,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "assign"
+
 
 
     // $ANTLR start "dictionary_definition"
@@ -1766,6 +1920,7 @@ public class PassParser extends Parser {
             // Pass.g:181:9: '{' ( dictionary_entry ( ',' dictionary_entry )* )? '}'
             {
             match(input,40,FOLLOW_40_in_dictionary_definition847); if (state.failed) return ;
+
             // Pass.g:181:13: ( dictionary_entry ( ',' dictionary_entry )* )?
             int alt29=2;
             int LA29_0 = input.LA(1);
@@ -1782,13 +1937,14 @@ public class PassParser extends Parser {
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     // Pass.g:181:31: ( ',' dictionary_entry )*
                     loop28:
                     do {
                         int alt28=2;
                         int LA28_0 = input.LA(1);
 
-                        if ( (LA28_0==21) ) {
+                        if ( (LA28_0==25) ) {
                             alt28=1;
                         }
 
@@ -1797,7 +1953,8 @@ public class PassParser extends Parser {
                     	case 1 :
                     	    // Pass.g:181:32: ',' dictionary_entry
                     	    {
-                    	    match(input,21,FOLLOW_21_in_dictionary_definition853); if (state.failed) return ;
+                    	    match(input,25,FOLLOW_25_in_dictionary_definition853); if (state.failed) return ;
+
                     	    pushFollow(FOLLOW_dictionary_entry_in_dictionary_definition855);
                     	    dictionary_entry();
 
@@ -1818,6 +1975,7 @@ public class PassParser extends Parser {
 
             }
 
+
             match(input,41,FOLLOW_41_in_dictionary_definition861); if (state.failed) return ;
 
             }
@@ -1827,11 +1985,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "dictionary_definition"
+
 
 
     // $ANTLR start "dictionary_entry"
@@ -1842,7 +2003,9 @@ public class PassParser extends Parser {
             // Pass.g:185:9: ID ':' atom
             {
             match(input,ID,FOLLOW_ID_in_dictionary_entry880); if (state.failed) return ;
-            match(input,42,FOLLOW_42_in_dictionary_entry882); if (state.failed) return ;
+
+            match(input,29,FOLLOW_29_in_dictionary_entry882); if (state.failed) return ;
+
             pushFollow(FOLLOW_atom_in_dictionary_entry884);
             atom();
 
@@ -1856,11 +2019,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "dictionary_entry"
+
 
 
     // $ANTLR start "array_definition"
@@ -1871,11 +2037,12 @@ public class PassParser extends Parser {
             // Pass.g:189:9: '[' ( argument ( ',' argument )* )? ']'
             {
             match(input,31,FOLLOW_31_in_array_definition908); if (state.failed) return ;
+
             // Pass.g:189:13: ( argument ( ',' argument )* )?
             int alt31=2;
             int LA31_0 = input.LA(1);
 
-            if ( (LA31_0==ID||(LA31_0>=NUMBER && LA31_0<=STRING)||LA31_0==20) ) {
+            if ( (LA31_0==ID||LA31_0==NUMBER||LA31_0==STRING||LA31_0==21) ) {
                 alt31=1;
             }
             switch (alt31) {
@@ -1887,13 +2054,14 @@ public class PassParser extends Parser {
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     // Pass.g:189:23: ( ',' argument )*
                     loop30:
                     do {
                         int alt30=2;
                         int LA30_0 = input.LA(1);
 
-                        if ( (LA30_0==21) ) {
+                        if ( (LA30_0==25) ) {
                             alt30=1;
                         }
 
@@ -1902,7 +2070,8 @@ public class PassParser extends Parser {
                     	case 1 :
                     	    // Pass.g:189:24: ',' argument
                     	    {
-                    	    match(input,21,FOLLOW_21_in_array_definition914); if (state.failed) return ;
+                    	    match(input,25,FOLLOW_25_in_array_definition914); if (state.failed) return ;
+
                     	    pushFollow(FOLLOW_argument_in_array_definition916);
                     	    argument();
 
@@ -1923,6 +2092,7 @@ public class PassParser extends Parser {
 
             }
 
+
             match(input,32,FOLLOW_32_in_array_definition922); if (state.failed) return ;
 
             }
@@ -1932,11 +2102,14 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "array_definition"
+
 
 
     // $ANTLR start "argument"
@@ -1947,7 +2120,7 @@ public class PassParser extends Parser {
             int alt32=3;
             int LA32_0 = input.LA(1);
 
-            if ( (LA32_0==20) ) {
+            if ( (LA32_0==21) ) {
                 int LA32_1 = input.LA(2);
 
                 if ( (synpred4_Pass()) ) {
@@ -1965,9 +2138,10 @@ public class PassParser extends Parser {
                         new NoViableAltException("", 32, 1, input);
 
                     throw nvae;
+
                 }
             }
-            else if ( (LA32_0==ID||(LA32_0>=NUMBER && LA32_0<=STRING)) ) {
+            else if ( (LA32_0==ID||LA32_0==NUMBER||LA32_0==STRING) ) {
                 alt32=3;
             }
             else {
@@ -1976,6 +2150,7 @@ public class PassParser extends Parser {
                     new NoViableAltException("", 32, 0, input);
 
                 throw nvae;
+
             }
             switch (alt32) {
                 case 1 :
@@ -1992,13 +2167,16 @@ public class PassParser extends Parser {
                 case 2 :
                     // Pass.g:194:9: ( '(' args '~' )=> '(' func ')' args
                     {
-                    match(input,20,FOLLOW_20_in_argument971); if (state.failed) return ;
+                    match(input,21,FOLLOW_21_in_argument971); if (state.failed) return ;
+
                     pushFollow(FOLLOW_func_in_argument973);
                     func();
 
                     state._fsp--;
                     if (state.failed) return ;
+
                     match(input,22,FOLLOW_22_in_argument975); if (state.failed) return ;
+
                     pushFollow(FOLLOW_args_in_argument977);
                     args();
 
@@ -2025,23 +2203,26 @@ public class PassParser extends Parser {
             reportError(re);
             recover(input,re);
         }
+
         finally {
+        	// do for sure before leaving
         }
         return ;
     }
     // $ANTLR end "argument"
 
     // $ANTLR start synpred1_Pass
-    public final void synpred1_Pass_fragment() throws RecognitionException {   
+    public final void synpred1_Pass_fragment() throws RecognitionException {
         // Pass.g:97:9: ( ID ( access )? ( '=' | ARITH_ASSIGN ) )
         // Pass.g:97:10: ID ( access )? ( '=' | ARITH_ASSIGN )
         {
         match(input,ID,FOLLOW_ID_in_synpred1_Pass203); if (state.failed) return ;
+
         // Pass.g:97:13: ( access )?
         int alt33=2;
         int LA33_0 = input.LA(1);
 
-        if ( (LA33_0==31||LA33_0==33) ) {
+        if ( (LA33_0==27||LA33_0==31) ) {
             alt33=1;
         }
         switch (alt33) {
@@ -2059,9 +2240,11 @@ public class PassParser extends Parser {
 
         }
 
-        if ( input.LA(1)==ARITH_ASSIGN||input.LA(1)==39 ) {
+
+        if ( input.LA(1)==ARITH_ASSIGN||input.LA(1)==30 ) {
             input.consume();
-            state.errorRecovery=false;state.failed=false;
+            state.errorRecovery=false;
+            state.failed=false;
         }
         else {
             if (state.backtracking>0) {state.failed=true; return ;}
@@ -2071,11 +2254,12 @@ public class PassParser extends Parser {
 
 
         }
+
     }
     // $ANTLR end synpred1_Pass
 
     // $ANTLR start synpred2_Pass
-    public final void synpred2_Pass_fragment() throws RecognitionException {   
+    public final void synpred2_Pass_fragment() throws RecognitionException {
         // Pass.g:98:9: ( args '~' )
         // Pass.g:98:10: args '~'
         {
@@ -2084,14 +2268,16 @@ public class PassParser extends Parser {
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,23,FOLLOW_23_in_synpred2_Pass234); if (state.failed) return ;
+
+        match(input,42,FOLLOW_42_in_synpred2_Pass234); if (state.failed) return ;
 
         }
+
     }
     // $ANTLR end synpred2_Pass
 
     // $ANTLR start synpred3_Pass
-    public final void synpred3_Pass_fragment() throws RecognitionException {   
+    public final void synpred3_Pass_fragment() throws RecognitionException {
         // Pass.g:136:9: ( args '~' )
         // Pass.g:136:10: args '~'
         {
@@ -2100,14 +2286,16 @@ public class PassParser extends Parser {
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,23,FOLLOW_23_in_synpred3_Pass487); if (state.failed) return ;
+
+        match(input,42,FOLLOW_42_in_synpred3_Pass487); if (state.failed) return ;
 
         }
+
     }
     // $ANTLR end synpred3_Pass
 
     // $ANTLR start synpred4_Pass
-    public final void synpred4_Pass_fragment() throws RecognitionException {   
+    public final void synpred4_Pass_fragment() throws RecognitionException {
         // Pass.g:193:9: ( args '~' )
         // Pass.g:193:10: args '~'
         {
@@ -2116,26 +2304,31 @@ public class PassParser extends Parser {
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,23,FOLLOW_23_in_synpred4_Pass948); if (state.failed) return ;
+
+        match(input,42,FOLLOW_42_in_synpred4_Pass948); if (state.failed) return ;
 
         }
+
     }
     // $ANTLR end synpred4_Pass
 
     // $ANTLR start synpred5_Pass
-    public final void synpred5_Pass_fragment() throws RecognitionException {   
+    public final void synpred5_Pass_fragment() throws RecognitionException {
         // Pass.g:194:9: ( '(' args '~' )
         // Pass.g:194:10: '(' args '~'
         {
-        match(input,20,FOLLOW_20_in_synpred5_Pass963); if (state.failed) return ;
+        match(input,21,FOLLOW_21_in_synpred5_Pass963); if (state.failed) return ;
+
         pushFollow(FOLLOW_args_in_synpred5_Pass965);
         args();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,23,FOLLOW_23_in_synpred5_Pass967); if (state.failed) return ;
+
+        match(input,42,FOLLOW_42_in_synpred5_Pass967); if (state.failed) return ;
 
         }
+
     }
     // $ANTLR end synpred5_Pass
 
@@ -2217,133 +2410,132 @@ public class PassParser extends Parser {
 
     public static final BitSet FOLLOW_block_in_prog35 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_prog37 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stmt_in_block57 = new BitSet(new long[]{0x0000003403100CC2L});
-    public static final BitSet FOLLOW_LT_in_block59 = new BitSet(new long[]{0x0000003403100CC2L});
-    public static final BitSet FOLLOW_expr_in_stmt79 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_stmt_in_block57 = new BitSet(new long[]{0x000000DA0022D002L});
+    public static final BitSet FOLLOW_LT_in_block59 = new BitSet(new long[]{0x000000DA0022D002L});
+    public static final BitSet FOLLOW_expr_in_stmt79 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_LT_in_stmt81 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_control_in_stmt91 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INDENT_in_iblock117 = new BitSet(new long[]{0x0000003403100CC0L});
-    public static final BitSet FOLLOW_block_in_iblock119 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_INDENT_in_iblock117 = new BitSet(new long[]{0x000000DA0022D000L});
+    public static final BitSet FOLLOW_block_in_iblock119 = new BitSet(new long[]{0x0000000000000100L});
     public static final BitSet FOLLOW_DEDENT_in_iblock121 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_args135 = new BitSet(new long[]{0x0000000003500C80L});
-    public static final BitSet FOLLOW_argument_in_args138 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_21_in_args141 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_argument_in_args143 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_21_in_args135 = new BitSet(new long[]{0x0000000000629000L});
+    public static final BitSet FOLLOW_argument_in_args138 = new BitSet(new long[]{0x0000000002400000L});
+    public static final BitSet FOLLOW_25_in_args141 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_argument_in_args143 = new BitSet(new long[]{0x0000000002400000L});
     public static final BitSet FOLLOW_22_in_args149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_func167 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_func169 = new BitSet(new long[]{0x0000000003100CC0L});
+    public static final BitSet FOLLOW_args_in_func167 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_func169 = new BitSet(new long[]{0x000000420022D000L});
     public static final BitSet FOLLOW_expr_in_func172 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_func175 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_LT_in_func175 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_iblock_in_func177 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_expr216 = new BitSet(new long[]{0x0000008280001000L});
-    public static final BitSet FOLLOW_access_in_expr218 = new BitSet(new long[]{0x0000008280001000L});
+    public static final BitSet FOLLOW_ID_in_expr216 = new BitSet(new long[]{0x00000000C8000010L});
+    public static final BitSet FOLLOW_access_in_expr218 = new BitSet(new long[]{0x0000000040000010L});
     public static final BitSet FOLLOW_assign_in_expr221 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_func_in_expr239 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_short_stmt_in_expr249 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_bool_in_expr259 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_return_stmt_in_short_stmt278 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_break_stmt_in_short_stmt288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_break_stmt311 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_return_stmt330 = new BitSet(new long[]{0x0000000003100C80L});
+    public static final BitSet FOLLOW_33_in_break_stmt311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_return_stmt330 = new BitSet(new long[]{0x0000000000229000L});
     public static final BitSet FOLLOW_argument_in_return_stmt332 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_logic_in_bool346 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_CMP_in_bool349 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_logic_in_bool351 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_eval_in_logic372 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_BOP_in_logic375 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_eval_in_logic377 = new BitSet(new long[]{0x0000000000000202L});
-    public static final BitSet FOLLOW_term_in_eval393 = new BitSet(new long[]{0x000000000C000002L});
-    public static final BitSet FOLLOW_set_in_eval396 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_term_in_eval402 = new BitSet(new long[]{0x000000000C000002L});
-    public static final BitSet FOLLOW_factor_in_term418 = new BitSet(new long[]{0x0000000070000002L});
-    public static final BitSet FOLLOW_set_in_term421 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_factor_in_term429 = new BitSet(new long[]{0x0000000070000002L});
-    public static final BitSet FOLLOW_20_in_factor450 = new BitSet(new long[]{0x0000000003100C80L});
+    public static final BitSet FOLLOW_logic_in_bool346 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_CMP_in_bool349 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_logic_in_bool351 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_eval_in_logic372 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_BOP_in_logic375 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_eval_in_logic377 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_term_in_eval393 = new BitSet(new long[]{0x0000000005000002L});
+    public static final BitSet FOLLOW_set_in_eval396 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_term_in_eval402 = new BitSet(new long[]{0x0000000005000002L});
+    public static final BitSet FOLLOW_factor_in_term418 = new BitSet(new long[]{0x0000000010900002L});
+    public static final BitSet FOLLOW_set_in_term421 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_factor_in_term429 = new BitSet(new long[]{0x0000000010900002L});
+    public static final BitSet FOLLOW_21_in_factor450 = new BitSet(new long[]{0x0000000000229000L});
     public static final BitSet FOLLOW_factor_p_in_factor452 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_value_in_factor463 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_func_in_factor_p492 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_factor_p494 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_22_in_factor_p494 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_args_in_factor_p495 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_bool_in_factor_p505 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_22_in_factor_p507 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_access533 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_31_in_access533 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_NUMBER_in_access535 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_access537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_access547 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_27_in_access547 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_ID_in_access549 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_atom_in_value568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_value578 = new BitSet(new long[]{0x0000000280100002L});
-    public static final BitSet FOLLOW_mod_in_value580 = new BitSet(new long[]{0x0000000280100002L});
+    public static final BitSet FOLLOW_ID_in_value578 = new BitSet(new long[]{0x0000000088200002L});
+    public static final BitSet FOLLOW_mod_in_value580 = new BitSet(new long[]{0x0000000088200002L});
     public static final BitSet FOLLOW_args_in_mod596 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_access_in_mod606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_atom0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_control649 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_ID_in_control651 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_control653 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_ID_in_control655 = new BitSet(new long[]{0x0000000280100040L});
-    public static final BitSet FOLLOW_mod_in_control657 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_LT_in_control660 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_35_in_control649 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_ID_in_control651 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_control653 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_ID_in_control655 = new BitSet(new long[]{0x0000000088204000L});
+    public static final BitSet FOLLOW_mod_in_control657 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_control660 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_iblock_in_control662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_control672 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_bool_in_control674 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_LT_in_control676 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_39_in_control672 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_bool_in_control674 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_control676 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_iblock_in_control678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_control688 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_bool_in_control690 = new BitSet(new long[]{0x0000000002000040L});
-    public static final BitSet FOLLOW_return_stmt_in_control693 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_LT_in_control695 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_LT_in_control697 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_iblock_in_control699 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_36_in_control688 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_bool_in_control690 = new BitSet(new long[]{0x0000004000004000L});
+    public static final BitSet FOLLOW_return_stmt_in_control693 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_control695 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_LT_in_control697 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_control699 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_else_test_in_control702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_else_test724 = new BitSet(new long[]{0x0000002002000040L});
+    public static final BitSet FOLLOW_34_in_else_test724 = new BitSet(new long[]{0x0000005000004000L});
     public static final BitSet FOLLOW_else_p_in_else_test726 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_else_p752 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_bool_in_else_p754 = new BitSet(new long[]{0x0000000002000040L});
-    public static final BitSet FOLLOW_return_stmt_in_else_p757 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_LT_in_else_p759 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_LT_in_else_p761 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_iblock_in_else_p763 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_36_in_else_p752 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_bool_in_else_p754 = new BitSet(new long[]{0x0000004000004000L});
+    public static final BitSet FOLLOW_return_stmt_in_else_p757 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LT_in_else_p759 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_LT_in_else_p761 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_iblock_in_else_p763 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_else_test_in_else_p766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_return_stmt_in_else_p778 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_return_stmt_in_else_p778 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_LT_in_else_p780 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_else_p782 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_LT_in_else_p782 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_iblock_in_else_p784 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_assign808 = new BitSet(new long[]{0x0000010083100C80L});
+    public static final BitSet FOLLOW_30_in_assign808 = new BitSet(new long[]{0x0000010080229000L});
     public static final BitSet FOLLOW_argument_in_assign811 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_dictionary_definition_in_assign813 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_array_definition_in_assign815 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARITH_ASSIGN_in_assign826 = new BitSet(new long[]{0x0000000003100C80L});
+    public static final BitSet FOLLOW_ARITH_ASSIGN_in_assign826 = new BitSet(new long[]{0x0000000000229000L});
     public static final BitSet FOLLOW_bool_in_assign828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_dictionary_definition847 = new BitSet(new long[]{0x0000020000000080L});
-    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition850 = new BitSet(new long[]{0x0000020000200000L});
-    public static final BitSet FOLLOW_21_in_dictionary_definition853 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition855 = new BitSet(new long[]{0x0000020000200000L});
+    public static final BitSet FOLLOW_40_in_dictionary_definition847 = new BitSet(new long[]{0x0000020000001000L});
+    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition850 = new BitSet(new long[]{0x0000020002000000L});
+    public static final BitSet FOLLOW_25_in_dictionary_definition853 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_dictionary_entry_in_dictionary_definition855 = new BitSet(new long[]{0x0000020002000000L});
     public static final BitSet FOLLOW_41_in_dictionary_definition861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_dictionary_entry880 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_dictionary_entry882 = new BitSet(new long[]{0x0000000000000C00L});
+    public static final BitSet FOLLOW_ID_in_dictionary_entry880 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_dictionary_entry882 = new BitSet(new long[]{0x0000000000028000L});
     public static final BitSet FOLLOW_atom_in_dictionary_entry884 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_array_definition908 = new BitSet(new long[]{0x0000000103100C80L});
-    public static final BitSet FOLLOW_argument_in_array_definition911 = new BitSet(new long[]{0x0000000100200000L});
-    public static final BitSet FOLLOW_21_in_array_definition914 = new BitSet(new long[]{0x0000000003100C80L});
-    public static final BitSet FOLLOW_argument_in_array_definition916 = new BitSet(new long[]{0x0000000100200000L});
+    public static final BitSet FOLLOW_31_in_array_definition908 = new BitSet(new long[]{0x0000000100229000L});
+    public static final BitSet FOLLOW_argument_in_array_definition911 = new BitSet(new long[]{0x0000000102000000L});
+    public static final BitSet FOLLOW_25_in_array_definition914 = new BitSet(new long[]{0x0000000000229000L});
+    public static final BitSet FOLLOW_argument_in_array_definition916 = new BitSet(new long[]{0x0000000102000000L});
     public static final BitSet FOLLOW_32_in_array_definition922 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_func_in_argument952 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_argument971 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_21_in_argument971 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_func_in_argument973 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_argument975 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_22_in_argument975 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_args_in_argument977 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_bool_in_argument987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_synpred1_Pass203 = new BitSet(new long[]{0x0000008280001000L});
-    public static final BitSet FOLLOW_access_in_synpred1_Pass205 = new BitSet(new long[]{0x0000008000001000L});
+    public static final BitSet FOLLOW_ID_in_synpred1_Pass203 = new BitSet(new long[]{0x00000000C8000010L});
+    public static final BitSet FOLLOW_access_in_synpred1_Pass205 = new BitSet(new long[]{0x0000000040000010L});
     public static final BitSet FOLLOW_set_in_synpred1_Pass208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_synpred2_Pass232 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_synpred2_Pass234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_synpred3_Pass485 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_synpred3_Pass487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_args_in_synpred4_Pass946 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_synpred4_Pass948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_synpred5_Pass963 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_args_in_synpred5_Pass965 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_synpred5_Pass967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_synpred2_Pass232 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred2_Pass234 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_synpred3_Pass485 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred3_Pass487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_args_in_synpred4_Pass946 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred4_Pass948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_synpred5_Pass963 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_args_in_synpred5_Pass965 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_synpred5_Pass967 = new BitSet(new long[]{0x0000000000000002L});
 
 }

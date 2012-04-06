@@ -1,10 +1,11 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 Pass.g 2012-04-05 20:58:04
+// $ANTLR 3.4 Pass.g 2012-04-05 22:26:44
 
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+@SuppressWarnings({"all", "warnings", "unchecked"})
 public class PassLexer extends Lexer {
     public static final int EOF=-1;
     public static final int T__20=20;
@@ -30,22 +31,22 @@ public class PassLexer extends Lexer {
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__42=42;
-    public static final int DEDENT=4;
-    public static final int INDENT=5;
-    public static final int LT=6;
-    public static final int ID=7;
-    public static final int CMP=8;
-    public static final int BOP=9;
-    public static final int NUMBER=10;
-    public static final int STRING=11;
-    public static final int ARITH_ASSIGN=12;
-    public static final int EXPONENT=13;
-    public static final int COMMENT=14;
-    public static final int WS=15;
-    public static final int ESC_SEQ=16;
-    public static final int HEX_DIGIT=17;
+    public static final int ARITH_ASSIGN=4;
+    public static final int BOP=5;
+    public static final int CMP=6;
+    public static final int COMMENT=7;
+    public static final int DEDENT=8;
+    public static final int ESC_SEQ=9;
+    public static final int EXPONENT=10;
+    public static final int HEX_DIGIT=11;
+    public static final int ID=12;
+    public static final int INDENT=13;
+    public static final int LT=14;
+    public static final int NUMBER=15;
+    public static final int OCTAL_ESC=16;
+    public static final int STRING=17;
     public static final int UNICODE_ESC=18;
-    public static final int OCTAL_ESC=19;
+    public static final int WS=19;
 
       int indentLevel = 0;
       int DENT_SIZE = 2;
@@ -116,14 +117,16 @@ public class PassLexer extends Lexer {
 
     // delegates
     // delegators
+    public Lexer[] getDelegates() {
+        return new Lexer[] {};
+    }
 
-    public PassLexer() {;} 
+    public PassLexer() {} 
     public PassLexer(CharStream input) {
         this(input, new RecognizerSharedState());
     }
     public PassLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
-
     }
     public String getGrammarFileName() { return "Pass.g"; }
 
@@ -131,6 +134,27 @@ public class PassLexer extends Lexer {
     public final void mT__20() throws RecognitionException {
         try {
             int _type = T__20;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:70:7: ( '%' )
+            // Pass.g:70:9: '%'
+            {
+            match('%'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__20"
+
+    // $ANTLR start "T__21"
+    public final void mT__21() throws RecognitionException {
+        try {
+            int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // Pass.g:71:7: ( '(' )
             // Pass.g:71:9: '('
@@ -143,26 +167,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
-        }
-    }
-    // $ANTLR end "T__20"
-
-    // $ANTLR start "T__21"
-    public final void mT__21() throws RecognitionException {
-        try {
-            int _type = T__21;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:72:7: ( ',' )
-            // Pass.g:72:9: ','
-            {
-            match(','); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "T__21"
@@ -172,8 +177,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:73:7: ( ')' )
-            // Pass.g:73:9: ')'
+            // Pass.g:72:7: ( ')' )
+            // Pass.g:72:9: ')'
             {
             match(')'); 
 
@@ -183,6 +188,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "T__22"
@@ -192,110 +198,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:74:7: ( '~' )
-            // Pass.g:74:9: '~'
-            {
-            match('~'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__23"
-
-    // $ANTLR start "T__24"
-    public final void mT__24() throws RecognitionException {
-        try {
-            int _type = T__24;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:75:7: ( 'break' )
-            // Pass.g:75:9: 'break'
-            {
-            match("break"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__24"
-
-    // $ANTLR start "T__25"
-    public final void mT__25() throws RecognitionException {
-        try {
-            int _type = T__25;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:76:7: ( 'return' )
-            // Pass.g:76:9: 'return'
-            {
-            match("return"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__25"
-
-    // $ANTLR start "T__26"
-    public final void mT__26() throws RecognitionException {
-        try {
-            int _type = T__26;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:77:7: ( '+' )
-            // Pass.g:77:9: '+'
-            {
-            match('+'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__26"
-
-    // $ANTLR start "T__27"
-    public final void mT__27() throws RecognitionException {
-        try {
-            int _type = T__27;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:78:7: ( '-' )
-            // Pass.g:78:9: '-'
-            {
-            match('-'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__27"
-
-    // $ANTLR start "T__28"
-    public final void mT__28() throws RecognitionException {
-        try {
-            int _type = T__28;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:79:7: ( '*' )
-            // Pass.g:79:9: '*'
+            // Pass.g:73:7: ( '*' )
+            // Pass.g:73:9: '*'
             {
             match('*'); 
 
@@ -305,19 +209,20 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__28"
+    // $ANTLR end "T__23"
 
-    // $ANTLR start "T__29"
-    public final void mT__29() throws RecognitionException {
+    // $ANTLR start "T__24"
+    public final void mT__24() throws RecognitionException {
         try {
-            int _type = T__29;
+            int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:80:7: ( '/' )
-            // Pass.g:80:9: '/'
+            // Pass.g:74:7: ( '+' )
+            // Pass.g:74:9: '+'
             {
-            match('/'); 
+            match('+'); 
 
             }
 
@@ -325,19 +230,20 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__29"
+    // $ANTLR end "T__24"
 
-    // $ANTLR start "T__30"
-    public final void mT__30() throws RecognitionException {
+    // $ANTLR start "T__25"
+    public final void mT__25() throws RecognitionException {
         try {
-            int _type = T__30;
+            int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:81:7: ( '%' )
-            // Pass.g:81:9: '%'
+            // Pass.g:75:7: ( ',' )
+            // Pass.g:75:9: ','
             {
-            match('%'); 
+            match(','); 
 
             }
 
@@ -345,19 +251,20 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__30"
+    // $ANTLR end "T__25"
 
-    // $ANTLR start "T__31"
-    public final void mT__31() throws RecognitionException {
+    // $ANTLR start "T__26"
+    public final void mT__26() throws RecognitionException {
         try {
-            int _type = T__31;
+            int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:82:7: ( '[' )
-            // Pass.g:82:9: '['
+            // Pass.g:76:7: ( '-' )
+            // Pass.g:76:9: '-'
             {
-            match('['); 
+            match('-'); 
 
             }
 
@@ -365,37 +272,18 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__31"
+    // $ANTLR end "T__26"
 
-    // $ANTLR start "T__32"
-    public final void mT__32() throws RecognitionException {
+    // $ANTLR start "T__27"
+    public final void mT__27() throws RecognitionException {
         try {
-            int _type = T__32;
+            int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:83:7: ( ']' )
-            // Pass.g:83:9: ']'
-            {
-            match(']'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__32"
-
-    // $ANTLR start "T__33"
-    public final void mT__33() throws RecognitionException {
-        try {
-            int _type = T__33;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:84:7: ( '.' )
-            // Pass.g:84:9: '.'
+            // Pass.g:77:7: ( '.' )
+            // Pass.g:77:9: '.'
             {
             match('.'); 
 
@@ -405,20 +293,20 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__33"
+    // $ANTLR end "T__27"
 
-    // $ANTLR start "T__34"
-    public final void mT__34() throws RecognitionException {
+    // $ANTLR start "T__28"
+    public final void mT__28() throws RecognitionException {
         try {
-            int _type = T__34;
+            int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:85:7: ( 'for' )
-            // Pass.g:85:9: 'for'
+            // Pass.g:78:7: ( '/' )
+            // Pass.g:78:9: '/'
             {
-            match("for"); 
-
+            match('/'); 
 
             }
 
@@ -426,161 +314,18 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__34"
+    // $ANTLR end "T__28"
 
-    // $ANTLR start "T__35"
-    public final void mT__35() throws RecognitionException {
+    // $ANTLR start "T__29"
+    public final void mT__29() throws RecognitionException {
         try {
-            int _type = T__35;
+            int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:86:7: ( 'in' )
-            // Pass.g:86:9: 'in'
-            {
-            match("in"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__35"
-
-    // $ANTLR start "T__36"
-    public final void mT__36() throws RecognitionException {
-        try {
-            int _type = T__36;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:87:7: ( 'while' )
-            // Pass.g:87:9: 'while'
-            {
-            match("while"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__36"
-
-    // $ANTLR start "T__37"
-    public final void mT__37() throws RecognitionException {
-        try {
-            int _type = T__37;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:88:7: ( 'if' )
-            // Pass.g:88:9: 'if'
-            {
-            match("if"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__37"
-
-    // $ANTLR start "T__38"
-    public final void mT__38() throws RecognitionException {
-        try {
-            int _type = T__38;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:89:7: ( 'else' )
-            // Pass.g:89:9: 'else'
-            {
-            match("else"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__38"
-
-    // $ANTLR start "T__39"
-    public final void mT__39() throws RecognitionException {
-        try {
-            int _type = T__39;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:90:7: ( '=' )
-            // Pass.g:90:9: '='
-            {
-            match('='); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__39"
-
-    // $ANTLR start "T__40"
-    public final void mT__40() throws RecognitionException {
-        try {
-            int _type = T__40;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:91:7: ( '{' )
-            // Pass.g:91:9: '{'
-            {
-            match('{'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__40"
-
-    // $ANTLR start "T__41"
-    public final void mT__41() throws RecognitionException {
-        try {
-            int _type = T__41;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:92:7: ( '}' )
-            // Pass.g:92:9: '}'
-            {
-            match('}'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__41"
-
-    // $ANTLR start "T__42"
-    public final void mT__42() throws RecognitionException {
-        try {
-            int _type = T__42;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:93:7: ( ':' )
-            // Pass.g:93:9: ':'
+            // Pass.g:79:7: ( ':' )
+            // Pass.g:79:9: ':'
             {
             match(':'); 
 
@@ -590,6 +335,294 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__29"
+
+    // $ANTLR start "T__30"
+    public final void mT__30() throws RecognitionException {
+        try {
+            int _type = T__30;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:80:7: ( '=' )
+            // Pass.g:80:9: '='
+            {
+            match('='); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__30"
+
+    // $ANTLR start "T__31"
+    public final void mT__31() throws RecognitionException {
+        try {
+            int _type = T__31;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:81:7: ( '[' )
+            // Pass.g:81:9: '['
+            {
+            match('['); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__31"
+
+    // $ANTLR start "T__32"
+    public final void mT__32() throws RecognitionException {
+        try {
+            int _type = T__32;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:82:7: ( ']' )
+            // Pass.g:82:9: ']'
+            {
+            match(']'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__32"
+
+    // $ANTLR start "T__33"
+    public final void mT__33() throws RecognitionException {
+        try {
+            int _type = T__33;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:83:7: ( 'break' )
+            // Pass.g:83:9: 'break'
+            {
+            match("break"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__33"
+
+    // $ANTLR start "T__34"
+    public final void mT__34() throws RecognitionException {
+        try {
+            int _type = T__34;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:84:7: ( 'else' )
+            // Pass.g:84:9: 'else'
+            {
+            match("else"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__34"
+
+    // $ANTLR start "T__35"
+    public final void mT__35() throws RecognitionException {
+        try {
+            int _type = T__35;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:85:7: ( 'for' )
+            // Pass.g:85:9: 'for'
+            {
+            match("for"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__35"
+
+    // $ANTLR start "T__36"
+    public final void mT__36() throws RecognitionException {
+        try {
+            int _type = T__36;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:86:7: ( 'if' )
+            // Pass.g:86:9: 'if'
+            {
+            match("if"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__36"
+
+    // $ANTLR start "T__37"
+    public final void mT__37() throws RecognitionException {
+        try {
+            int _type = T__37;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:87:7: ( 'in' )
+            // Pass.g:87:9: 'in'
+            {
+            match("in"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__37"
+
+    // $ANTLR start "T__38"
+    public final void mT__38() throws RecognitionException {
+        try {
+            int _type = T__38;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:88:7: ( 'return' )
+            // Pass.g:88:9: 'return'
+            {
+            match("return"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__38"
+
+    // $ANTLR start "T__39"
+    public final void mT__39() throws RecognitionException {
+        try {
+            int _type = T__39;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:89:7: ( 'while' )
+            // Pass.g:89:9: 'while'
+            {
+            match("while"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__39"
+
+    // $ANTLR start "T__40"
+    public final void mT__40() throws RecognitionException {
+        try {
+            int _type = T__40;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:90:7: ( '{' )
+            // Pass.g:90:9: '{'
+            {
+            match('{'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__40"
+
+    // $ANTLR start "T__41"
+    public final void mT__41() throws RecognitionException {
+        try {
+            int _type = T__41;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:91:7: ( '}' )
+            // Pass.g:91:9: '}'
+            {
+            match('}'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__41"
+
+    // $ANTLR start "T__42"
+    public final void mT__42() throws RecognitionException {
+        try {
+            int _type = T__42;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:92:7: ( '~' )
+            // Pass.g:92:9: '~'
+            {
+            match('~'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "T__42"
@@ -605,6 +638,7 @@ public class PassLexer extends Lexer {
             if ( !((getCharPositionInLine()==0)) ) {
                 throw new FailedPredicateException(input, "INDENT", "getCharPositionInLine()==0");
             }
+
             // Pass.g:201:9: ( ' ' )+
             int cnt1=0;
             loop1:
@@ -636,6 +670,7 @@ public class PassLexer extends Lexer {
             } while (true);
 
 
+
                       reindent(getText().length());
                       skip();
                     
@@ -646,6 +681,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "INDENT"
@@ -659,21 +695,18 @@ public class PassLexer extends Lexer {
             // Pass.g:209:9: '\\n' (~ ' ' )
             {
             match('\n'); 
-            getCharStream().mark();
-            // Pass.g:211:9: (~ ' ' )
-            // Pass.g:211:10: ~ ' '
-            {
-            if ( (input.LA(1)>='\u0000' && input.LA(1)<='\u001F')||(input.LA(1)>='!' && input.LA(1)<='\uFFFF') ) {
-                input.consume();
 
+            getCharStream().mark();
+
+            if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\u001F')||(input.LA(1) >= '!' && input.LA(1) <= '\uFFFF') ) {
+                input.consume();
             }
             else {
                 MismatchedSetException mse = new MismatchedSetException(null,input);
                 recover(mse);
-                throw mse;}
-
-
+                throw mse;
             }
+
 
              
                       emit(new CommonToken(LT, "\n"));
@@ -687,6 +720,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "DEDENT"
@@ -729,6 +763,7 @@ public class PassLexer extends Lexer {
                     new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
+
             }
 
             switch (alt2) {
@@ -736,6 +771,7 @@ public class PassLexer extends Lexer {
                     // Pass.g:220:9: '+='
                     {
                     match("+="); 
+
 
 
                     }
@@ -746,12 +782,14 @@ public class PassLexer extends Lexer {
                     match("-="); 
 
 
+
                     }
                     break;
                 case 3 :
                     // Pass.g:220:19: '*='
                     {
                     match("*="); 
+
 
 
                     }
@@ -762,12 +800,14 @@ public class PassLexer extends Lexer {
                     match("/="); 
 
 
+
                     }
                     break;
                 case 5 :
                     // Pass.g:220:29: '%='
                     {
                     match("%="); 
+
 
 
                     }
@@ -778,6 +818,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "ARITH_ASSIGN"
@@ -789,7 +830,56 @@ public class PassLexer extends Lexer {
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // Pass.g:224:5: ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' )
             int alt3=7;
-            alt3 = dfa3.predict(input);
+            switch ( input.LA(1) ) {
+            case '<':
+                {
+                switch ( input.LA(2) ) {
+                case '=':
+                    {
+                    alt3=5;
+                    }
+                    break;
+                case '>':
+                    {
+                    alt3=6;
+                    }
+                    break;
+                default:
+                    alt3=1;
+                }
+
+                }
+                break;
+            case '>':
+                {
+                int LA3_2 = input.LA(2);
+
+                if ( (LA3_2=='=') ) {
+                    alt3=4;
+                }
+                else {
+                    alt3=2;
+                }
+                }
+                break;
+            case '=':
+                {
+                alt3=3;
+                }
+                break;
+            case '!':
+                {
+                alt3=7;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 3, 0, input);
+
+                throw nvae;
+
+            }
+
             switch (alt3) {
                 case 1 :
                     // Pass.g:224:9: '<'
@@ -811,12 +901,14 @@ public class PassLexer extends Lexer {
                     match("=="); 
 
 
+
                     }
                     break;
                 case 4 :
                     // Pass.g:224:22: '>='
                     {
                     match(">="); 
+
 
 
                     }
@@ -827,12 +919,14 @@ public class PassLexer extends Lexer {
                     match("<="); 
 
 
+
                     }
                     break;
                 case 6 :
                     // Pass.g:224:32: '<>'
                     {
                     match("<>"); 
+
 
 
                     }
@@ -843,6 +937,7 @@ public class PassLexer extends Lexer {
                     match("!="); 
 
 
+
                     }
                     break;
 
@@ -851,6 +946,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "CMP"
@@ -875,12 +971,14 @@ public class PassLexer extends Lexer {
                     new NoViableAltException("", 4, 0, input);
 
                 throw nvae;
+
             }
             switch (alt4) {
                 case 1 :
                     // Pass.g:228:9: '||'
                     {
                     match("||"); 
+
 
 
                     }
@@ -891,6 +989,7 @@ public class PassLexer extends Lexer {
                     match("&&"); 
 
 
+
                     }
                     break;
 
@@ -899,6 +998,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "BOP"
@@ -911,14 +1011,15 @@ public class PassLexer extends Lexer {
             // Pass.g:231:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
             // Pass.g:231:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
-            if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
-
             }
             else {
                 MismatchedSetException mse = new MismatchedSetException(null,input);
                 recover(mse);
-                throw mse;}
+                throw mse;
+            }
+
 
             // Pass.g:231:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop5:
@@ -926,7 +1027,7 @@ public class PassLexer extends Lexer {
                 int alt5=2;
                 int LA5_0 = input.LA(1);
 
-                if ( ((LA5_0>='0' && LA5_0<='9')||(LA5_0>='A' && LA5_0<='Z')||LA5_0=='_'||(LA5_0>='a' && LA5_0<='z')) ) {
+                if ( ((LA5_0 >= '0' && LA5_0 <= '9')||(LA5_0 >= 'A' && LA5_0 <= 'Z')||LA5_0=='_'||(LA5_0 >= 'a' && LA5_0 <= 'z')) ) {
                     alt5=1;
                 }
 
@@ -935,14 +1036,14 @@ public class PassLexer extends Lexer {
             	case 1 :
             	    // Pass.g:
             	    {
-            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
             	        input.consume();
-
             	    }
             	    else {
             	        MismatchedSetException mse = new MismatchedSetException(null,input);
             	        recover(mse);
-            	        throw mse;}
+            	        throw mse;
+            	    }
 
 
             	    }
@@ -960,6 +1061,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "ID"
@@ -994,6 +1096,7 @@ public class PassLexer extends Lexer {
 
                     }
 
+
                     // Pass.g:235:13: ( '0' .. '9' )+
                     int cnt7=0;
                     loop7:
@@ -1001,16 +1104,24 @@ public class PassLexer extends Lexer {
                         int alt7=2;
                         int LA7_0 = input.LA(1);
 
-                        if ( ((LA7_0>='0' && LA7_0<='9')) ) {
+                        if ( ((LA7_0 >= '0' && LA7_0 <= '9')) ) {
                             alt7=1;
                         }
 
 
                         switch (alt7) {
                     	case 1 :
-                    	    // Pass.g:235:14: '0' .. '9'
+                    	    // Pass.g:
                     	    {
-                    	    matchRange('0','9'); 
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
 
                     	    }
                     	    break;
@@ -1048,6 +1159,7 @@ public class PassLexer extends Lexer {
 
                     }
 
+
                     // Pass.g:236:13: ( '0' .. '9' )+
                     int cnt9=0;
                     loop9:
@@ -1055,16 +1167,24 @@ public class PassLexer extends Lexer {
                         int alt9=2;
                         int LA9_0 = input.LA(1);
 
-                        if ( ((LA9_0>='0' && LA9_0<='9')) ) {
+                        if ( ((LA9_0 >= '0' && LA9_0 <= '9')) ) {
                             alt9=1;
                         }
 
 
                         switch (alt9) {
                     	case 1 :
-                    	    // Pass.g:236:14: '0' .. '9'
+                    	    // Pass.g:
                     	    {
-                    	    matchRange('0','9'); 
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
 
                     	    }
                     	    break;
@@ -1078,23 +1198,33 @@ public class PassLexer extends Lexer {
                         cnt9++;
                     } while (true);
 
+
                     match('.'); 
+
                     // Pass.g:236:29: ( '0' .. '9' )*
                     loop10:
                     do {
                         int alt10=2;
                         int LA10_0 = input.LA(1);
 
-                        if ( ((LA10_0>='0' && LA10_0<='9')) ) {
+                        if ( ((LA10_0 >= '0' && LA10_0 <= '9')) ) {
                             alt10=1;
                         }
 
 
                         switch (alt10) {
                     	case 1 :
-                    	    // Pass.g:236:30: '0' .. '9'
+                    	    // Pass.g:
                     	    {
-                    	    matchRange('0','9'); 
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
 
                     	    }
                     	    break;
@@ -1103,6 +1233,7 @@ public class PassLexer extends Lexer {
                     	    break loop10;
                         }
                     } while (true);
+
 
                     // Pass.g:236:41: ( EXPONENT )?
                     int alt11=2;
@@ -1116,6 +1247,7 @@ public class PassLexer extends Lexer {
                             // Pass.g:236:41: EXPONENT
                             {
                             mEXPONENT(); 
+
 
                             }
                             break;
@@ -1146,7 +1278,9 @@ public class PassLexer extends Lexer {
 
                     }
 
+
                     match('.'); 
+
                     // Pass.g:237:17: ( '0' .. '9' )+
                     int cnt13=0;
                     loop13:
@@ -1154,16 +1288,24 @@ public class PassLexer extends Lexer {
                         int alt13=2;
                         int LA13_0 = input.LA(1);
 
-                        if ( ((LA13_0>='0' && LA13_0<='9')) ) {
+                        if ( ((LA13_0 >= '0' && LA13_0 <= '9')) ) {
                             alt13=1;
                         }
 
 
                         switch (alt13) {
                     	case 1 :
-                    	    // Pass.g:237:18: '0' .. '9'
+                    	    // Pass.g:
                     	    {
-                    	    matchRange('0','9'); 
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
 
                     	    }
                     	    break;
@@ -1177,6 +1319,7 @@ public class PassLexer extends Lexer {
                         cnt13++;
                     } while (true);
 
+
                     // Pass.g:237:29: ( EXPONENT )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
@@ -1189,6 +1332,7 @@ public class PassLexer extends Lexer {
                             // Pass.g:237:29: EXPONENT
                             {
                             mEXPONENT(); 
+
 
                             }
                             break;
@@ -1219,6 +1363,7 @@ public class PassLexer extends Lexer {
 
                     }
 
+
                     // Pass.g:238:13: ( '0' .. '9' )+
                     int cnt16=0;
                     loop16:
@@ -1226,16 +1371,24 @@ public class PassLexer extends Lexer {
                         int alt16=2;
                         int LA16_0 = input.LA(1);
 
-                        if ( ((LA16_0>='0' && LA16_0<='9')) ) {
+                        if ( ((LA16_0 >= '0' && LA16_0 <= '9')) ) {
                             alt16=1;
                         }
 
 
                         switch (alt16) {
                     	case 1 :
-                    	    // Pass.g:238:14: '0' .. '9'
+                    	    // Pass.g:
                     	    {
-                    	    matchRange('0','9'); 
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
 
                     	    }
                     	    break;
@@ -1249,7 +1402,9 @@ public class PassLexer extends Lexer {
                         cnt16++;
                     } while (true);
 
+
                     mEXPONENT(); 
+
 
                     }
                     break;
@@ -1259,6 +1414,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "NUMBER"
@@ -1286,6 +1442,7 @@ public class PassLexer extends Lexer {
                         new NoViableAltException("", 21, 1, input);
 
                     throw nvae;
+
                 }
             }
             else {
@@ -1293,6 +1450,7 @@ public class PassLexer extends Lexer {
                     new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
+
             }
             switch (alt21) {
                 case 1 :
@@ -1300,29 +1458,31 @@ public class PassLexer extends Lexer {
                     {
                     match("//"); 
 
+
+
                     // Pass.g:242:14: (~ ( '\\n' | '\\r' ) )*
                     loop18:
                     do {
                         int alt18=2;
                         int LA18_0 = input.LA(1);
 
-                        if ( ((LA18_0>='\u0000' && LA18_0<='\t')||(LA18_0>='\u000B' && LA18_0<='\f')||(LA18_0>='\u000E' && LA18_0<='\uFFFF')) ) {
+                        if ( ((LA18_0 >= '\u0000' && LA18_0 <= '\t')||(LA18_0 >= '\u000B' && LA18_0 <= '\f')||(LA18_0 >= '\u000E' && LA18_0 <= '\uFFFF')) ) {
                             alt18=1;
                         }
 
 
                         switch (alt18) {
                     	case 1 :
-                    	    // Pass.g:242:14: ~ ( '\\n' | '\\r' )
+                    	    // Pass.g:
                     	    {
-                    	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
+                    	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
                     	        input.consume();
-
                     	    }
                     	    else {
                     	        MismatchedSetException mse = new MismatchedSetException(null,input);
                     	        recover(mse);
-                    	        throw mse;}
+                    	        throw mse;
+                    	    }
 
 
                     	    }
@@ -1332,6 +1492,7 @@ public class PassLexer extends Lexer {
                     	    break loop18;
                         }
                     } while (true);
+
 
                     // Pass.g:242:28: ( '\\r' )?
                     int alt19=2;
@@ -1351,7 +1512,9 @@ public class PassLexer extends Lexer {
 
                     }
 
+
                     match('\n'); 
+
                     _channel=HIDDEN;
 
                     }
@@ -1360,6 +1523,8 @@ public class PassLexer extends Lexer {
                     // Pass.g:243:9: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
+
+
 
                     // Pass.g:243:14: ( options {greedy=false; } : . )*
                     loop20:
@@ -1373,13 +1538,13 @@ public class PassLexer extends Lexer {
                             if ( (LA20_1=='/') ) {
                                 alt20=2;
                             }
-                            else if ( ((LA20_1>='\u0000' && LA20_1<='.')||(LA20_1>='0' && LA20_1<='\uFFFF')) ) {
+                            else if ( ((LA20_1 >= '\u0000' && LA20_1 <= '.')||(LA20_1 >= '0' && LA20_1 <= '\uFFFF')) ) {
                                 alt20=1;
                             }
 
 
                         }
-                        else if ( ((LA20_0>='\u0000' && LA20_0<=')')||(LA20_0>='+' && LA20_0<='\uFFFF')) ) {
+                        else if ( ((LA20_0 >= '\u0000' && LA20_0 <= ')')||(LA20_0 >= '+' && LA20_0 <= '\uFFFF')) ) {
                             alt20=1;
                         }
 
@@ -1398,7 +1563,10 @@ public class PassLexer extends Lexer {
                         }
                     } while (true);
 
+
                     match("*/"); 
+
+
 
                     _channel=HIDDEN;
 
@@ -1410,6 +1578,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "COMMENT"
@@ -1451,6 +1620,7 @@ public class PassLexer extends Lexer {
             	    match("\r\n"); 
 
 
+
             	    }
             	    break;
 
@@ -1470,6 +1640,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "LT"
@@ -1484,12 +1655,13 @@ public class PassLexer extends Lexer {
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
-
             }
             else {
                 MismatchedSetException mse = new MismatchedSetException(null,input);
                 recover(mse);
-                throw mse;}
+                throw mse;
+            }
+
 
             _channel=HIDDEN;
 
@@ -1499,6 +1671,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "WS"
@@ -1508,11 +1681,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:257:5: ( '\"' ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )* '\"' )
-            // Pass.g:257:8: '\"' ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )* '\"'
+            // Pass.g:257:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+            // Pass.g:257:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
-            // Pass.g:257:12: ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )*
+
+            // Pass.g:257:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
             loop23:
             do {
                 int alt23=3;
@@ -1521,7 +1695,7 @@ public class PassLexer extends Lexer {
                 if ( (LA23_0=='\\') ) {
                     alt23=1;
                 }
-                else if ( ((LA23_0>='\u0000' && LA23_0<='!')||(LA23_0>='#' && LA23_0<='[')||(LA23_0>=']' && LA23_0<='\uFFFF')) ) {
+                else if ( ((LA23_0 >= '\u0000' && LA23_0 <= '!')||(LA23_0 >= '#' && LA23_0 <= '[')||(LA23_0 >= ']' && LA23_0 <= '\uFFFF')) ) {
                     alt23=2;
                 }
 
@@ -1532,19 +1706,20 @@ public class PassLexer extends Lexer {
             	    {
             	    mESC_SEQ(); 
 
+
             	    }
             	    break;
             	case 2 :
             	    // Pass.g:257:24: ~ ( '\\\\' | '\"' )
             	    {
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
+            	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
-
             	    }
             	    else {
             	        MismatchedSetException mse = new MismatchedSetException(null,input);
             	        recover(mse);
-            	        throw mse;}
+            	        throw mse;
+            	    }
 
 
             	    }
@@ -1555,6 +1730,7 @@ public class PassLexer extends Lexer {
                 }
             } while (true);
 
+
             match('\"'); 
 
             }
@@ -1563,6 +1739,7 @@ public class PassLexer extends Lexer {
             state.channel = _channel;
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "STRING"
@@ -1570,19 +1747,20 @@ public class PassLexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // Pass.g:262:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // Pass.g:262:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // Pass.g:263:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // Pass.g:263:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
-
             }
             else {
                 MismatchedSetException mse = new MismatchedSetException(null,input);
                 recover(mse);
-                throw mse;}
+                throw mse;
+            }
 
-            // Pass.g:262:19: ( '+' | '-' )?
+
+            // Pass.g:263:19: ( '+' | '-' )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -1595,12 +1773,12 @@ public class PassLexer extends Lexer {
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
-
                     }
                     else {
                         MismatchedSetException mse = new MismatchedSetException(null,input);
                         recover(mse);
-                        throw mse;}
+                        throw mse;
+                    }
 
 
                     }
@@ -1608,23 +1786,32 @@ public class PassLexer extends Lexer {
 
             }
 
-            // Pass.g:262:30: ( '0' .. '9' )+
+
+            // Pass.g:263:30: ( '0' .. '9' )+
             int cnt25=0;
             loop25:
             do {
                 int alt25=2;
                 int LA25_0 = input.LA(1);
 
-                if ( ((LA25_0>='0' && LA25_0<='9')) ) {
+                if ( ((LA25_0 >= '0' && LA25_0 <= '9')) ) {
                     alt25=1;
                 }
 
 
                 switch (alt25) {
             	case 1 :
-            	    // Pass.g:262:31: '0' .. '9'
+            	    // Pass.g:
             	    {
-            	    matchRange('0','9'); 
+            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+            	        input.consume();
+            	    }
+            	    else {
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;
+            	    }
+
 
             	    }
             	    break;
@@ -1641,8 +1828,10 @@ public class PassLexer extends Lexer {
 
             }
 
+
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "EXPONENT"
@@ -1650,23 +1839,25 @@ public class PassLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // Pass.g:267:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // Pass.g:267:9: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // Pass.g:268:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // Pass.g:
             {
-            if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
+            if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
                 input.consume();
-
             }
             else {
                 MismatchedSetException mse = new MismatchedSetException(null,input);
                 recover(mse);
-                throw mse;}
+                throw mse;
+            }
 
 
             }
 
+
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "HEX_DIGIT"
@@ -1674,7 +1865,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // Pass.g:272:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // Pass.g:273:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt26=3;
             int LA26_0 = input.LA(1);
 
@@ -1714,6 +1905,7 @@ public class PassLexer extends Lexer {
                         new NoViableAltException("", 26, 1, input);
 
                     throw nvae;
+
                 }
 
             }
@@ -1722,42 +1914,48 @@ public class PassLexer extends Lexer {
                     new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
+
             }
             switch (alt26) {
                 case 1 :
-                    // Pass.g:272:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // Pass.g:273:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
+
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
                         input.consume();
-
                     }
                     else {
                         MismatchedSetException mse = new MismatchedSetException(null,input);
                         recover(mse);
-                        throw mse;}
+                        throw mse;
+                    }
 
 
                     }
                     break;
                 case 2 :
-                    // Pass.g:273:9: UNICODE_ESC
+                    // Pass.g:274:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
+
 
                     }
                     break;
                 case 3 :
-                    // Pass.g:274:9: OCTAL_ESC
+                    // Pass.g:275:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
+
 
                     }
                     break;
 
             }
+
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "ESC_SEQ"
@@ -1765,42 +1963,46 @@ public class PassLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // Pass.g:279:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // Pass.g:280:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt27=3;
             int LA27_0 = input.LA(1);
 
             if ( (LA27_0=='\\') ) {
                 int LA27_1 = input.LA(2);
 
-                if ( ((LA27_1>='0' && LA27_1<='3')) ) {
+                if ( ((LA27_1 >= '0' && LA27_1 <= '3')) ) {
                     int LA27_2 = input.LA(3);
 
-                    if ( ((LA27_2>='0' && LA27_2<='7')) ) {
+                    if ( ((LA27_2 >= '0' && LA27_2 <= '7')) ) {
                         int LA27_4 = input.LA(4);
 
-                        if ( ((LA27_4>='0' && LA27_4<='7')) ) {
+                        if ( ((LA27_4 >= '0' && LA27_4 <= '7')) ) {
                             alt27=1;
                         }
                         else {
-                            alt27=2;}
+                            alt27=2;
+                        }
                     }
                     else {
-                        alt27=3;}
+                        alt27=3;
+                    }
                 }
-                else if ( ((LA27_1>='4' && LA27_1<='7')) ) {
+                else if ( ((LA27_1 >= '4' && LA27_1 <= '7')) ) {
                     int LA27_3 = input.LA(3);
 
-                    if ( ((LA27_3>='0' && LA27_3<='7')) ) {
+                    if ( ((LA27_3 >= '0' && LA27_3 <= '7')) ) {
                         alt27=2;
                     }
                     else {
-                        alt27=3;}
+                        alt27=3;
+                    }
                 }
                 else {
                     NoViableAltException nvae =
                         new NoViableAltException("", 27, 1, input);
 
                     throw nvae;
+
                 }
             }
             else {
@@ -1808,66 +2010,85 @@ public class PassLexer extends Lexer {
                     new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
+
             }
             switch (alt27) {
                 case 1 :
-                    // Pass.g:279:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // Pass.g:280:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // Pass.g:279:14: ( '0' .. '3' )
-                    // Pass.g:279:15: '0' .. '3'
-                    {
-                    matchRange('0','3'); 
 
+                    if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
                     }
 
-                    // Pass.g:279:25: ( '0' .. '7' )
-                    // Pass.g:279:26: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
 
+                    if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
                     }
 
-                    // Pass.g:279:36: ( '0' .. '7' )
-                    // Pass.g:279:37: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
 
+                    if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
                     }
 
 
                     }
                     break;
                 case 2 :
-                    // Pass.g:280:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // Pass.g:281:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // Pass.g:280:14: ( '0' .. '7' )
-                    // Pass.g:280:15: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
 
+                    if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
                     }
 
-                    // Pass.g:280:25: ( '0' .. '7' )
-                    // Pass.g:280:26: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
 
+                    if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
                     }
 
 
                     }
                     break;
                 case 3 :
-                    // Pass.g:281:9: '\\\\' ( '0' .. '7' )
+                    // Pass.g:282:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // Pass.g:281:14: ( '0' .. '7' )
-                    // Pass.g:281:15: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
 
+                    if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
                     }
 
 
@@ -1875,8 +2096,10 @@ public class PassLexer extends Lexer {
                     break;
 
             }
+
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "OCTAL_ESC"
@@ -1884,20 +2107,31 @@ public class PassLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // Pass.g:286:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // Pass.g:286:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // Pass.g:287:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // Pass.g:287:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
+
             match('u'); 
+
             mHEX_DIGIT(); 
+
+
             mHEX_DIGIT(); 
+
+
             mHEX_DIGIT(); 
+
+
             mHEX_DIGIT(); 
+
 
             }
 
+
         }
         finally {
+        	// do for sure before leaving
         }
     }
     // $ANTLR end "UNICODE_ESC"
@@ -1912,12 +2146,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__20(); 
 
+
                 }
                 break;
             case 2 :
                 // Pass.g:1:16: T__21
                 {
                 mT__21(); 
+
 
                 }
                 break;
@@ -1926,12 +2162,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__22(); 
 
+
                 }
                 break;
             case 4 :
                 // Pass.g:1:28: T__23
                 {
                 mT__23(); 
+
 
                 }
                 break;
@@ -1940,12 +2178,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__24(); 
 
+
                 }
                 break;
             case 6 :
                 // Pass.g:1:40: T__25
                 {
                 mT__25(); 
+
 
                 }
                 break;
@@ -1954,12 +2194,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__26(); 
 
+
                 }
                 break;
             case 8 :
                 // Pass.g:1:52: T__27
                 {
                 mT__27(); 
+
 
                 }
                 break;
@@ -1968,12 +2210,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__28(); 
 
+
                 }
                 break;
             case 10 :
                 // Pass.g:1:64: T__29
                 {
                 mT__29(); 
+
 
                 }
                 break;
@@ -1982,12 +2226,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__30(); 
 
+
                 }
                 break;
             case 12 :
                 // Pass.g:1:76: T__31
                 {
                 mT__31(); 
+
 
                 }
                 break;
@@ -1996,12 +2242,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__32(); 
 
+
                 }
                 break;
             case 14 :
                 // Pass.g:1:88: T__33
                 {
                 mT__33(); 
+
 
                 }
                 break;
@@ -2010,12 +2258,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__34(); 
 
+
                 }
                 break;
             case 16 :
                 // Pass.g:1:100: T__35
                 {
                 mT__35(); 
+
 
                 }
                 break;
@@ -2024,12 +2274,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__36(); 
 
+
                 }
                 break;
             case 18 :
                 // Pass.g:1:112: T__37
                 {
                 mT__37(); 
+
 
                 }
                 break;
@@ -2038,12 +2290,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__38(); 
 
+
                 }
                 break;
             case 20 :
                 // Pass.g:1:124: T__39
                 {
                 mT__39(); 
+
 
                 }
                 break;
@@ -2052,12 +2306,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__40(); 
 
+
                 }
                 break;
             case 22 :
                 // Pass.g:1:136: T__41
                 {
                 mT__41(); 
+
 
                 }
                 break;
@@ -2066,12 +2322,14 @@ public class PassLexer extends Lexer {
                 {
                 mT__42(); 
 
+
                 }
                 break;
             case 24 :
                 // Pass.g:1:148: INDENT
                 {
                 mINDENT(); 
+
 
                 }
                 break;
@@ -2080,12 +2338,14 @@ public class PassLexer extends Lexer {
                 {
                 mDEDENT(); 
 
+
                 }
                 break;
             case 26 :
                 // Pass.g:1:162: ARITH_ASSIGN
                 {
                 mARITH_ASSIGN(); 
+
 
                 }
                 break;
@@ -2094,12 +2354,14 @@ public class PassLexer extends Lexer {
                 {
                 mCMP(); 
 
+
                 }
                 break;
             case 28 :
                 // Pass.g:1:179: BOP
                 {
                 mBOP(); 
+
 
                 }
                 break;
@@ -2108,12 +2370,14 @@ public class PassLexer extends Lexer {
                 {
                 mID(); 
 
+
                 }
                 break;
             case 30 :
                 // Pass.g:1:186: NUMBER
                 {
                 mNUMBER(); 
+
 
                 }
                 break;
@@ -2122,12 +2386,14 @@ public class PassLexer extends Lexer {
                 {
                 mCOMMENT(); 
 
+
                 }
                 break;
             case 32 :
                 // Pass.g:1:201: LT
                 {
                 mLT(); 
+
 
                 }
                 break;
@@ -2136,6 +2402,7 @@ public class PassLexer extends Lexer {
                 {
                 mWS(); 
 
+
                 }
                 break;
             case 34 :
@@ -2143,6 +2410,7 @@ public class PassLexer extends Lexer {
                 {
                 mSTRING(); 
 
+
                 }
                 break;
 
@@ -2151,67 +2419,8 @@ public class PassLexer extends Lexer {
     }
 
 
-    protected DFA3 dfa3 = new DFA3(this);
     protected DFA17 dfa17 = new DFA17(this);
     protected DFA28 dfa28 = new DFA28(this);
-    static final String DFA3_eotS =
-        "\1\uffff\1\7\1\11\7\uffff";
-    static final String DFA3_eofS =
-        "\12\uffff";
-    static final String DFA3_minS =
-        "\1\41\2\75\7\uffff";
-    static final String DFA3_maxS =
-        "\2\76\1\75\7\uffff";
-    static final String DFA3_acceptS =
-        "\3\uffff\1\3\1\7\1\5\1\6\1\1\1\4\1\2";
-    static final String DFA3_specialS =
-        "\12\uffff}>";
-    static final String[] DFA3_transitionS = {
-            "\1\4\32\uffff\1\1\1\3\1\2",
-            "\1\5\1\6",
-            "\1\10",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] DFA3_eot = DFA.unpackEncodedString(DFA3_eotS);
-    static final short[] DFA3_eof = DFA.unpackEncodedString(DFA3_eofS);
-    static final char[] DFA3_min = DFA.unpackEncodedStringToUnsignedChars(DFA3_minS);
-    static final char[] DFA3_max = DFA.unpackEncodedStringToUnsignedChars(DFA3_maxS);
-    static final short[] DFA3_accept = DFA.unpackEncodedString(DFA3_acceptS);
-    static final short[] DFA3_special = DFA.unpackEncodedString(DFA3_specialS);
-    static final short[][] DFA3_transition;
-
-    static {
-        int numStates = DFA3_transitionS.length;
-        DFA3_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA3_transition[i] = DFA.unpackEncodedString(DFA3_transitionS[i]);
-        }
-    }
-
-    class DFA3 extends DFA {
-
-        public DFA3(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 3;
-            this.eot = DFA3_eot;
-            this.eof = DFA3_eof;
-            this.min = DFA3_min;
-            this.max = DFA3_max;
-            this.accept = DFA3_accept;
-            this.special = DFA3_special;
-            this.transition = DFA3_transition;
-        }
-        public String getDescription() {
-            return "224:1: CMP : ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' );";
-        }
-    }
     static final String DFA17_eotS =
         "\2\uffff\1\4\4\uffff";
     static final String DFA17_eofS =
@@ -2268,57 +2477,60 @@ public class PassLexer extends Lexer {
         }
     }
     static final String DFA28_eotS =
-        "\5\uffff\2\33\1\43\1\44\1\45\1\47\1\50\2\uffff\1\51\4\33\1\57\3"+
-        "\uffff\1\60\1\63\4\uffff\1\36\2\uffff\2\33\10\uffff\1\33\1\71\1"+
-        "\72\2\33\3\uffff\1\65\1\uffff\1\65\1\uffff\2\33\1\77\2\uffff\4\33"+
-        "\1\uffff\1\33\1\105\1\106\1\33\1\110\2\uffff\1\111\2\uffff";
+        "\1\uffff\1\41\2\uffff\1\42\1\43\1\uffff\1\44\1\45\1\47\1\uffff\1"+
+        "\50\2\uffff\6\33\3\uffff\1\60\1\63\4\uffff\1\36\13\uffff\3\33\1"+
+        "\71\1\72\2\33\2\uffff\1\65\1\uffff\1\65\1\uffff\2\33\1\77\2\uffff"+
+        "\3\33\1\103\1\uffff\2\33\1\106\1\uffff\1\33\1\110\1\uffff\1\111"+
+        "\2\uffff";
     static final String DFA28_eofS =
         "\112\uffff";
     static final String DFA28_minS =
-        "\1\11\4\uffff\1\162\1\145\1\75\1\56\1\75\1\52\1\75\2\uffff\1\60"+
-        "\1\157\1\146\1\150\1\154\1\75\3\uffff\1\40\1\0\4\uffff\1\12\2\uffff"+
-        "\1\145\1\164\10\uffff\1\162\2\60\1\151\1\163\1\uffff\1\0\1\uffff"+
-        "\1\12\1\uffff\1\12\1\uffff\1\141\1\165\1\60\2\uffff\1\154\1\145"+
-        "\1\153\1\162\1\uffff\1\145\2\60\1\156\1\60\2\uffff\1\60\2\uffff";
+        "\1\11\1\75\2\uffff\2\75\1\uffff\1\56\1\60\1\52\1\uffff\1\75\2\uffff"+
+        "\1\162\1\154\1\157\1\146\1\145\1\150\3\uffff\1\40\1\0\4\uffff\1"+
+        "\12\13\uffff\1\145\1\163\1\162\2\60\1\164\1\151\1\0\1\uffff\1\12"+
+        "\1\uffff\1\12\1\uffff\1\141\1\145\1\60\2\uffff\1\165\1\154\1\153"+
+        "\1\60\1\uffff\1\162\1\145\1\60\1\uffff\1\156\1\60\1\uffff\1\60\2"+
+        "\uffff";
     static final String DFA28_maxS =
-        "\1\176\4\uffff\1\162\1\145\5\75\2\uffff\1\71\1\157\1\156\1\150\1"+
-        "\154\1\75\3\uffff\1\40\1\uffff\4\uffff\1\12\2\uffff\1\145\1\164"+
-        "\10\uffff\1\162\2\172\1\151\1\163\1\uffff\1\0\1\uffff\1\15\1\uffff"+
-        "\1\12\1\uffff\1\141\1\165\1\172\2\uffff\1\154\1\145\1\153\1\162"+
-        "\1\uffff\1\145\2\172\1\156\1\172\2\uffff\1\172\2\uffff";
+        "\1\176\1\75\2\uffff\2\75\1\uffff\1\75\1\71\1\75\1\uffff\1\75\2\uffff"+
+        "\1\162\1\154\1\157\1\156\1\145\1\150\3\uffff\1\40\1\uffff\4\uffff"+
+        "\1\12\13\uffff\1\145\1\163\1\162\2\172\1\164\1\151\1\0\1\uffff\1"+
+        "\15\1\uffff\1\12\1\uffff\1\141\1\145\1\172\2\uffff\1\165\1\154\1"+
+        "\153\1\172\1\uffff\1\162\1\145\1\172\1\uffff\1\156\1\172\1\uffff"+
+        "\1\172\2\uffff";
     static final String DFA28_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\7\uffff\1\14\1\15\6\uffff\1\25\1\26\1\27"+
-        "\2\uffff\1\33\1\34\1\35\1\36\1\uffff\1\41\1\42\2\uffff\1\32\1\7"+
-        "\1\10\1\11\1\37\1\12\1\13\1\16\5\uffff\1\24\1\uffff\1\30\1\uffff"+
-        "\1\40\1\uffff\1\31\3\uffff\1\20\1\22\4\uffff\1\17\5\uffff\1\23\1"+
-        "\5\1\uffff\1\21\1\6";
+        "\2\uffff\1\2\1\3\2\uffff\1\6\3\uffff\1\12\1\uffff\1\14\1\15\6\uffff"+
+        "\1\25\1\26\1\27\2\uffff\1\33\1\34\1\35\1\36\1\uffff\1\41\1\42\1"+
+        "\32\1\1\1\4\1\5\1\7\1\10\1\37\1\11\1\13\10\uffff\1\30\1\uffff\1"+
+        "\40\1\uffff\1\31\3\uffff\1\21\1\22\4\uffff\1\20\3\uffff\1\17\2\uffff"+
+        "\1\16\1\uffff\1\24\1\23";
     static final String DFA28_specialS =
-        "\27\uffff\1\0\1\2\27\uffff\1\1\31\uffff}>";
+        "\27\uffff\1\1\1\2\27\uffff\1\0\31\uffff}>";
     static final String[] DFA28_transitionS = {
-            "\1\36\1\30\2\uffff\1\35\22\uffff\1\27\1\31\1\37\2\uffff\1\13"+
-            "\1\32\1\uffff\1\1\1\3\1\11\1\7\1\2\1\10\1\16\1\12\12\34\1\26"+
-            "\1\uffff\1\31\1\23\1\31\2\uffff\32\33\1\14\1\uffff\1\15\1\uffff"+
-            "\1\33\1\uffff\1\33\1\5\2\33\1\22\1\17\2\33\1\20\10\33\1\6\4"+
-            "\33\1\21\3\33\1\24\1\32\1\25\1\4",
-            "",
-            "",
+            "\1\36\1\30\2\uffff\1\35\22\uffff\1\27\1\31\1\37\2\uffff\1\1"+
+            "\1\32\1\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\12\34\1\12\1"+
+            "\uffff\1\31\1\13\1\31\2\uffff\32\33\1\14\1\uffff\1\15\1\uffff"+
+            "\1\33\1\uffff\1\33\1\16\2\33\1\17\1\20\2\33\1\21\10\33\1\22"+
+            "\4\33\1\23\3\33\1\24\1\32\1\25\1\26",
+            "\1\40",
             "",
             "",
             "\1\40",
-            "\1\41",
-            "\1\42",
-            "\1\34\1\uffff\12\34\3\uffff\1\42",
-            "\1\42",
-            "\1\46\4\uffff\1\46\15\uffff\1\42",
-            "\1\42",
+            "\1\40",
             "",
-            "",
+            "\1\34\1\uffff\12\34\3\uffff\1\40",
             "\12\34",
-            "\1\52",
-            "\1\54\7\uffff\1\53",
-            "\1\55",
-            "\1\56",
+            "\1\46\4\uffff\1\46\15\uffff\1\40",
+            "",
             "\1\31",
+            "",
+            "",
+            "\1\51",
+            "\1\52",
+            "\1\53",
+            "\1\54\7\uffff\1\55",
+            "\1\56",
+            "\1\57",
             "",
             "",
             "",
@@ -2331,22 +2543,22 @@ public class PassLexer extends Lexer {
             "\1\63",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\66",
             "\1\67",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\70",
             "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "\1\73",
             "\1\74",
-            "",
             "\1\uffff",
             "",
             "\1\63\2\uffff\1\63",
@@ -2361,14 +2573,14 @@ public class PassLexer extends Lexer {
             "\1\100",
             "\1\101",
             "\1\102",
-            "\1\103",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
             "\1\104",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\107",
+            "\1\105",
             "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
+            "\1\107",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
             "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
@@ -2412,26 +2624,12 @@ public class PassLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA28_23 = input.LA(1);
-
-                         
-                        int index28_23 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA28_23==' ') && ((getCharPositionInLine()==0))) {s = 49;}
-
-                        else s = 48;
-
-                         
-                        input.seek(index28_23);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA28_48 = input.LA(1);
 
                          
                         int index28_48 = input.index();
                         input.rewind();
+
                         s = -1;
                         if ( ((getCharPositionInLine()==0)) ) {s = 49;}
 
@@ -2439,8 +2637,28 @@ public class PassLexer extends Lexer {
 
                          
                         input.seek(index28_48);
+
                         if ( s>=0 ) return s;
                         break;
+
+                    case 1 : 
+                        int LA28_23 = input.LA(1);
+
+                         
+                        int index28_23 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (LA28_23==' ') && ((getCharPositionInLine()==0))) {s = 49;}
+
+                        else s = 48;
+
+                         
+                        input.seek(index28_23);
+
+                        if ( s>=0 ) return s;
+                        break;
+
                     case 2 : 
                         int LA28_24 = input.LA(1);
 
@@ -2449,7 +2667,7 @@ public class PassLexer extends Lexer {
 
                         else if ( (LA28_24=='\r') ) {s = 52;}
 
-                        else if ( ((LA28_24>='\u0000' && LA28_24<='\t')||(LA28_24>='\u000B' && LA28_24<='\f')||(LA28_24>='\u000E' && LA28_24<='\u001F')||(LA28_24>='!' && LA28_24<='\uFFFF')) ) {s = 53;}
+                        else if ( ((LA28_24 >= '\u0000' && LA28_24 <= '\t')||(LA28_24 >= '\u000B' && LA28_24 <= '\f')||(LA28_24 >= '\u000E' && LA28_24 <= '\u001F')||(LA28_24 >= '!' && LA28_24 <= '\uFFFF')) ) {s = 53;}
 
                         else s = 51;
 
@@ -2461,6 +2679,7 @@ public class PassLexer extends Lexer {
             error(nvae);
             throw nvae;
         }
+
     }
  
 
