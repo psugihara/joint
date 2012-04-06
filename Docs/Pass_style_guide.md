@@ -19,8 +19,8 @@ This document lays out conventions for the Pass code and documentation used in o
 * Keep variable names short but descriptive.
 
 ## Comments
-*  In a multiline comment terminate the line after the opening hash and before the closing hash.
-*  In a single line comment use a single space after the opening hash and before the closing hash.
+* In a multiline comment terminate the line after the opening hash and before the closing hash.
+* In a single line comment use a single space after the opening hash and before the closing hash.
 
 ##Example
 ####Good.pass:
