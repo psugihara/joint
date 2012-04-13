@@ -6,15 +6,35 @@ tokens {
 }
 
 @lexer::members {
-  int indentLevel = 0;
   int DENT_SIZE = 2;
 
+  int indentLevel = 0;
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
+  boolean notNewlineTerminated = true;
+  
+  java.util.Stack<String> parensAndIndents = new java.util.Stack<String>();
 
   // Note that this will occur at the end of each production if it is not
   // called explicitly.
   @Override
-  public void emit(Token t) {
+  public void emit(Token t) {   
+  
+    // Dedent when we hit a close paren to where we were when we opened it.
+    String text = t.getText();
+    if (text.equals("INDENT") || text.equals("("))
+      parensAndIndents.push(text);
+    else if (text.equals("DEDENT")) {
+      parensAndIndents.pop();
+      indentLevel--;
+    }
+    else if (t.getText().equals(")")) {
+      while (!(parensAndIndents.isEmpty() || parensAndIndents.pop().equals("("))) {
+        tokens.offer(new CommonToken(LT, "LT"));
+        tokens.offer(new CommonToken(DEDENT, "DEDENT"));
+        indentLevel--;
+      }
+    }
+     
     state.token = t;
     tokens.offer(t);
   }
@@ -30,6 +50,11 @@ tokens {
         reindent(0);
       }
 
+      if (notNewlineTerminated) {
+        notNewlineTerminated = false;
+        emit(new CommonToken(LT, "LT"));
+      }
+          
       if (tokens.isEmpty()) // Still empty
         return Token.EOF_TOKEN;
     }
@@ -77,7 +102,7 @@ prog:   block EOF
     ;
 
 block
-    :   (stmt|LT)+
+    :   stmt+
     ;
     
 stmt:   expr LT
@@ -88,14 +113,13 @@ iblock
     :   INDENT block DEDENT
     ;
 
-args:   '(' (argument (',' argument)*)? ')'
+args:   '(' (argument (',' argument)*)? LT?')'
     ;
     
-func:   args '~' (expr|(LT iblock))
-    ;         
+func:   args '~' (expr|LT iblock)
+    ;
 
 expr:   (ID access? ('='|ARITH_ASSIGN))=> ID access? assign
-    |   (args '~')=>  func
     |   short_stmt
     |   bool
     ;
@@ -113,7 +137,8 @@ return_stmt
     :   'return' argument
     ;
 
-bool:   logic (CMP logic)*
+bool:   (args '~')=> func
+    |   logic (CMP logic)*
     ;
 
 logic
@@ -127,28 +152,22 @@ term:   factor (('*'|'/'|'%') factor)*
     ;
 
 factor
-    :   '(' factor_p
-    |    value
+    :   modable mod*
+    |   atom
     ;
 
-/** factor_p tests whether an open parenthesis is either a lambda expression or a regular parenthesized statement**/
-factor_p
-    :   (args '~')=>  func ')'args
-    |   bool ')'
-    ;   
-    
 access
     :   '[' NUMBER ']'
     |   '.' ID
     ;
 
-value
-    :   atom
-    |   ID mod*
-    ;
-
 mod :   args
     |   access
+    ;
+    
+modable
+    :   ID
+    |   '(' bool ')'
     ;
 
 atom:   NUMBER
@@ -163,17 +182,17 @@ control
 
 /** dangling else solution **/
 else_test
-    :    'else' else_p
+    :   'else' else_p
     |
     ;
 
 else_p
-    :    'if' bool (return_stmt LT|LT iblock) else_test
+    :   'if' bool (return_stmt LT|LT iblock) else_test
     |    (return_stmt LT|LT iblock)
     ;
     
 assign
-    :   '=' (argument|dictionary_definition|array_definition)
+    :   '=' (expr|dictionary_definition|array_definition)
     |   ARITH_ASSIGN bool
     ;
 
@@ -190,9 +209,7 @@ array_definition
     ;
     
 argument
-    :   (args '~')=> func
-    |   ('(' args '~')=> '(' func ')' args
-    |   bool
+    :   LT? bool
     ;
 
 INDENT

@@ -13,4 +13,4 @@ exec('cp ../PhaseI/Pass.g Pass.g; \
       java org.antlr.Tool Pass.g; \
       javac *.java; \
       java org.antlr.gunit.Interp AtomTests.gunit; \
-      rm Pass.g PassLexer.java PassParser.java Pass.tokens *.class;', puts)\n
+      rm Pass.g PassLexer.java PassParser.java Pass.tokens *.class;', puts)
