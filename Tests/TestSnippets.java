@@ -9,10 +9,10 @@ import java.io.IOException;
 public class TestSnippets {
 public static void main(String[] args) throws Exception {
 System.out.println(args[0]);
-DataInputStream is = new DataInputStream(new FileInputStream(args[0]));
+DataInputStream stream = new DataInputStream(new FileInputStream(args[0]));
 // Create an input character stream from standard in
-ANTLRInputStream input = new ANTLRInputStream(is);
-// Create an ExprLexer that feeds from that stream
+ANTLRInputStream input = new ANTLRInputStream(stream);
+// Create a PassLexer that feeds from that stream
 PassLexer lexer = new PassLexer(input);
 // Create a stream of tokens fed by the lexer
 CommonTokenStream tokens = new CommonTokenStream(lexer);
