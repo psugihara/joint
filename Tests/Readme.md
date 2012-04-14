@@ -4,7 +4,7 @@ Testing
 -----------------------------------------------------------------------------------------------------------
 run_tests
 ---------
-The "run_tests" script should run every .gunit test.
+The "run_tests" script should run every .gunit test in the ./gunitTests folder.
 As tests are added, please modify this script.
 
 
@@ -33,6 +33,6 @@ $
 --------------------------------------------------------------------------------------------------------------
 snippet_tests
 -------------
-The "snippet_tests" script tests files that contain a line/snippet of code.
+The "snippet_tests" script tests files in the ./Snippets folders that contain a line/snippet of code.
 These files are designated by the names input#. For example: input1, input2, etc.
 --------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ exec('cp ../PhaseI/Pass.g Pass.g; \
       cp ../PhaseI/output/Pass.tokens Pass.tokens; \
       java org.antlr.Tool Pass.g; \
       javac *.java; \
-      java TestSnippets input1; \
-      java TestSnippets input2; \
-      java TestSnippets input3; \
+      java TestSnippets ./Snippets/input1; \
+      java TestSnippets ./Snippets/input2; \
+      java TestSnippets ./Snippets/input3; \
       rm Pass.g PassLexer.java PassParser.java Pass.tokens *.class;', puts)\n
