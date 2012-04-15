@@ -1,0 +1,5 @@
+# include lib.js and assign its functions to the variable jsLib #
+jsLib = include("lib.js")
+
+# execute the externLibFunct() from lib.js #
+jsLib.externLibFunc()

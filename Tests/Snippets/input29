@@ -1,0 +1,3 @@
+arrFoo = [3,”hello”]
+  arrFoo[0] += 3
+arrFoo[1] = “goodbye”
