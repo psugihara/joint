@@ -3,7 +3,7 @@
 // Run snippet_tests
 // Each snippet test is found in a file named input#. Ex: input1
 // It may be preferable to run each test individually
-// You can do so for example with "java Test ./Snippets/input1"
+// You can do so for example with "java TestSnippets ./Snippets/input1"
 
 var exec = require('child_process').exec
 function puts(error, stdout, stderr) {
