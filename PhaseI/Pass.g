@@ -237,6 +237,7 @@ DEDENT
         {getCharStream().mark();}
         (~' ')
         {
+          emit(new CommonToken(LT, "LT"));
           reindent(0);
           getCharStream().rewind();
         }
