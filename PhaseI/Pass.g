@@ -26,6 +26,8 @@ tokens {
     String text = t.getText();
     if (text.equals("INDENT") || text.equals("("))
       parensAndIndents.push(text);
+    else if (t.getText().equals("DEDENT"))
+          parensAndIndents.pop();
     else if (t.getText().equals(")")) {
       while (!(parensAndIndents.isEmpty() || parensAndIndents.pop().equals("("))) {
         tokens.offer(new CommonToken(LT, "LT"));
