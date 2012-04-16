@@ -128,7 +128,7 @@ args:   '(' (argument (',' argument)*)? (LT+)?')'
 func:   args '~' (expr|LT iblock)
     ;
 
-expr:   (ID access? ('='|ARITH_ASSIGN))=> ID access? assign
+expr:   (ID access? ('='|ARITH_ASSIGN))=> ID access? assign<exprAssign>
     |   short_stmt
     |   bool
     ;
@@ -139,11 +139,11 @@ short_stmt
     ;
     
 break_stmt
-    :   'break'
+    :   'break'<break_stmt>
     ;
 
 return_stmt
-    :   'return' argument
+    :   'return' argument<return_stmt>
     ;
 
 bool:   (args '~')=> func
@@ -184,23 +184,23 @@ atom:   NUMBER
     ;
 
 control
-    :   'for' ID 'in' ID mod? LT iblock
-    |   'while' bool LT iblock
-    |   'if' bool LT iblock else_test?
+    :   'for' ID<forId> 'in' ID<forIdIn> mod?<forMod> LT iblock<iblock>
+    |   'while' bool<whileBool> LT iblock<iblock>
+    |   'if' bool<ifBool>h (return_stmt LT|LT iblock<iblock>) else_test
     ;
 
 /** dangling else solution **/
 else_test
-    :   'else' else_p
+    :   'else' else_p<else_stmt>
     ;
 
 else_p
-    :   'if' bool (return_stmt LT|LT iblock) else_test
+    :   'if' bool<ifBool> LT iblock else_test?
     |    (return_stmt LT|LT iblock)
     ;
     
 assign
-    :   '=' (expr|dictionary_definition|array_definition)
+    :   '=' (expr|dictionary_definition|array_definition)<assignRval>
     |   ARITH_ASSIGN bool
     ;
 
