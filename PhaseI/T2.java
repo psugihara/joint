@@ -16,7 +16,8 @@ PassParser grammar = new PassParser(tokens);
    grammar.setTreeAdaptor(adaptor);
 PassParser.prog_return ret = grammar.prog();
 CommonTree tree = (CommonTree)ret.getTree();  
-printTree(tree, 2);
+walkTree(tree,2);
+//printTree(tree, 2);
     }
 public static void printTree(CommonTree t, int indent) {
 	if ( t != null ) {
