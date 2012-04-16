@@ -4,8 +4,9 @@ JC = javac
 .java:
 	javac $<
 
-default: 
-	java org.antlr.Tool ../PhaseI/Pass.g;
+default:    
+	cp ../PhaseI/Pass.g Pass.g; 
+	java org.antlr.Tool Pass.g; 
 	javac TestSnippets.java;
    
 tests: 
@@ -53,4 +54,4 @@ tests:
 	java TestSnippets ./Snippets/input40;
 
 clean:
-	$(RM) *.class
+	$(RM) *.class PassLexer.java PassParser.java Pass.tokens Pass.g
