@@ -1,5 +1,7 @@
 grammar Pass;
-
+options {
+  output=AST;
+}
 tokens {
   DEDENT;
   INDENT;
@@ -64,6 +66,19 @@ tokens {
     return (a > 0)? a : 0;
   }
   
+
+/*
+    static void whileSt(String bool) {
+        outputCode += "while(" + bool + ")";
+    }
+
+     void iblockSt(String iblock) {
+       outputCode +=
+       "{\n" +
+         "  "+iblock.replaceAll("\n","\n  ")+"\n" +
+       "}";
+      }
+      */
   void reindent(int spaces) {
     System.out.println("reindent()");
     if (mod(spaces, DENT_SIZE) != 0) {
