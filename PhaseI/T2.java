@@ -32,12 +32,9 @@ public static void printTree(CommonTree t, int indent) {
 }    
 public static void walkTree(CommonTree t, int indent) {
 	if ( t != null ) {
-		StringBuffer sb = new StringBuffer(indent);
-		for ( int i = 0; i < indent; i++ )
-			sb = sb.append("   ");
+		System.out.println("\""+t.toString()+"\"");
 		for ( int i = 0; i < t.getChildCount(); i++ ) {
-			System.out.println(t.token);
-			printTree((CommonTree)t.getChild(i), indent+1);
+			walkTree((CommonTree)t.getChild(i), indent+1);
 		}
 	}
 }   
