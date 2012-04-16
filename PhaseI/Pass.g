@@ -10,7 +10,6 @@ tokens {
 
   int indentLevel = 0;
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
-  boolean notNewlineTerminated = true;
   
   java.util.Stack<String> parensAndIndents = new java.util.Stack<String>();
 
@@ -49,11 +48,6 @@ tokens {
         emit(new CommonToken(LT, "LT"));
         reindent(0);
       }
-
-      if (notNewlineTerminated) {
-        notNewlineTerminated = false;
-        emit(new CommonToken(LT, "LT"));
-      }
           
       if (tokens.isEmpty()) // Still empty
         return Token.EOF_TOKEN;
@@ -89,7 +83,7 @@ tokens {
     else if (indents < indentLevel)
       for (int i = 0; i < (indentLevel - indents); i++) {
         emit(new CommonToken(DEDENT, "DEDENT"));
-        emit(new CommonToken(LT, "LT"));
+        //emit(new CommonToken(LT, "LT"));
       }
     else
       skip();
@@ -105,7 +99,7 @@ block
     :   stmt+
     ;
     
-stmt:   expr LT
+stmt:   expr LT+
     |   control
     ;   
     
@@ -113,7 +107,7 @@ iblock
     :   INDENT block DEDENT
     ;
 
-args:   '(' (argument (',' argument)*)? LT?')'
+args:   '(' (argument (',' argument)*)? (LT+)?')'
     ;
     
 func:   args '~' (expr|LT iblock)
@@ -177,13 +171,12 @@ atom:   NUMBER
 control
     :   'for' ID 'in' ID mod? LT iblock
     |   'while' bool LT iblock
-    |   'if' bool (return_stmt LT|LT iblock) else_test
+    |   'if' bool LT iblock else_test?
     ;
 
 /** dangling else solution **/
 else_test
     :   'else' else_p
-    |
     ;
 
 else_p
@@ -212,6 +205,9 @@ argument
     :   LT? bool
     ;
 
+LT  :   ('\n'|'r\n')+
+    ;
+
 INDENT
     :   
        {getCharPositionInLine()==0}?=>
@@ -223,11 +219,10 @@ INDENT
     ;
 
 DEDENT
-    :   '\n'
+    :   LT
         {getCharStream().mark();}
         (~' ')
-        { 
-          emit(new CommonToken(LT, "\n"));
+        {
           reindent(0);
           getCharStream().rewind();
         }
@@ -258,10 +253,6 @@ NUMBER
 COMMENT
     :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
-    ;
-
-// Line termination.
-LT  :   ('\n'|'\r\n')+
     ;
 
 WS  :   ( ' '
