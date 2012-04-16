@@ -80,7 +80,6 @@ tokens {
       }
       */
   void reindent(int spaces) {
-    System.out.println("reindent()");
     if (mod(spaces, DENT_SIZE) != 0) {
       System.out.println("Odd indentation (" + spaces + " spaces).");
       // TODO: report an error... sloppy indentation
