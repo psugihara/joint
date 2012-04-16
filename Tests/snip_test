@@ -14,4 +14,4 @@ exec('cp ../PhaseI/Pass.g Pass.g; \
       cp ../PhaseI/output/PassLexer.java ../PhaseI/output/PassParser.java .; \
       cp ../PhaseI/output/Pass.tokens Pass.tokens; \
       java org.antlr.Tool Pass.g; \
-      javac TestSnippets.java;', puts )
+      javac TestSnippets.java;', puts )\n
