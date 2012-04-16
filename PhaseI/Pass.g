@@ -14,6 +14,8 @@ tokens {
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
   
   java.util.Stack<String> parensAndIndents = new java.util.Stack<String>();
+  
+  boolean lineTerminatedEOF = false;
 
   // Note that this will occur at the end of each production if it is not
   // called explicitly.
@@ -46,7 +48,12 @@ tokens {
         emit(new CommonToken(LT, "LT"));
         reindent(0);
       }
-          
+
+      if (!lineTerminatedEOF) {
+        emit(new CommonToken(LT, "LT"));
+        lineTerminatedEOF = true;
+      }
+
       if (tokens.isEmpty()) // Still empty
         return Token.EOF_TOKEN;
     }
@@ -110,7 +117,7 @@ args:   '(' (argument (',' argument)*)? (LT+)?')'
 func:   args '~' (expr|LT iblock)
     ;
 
-expr:   (ID access? ('='|ARITH_ASSIGN))=> ID access? assign
+expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign
     |   short_stmt
     |   bool
     ;
