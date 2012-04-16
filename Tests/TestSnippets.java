@@ -1,9 +1,17 @@
 import org.antlr.runtime.*;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-public class Test {
+public class TestSnippets {
 public static void main(String[] args) throws Exception {
+System.out.println(args[0]);
+DataInputStream stream = new DataInputStream(new FileInputStream(args[0]));
 // Create an input character stream from standard in
-ANTLRInputStream input = new ANTLRInputStream(System.in);
+ANTLRInputStream input = new ANTLRInputStream(stream);
 // Create a PassLexer that feeds from that stream
 PassLexer lexer = new PassLexer(input);
 // Create a stream of tokens fed by the lexer

@@ -9,7 +9,7 @@ tokens {
 
 @lexer::members {
   int DENT_SIZE = 2;
-  public static  String outputCode = "";
+
   int indentLevel = 0;
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
   boolean notNewlineTerminated = true;
@@ -54,7 +54,9 @@ tokens {
 
       if (notNewlineTerminated) {
         notNewlineTerminated = false;
+
        // emit(new CommonToken(LT, "LT"));
+
       }
           
       if (tokens.isEmpty()) // Still empty

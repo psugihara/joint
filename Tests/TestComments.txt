@@ -1,0 +1,64 @@
+/// TestSnippets
+// Will rename the tests and also write comments below each giving some details as to what each
+// test actually tests soon. As well as add more tests (more detailed tests) and try to have the 
+// tests return the value that they should return
+
+input1: Passed
+input2: Passed
+input3: Passed
+input4: Passed
+input5: line 0:-1 extraneous input 'LT' expecting EOF
+   Note: Issue with functions.
+input6: Passed
+input7: Passed
+input8: line 0:-1 missing EOF at '\n'
+   Note: Issue with functions.
+input9: line 0:-1 extraneous input 'LT' expecting EOF
+   Note: Issue with functions.
+input10: line 0:-1 missing DEDENT at 'LT'
+         line 0:-1 extraneous input 'LT' expecting EOF
+   Note: Issue with functions.
+input11: line 0:-1 extraneous input 'LT' expecting DEDENT
+         line 0:-1 extraneous input 'LT' expecting EOF
+   Note: Issue with functions.
+input12: line 0:-1 no viable alternative at input 'LT'
+         line 4:2 missing EOF at 'else'
+   Note: Issue with functions.
+input13: line 0:-1 no viable alternative at input 'LT'
+         line 0:-1 missing EOF at 'LT'
+   Note: Issue defining variables before while oop.
+input14: Passed
+input15: Passed
+input16: Passed
+input17: Passed
+input18: Passed
+input19: Passed
+input20: Passed
+input21: Passed
+input22: Passed
+input23: line 0:-1 no viable alternative at input 'LT'
+    Note: for loop issue
+input24: line 0:-1 missing EOF at '\n'
+    Note: while loop issue
+input25: line 0:-1 extraneous input 'LT' expecting EOF
+    Note: function issue
+input26: line 0:-1 extraneous input 'LT' expecting EOF
+    Note: nested function issue
+input27: Passed
+input28: Passed
+input29: Passed 
+input30: line 0:-1 missing EOF at '\n'
+    Note: while loop issue
+input31: line 0:-1 extraneous input 'LT' expecting EOF
+    Note: callback issue
+input32: line 2:0 missing EOF at '\n'
+    Note: function issue
+input33: line 0:-1 extraneous input 'LT' expecting EOF
+     Note: function issue
+input34: line 0:-1 no viable alternative at input 'LT'
+         line 0:-1 missing EOF at 'DEDENT'
+    Note: if/else issue
+input35: Passed
+input36: Passed
+input37: line 0:-1 extraneous input 'LT' expecting EOF
+    Not: function issue

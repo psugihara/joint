@@ -1,0 +1,6 @@
+server.arrive = (msgCallback) ~
+  conn.onMsg = msgCallback
+
+server.broadcast = (msg) ~
+  for c in conns()
+    c.onMsg(msg)

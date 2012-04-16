@@ -1,0 +1,3 @@
+exampleFunction = (argument0, argument1) ~
+  value = argument0 + argument1
+  return value
