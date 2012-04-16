@@ -168,7 +168,7 @@ atom:   NUMBER
 control
     :   'for' ID 'in' ID mod? LT iblock
     |   'while' bool LT iblock
-    |   'if' bool LT iblock LT else_test?
+    |   'if' bool LT iblock LT (else_test LT)?
     ;
 
 /** dangling else solution **/
