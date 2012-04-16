@@ -75,7 +75,7 @@ tokens {
   }
   
 
-
+/*
     static void whileSt(String bool) {
         outputCode += "while(" + bool + ")";
     }
@@ -86,6 +86,7 @@ tokens {
          "  "+iblock.replaceAll("\n","\n  ")+"\n" +
        "}";
       }
+      */
   void reindent(int spaces) {
     System.out.println("reindent()");
     if (mod(spaces, DENT_SIZE) != 0) {
