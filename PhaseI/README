@@ -1,0 +1,6 @@
+CODE GENERATOR BUILD INSTRUCTIONS:
+=======================
+make
+java T2 <INPUT_FILE.pass>
+
+That's it!
