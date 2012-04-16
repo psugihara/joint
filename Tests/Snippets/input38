@@ -1,0 +1,6 @@
+log("hello")
+x = "goodbye"
+log(goodbye)
+y = 3
+num(y)
+num(3)
