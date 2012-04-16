@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/usr/bin/env node 
 
 // Run snippet_tests
 // Each snippet test is found in a file named input#. Ex: input1
@@ -14,6 +14,4 @@ exec('cp ../PhaseI/Pass.g Pass.g; \
       cp ../PhaseI/output/PassLexer.java ../PhaseI/output/PassParser.java .; \
       cp ../PhaseI/output/Pass.tokens Pass.tokens; \
       java org.antlr.Tool Pass.g; \
-      javac TestSnippets.java; \)
-
-// run with java TestSnippets ./Snippets/input1
+      javac TestSnippets.java; )
