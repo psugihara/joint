@@ -175,7 +175,7 @@ atom:   NUMBER
     ;
 
 control
-    :   'for' ID 'in' ID mod? LT iblock LT
+    :   'for' ID 'in' ((ID mod?)|array_definition) LT iblock LT
     |   'while' bool LT iblock LT
     |   'if' bool LT iblock LT (else_test LT)?
     ;

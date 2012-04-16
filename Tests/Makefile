@@ -52,6 +52,8 @@ tests:
 	java TestSnippets ./Snippets/input38;
 	java TestSnippets ./Snippets/input39;
 	java TestSnippets ./Snippets/input40;
+	java TestSnippets ./Snippets/input41;
+	java TestSnippets ./Snippets/input42;
 
 clean:
 	$(RM) *.class PassLexer.java PassParser.java Pass.tokens Pass.g
