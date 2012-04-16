@@ -106,14 +106,14 @@ tokens {
   }
 }
 
-prog:   block EOF
+prog:   block? EOF
     ;
 
 block
     :   stmt+
     ;
     
-stmt:   expr LT+
+stmt:   expr (LT+|EOF)
     |   control
     ;   
     
