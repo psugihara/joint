@@ -24,10 +24,6 @@ tokens {
     String text = t.getText();
     if (text.equals("INDENT") || text.equals("("))
       parensAndIndents.push(text);
-    else if (text.equals("DEDENT")) {
-      parensAndIndents.pop();
-      indentLevel--;
-    }
     else if (t.getText().equals(")")) {
       while (!(parensAndIndents.isEmpty() || parensAndIndents.pop().equals("("))) {
         tokens.offer(new CommonToken(LT, "LT"));
@@ -65,20 +61,7 @@ tokens {
       a -= b;
     return (a > 0)? a : 0;
   }
-  
 
-/*
-    static void whileSt(String bool) {
-        outputCode += "while(" + bool + ")";
-    }
-
-     void iblockSt(String iblock) {
-       outputCode +=
-       "{\n" +
-         "  "+iblock.replaceAll("\n","\n  ")+"\n" +
-       "}";
-      }
-      */
   void reindent(int spaces) {
     if (mod(spaces, DENT_SIZE) != 0) {
       System.out.println("Odd indentation (" + spaces + " spaces).");
@@ -97,11 +80,11 @@ tokens {
     else if (indents < indentLevel)
       for (int i = 0; i < (indentLevel - indents); i++) {
         emit(new CommonToken(DEDENT, "DEDENT"));
-        //emit(new CommonToken(LT, "LT"));
+        emit(new CommonToken(LT, "LT"));
       }
     else
       skip();
-    
+      
     indentLevel = indents;
   }
 }
@@ -110,10 +93,10 @@ prog:   block? EOF
     ;
 
 block
-    :   stmt+
+    :   stmt+ LT*
     ;
     
-stmt:   expr (LT+|EOF)
+stmt:   expr (LT|EOF)
     |   control
     ;   
     
