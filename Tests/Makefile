@@ -4,15 +4,13 @@ JC = javac
 .java:
 	javac $<
 
-SOURCES = TestSnippets.java
-
-FILES = input1 input2 input3
-
 default: 
 	java org.antlr.Tool ../PhaseI/Pass.g;
 	javac TestSnippets.java;
    
 tests: 
+	@echo "Testing all Snippets in ./Snippets. Test passes if no error" ;
+	@echo "-----------------------";
 	java TestSnippets ./Snippets/input1;
 	java TestSnippets ./Snippets/input2;
 	java TestSnippets ./Snippets/input3;
