@@ -1,0 +1,14 @@
+x = 2  
+while x == 2 && x != 2 || x == 4
+  while x == 2 && x != 2      
+    while x == 2 && x != 2
+      while x == 2 && x != 2 || x == 0
+        x = 1
+        if x == 1 && y != 2
+          x = 0
+        x = x + 1
+        if x == 4 && x != 2
+          while x != 3 && x != 2
+            x = x - 1
+        else
+          return 0

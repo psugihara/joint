@@ -1,0 +1,98 @@
+exampleFunction = (arg0, arg1) ~
+# commmmentttsss #
+  nestedExampleFunction = (arg0, arg1) ~
+    x = x + 2
+    y = x + 4
+    if y == 2
+      break
+    log("hey dudes")
+    log("pass grammar cannot be beaten")
+    while x == 2
+      while x == 2
+        while x == 2
+          x = 1
+    z = arg0 - arg1
+    a = x * y * arg0 * z
+# commmmentttsss #
+    exampleFunction1 = (arg0, arg1) ~
+      nestedExampleFunction2 = (arg0, arg1) ~
+        x = x + 2
+        y = x + 4
+        z = arg0 - arg1
+        a = x * y * arg0 * z
+        if x == 4
+          x = 6
+          while x < 10
+            x = x + 2
+        return a
+      nestedExamplefunction2(2, 3)
+    return a * exampleFunction1
+  nestedExamplefunction(2, 3)
+exampleFunction = (arg0, arg1) ~
+  nestedExampleFunction = (arg0, arg1) ~
+    x = x + 2
+    y = x + 4
+    z = arg0 - arg1
+    a = x * y * arg0 * z
+    exampleFunction1 = (arg0, arg1) ~
+      nestedExampleFunction2 = (arg0, arg1) ~
+        x = x + 2
+        y = x + 4
+        z = arg0 - arg1
+        a = x * y * arg0 * z
+        return a
+      nestedExamplefunction2(2, 3)
+    return a * exampleFunction1
+  nestedExamplefunction(2, 3)
+# commmmentttsss #
+# commmmentttsss #
+# commmmentttsss #
+# commmmentttsss #
+# commmmentttsss #
+x = exampleFunction * 10e3 + 2
+if x == 2
+  exampleFunction = (arg0, arg1) ~
+    nestedExampleFunction = (arg0, arg1) ~
+      x = x + 2
+      y = x + 4
+      z = arg0 - arg1
+      a = x * y * arg0 * z
+      exampleFunction1 = (arg0, arg1) ~
+        nestedExampleFunction2 = (arg0, arg1) ~
+          x = x + 2
+          y = x + 4
+          z = arg0 - arg1
+          a = x * y * arg0 * z
+          return a
+        nestedExamplefunction2(2, 3)
+      return a * exampleFunction1
+    nestedExamplefunction(2, 3)
+  exampleFunction = (arg0, arg1) ~
+    nestedExampleFunction = (arg0, arg1) ~
+      x = x + 2
+      y = x + 4
+      z = arg0 - arg1
+      a = x * y * arg0 * z
+      exampleFunction1 = (arg0, arg1) ~
+        nestedExampleFunction2 = (arg0, arg1) ~
+          x = x + 2
+          y = x + 4
+          z = arg0 - arg1
+          a = x * y * arg0 * z
+          if a != 0 && x + 5 != 2 && x + 4 * z == 0
+            return a
+          exampleFunction = (arg0, arg1) ~
+            nestedExampleFunction = (arg0, arg1) ~
+              x = x + 2
+              y = x + 4
+# commmmentttsss #
+# commmmentttsss #
+# commmmentttsss #
+              z = arg0 - arg1
+              a = x * y * arg0 * z
+              return a
+            nestedExamplefunction(2, 3)
+          return exampleFunction * 1 + 2 / 10 
+        nestedExamplefunction2(2, 3)
+      return a * exampleFunction1
+    nestedExamplefunction(2, 3)
