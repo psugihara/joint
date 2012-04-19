@@ -98,7 +98,7 @@ tokens {
   }
 }
 
-prog:   block? EOF -> ^(PROG block)
+prog:   block? EOF
     ;
 
 block
@@ -175,14 +175,16 @@ atom:   NUMBER
     ;
 
 control
-    :   'for' ID 'in' container=((ID mod?)|array_definition) LT iblock LT //-> ^('for' ID 'in' $container)
+    :   'for'^ ID 'in' ((ID mod?)|array_definition) LT iblock LT
     |   'while' bool LT iblock LT -> ^('while' bool iblock)
-    |   'if' bool LT iblock LT (else_test LT)? //-> ^('if' bool iblock (else_test)?)
+    |   'if' bool LT iblock LT else_test// -> ^('if' bool iblock (else_test)?)
     ;
 
 /** dangling else solution **/
 else_test
-    :   'else' else_p
+    : ('else if')=> 'else if' bool (return_stmt LT|LT iblock) LT else_test
+    | 'else' (return_stmt LT|LT iblock) LT
+    | 
     ;
 
 else_p
@@ -200,7 +202,7 @@ dictionary_definition
     ;
 
 dictionary_entry
-    :   STRING ':' atom 
+    :   ID ':' atom 
     ;
     
 array_definition
