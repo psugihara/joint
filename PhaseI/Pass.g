@@ -113,13 +113,13 @@ iblock
     :   INDENT block DEDENT
     ;
 
-args:   '(' (argument (',' argument)*)? (LT+)?')' -> ^(argument)*
+args:   '(' (argument (',' argument)*)? (LT+)?')' //-> ^(argument)*
     ;
     
-func:   args '~' body=(expr|LT iblock) -> ^(FUNCTION args '~' $body)
+func:   args '~' body=(expr|LT iblock) //-> ^(FUNCTION args '~' $body)
     ;
 
-expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign -> ^(ASSIGNMENT ^(access ID) assign)
+expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign //-> ^(ASSIGNMENT ID access assign)
     |   short_stmt
     |   bool
     ;
@@ -175,9 +175,9 @@ atom:   NUMBER
     ;
 
 control
-    :   'for' ID 'in' container=((ID mod?)|array_definition) LT iblock LT -> ^('for' ID 'in' $container)
+    :   'for' ID 'in' container=((ID mod?)|array_definition) LT iblock LT //-> ^('for' ID 'in' $container)
     |   'while' bool LT iblock LT -> ^('while' bool iblock)
-    |   'if' bool LT iblock LT (else_test LT)? -> ^('if' bool iblock (else_test)?)
+    |   'if' bool LT iblock LT (else_test LT)? //-> ^('if' bool iblock (else_test)?)
     ;
 
 /** dangling else solution **/
