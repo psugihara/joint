@@ -98,15 +98,15 @@ tokens {
   }
 }
 
-prog:   block? EOF
+prog:   LT* block? EOF
     ;
 
 block
-    :   stmt+ LT!* 
+    :   stmt+ 
     ;
     
-stmt:   expr (LT!|EOF)
-    |   control
+stmt:   expr (LT!+|EOF)
+    |   control LT+
     ;   
     
 iblock
@@ -175,20 +175,19 @@ atom:   NUMBER
     ;
 
 control
-    :   'for'^ ID 'in' ((ID mod?)|array_definition) LT iblock LT
-    |   'while' bool LT iblock LT -> ^('while' bool iblock)
-    |   'if' bool LT iblock LT else_test// -> ^('if' bool iblock (else_test)?)
+    :   'for'^ ID 'in' ((ID mod?)|array_definition) LT+ iblock
+    |   'while' bool LT+ iblock -> ^('while' bool iblock)
+    |   'if' bool LT+ iblock (LT+ else_test)?// -> ^('if' bool iblock (else_test)?)
     ;
 
 /** dangling else solution **/
 else_test
-    : ('else if')=> 'else if' bool (return_stmt LT|LT iblock) LT else_test
-    | 'else' (return_stmt LT|LT iblock) LT
-    | 
+    : ('else if')=> 'else if' bool (return_stmt|LT iblock) (LT+ else_test)?
+    | 'else' (return_stmt LT|LT iblock)
     ;
 
 else_p
-    :   'if' bool (return_stmt LT|LT iblock) else_test
+    :   'if' bool (return_stmt LT|LT iblock) else_test?
     |    (return_stmt LT|LT iblock)
     ;
     
@@ -282,7 +281,7 @@ NUMBER
     ;
 
 COMMENT
-    :   '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
+    :   LT? '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
     ;
 
 WS  :   ( ' '
