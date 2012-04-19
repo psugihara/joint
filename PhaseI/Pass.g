@@ -98,14 +98,14 @@ tokens {
   }
 }
 
-prog:   block? EOF
+prog:   block? EOF -> ^(PROG block)
     ;
 
 block
-    :   stmt+ LT*
+    :   stmt+ LT!* 
     ;
     
-stmt:   expr (LT|EOF)
+stmt:   expr (LT!|EOF)
     |   control
     ;   
     
@@ -113,13 +113,13 @@ iblock
     :   INDENT block DEDENT
     ;
 
-args:   '(' (argument (',' argument)*)? (LT+)?')'
+args:   '(' (argument (',' argument)*)? (LT+)?')' -> ^(argument)*
     ;
     
-func:   args '~' (expr|LT iblock)
+func:   args '~' body=(expr|LT iblock) -> ^(FUNCTION args '~' $body)
     ;
 
-expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign
+expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign -> ^(ASSIGNMENT ^(access ID) assign)
     |   short_stmt
     |   bool
     ;
@@ -130,25 +130,25 @@ short_stmt
     ;
     
 break_stmt
-    :   'break'
+    :   'break'^
     ;
 
 return_stmt
-    :   'return' argument
+    :   'return'^ argument
     ;
 
 bool:   (args '~')=> func
-    |   logic (CMP logic)*
+    |   logic (CMP^ logic)*
     ;
 
 logic
-    :   eval (BOP eval)*
+    :   eval (BOP^ eval)*
     ;
 
-eval:   term (('+'|'-') term)*
+eval:   term (('+'|'-')^ term)*
     ;
 
-term:   factor (('*'|'/'|'%') factor)*
+term:   factor (('*'|'/'|'%')^ factor)*
     ;
 
 factor
@@ -157,8 +157,8 @@ factor
     ;
 
 access
-    :   '[' NUMBER ']'
-    |   '.' ID
+    :   '[' NUMBER ']' -> ^(ARRAY_ENTRY NUMBER)
+    |   '.' ID -> ^(DICTIONARY_ENTRY ID)
     ;
 
 mod :   args
@@ -167,7 +167,7 @@ mod :   args
     
 modable
     :   ID
-    |   '(' bool ')'
+    |   '(' bool ')' -> bool
     ;
 
 atom:   NUMBER
@@ -175,9 +175,9 @@ atom:   NUMBER
     ;
 
 control
-    :   'for' ID 'in' ((ID mod?)|array_definition) LT iblock LT
-    |   'while' bool LT iblock LT
-    |   'if' bool LT iblock LT (else_test LT)?
+    :   'for' ID 'in' container=((ID mod?)|array_definition) LT iblock LT -> ^('for' ID 'in' $container)
+    |   'while' bool LT iblock LT -> ^('while' bool iblock)
+    |   'if' bool LT iblock LT (else_test LT)? -> ^('if' bool iblock (else_test)?)
     ;
 
 /** dangling else solution **/
@@ -200,7 +200,7 @@ dictionary_definition
     ;
 
 dictionary_entry
-    :   ID ':' atom 
+    :   STRING ':' atom 
     ;
     
 array_definition
@@ -210,6 +210,28 @@ array_definition
 argument
     :   LT? bool
     ;
+
+//AST IMAGINARY NODE TOKENS
+PROG
+	: 'PROG'
+	;  
+
+FUNCTION
+	: 'FUNCTION'
+	;
+
+ASSIGNMENT
+	: 'ASSIGNMENT'
+	;
+
+ARRAY_ENTRY
+	: 'ARRAY ENTRY'
+	;
+
+DICTIONARY_ENTRY
+	: 'DICTIONARY ENTRY'
+	;
+
 
 LT  :   ('\n'|'r\n')+
     ;
@@ -300,3 +322,7 @@ fragment
 UNICODE_ESC
     :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
+    
+      
+    
+    
