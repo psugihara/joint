@@ -59,6 +59,19 @@ tests:
 	java TestSnippets ./Snippets/input45;
 	java TestSnippets ./Snippets/input46;
 	java TestSnippets ./Snippets/input47;
+	java TestSnippets ./Snippets/input48;
+	java TestSnippets ./Snippets/input49;
+	java TestSnippets ./Snippets/input50;
+	java TestSnippets ./Snippets/input51;
+	java TestSnippets ./Snippets/input52;
+	java TestSnippets ./Snippets/input53;
+	java TestSnippets ./Snippets/input54;
+	java TestSnippets ./Snippets/input55;
+	java TestSnippets ./Snippets/input56;
+	java TestSnippets ./Snippets/input57;
+	java TestSnippets ./Snippets/input58;
+	java TestSnippets ./Snippets/input59;
+	java TestSnippets ./Snippets/input60;
 
 clean:
 	$(RM) *.class PassLexer.java PassParser.java Pass.tokens Pass.g
