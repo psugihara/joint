@@ -5,7 +5,6 @@ JC = javac
 	javac $<
 
 default:    
-	cp ../PhaseI/Pass.g Pass.g; 
 	java org.antlr.Tool Pass.g; 
 	javac TestSnippets.java;
    
@@ -87,6 +86,7 @@ tests:
 	java TestSnippets ./Snippets/input73;
 	java TestSnippets ./Snippets/input74;
 	java TestSnippets ./Snippets/input75;
+	java TestSnippets ./Snippets/input76;
 
 
 
