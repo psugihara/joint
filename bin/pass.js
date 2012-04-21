@@ -8,6 +8,8 @@
 // The JS outputted from the translator should be wrapped in a function closure.
 // Node may do this at the file level by default, we'll see.
 
+/*jshint node: true*/
+
 var path = require('path');
 var fs = require('fs');
 
@@ -54,7 +56,7 @@ if (process.argv.length === 5) {
 
 function handler (req, res) {
 
-  function response(err, data) {
+  function response (err, data) {
     if(!err) {
       res.writeHead(200);
       res.write(data);
@@ -116,7 +118,7 @@ var app = require('http').createServer(handler).listen(port);
 
 var dnode = require('dnode');
 var server = dnode(function (client, conn) {
-  
+
   this.register = function (callbacks) {
     console.log('CONN ID: '+conn.id);
     for(var i in callbacks) {
@@ -134,7 +136,7 @@ var server = dnode(function (client, conn) {
     for(r in rooms)
       if(r == room) return;
     for(r in rooms) {
-      var connections = conns(rooms[i]);
+      var connections = conns(r);
       for(c in connections) {
         if(conn != connections[c])
           connections[c].onLeave(conn.name, r);
