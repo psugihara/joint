@@ -116,7 +116,7 @@ var app = require('http').createServer(handler).listen(port);
 
 var dnode = require('dnode');
 var server = dnode(function (client, conn) {
-
+  
   this.register = function (callbacks) {
     console.log('CONN ID: '+conn.id);
     for(var i in callbacks) {
@@ -130,12 +130,12 @@ var server = dnode(function (client, conn) {
 
   this.join = function (room) {
     var rooms = tags(conn);
-    var r;
+    var r, c;
     for(r in rooms)
       if(r == room) return;
     for(r in rooms) {
       var connections = conns(rooms[i]);
-      for(var c in connections) {
+      for(c in connections) {
         if(conn != connections[c])
           connections[c].onLeave(conn.name, r);
       }
@@ -143,7 +143,7 @@ var server = dnode(function (client, conn) {
     }
     tag(conn, room);
     var connections = conns(room);
-    for(var c in connections)
+    for(c in connections)
       connections[c].onEnter(conn.name, room);
   };
 
