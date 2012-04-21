@@ -98,11 +98,11 @@ tokens {
   }
 }
 
-prog:   LT* block? EOF
+prog:   block EOF
     ;
 
 block
-    :   stmt+ 
+    :   LT* stmt*
     ;
     
 stmt:   expr (LT!+|EOF)
@@ -281,7 +281,7 @@ NUMBER
     ;
 
 COMMENT
-    :   LT? '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
+    :   '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
     ;
 
 WS  :   ( ' '
