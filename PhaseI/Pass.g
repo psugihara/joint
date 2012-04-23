@@ -110,16 +110,18 @@ stmt:   expr (LT!+|EOF)
     ;   
     
 iblock
-    :   INDENT block DEDENT
+    :   INDENT block DEDENT -> ^(IBLOCK block)
     ;
 
-args:   '(' (argument (',' argument)*)? (LT+)?')' //-> ^(argument)*
+args:   '(' (argument (',' argument)*)? (LT+)?')' -> ^(ARGUMENTS argument*)
     ;
     
-func:   args '~' body=(expr|LT iblock) //-> ^(FUNCTION args '~' $body)
+func:   args '~' (expr -> ^(FUNCTION args expr)
+				 |LT iblock -> ^(FUNCTION args iblock)
+				 )
     ;
 
-expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign //-> ^(ASSIGNMENT ID access assign)
+expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign -> ^(ASSIGNMENT ^(ID access*) assign)
     |   short_stmt
     |   bool
     ;
@@ -138,7 +140,7 @@ return_stmt
     ;
 
 bool:   (args '~')=> func
-    |   logic (CMP^ logic)*
+    |   (logic -> logic) (CMP logic -> ^(OP $bool logic))*
     ;
 
 logic
@@ -152,13 +154,15 @@ term:   factor (('*'|'/'|'%')^ factor)*
     ;
 
 factor
-    :   modable mod*
+    :   (modable -> modable) (args -> ^(FUNC_CALL $factor args*)
+    						 |access -> ^($factor access*)
+    						  )*
     |   atom
     ;
 
 access
-    :   '[' NUMBER ']' -> ^(ARRAY_ENTRY NUMBER)
-    |   '.' ID -> ^(DICTIONARY_ENTRY ID)
+    :   '[' NUMBER ']' -> ^(ARRAY_ACCESS NUMBER)
+    |   '.' def=ID -> ^(DICT_ACCESS $def)
     ;
 
 mod :   args
@@ -175,21 +179,32 @@ atom:   NUMBER
     ;
 
 control
-    :   'for'^ ID 'in' ((ID mod?)|array_definition) LT+ iblock
-    |   'while' bool LT+ iblock -> ^('while' bool iblock)
-    |   'if' bool LT+ iblock (LT+ else_test)?// -> ^('if' bool iblock (else_test)?)
-    ;
+    :   'for' iterator=ID 'in' 
+    					(container=ID args+ LT+ iblock -> ^(FOR $iterator ^(FUNC_CALL $container args*) iblock)
+    					|container=ID access+ LT+ iblock -> ^(FOR $iterator ^($container access*) iblock)
+    				    |array_definition LT+ iblock -> ^(FOR $iterator array_definition iblock)
+    				    |container=ID LT+ iblock -> ^(FOR $iterator $container iblock)
+    				    )
+    |   'while' bool LT+ iblock -> ^(WHILE bool iblock)
+    |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool iblock) else_test*)
+    ;    
+
+else_body
+	:	return_stmt LT
+	| LT iblock
+	;
+
+else_if_body
+	:  return_stmt
+	| LT iblock
+	;
 
 /** dangling else solution **/
 else_test
-    : ('else if')=> 'else if' bool (return_stmt|LT iblock) (LT+ else_test)?
-    | 'else' (return_stmt LT|LT iblock)
+    : ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(else_test)*
+    | 'else' else_body -> ^(ELSE else_body)
     ;
 
-else_p
-    :   'if' bool (return_stmt LT|LT iblock) else_test?
-    |    (return_stmt LT|LT iblock)
-    ;
     
 assign
     :   '=' (expr|dictionary_definition|array_definition)
@@ -197,15 +212,15 @@ assign
     ;
 
 dictionary_definition
-    :   '{' (dictionary_entry (',' dictionary_entry)*)? '}'
+    :   '{' (dictionary_entry (',' dictionary_entry)*)? '}' -> ^(DICTIONARY_DECLARATION dictionary_entry*)
     ;
 
 dictionary_entry
-    :   ID ':' atom 
+    :   ID ':' atom -> ^(DICTIONARY_DEFINITION ID atom)
     ;
     
 array_definition
-    :   '[' (argument (',' argument)*)? ']'
+    :   '[' (argument (',' argument)*)? ']' -> ^(ARRAY_DECLARATION argument*)
     ;
     
 argument
@@ -213,6 +228,11 @@ argument
     ;
 
 //AST IMAGINARY NODE TOKENS
+
+OP
+	: 'OP'
+	;
+
 PROG
 	: 'PROG'
 	;  
@@ -225,14 +245,61 @@ ASSIGNMENT
 	: 'ASSIGNMENT'
 	;
 
-ARRAY_ENTRY
+ARRAY_ACCESS
 	: 'ARRAY ENTRY'
 	;
 
-DICTIONARY_ENTRY
-	: 'DICTIONARY ENTRY'
+DICTIONARY_DEFINITION
+	: 'DICTIONARY DEFINITION'
 	;
 
+DICT_ACCESS
+	: 'DICTIONARY ENTRY'
+	;
+	
+IF_CONDITIONS
+	: 'IF_CONDITIONS'
+	;
+
+IF
+	: 'IF'
+	;
+	
+ELSE_IF
+	: 'ELSE_IF'
+	;
+
+ELSE
+	: 'ELSE'
+	;
+	
+WHILE
+	: 'WHILE'
+	;
+
+FOR
+	: 'FOR'
+	;
+
+FUNC_CALL
+	: 'FUNC_CALL'
+	;
+
+ARGUMENTS
+	: 'ARGUMENTS'
+	;
+
+IBLOCK
+	: 'IBLOCK'
+	;
+
+ARRAY_DECLARATION
+	: 'ARRAY_DECLARATION'
+	;
+
+DICTIONARY_DECLARATION
+	: 'DICTIONARY_DECLARATIOn'
+	;
 
 LT  :   ('\n'|'r\n')+
     ;
