@@ -3,8 +3,10 @@
 //   log(name + “ arrived”)
 /*jshint node: true*/
 
-exports.server = {};
+var server = {};
 
 server.arrive = function (name) {
     console.log(name + " arrived");
 };
+
+exports.server = server;

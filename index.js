@@ -114,23 +114,27 @@ var http = require('http');
 
 var app = connect();
 
-// app.use(browserify({
-//   mount: '/pass.js'
-// }));
-
-
-
-var b = browserify({ mount: '/pass.js' });
-b.require('dnode');
+// Wrap dnode in pass.js, wih a little extra sugar at the end.
+var b = browserify({
+  require: 'dnode',
+  mount: '/pass.js'
+});
+b.append(fs.readFileSync(__dirname + '/browser/pass_client.js'));
+app.use(b);
 
 app.use(connect.static(staticPath));
-app.use('/pass.js', connect.static(__dirname + 'client'));
 
 var server = http.createServer(app);
 
+var passProgram = require(sourcePath);
+
 dnode(function (client, conn) {
 
-  // this.prototype = require(sourcePath).server;
+  // Expose all functions on the server object.
+  var key;
+  for (key in passProgram.server)
+    if (typeof(passProgram.server[key]) === 'function')
+      this[key] = passProgram.server[key];
 
   // this.register = function (callbacks) {
   //   console.log('CONN ID: '+conn.id);
