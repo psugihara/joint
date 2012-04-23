@@ -1,5 +1,5 @@
 exampleFunction = (arg0, arg1) ~
-# commmmentttsss #
+  # commmmentttsss #
   nestedExampleFunction = (arg0, arg1) ~
     x = x + 2
     y = x + 4
@@ -13,7 +13,7 @@ exampleFunction = (arg0, arg1) ~
           x = 1
     z = arg0 - arg1
     a = x * y * arg0 * z
-# commmmentttsss #
+    # commmmentttsss #
     exampleFunction1 = (arg0, arg1) ~
       nestedExampleFunction2 = (arg0, arg1) ~
         x = x + 2
@@ -44,11 +44,11 @@ exampleFunction = (arg0, arg1) ~
       nestedExamplefunction2(2, 3)
     return a * exampleFunction1
   nestedExamplefunction(2, 3)
-# commmmentttsss #
-# commmmentttsss #
-# commmmentttsss #
-# commmmentttsss #
-# commmmentttsss #
+  # commmmentttsss #
+  # commmmentttsss #
+  # commmmentttsss #
+  # commmmentttsss #
+  # commmmentttsss #
 x = exampleFunction * 10e3 + 2
 if x == 2
   exampleFunction = (arg0, arg1) ~
@@ -85,9 +85,9 @@ if x == 2
             nestedExampleFunction = (arg0, arg1) ~
               x = x + 2
               y = x + 4
-# commmmentttsss #
-# commmmentttsss #
-# commmmentttsss #
+              # commmmentttsss #
+              # commmmentttsss #
+              # commmmentttsss #
               z = arg0 - arg1
               a = x * y * arg0 * z
               return a

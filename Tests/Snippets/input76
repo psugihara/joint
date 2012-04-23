@@ -1,13 +1,13 @@
 x = 2  
 while x == 2 && x != 2 || x == 4
-     # heylllllll #
- # heylllllll #
   # heylllllll #
-     # heylllllll #
-      # heylllllll # 
- # heylllllll #
-        # heylllllll #
-# comment  /////// #
+  # heylllllll #
+  # heylllllll #
+  # heylllllll #
+  # heylllllll # 
+  # heylllllll #
+  # heylllllll #
+  # comment  /////// #
   while x == 2 && x != 2      
     while x == 2 && x != 2
       while x == 2 && x != 2 || x == 0
@@ -16,8 +16,8 @@ while x == 2 && x != 2 || x == 4
           x = 0
 x = 2  
 while x == 2 && x != 2 || x == 4
-# heylllllll #
-# comment  /////// #
+  # heylllllll #
+  # comment  /////// #
   while x == 2 && x != 2      
     while x == 2 && x != 2
       while x == 2 && x != 2 || x == 0
@@ -25,18 +25,18 @@ while x == 2 && x != 2 || x == 4
         if x == 1 && y != 2
           x = 0
         x = x + 1
-# something intellectual #
-# # 
-# #
-# #
-# 0asonmaoidoisa #
+        # something intellectual #
+        # # 
+        # #
+        # #
+        # 0asonmaoidoisa #
         if x == 4 && x != 2
           while x != 3 && x != 2
             x = x - 1
         else
           return 0
         x = x + 1
-# something intellectual #
+        # something intellectual #
         if x == 4 && x != 2
           while x != 3 && x != 2
             x = x - 1
