@@ -98,7 +98,7 @@ tokens {
   }
 }
 
-prog:   block EOF
+prog:   block EOF -> ^(PROG block)
     ;
 
 block
@@ -154,7 +154,7 @@ term:   factor (('*'|'/'|'%')^ factor)*
     ;
 
 factor
-    :   (modable -> modable) (args -> ^(FUNC_CALL $factor args*)
+    :   (modable -> modable) (args -> ^(FUNC_CALL modable args*)
     						 |access -> ^($factor access*)
     						  )*
     |   atom
@@ -234,7 +234,7 @@ OP
 	;
 
 PROG
-	: 'PROG'
+	: '1'
 	;  
 
 FUNCTION
