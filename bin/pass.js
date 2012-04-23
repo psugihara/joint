@@ -33,11 +33,11 @@ if (process.argv.length !== 3 && process.argv.length !== 5) {
 }
 
 sourcePath = path.resolve(process.argv[2]);
-// Verify that the source path exists and points to a Pass program.
+// Verify that the source path exists and has a valid extension.
 if (!path.existsSync(sourcePath))
   usageDie('file not found: ' + sourcePath);
-if (path.extname(sourcePath) !== 'pass')
-  usageDie('Pass programs must have .pass extension');
+if (path.extname(sourcePath) !== '.pass' && path.extname(sourcePath) !== '.js')
+  usageDie('Server program must have .pass or .js extension');
 
 if (process.argv.length === 5) {
   // Verify that the port is a number in the correct range.
@@ -53,6 +53,9 @@ if (process.argv.length === 5) {
   if (!fs.statSync(staticPath).isDirectory())
     usageDie('static arg must be directory');
 }
+
+// if (path.extname(sourcePath) == 'pass')
+//   sourcePath = COMPILED SOURCE
 
 function handler (req, res) {
 
@@ -118,6 +121,8 @@ var app = require('http').createServer(handler).listen(port);
 
 var dnode = require('dnode');
 var server = dnode(function (client, conn) {
+
+  this = require(sourcePath).server;
 
   this.register = function (callbacks) {
     console.log('CONN ID: '+conn.id);
