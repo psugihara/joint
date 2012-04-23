@@ -1,0 +1,10 @@
+{
+  "name": "pass",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "dnode"         : "latest",
+    "browserify"    : "latest",
+    "connect"       : "latest"
+  }
+}

@@ -5,7 +5,7 @@
 nbproject/private/
 
 #ignore local version of npm packages
-bin/node_modules
+node_modules
 
 ## generic files to ignore
 *~

@@ -57,21 +57,9 @@ if (process.argv.length === 5) {
 // if (path.extname(sourcePath) == 'pass')
 //   sourcePath = COMPILED SOURCE
 
-function handler (req, res) {
+// ###Pass built in functions
+// TODO: Comment the shit out of these.
 
-  function response (err, data) {
-    if(!err) {
-      res.writeHead(200);
-      res.write(data);
-      res.end();
-    }
-  }
-
-  if(req.url == '/')
-    fs.readFile('index.html', response);
-  else
-    fs.readFile(__dirname + req.url, response);
-}
 
 var groups = {};
 
@@ -117,56 +105,78 @@ function conns (tag) {
   return groups[tag];
 }
 
-var app = require('http').createServer(handler).listen(port);
+// ####Server Configuration
 
+var connect = require('connect');
+var browserify = require('browserify');
 var dnode = require('dnode');
-var server = dnode(function (client, conn) {
+var http = require('http');
 
-  this = require(sourcePath).server;
+var app = connect();
 
-  this.register = function (callbacks) {
-    console.log('CONN ID: '+conn.id);
-    for(var i in callbacks) {
-      conn[i] = callbacks[i];
-    }
-  };
+// app.use(browserify({
+//   mount: '/pass.js'
+// }));
 
-  this.setName = function (name) {
-    conn.name = name;
-  };
 
-  this.join = function (room) {
-    var rooms = tags(conn);
-    var r, c;
-    for(r in rooms)
-      if(r == room) return;
-    for(r in rooms) {
-      var connections = conns(r);
-      for(c in connections) {
-        if(conn != connections[c])
-          connections[c].onLeave(conn.name, r);
-      }
-      untag(conn, r);
-    }
-    tag(conn, room);
-    var connections = conns(room);
-    for(c in connections)
-      connections[c].onEnter(conn.name, room);
-  };
 
-  this.chat = function (message) {
-    var name = conn.name;
-    var rooms = tags(conn);
-    console.log('tags for '+name+': '+rooms);
-    for(var i in rooms) {
-      var connections = conns(rooms[i]);
-      for(var c in connections)
-        connections[c].receive(name, message);
-    }
-  };
+var b = browserify({ mount: '/pass.js' });
+b.require('dnode');
 
-  this.log = function (message) {
-    console.log(message);
-  };
+app.use(connect.static(staticPath));
+app.use('/pass.js', connect.static(__dirname + 'client'));
+
+var server = http.createServer(app);
+
+dnode(function (client, conn) {
+
+  // this.prototype = require(sourcePath).server;
+
+  // this.register = function (callbacks) {
+  //   console.log('CONN ID: '+conn.id);
+  //   for(var i in callbacks) {
+  //     conn[i] = callbacks[i];
+  //   }
+  // };
+
+  // this.setName = function (name) {
+  //   conn.name = name;
+  // };
+
+  // this.join = function (room) {
+  //   var rooms = tags(conn);
+  //   var r, c;
+  //   for(r in rooms)
+  //     if(r == room) return;
+  //   for(r in rooms) {
+  //     var connections = conns(r);
+  //     for(c in connections) {
+  //       if(conn != connections[c])
+  //         connections[c].onLeave(conn.name, r);
+  //     }
+  //     untag(conn, r);
+  //   }
+  //   tag(conn, room);
+  //   var connections = conns(room);
+  //   for(c in connections)
+  //     connections[c].onEnter(conn.name, room);
+  // };
+
+  // this.chat = function (message) {
+  //   var name = conn.name;
+  //   var rooms = tags(conn);
+  //   console.log('tags for '+name+': '+rooms);
+  //   for(var i in rooms) {
+  //     var connections = conns(rooms[i]);
+  //     for(var c in connections)
+  //       connections[c].receive(name, message);
+  //   }
+  // };
+
+  // this.log = function (message) {
+  //   console.log(message);
+  // };
   
-}).listen(app);
+}).listen(server);
+
+server.listen(port);
