@@ -1,0 +1,17 @@
+<input id="msgInput">
+<input type="submit" onClick="send()">
+
+<script src="pass.js"></script>
+<script>
+    pass.connect(function (server) {
+        var inputBox = document.getElementById("msgInput");
+        function send() {
+            server.broadcast(inputBox.value); // broadcast input
+            inputBox.value = ""; // clear text box       
+        }
+        function rcv(msg) {
+            console.log(msg);
+        }
+        server.arrive(rcv); // register rev callback
+    }
+</script>

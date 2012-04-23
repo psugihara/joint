@@ -1,6 +1,5 @@
 // Possible generated output for logger.pass.
-// server.arrive = (name) ~
-//   log(name + “ arrived”)
+
 /*jshint node: true*/
 
 var server = {};
