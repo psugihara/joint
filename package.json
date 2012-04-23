@@ -6,5 +6,6 @@
     "dnode"         : "latest",
     "browserify"    : "latest",
     "connect"       : "latest"
-  }
+  },
+  "bin" : { "pass" : "./bin/cli.js" }
 }

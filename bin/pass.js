@@ -21,7 +21,7 @@ var sourcePath, port, staticPath;
 
 // Print a diagnostic message followed by the usage line, then die.
 var usageDie = function (message) {
-  if (message);
+  if (message)
     console.log(message);
   console.log('usage: pass <path/program.pass> [<port#> <static directory>]');
   process.exit();
@@ -59,15 +59,20 @@ if (process.argv.length === 5) {
 // if (path.extname(sourcePath) == 'pass')
 //   sourcePath = COMPILED SOURCE
 
+var passProgram = require(sourcePath);
+
+// If there's no server to start, we're done.
+if (!(port && staticPath))
+  process.exit(0);
+
 // ####Server Configuration
 
 var connect = require('connect');
 var browserify = require('browserify');
 var dnode = require('dnode');
 var http = require('http');
-var passProgram = require(sourcePath);
-var lib  = path.join(path.dirname(fs.realpathSync(__filename)), './lib');
-var stdlib = require(lib + '/stdlib.js');
+// var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+// var stdlib = require(lib + '/stdlib.js');
 
 var app = connect();
 
@@ -76,7 +81,7 @@ var b = browserify({
   require: 'dnode',
   mount: '/pass.js'
 });
-b.append(fs.readFileSync(__dirname + '/browser/pass_client.js'));
+b.append(fs.readFileSync(__dirname + '/../browser/pass_client.js'));
 app.use(b);
 
 app.use(connect.static(staticPath));
@@ -92,10 +97,10 @@ dnode(function (client, conn) {
     if (typeof(passProgram.server[key]) === 'function')
       this[key] = passProgram.server[key];
 
-  // Expose all functions in the stdlib.
-  for (key in passProgram.server)
-    if (typeof(passProgram.server[key]) === 'function')
-      this[key] = passProgram.server[key];
+  // // Expose all functions in the stdlib.
+  // for (key in passProgram.server)
+  //   if (typeof(passProgram.server[key]) === 'function')
+  //     this[key] = passProgram.server[key];
 }).listen(server);
 
 server.listen(port);
