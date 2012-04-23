@@ -7,13 +7,14 @@ import org.antlr.runtime.tree.*;
 import java.io.*;
 
 public class T2 {
+    public static PassParser grammar;
     public static void run(String inputFile) throws Exception {
 ANTLRFileStream fs = new ANTLRFileStream(inputFile);
 PassLexer lex = new PassLexer(fs);
 TokenRewriteStream tokens = new TokenRewriteStream(lex);
 PassParser grammar = new PassParser(tokens);
-
-   grammar.setTreeAdaptor(adaptor);
+PassAdaptor pass_adaptor = new  PassAdaptor();
+grammar.setTreeAdaptor(pass_adaptor);
 PassParser.prog_return ret = grammar.prog();
 CommonTree tree = (CommonTree)ret.getTree();  
 walkTree(tree,2);
@@ -31,18 +32,22 @@ public static void printTree(CommonTree t, int indent) {
 	}
 }    
 public static void walkTree(CommonTree t, int indent) {
-	if ( t != null ) {
-		System.out.println("\""+t.toString()+"\"");
+    /**
+    //An Example of what a case would be like, I used this for testing
+    if(t.getType() == grammar.ASSIGNMENT)
+	{
+	    System.out.println("var " + t.getChild(0).getText().toString() + t.getChild(1).getText().toString() + t.getChild(2).getText().toString() + ";");
+
+	}
+    **/
+    if ( t != null ) {
+	System.out.println("\""+t.toString()+"\"");
 		for ( int i = 0; i < t.getChildCount(); i++ ) {
 			walkTree((CommonTree)t.getChild(i), indent+1);
 		}
 	}
-}   
-static final TreeAdaptor adaptor = new CommonTreeAdaptor() {
-	public Object create(Token payload) {
-		return new PassAST(payload);
-	}
-};
+}
+
     public static void main(String[] args) throws Exception {
         if (args == null || args.length == 0) {
             System.out.println("usage: pass <INPUT_FILE.pass>\n");
