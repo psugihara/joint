@@ -154,7 +154,7 @@ term:   factor (('*'|'/'|'%')^ factor)*
     ;
 
 factor
-    :   (modable -> modable) (args -> ^(FUNC_CALL modable args*)
+    :   (modable -> modable) (args -> ^(FUNC_CALL $factor args*)
     						 |access -> ^($factor access*)
     						  )*
     |   atom
@@ -234,7 +234,7 @@ OP
 	;
 
 PROG
-	: '1'
+	: 'PROG'
 	;  
 
 FUNCTION
