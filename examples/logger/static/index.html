@@ -1,20 +1,6 @@
 <script src=/pass.js></script>
 <script>
-
-
-var dnode = require('dnode');
-
-window.server = 0;
-
-dnode.connect(function (remote) {
-  console.log(window);
-  window.server = remote;
-  console.log(window.server);
-  window.server.arrive(prompt("Hi, what's your name?"));
-});
-
-count = 0
-while (window.server === 0 && count++ < 2000) { console.log(count); }
-
-console.log(window.server);
+  pass.connect(function (server) {
+    server.arrive(prompt("Hi, what's your name?"));
+  });
 </script>
