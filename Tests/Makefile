@@ -4,8 +4,8 @@ JC = javac
 .java:
 	javac $<
 
-default:    
-	cp ../PhaseI/Pass.g Pass.g; 
+default:
+	cp ../PhaseI/Pass.g ./Pass.g;
 	java org.antlr.Tool Pass.g; 
 	javac TestSnippets.java;
    
@@ -54,6 +54,42 @@ tests:
 	java TestSnippets ./Snippets/input40;
 	java TestSnippets ./Snippets/input41;
 	java TestSnippets ./Snippets/input42;
+	java TestSnippets ./Snippets/input43;
+	java TestSnippets ./Snippets/input44;
+	java TestSnippets ./Snippets/input45;
+	java TestSnippets ./Snippets/input46;
+	java TestSnippets ./Snippets/input47;
+	java TestSnippets ./Snippets/input48;
+	java TestSnippets ./Snippets/input49;
+	java TestSnippets ./Snippets/input50;
+	java TestSnippets ./Snippets/input51;
+	java TestSnippets ./Snippets/input52;
+	java TestSnippets ./Snippets/input53;
+	java TestSnippets ./Snippets/input54;
+	java TestSnippets ./Snippets/input55;
+	java TestSnippets ./Snippets/input56;
+	java TestSnippets ./Snippets/input57;
+	java TestSnippets ./Snippets/input58;
+	java TestSnippets ./Snippets/input59;
+	java TestSnippets ./Snippets/input60;
+	java TestSnippets ./Snippets/input61;
+	java TestSnippets ./Snippets/input62;
+	java TestSnippets ./Snippets/input63;
+	java TestSnippets ./Snippets/input64;
+	java TestSnippets ./Snippets/input65;
+	java TestSnippets ./Snippets/input66;
+	java TestSnippets ./Snippets/input67;
+	java TestSnippets ./Snippets/input68;
+	java TestSnippets ./Snippets/input69;
+	java TestSnippets ./Snippets/input70;
+	java TestSnippets ./Snippets/input71;
+	java TestSnippets ./Snippets/input72;
+	java TestSnippets ./Snippets/input73;
+	java TestSnippets ./Snippets/input74;
+	java TestSnippets ./Snippets/input75;
+	java TestSnippets ./Snippets/input76;
+
+
 
 clean:
 	$(RM) *.class PassLexer.java PassParser.java Pass.tokens Pass.g

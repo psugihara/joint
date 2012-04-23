@@ -98,15 +98,15 @@ tokens {
   }
 }
 
-prog:   block? EOF -> ^(PROG block)
+prog:   block EOF
     ;
 
 block
-    :   stmt+ LT!* 
+    :   LT* stmt*
     ;
     
-stmt:   expr (LT!|EOF)
-    |   control
+stmt:   expr (LT!+|EOF)
+    |   control LT+
     ;   
     
 iblock
@@ -175,18 +175,19 @@ atom:   NUMBER
     ;
 
 control
-    :   'for' ID 'in' container=((ID mod?)|array_definition) LT iblock LT //-> ^('for' ID 'in' $container)
-    |   'while' bool LT iblock LT -> ^('while' bool iblock)
-    |   'if' bool LT iblock LT (else_test LT)? //-> ^('if' bool iblock (else_test)?)
+    :   'for'^ ID 'in' ((ID mod?)|array_definition) LT+ iblock
+    |   'while' bool LT+ iblock -> ^('while' bool iblock)
+    |   'if' bool LT+ iblock (LT+ else_test)?// -> ^('if' bool iblock (else_test)?)
     ;
 
 /** dangling else solution **/
 else_test
-    :   'else' else_p
+    : ('else if')=> 'else if' bool (return_stmt|LT iblock) (LT+ else_test)?
+    | 'else' (return_stmt LT|LT iblock)
     ;
 
 else_p
-    :   'if' bool (return_stmt LT|LT iblock) else_test
+    :   'if' bool (return_stmt LT|LT iblock) else_test?
     |    (return_stmt LT|LT iblock)
     ;
     
@@ -200,7 +201,7 @@ dictionary_definition
     ;
 
 dictionary_entry
-    :   STRING ':' atom 
+    :   ID ':' atom 
     ;
     
 array_definition
@@ -280,8 +281,7 @@ NUMBER
     ;
 
 COMMENT
-    :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-    |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+    :   '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
     ;
 
 WS  :   ( ' '

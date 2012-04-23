@@ -1,4 +1,3 @@
-((x, y) ~ return x + y)(2, 3)
 x = 1
 z = "Hey there"
 log(z)
