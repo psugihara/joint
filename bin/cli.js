@@ -59,13 +59,11 @@ if (process.argv.length === 5) {
 // if (path.extname(sourcePath) == 'pass')
 //   sourcePath = COMPILED SOURCE
 
-var passProgram = require(sourcePath);
+var program = require(sourcePath);
 
 // If there's no server to start, we're done.
 if (!(port && staticPath))
   process.exit(0);
-
-
 
 // ####Server Configuration
 
@@ -75,7 +73,6 @@ var dnode = require('dnode');
 var http = require('http');
 var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
 var stdlib = require(lib + '/stdlib.js');
-
 
 var app = connect();
 
@@ -92,29 +89,12 @@ app.use(connect.static(staticPath));
 var server = http.createServer(app);
 
 dnode(function (client, conn) {
-  var connServer = require(sourcePath);
-
-  connServer.conn.id = conn.id;
-
-  // Expose all functions on the server object in the passProgram.
-  for (var key in connServer.server)
-    if (typeof(connServer.server[key]) === 'function')
-      this[key] = connServer.server[key];
-
-  // Copy everything from our global program to this new instance.
-  for (var v in passProgram.global)
-    if (v !== 'conn' && v !== 'server' && v !== 'global') {
-      console.log(v);
-      connServer.global[v] = passProgram.global[v];
-    }
-
+  program.bind(this, conn);
   // conn.on('end', function() {
   //    var tagged = stdlib.tags(connServer.conn);
   //    for (var t in tagged)
   //      stdlib.untag(connServer.conn, tagged[t]); 
   // });
-  connServer.server = this;
-  connServer.conn = conn;
 }).listen(server);
 
 server.listen(port);

@@ -5,8 +5,11 @@ var conns = pass.conns;
 
 /*jshint node: true*/
 
+// Global scope stuff goes out here.
 
 exports.bind = function (server, conn) {
+
+  // Functions go in here.
 
   server.arrive = function (msgCallback) {
     conn.onMsg = msgCallback;
