@@ -71,8 +71,8 @@ var connect = require('connect');
 var browserify = require('browserify');
 var dnode = require('dnode');
 var http = require('http');
-// var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
-// var stdlib = require(lib + '/stdlib.js');
+var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+var stdlib = require(lib + '/stdlib.js');
 
 var app = connect();
 
@@ -88,6 +88,11 @@ app.use(connect.static(staticPath));
 
 var server = http.createServer(app);
 
+var tag = stdlib.tag;
+var tags = stdlib.tags;
+var contains = stdlib.contains;
+var conns = stdlib.conns;
+var untag = stdlib.untag;
 
 dnode(function (client, conn) {
   var key;
@@ -97,10 +102,12 @@ dnode(function (client, conn) {
     if (typeof(passProgram.server[key]) === 'function')
       this[key] = passProgram.server[key];
 
-  // // Expose all functions in the stdlib.
-  // for (key in passProgram.server)
-  //   if (typeof(passProgram.server[key]) === 'function')
-  //     this[key] = passProgram.server[key];
+  conn.on('end', function() {
+     var tagged = tags(conn);
+     for (var t in tagged)
+       untag(conn, tagged[t]); 
+  });
+
 }).listen(server);
 
 server.listen(port);
