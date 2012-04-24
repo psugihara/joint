@@ -3,15 +3,16 @@
 
 <script src="pass.js"></script>
 <script>
+    var send;
     pass.connect(function (server) {
         var inputBox = document.getElementById("msgInput");
-        function send() {
+        send = function () {
             server.broadcast(inputBox.value); // broadcast input
             inputBox.value = ""; // clear text box       
         }
         function rcv(msg) {
             console.log(msg);
         }
-        server.arrive(rcv); // register rev callback
-    }
+        server.arrive(rcv); // register rcv callback
+    });
 </script>

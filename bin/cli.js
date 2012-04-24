@@ -65,6 +65,8 @@ var passProgram = require(sourcePath);
 if (!(port && staticPath))
   process.exit(0);
 
+
+
 // ####Server Configuration
 
 var connect = require('connect');
@@ -73,6 +75,7 @@ var dnode = require('dnode');
 var http = require('http');
 var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
 var stdlib = require(lib + '/stdlib.js');
+
 
 var app = connect();
 
@@ -88,26 +91,30 @@ app.use(connect.static(staticPath));
 
 var server = http.createServer(app);
 
-var tag = stdlib.tag;
-var tags = stdlib.tags;
-var contains = stdlib.contains;
-var conns = stdlib.conns;
-var untag = stdlib.untag;
-
 dnode(function (client, conn) {
-  var key;
+  var connServer = require(sourcePath);
+
+  connServer.conn.id = conn.id;
 
   // Expose all functions on the server object in the passProgram.
-  for (key in passProgram.server)
-    if (typeof(passProgram.server[key]) === 'function')
-      this[key] = passProgram.server[key];
+  for (var key in connServer.server)
+    if (typeof(connServer.server[key]) === 'function')
+      this[key] = connServer.server[key];
 
-  conn.on('end', function() {
-     var tagged = tags(conn);
-     for (var t in tagged)
-       untag(conn, tagged[t]); 
-  });
+  // Copy everything from our global program to this new instance.
+  for (var v in passProgram.global)
+    if (v !== 'conn' && v !== 'server' && v !== 'global') {
+      console.log(v);
+      connServer.global[v] = passProgram.global[v];
+    }
 
+  // conn.on('end', function() {
+  //    var tagged = stdlib.tags(connServer.conn);
+  //    for (var t in tagged)
+  //      stdlib.untag(connServer.conn, tagged[t]); 
+  // });
+  connServer.server = this;
+  connServer.conn = conn;
 }).listen(server);
 
 server.listen(port);
