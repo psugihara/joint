@@ -10,8 +10,8 @@ import java.io.*;
 
 public class PassC {
     public static PassParser grammar;
-
-    public static void run(String inputFile) throws Exception {
+CodeGenerator gen;
+    public  void run(String inputFile) throws Exception {
         ANTLRFileStream fs = new ANTLRFileStream(inputFile);
         PassLexer lex = new PassLexer(fs);
         TokenRewriteStream tokens = new TokenRewriteStream(lex);
@@ -20,30 +20,24 @@ public class PassC {
         grammar.setTreeAdaptor(pass_adaptor);
         PassParser.prog_return ret = grammar.prog();
         PassNode tree = (PassNode) ret.getTree();
-        walkTree(tree, 2);
-
+         gen = new CodeGenerator();
+        walkTree(tree);
+	System.out.println(tree.getText());
     }
 
-    public static void printTree(CommonTree t, int indent) {
-        if (t != null) {
-            StringBuffer sb = new StringBuffer(indent);
-            for (int i = 0; i < indent; i++)
-                sb = sb.append("   ");
-            for (int i = 0; i < t.getChildCount(); i++) {
-                System.out.println(sb.toString() + t.getChild(i).toString());
-                printTree((CommonTree) t.getChild(i), indent + 1);
-            }
-        }
-    }
+//todo write iterative version of this method
+    public void walkTree(PassNode n) {
+        if (n == null) 
+        	return;
 
-    public static void walkTree(CommonTree t, int indent) {
-
-        if (t != null) {
-            System.out.println("\"" + t.toString() + "\"");
-            for (int i = 0; i < t.getChildCount(); i++) {
-                walkTree((CommonTree) t.getChild(i), indent + 1);
+            for (int i = 0; i < n.getChildCount(); i++) {
+          //  	PassNode thisChild = (PassNode)n.getChild(i);
+               	walkTree((PassNode) n.getChild(i));  
+               	((PassNode)n.getChild(i)).text = gen.nodeDecider((PassNode)n.getChild(i));  
+               //	n.getChild(i) = thisChild;   
             }
-        }
+            
+        
     }
 
     public static void main(String[] args) throws Exception {
@@ -57,7 +51,8 @@ public class PassC {
         }
 
         try {
-            run(args[0]);
+         PassC passCompiler = new PassC();
+            passCompiler.run(args[0]);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Cannot access \"" + args[0] + "\"");

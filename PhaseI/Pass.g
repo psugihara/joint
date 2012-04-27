@@ -1,3 +1,4 @@
+//todo make RETURN AND GENERIC_OP custom nodes
 grammar Pass;
 options {
   output=AST;

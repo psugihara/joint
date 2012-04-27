@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Pass.g 2012-04-27 15:06:50
+// $ANTLR 3.4 Pass.g 2012-04-27 15:53:06
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -697,8 +697,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = OP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:233:2: ( 'OP' )
-            // Pass.g:233:4: 'OP'
+            // Pass.g:234:2: ( 'OP' )
+            // Pass.g:234:4: 'OP'
             {
             match("OP"); 
 
@@ -720,8 +720,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = PROG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:237:2: ( 'PROG' )
-            // Pass.g:237:4: 'PROG'
+            // Pass.g:238:2: ( 'PROG' )
+            // Pass.g:238:4: 'PROG'
             {
             match("PROG"); 
 
@@ -743,8 +743,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:241:2: ( 'FUNCTION' )
-            // Pass.g:241:4: 'FUNCTION'
+            // Pass.g:242:2: ( 'FUNCTION' )
+            // Pass.g:242:4: 'FUNCTION'
             {
             match("FUNCTION"); 
 
@@ -766,8 +766,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ASSIGNMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:245:2: ( 'ASSIGNMENT' )
-            // Pass.g:245:4: 'ASSIGNMENT'
+            // Pass.g:246:2: ( 'ASSIGNMENT' )
+            // Pass.g:246:4: 'ASSIGNMENT'
             {
             match("ASSIGNMENT"); 
 
@@ -789,8 +789,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARRAY_ACCESS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:249:2: ( 'ARRAY ENTRY' )
-            // Pass.g:249:4: 'ARRAY ENTRY'
+            // Pass.g:250:2: ( 'ARRAY ENTRY' )
+            // Pass.g:250:4: 'ARRAY ENTRY'
             {
             match("ARRAY ENTRY"); 
 
@@ -812,8 +812,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DICTIONARY_DEFINITION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:253:2: ( 'DICTIONARY DEFINITION' )
-            // Pass.g:253:4: 'DICTIONARY DEFINITION'
+            // Pass.g:254:2: ( 'DICTIONARY DEFINITION' )
+            // Pass.g:254:4: 'DICTIONARY DEFINITION'
             {
             match("DICTIONARY DEFINITION"); 
 
@@ -835,8 +835,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DICT_ACCESS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:257:2: ( 'DICTIONARY ENTRY' )
-            // Pass.g:257:4: 'DICTIONARY ENTRY'
+            // Pass.g:258:2: ( 'DICTIONARY ENTRY' )
+            // Pass.g:258:4: 'DICTIONARY ENTRY'
             {
             match("DICTIONARY ENTRY"); 
 
@@ -858,8 +858,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = IF_CONDITIONS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:261:2: ( 'IF_CONDITIONS' )
-            // Pass.g:261:4: 'IF_CONDITIONS'
+            // Pass.g:262:2: ( 'IF_CONDITIONS' )
+            // Pass.g:262:4: 'IF_CONDITIONS'
             {
             match("IF_CONDITIONS"); 
 
@@ -881,8 +881,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:265:2: ( 'IF' )
-            // Pass.g:265:4: 'IF'
+            // Pass.g:266:2: ( 'IF' )
+            // Pass.g:266:4: 'IF'
             {
             match("IF"); 
 
@@ -904,8 +904,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ELSE_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:269:2: ( 'ELSE_IF' )
-            // Pass.g:269:4: 'ELSE_IF'
+            // Pass.g:270:2: ( 'ELSE_IF' )
+            // Pass.g:270:4: 'ELSE_IF'
             {
             match("ELSE_IF"); 
 
@@ -927,8 +927,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:273:2: ( 'ELSE' )
-            // Pass.g:273:4: 'ELSE'
+            // Pass.g:274:2: ( 'ELSE' )
+            // Pass.g:274:4: 'ELSE'
             {
             match("ELSE"); 
 
@@ -950,8 +950,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:277:2: ( 'WHILE' )
-            // Pass.g:277:4: 'WHILE'
+            // Pass.g:278:2: ( 'WHILE' )
+            // Pass.g:278:4: 'WHILE'
             {
             match("WHILE"); 
 
@@ -973,8 +973,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:281:2: ( 'FOR' )
-            // Pass.g:281:4: 'FOR'
+            // Pass.g:282:2: ( 'FOR' )
+            // Pass.g:282:4: 'FOR'
             {
             match("FOR"); 
 
@@ -996,8 +996,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = FUNC_CALL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:285:2: ( 'FUNC_CALL' )
-            // Pass.g:285:4: 'FUNC_CALL'
+            // Pass.g:286:2: ( 'FUNC_CALL' )
+            // Pass.g:286:4: 'FUNC_CALL'
             {
             match("FUNC_CALL"); 
 
@@ -1019,8 +1019,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARGUMENTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:289:2: ( 'ARGUMENTS' )
-            // Pass.g:289:4: 'ARGUMENTS'
+            // Pass.g:290:2: ( 'ARGUMENTS' )
+            // Pass.g:290:4: 'ARGUMENTS'
             {
             match("ARGUMENTS"); 
 
@@ -1042,8 +1042,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = IBLOCK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:293:2: ( 'IBLOCK' )
-            // Pass.g:293:4: 'IBLOCK'
+            // Pass.g:294:2: ( 'IBLOCK' )
+            // Pass.g:294:4: 'IBLOCK'
             {
             match("IBLOCK"); 
 
@@ -1065,8 +1065,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARRAY_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:297:2: ( 'ARRAY_DECLARATION' )
-            // Pass.g:297:4: 'ARRAY_DECLARATION'
+            // Pass.g:298:2: ( 'ARRAY_DECLARATION' )
+            // Pass.g:298:4: 'ARRAY_DECLARATION'
             {
             match("ARRAY_DECLARATION"); 
 
@@ -1088,8 +1088,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DICTIONARY_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:301:2: ( 'DICTIONARY_DECLARATIOn' )
-            // Pass.g:301:4: 'DICTIONARY_DECLARATIOn'
+            // Pass.g:302:2: ( 'DICTIONARY_DECLARATIOn' )
+            // Pass.g:302:4: 'DICTIONARY_DECLARATIOn'
             {
             match("DICTIONARY_DECLARATIOn"); 
 
@@ -1111,10 +1111,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:304:5: ( ( '\\n' | 'r\\n' )+ )
-            // Pass.g:304:9: ( '\\n' | 'r\\n' )+
+            // Pass.g:305:5: ( ( '\\n' | 'r\\n' )+ )
+            // Pass.g:305:9: ( '\\n' | 'r\\n' )+
             {
-            // Pass.g:304:9: ( '\\n' | 'r\\n' )+
+            // Pass.g:305:9: ( '\\n' | 'r\\n' )+
             int cnt1=0;
             loop1:
             do {
@@ -1131,14 +1131,14 @@ public class PassLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // Pass.g:304:10: '\\n'
+            	    // Pass.g:305:10: '\\n'
             	    {
             	    match('\n'); 
 
             	    }
             	    break;
             	case 2 :
-            	    // Pass.g:304:15: 'r\\n'
+            	    // Pass.g:305:15: 'r\\n'
             	    {
             	    match("r\n"); 
 
@@ -1173,14 +1173,14 @@ public class PassLexer extends Lexer {
         try {
             int _type = INDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:308:5: ({...}? => ( ' ' )+ )
-            // Pass.g:309:8: {...}? => ( ' ' )+
+            // Pass.g:309:5: ({...}? => ( ' ' )+ )
+            // Pass.g:310:8: {...}? => ( ' ' )+
             {
             if ( !((getCharPositionInLine()==0)) ) {
                 throw new FailedPredicateException(input, "INDENT", "getCharPositionInLine()==0");
             }
 
-            // Pass.g:310:9: ( ' ' )+
+            // Pass.g:311:9: ( ' ' )+
             int cnt2=0;
             loop2:
             do {
@@ -1194,7 +1194,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // Pass.g:310:10: ' '
+            	    // Pass.g:311:10: ' '
             	    {
             	    match(' '); 
 
@@ -1232,8 +1232,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DEDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:318:5: ( LT (~ ' ' ) )
-            // Pass.g:318:9: LT (~ ' ' )
+            // Pass.g:319:5: ( LT (~ ' ' ) )
+            // Pass.g:319:9: LT (~ ' ' )
             {
             mLT(); 
 
@@ -1272,7 +1272,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARITH_ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:329:5: ( '+=' | '-=' | '*=' | '/=' | '%=' )
+            // Pass.g:330:5: ( '+=' | '-=' | '*=' | '/=' | '%=' )
             int alt3=5;
             switch ( input.LA(1) ) {
             case '+':
@@ -1310,7 +1310,7 @@ public class PassLexer extends Lexer {
 
             switch (alt3) {
                 case 1 :
-                    // Pass.g:329:9: '+='
+                    // Pass.g:330:9: '+='
                     {
                     match("+="); 
 
@@ -1319,7 +1319,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:329:14: '-='
+                    // Pass.g:330:14: '-='
                     {
                     match("-="); 
 
@@ -1328,7 +1328,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:329:19: '*='
+                    // Pass.g:330:19: '*='
                     {
                     match("*="); 
 
@@ -1337,7 +1337,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Pass.g:329:24: '/='
+                    // Pass.g:330:24: '/='
                     {
                     match("/="); 
 
@@ -1346,7 +1346,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // Pass.g:329:29: '%='
+                    // Pass.g:330:29: '%='
                     {
                     match("%="); 
 
@@ -1370,7 +1370,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = CMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:333:5: ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' )
+            // Pass.g:334:5: ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' )
             int alt4=7;
             switch ( input.LA(1) ) {
             case '<':
@@ -1424,21 +1424,21 @@ public class PassLexer extends Lexer {
 
             switch (alt4) {
                 case 1 :
-                    // Pass.g:333:9: '<'
+                    // Pass.g:334:9: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 2 :
-                    // Pass.g:333:13: '>'
+                    // Pass.g:334:13: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 3 :
-                    // Pass.g:333:17: '=='
+                    // Pass.g:334:17: '=='
                     {
                     match("=="); 
 
@@ -1447,7 +1447,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Pass.g:333:22: '>='
+                    // Pass.g:334:22: '>='
                     {
                     match(">="); 
 
@@ -1456,7 +1456,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // Pass.g:333:27: '<='
+                    // Pass.g:334:27: '<='
                     {
                     match("<="); 
 
@@ -1465,7 +1465,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // Pass.g:333:32: '<>'
+                    // Pass.g:334:32: '<>'
                     {
                     match("<>"); 
 
@@ -1474,7 +1474,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 7 :
-                    // Pass.g:333:37: '!='
+                    // Pass.g:334:37: '!='
                     {
                     match("!="); 
 
@@ -1498,7 +1498,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = BOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:337:5: ( '||' | '&&' )
+            // Pass.g:338:5: ( '||' | '&&' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1517,7 +1517,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // Pass.g:337:9: '||'
+                    // Pass.g:338:9: '||'
                     {
                     match("||"); 
 
@@ -1526,7 +1526,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:337:14: '&&'
+                    // Pass.g:338:14: '&&'
                     {
                     match("&&"); 
 
@@ -1550,8 +1550,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:340:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // Pass.g:340:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Pass.g:341:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // Pass.g:341:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1563,7 +1563,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // Pass.g:340:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Pass.g:341:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop6:
             do {
                 int alt6=2;
@@ -1613,14 +1613,14 @@ public class PassLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:344:5: ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT )
+            // Pass.g:345:5: ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT )
             int alt18=4;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // Pass.g:344:9: ( '-' )? ( '0' .. '9' )+
+                    // Pass.g:345:9: ( '-' )? ( '0' .. '9' )+
                     {
-                    // Pass.g:344:9: ( '-' )?
+                    // Pass.g:345:9: ( '-' )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -1629,7 +1629,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt7) {
                         case 1 :
-                            // Pass.g:344:9: '-'
+                            // Pass.g:345:9: '-'
                             {
                             match('-'); 
 
@@ -1639,7 +1639,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // Pass.g:344:13: ( '0' .. '9' )+
+                    // Pass.g:345:13: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -1681,9 +1681,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:345:9: ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+                    // Pass.g:346:9: ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
                     {
-                    // Pass.g:345:9: ( '-' )?
+                    // Pass.g:346:9: ( '-' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1692,7 +1692,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // Pass.g:345:9: '-'
+                            // Pass.g:346:9: '-'
                             {
                             match('-'); 
 
@@ -1702,7 +1702,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // Pass.g:345:13: ( '0' .. '9' )+
+                    // Pass.g:346:13: ( '0' .. '9' )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1743,7 +1743,7 @@ public class PassLexer extends Lexer {
 
                     match('.'); 
 
-                    // Pass.g:345:29: ( '0' .. '9' )*
+                    // Pass.g:346:29: ( '0' .. '9' )*
                     loop11:
                     do {
                         int alt11=2;
@@ -1777,7 +1777,7 @@ public class PassLexer extends Lexer {
                     } while (true);
 
 
-                    // Pass.g:345:41: ( EXPONENT )?
+                    // Pass.g:346:41: ( EXPONENT )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1786,7 +1786,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // Pass.g:345:41: EXPONENT
+                            // Pass.g:346:41: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1800,9 +1800,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:346:9: ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )?
+                    // Pass.g:347:9: ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )?
                     {
-                    // Pass.g:346:9: ( '-' )?
+                    // Pass.g:347:9: ( '-' )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1811,7 +1811,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // Pass.g:346:9: '-'
+                            // Pass.g:347:9: '-'
                             {
                             match('-'); 
 
@@ -1823,7 +1823,7 @@ public class PassLexer extends Lexer {
 
                     match('.'); 
 
-                    // Pass.g:346:17: ( '0' .. '9' )+
+                    // Pass.g:347:17: ( '0' .. '9' )+
                     int cnt14=0;
                     loop14:
                     do {
@@ -1862,7 +1862,7 @@ public class PassLexer extends Lexer {
                     } while (true);
 
 
-                    // Pass.g:346:29: ( EXPONENT )?
+                    // Pass.g:347:29: ( EXPONENT )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -1871,7 +1871,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt15) {
                         case 1 :
-                            // Pass.g:346:29: EXPONENT
+                            // Pass.g:347:29: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1885,9 +1885,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Pass.g:347:9: ( '-' )? ( '0' .. '9' )+ EXPONENT
+                    // Pass.g:348:9: ( '-' )? ( '0' .. '9' )+ EXPONENT
                     {
-                    // Pass.g:347:9: ( '-' )?
+                    // Pass.g:348:9: ( '-' )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1896,7 +1896,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // Pass.g:347:9: '-'
+                            // Pass.g:348:9: '-'
                             {
                             match('-'); 
 
@@ -1906,7 +1906,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // Pass.g:347:13: ( '0' .. '9' )+
+                    // Pass.g:348:13: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -1966,12 +1966,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:351:5: ( '#' ( options {greedy=false; } : . )* '#' )
-            // Pass.g:351:9: '#' ( options {greedy=false; } : . )* '#'
+            // Pass.g:352:5: ( '#' ( options {greedy=false; } : . )* '#' )
+            // Pass.g:352:9: '#' ( options {greedy=false; } : . )* '#'
             {
             match('#'); 
 
-            // Pass.g:351:13: ( options {greedy=false; } : . )*
+            // Pass.g:352:13: ( options {greedy=false; } : . )*
             loop19:
             do {
                 int alt19=2;
@@ -1987,7 +1987,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // Pass.g:351:41: .
+            	    // Pass.g:352:41: .
             	    {
             	    matchAny(); 
 
@@ -2020,8 +2020,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:354:5: ( ( ' ' | '\\t' | '\\r' ) )
-            // Pass.g:354:9: ( ' ' | '\\t' | '\\r' )
+            // Pass.g:355:5: ( ( ' ' | '\\t' | '\\r' ) )
+            // Pass.g:355:9: ( ' ' | '\\t' | '\\r' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2051,12 +2051,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:361:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-            // Pass.g:361:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+            // Pass.g:362:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+            // Pass.g:362:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // Pass.g:361:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+            // Pass.g:362:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
             loop20:
             do {
                 int alt20=3;
@@ -2072,7 +2072,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-            	    // Pass.g:361:14: ESC_SEQ
+            	    // Pass.g:362:14: ESC_SEQ
             	    {
             	    mESC_SEQ(); 
 
@@ -2080,7 +2080,7 @@ public class PassLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Pass.g:361:24: ~ ( '\\\\' | '\"' )
+            	    // Pass.g:362:24: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -2117,8 +2117,8 @@ public class PassLexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // Pass.g:367:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // Pass.g:367:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // Pass.g:368:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // Pass.g:368:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2130,7 +2130,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // Pass.g:367:19: ( '+' | '-' )?
+            // Pass.g:368:19: ( '+' | '-' )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2157,7 +2157,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // Pass.g:367:30: ( '0' .. '9' )+
+            // Pass.g:368:30: ( '0' .. '9' )+
             int cnt22=0;
             loop22:
             do {
@@ -2209,7 +2209,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // Pass.g:372:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // Pass.g:373:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // Pass.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -2235,7 +2235,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // Pass.g:377:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // Pass.g:378:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt23=3;
             int LA23_0 = input.LA(1);
 
@@ -2288,7 +2288,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt23) {
                 case 1 :
-                    // Pass.g:377:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // Pass.g:378:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -2305,7 +2305,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:378:9: UNICODE_ESC
+                    // Pass.g:379:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -2313,7 +2313,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:379:9: OCTAL_ESC
+                    // Pass.g:380:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -2333,7 +2333,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // Pass.g:384:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // Pass.g:385:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt24=3;
             int LA24_0 = input.LA(1);
 
@@ -2384,7 +2384,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // Pass.g:384:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // Pass.g:385:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2421,7 +2421,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:385:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // Pass.g:386:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2448,7 +2448,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:386:9: '\\\\' ( '0' .. '7' )
+                    // Pass.g:387:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2477,8 +2477,8 @@ public class PassLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // Pass.g:391:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // Pass.g:391:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // Pass.g:392:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // Pass.g:392:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 
@@ -2995,7 +2995,7 @@ public class PassLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "343:1: NUMBER : ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT );";
+            return "344:1: NUMBER : ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT );";
         }
     }
     static final String DFA25_eotS =
