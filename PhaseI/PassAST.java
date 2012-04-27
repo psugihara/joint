@@ -3,6 +3,7 @@ import org.antlr.runtime.Token;
 
 public class PassAST extends CommonTree {
 	public String text; 
+	public int type;
 	
 	public PassAST(Token t) {
 		super(t);
