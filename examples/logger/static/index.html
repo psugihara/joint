@@ -1,4 +1,6 @@
 <script src=/pass.js></script>
 <script>
-  server.arrive(prompt(“Hi, what’s your name?”));
+  pass.connect(function (server) {
+    server.arrive(prompt("Hi, what's your name?"));
+  });
 </script>

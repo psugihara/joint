@@ -1,9 +1,9 @@
-
-
   var server;
+  var connected = false;
 
   DNode.connect(5050, function(remote) {
     server = remote;
+    
   });
 
   var receive = function (name, message) {

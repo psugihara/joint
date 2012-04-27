@@ -1,0 +1,12 @@
+{
+  "name": "pass",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "dnode"         : "latest",
+    "browserify"    : "latest",
+    "connect"       : "latest"
+  },
+  "bin" : { "pass" : "./bin/cli.js" },
+  "main" : "./lib/stdlib.js"
+}
