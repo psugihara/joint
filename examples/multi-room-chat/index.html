@@ -1,0 +1,39 @@
+<HTML>
+<head>
+  <script src="/pass.js" type="text/javascript"></script>
+  <script src="client.js"></script>
+  <style type="text/css">
+    #name {
+      float: left;
+    }
+    #name-button {
+      float: left;
+    }
+    #chat-message {
+      float: left;
+    }
+    #send-button {
+      float: left;
+    }
+    #room-name {
+      float: left;
+    }
+    #join-button {
+      float: left;
+    }
+  </style>
+</head>
+  <BODY><h1>Multi-room chat server</h1><br>
+    <input placeholder="enter your name" id="name" />
+    <button type="button" id="name-button" onClick="setName()">Set Name</button>
+    <br><br>
+    <input placeholder="chatroom" id="room-name" />
+    <button type="button" id="join-button" onClick="joinRoom();">Join</button>
+    <br><br>
+    <input  placeholder="type message here" id="chat-message" />
+    <button type="button" id="send-button" onClick="sendMessage();">Send</button>
+    <br><br>
+  </body>
+
+</HTML>
+
