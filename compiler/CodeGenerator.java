@@ -114,6 +114,13 @@ public class CodeGenerator {
         return genericCombine(n, ":");
     }
 
+    public String IF(PassNode n) {
+        return "if (" + n.getChild(0).getText() + ") " + n.getChild(2).getText();
+    }
+
+    public String IF_CONDITIONS(PassNode n) {
+        return genericCombine(n, "");
+    }
 
     public String genericCombine(PassNode n, String middleString) {
         return genericCombine(n, middleString, middleString);
@@ -199,6 +206,12 @@ public class CodeGenerator {
                 break;
             case PassParser.LT:
             	s = "\n";
+                break;
+            case PassParser.IF:
+                s = IF(n);
+                break;
+            case PassParser.IF_CONDITIONS:
+                s = IF_CONDITIONS(n);
                 break;
             default:
                 return n.getText();
