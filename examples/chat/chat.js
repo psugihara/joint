@@ -1,25 +1,20 @@
 // Possible generated output for chat.pass.
 
-var pass = require('pass')
-var conns = pass.conns;
-
 /*jshint node: true*/
 
-// Global scope stuff goes out here.
+var pass = require('pass')
+var conns = pass.conns;
+var server = {};
 
-exports.bind = function (server, conn) {
-
-  // Functions go in here.
-
-  server.arrive = function (msgCallback) {
-    conn.onMsg = msgCallback;
-  }
-
-  server.broadcast = function (msg) {
-    conn.onMsg(msg);
-    var connections = conns();
-    for (var c in connections)
-      connections[c].onMsg(msg);
-  }
-
+server.arrive = function (msgCallback) {
+  this.conn.onMsg = msgCallback;
 }
+
+server.broadcast = function (msg) {
+  this.conn.onMsg(msg);
+  // var connections = conns();
+  // for (var c in connections)
+  //   connections[c].onMsg(msg);
+}
+
+module.exports = server;

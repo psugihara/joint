@@ -89,7 +89,10 @@ app.use(connect.static(staticPath));
 var server = http.createServer(app);
 
 dnode(function (client, conn) {
-  program.bind(this, conn);
+  for (var key in program) {
+    this[key] = program[key].bind({"conn":conn});
+  }
+  // program.bind(this, conn);
   // conn.on('end', function() {
   //    var tagged = stdlib.tags(connServer.conn);
   //    for (var t in tagged)
