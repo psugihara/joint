@@ -9,9 +9,9 @@ public class CodeGenerator {
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, "");
         text = "  "+text.replace("\n", "\n  ");
-
         return "{\n" + text + "\n}\n";
     }
+    
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
@@ -58,8 +58,22 @@ public class CodeGenerator {
         return null;
     }
 
-    /*todo CHECK FOR STDLIB FUNCTION CALLS*/
     public String FUNC_CALL(PassNode n) {
+    	PassNode node = (PassNode)n.getChild(0);
+    	String funcName = node.getText();
+    	if(funcName == null){
+    	//this should never happen
+    		System.out.println("FATAL ERROR: no function name ");
+    		System.exit(-1);
+    	}
+    	if(funcName.equals("log")){
+    		funcName = "console.log";
+    	}// todo add other special functions
+    	/*else if(funcName.equals("")){
+        	funcName = "";
+        }*/
+        node.setText(funcName);
+    	n.setChild(0, node);	
         String text = genericCombine(n, "(") + ")";
         return text;
     }
@@ -111,7 +125,7 @@ public class CodeGenerator {
                     s += middleString + n.getChild(i);
                 return s;
         }
-    }                         //root
+    }                         
 
 
     public String nodeDecider(PassNode n) {
