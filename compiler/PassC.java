@@ -20,15 +20,17 @@ CodeGenerator gen;
         grammar.setTreeAdaptor(pass_adaptor);
         PassParser.prog_return ret = grammar.prog();
         PassNode tree = (PassNode) ret.getTree();
-         gen = new CodeGenerator();
-        walkTree((PassNode)tree);
+        if(tree == null){
+        	System.out.println("Input Rejected by grammar: no tree generated");
+        	System.exit(-1);
+        }
+        gen = new CodeGenerator();
+     //   tree = (PassNode)tree.getChild(0);
+        walkTree(tree);
 	System.out.println(tree.getText());
     }
 
-//todo write iterative version of this method
     public void walkTree(PassNode n) {
-     	if (n == null)
-            return ;
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);
         PassNode tmp = null;
@@ -46,7 +48,7 @@ CodeGenerator gen;
         		PassNode w = s.pop();
         		w.setVisitedTrue();
         		String decided = gen.nodeDecider(w);
-    
+ //   System.out.println(decided+" :LEVEL: "+w.getText());
         		if (decided!=null){
         		        w.setText(decided);
         		}
