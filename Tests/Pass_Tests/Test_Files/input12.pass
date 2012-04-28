@@ -1,6 +1,6 @@
-server.unsubscribe = (channel) ~
-  if channel
-    untag(conn, channel)
-  else
-    for channel in channels(conn)
-      untag(conn, channel)
+x = 4
+y = 2
+z = x + y
+log(x)
+log(y)
+log(z)

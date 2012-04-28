@@ -1,4 +1,2 @@
-server.publishAllSubscribed = (message) ~
-  for channel in tags(conn)
-    for connection in conns(channel)
-      connection.onMsg(message)
+x = 2 + 4 - 10
+log(x)

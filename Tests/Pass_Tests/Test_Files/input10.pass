@@ -1,3 +1,4 @@
-server.publish = (message, channel) ~
-  for connection in conns(channel)
-    connection.onMsg(message)
+x = 4
+log(x)
+y = 2
+log(y)

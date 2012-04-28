@@ -1,6 +1,1 @@
-server.arrive = (msgCallback) ~
-  conn.onMsg = msgCallback
-
-server.broadcast = (msg) ~
-  for c in conns()
-    c.onMsg(msg)
+log("hello there. 4 + 2 = 6. isn't that somethin'?")
