@@ -138,7 +138,7 @@ public class CodeGenerator {
                 return n.getChild(0).getText() + middleString + n.getChild(1).getText() + middleString1 + n.getChild(2).getText();
             default:
                 String s = n.getChild(0).getText();
-                for (int i = 1; n.getChildCount() < i; i++)
+                for (int i = 1; i < n.getChildCount(); i++)
                     s += middleString + n.getChild(i);
                 return s;
         }
