@@ -214,7 +214,7 @@ control
     ;    
 
 accessid
-	:(ID->ID) 
+	:   (ID->ID) 
 	( args ->  ^(FUNC_CALL $accessid args)
     | array_access -> ^(ARRAY_ACCESS $accessid array_access)
     | dictionary_access -> ^(DICT_ACCESS $accessid dictionary_access)
@@ -223,18 +223,18 @@ accessid
 
 else_body
 	:	return_stmt LT
-	| LT iblock
+	|   LT iblock
 	;
 
 else_if_body
-	:  return_stmt
-	| LT iblock
+	:   return_stmt
+	|   LT iblock
 	;
 
 /** dangling else solution **/
 else_test
-    : ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
-    | 'else' else_body -> ^(ELSE else_body)
+    :   ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
+    |   'else' else_body -> ^(ELSE else_body)
     ;
 
     
@@ -345,6 +345,7 @@ DICTIONARY_DECLARATION
 	: 'DICTIONARY_DECLARATIOn'
 	;
 
+fragment
 LT  :   ('\n'|'r\n')+
     ;
 
