@@ -7,6 +7,7 @@ tokens {
   DEDENT;
   INDENT;
   GEN_OP;
+  ACCESS;
 }
 
 @lexer::members {
@@ -118,12 +119,13 @@ iblock
 args:   '(' (argument (',' argument)*)? (LT+)?')' -> ^(ARGUMENTS argument*)
     ;
     
-func:   args '~' (expr -> ^(FUNCTION args expr)
+func:   args '~' 
+				 (expr -> ^(FUNCTION args expr)
 				 |LT iblock -> ^(FUNCTION args iblock)
 				 )
     ;
 
-expr:   (ID access* ('='|ARITH_ASSIGN))=> ID access* assign -> ^(ASSIGNMENT ^(ID access*) assign)
+expr:   (accessid ('='|ARITH_ASSIGN))=> accessid assign -> ^(ASSIGNMENT accessid assign)
     |   short_stmt
     |   bool
     ;
@@ -169,7 +171,7 @@ exponent
 
 factor
     :   (modable -> modable) 
-							 (args -> ^(FUNC_CALL $factor args)
+							 (args ->  ^(FUNC_CALL $factor args)
     						 |array_access -> ^(ARRAY_ACCESS $factor array_access)
     						 |dictionary_access -> ^(DICT_ACCESS $factor dictionary_access)
     						 )*
@@ -181,18 +183,14 @@ array_access
 	;
 
 dictionary_access
-	:   '.' def=ID -> $def
+	:   '.' def=ID ->  $def
 	;
 
 access
-    :   array_access
-    |   dictionary_access
+    :   '[' NUMBER ']' -> ^(ARRAY_ACCESS NUMBER)
+    |   '.' def=ID -> ^(DICT_ACCESS $def)
     ;
 
-mod :   args
-    |   access
-    ;
-    
 modable
     :   ID
     |   '(' bool ')' -> bool
@@ -204,14 +202,20 @@ atom:   NUMBER
 
 control
     :   'for' iterator=ID 'in' 
-    					(container=ID args+ LT+ iblock -> ^(FOR $iterator ^(FUNC_CALL $container args*) LT+ iblock)
-    					|container=ID access+ LT+ iblock -> ^(FOR $iterator ^($container access*) LT+ iblock)
-    				    |array_definition LT+ iblock -> ^(FOR $iterator array_definition LT+ iblock)
-    				    |container=ID LT+ iblock -> ^(FOR $iterator $container LT+ iblock)
-    				    )
+    				    		(accessid LT+ iblock -> ^(FOR $iterator accessid LT+ iblock)
+    				    		|array_definition LT+ iblock -> ^(FOR $iterator array_definition LT+ iblock)
+    				    		)
     |   'while' bool LT+ iblock -> ^(WHILE bool LT+ iblock)
     |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool LT+ iblock) else_test*)
     ;    
+
+accessid
+	:(ID->ID) 
+	( args ->  ^(FUNC_CALL $accessid args)
+    | array_access -> ^(ARRAY_ACCESS $accessid array_access)
+    | dictionary_access -> ^(DICT_ACCESS $accessid dictionary_access)
+    )*
+	;
 
 else_body
 	:	return_stmt LT
