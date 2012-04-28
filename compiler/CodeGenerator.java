@@ -201,6 +201,7 @@ public class CodeGenerator {
                 break;
             case PassParser.LT:
             	s = "\n";
+            	break;
             default:
           //	return null;
             // return "";
