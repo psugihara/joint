@@ -9,7 +9,7 @@ public class CodeGenerator {
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, "");
         text = "  "+text.replace("\n", "\n  ");
-        return "{\n" + text + "\n}\n";
+        return "{\n  " + text.trim() + "\n}\n";
     }
 
 
@@ -39,8 +39,11 @@ public class CodeGenerator {
         return genericCombine(n, " ");
     }
 
-	public String PROG(PassNode n ){
-	return n.getChild(0).getText();
+	public String PROG(PassNode n) {
+        String res = "";
+        for (int i = 0; i < n.getChildCount(); i++)
+            res += n.getChild(i).getText();
+	   return res.trim();
 	}
     public String ARGUMENTS(PassNode n) {
         return genericCombine(n, ", ");
@@ -56,7 +59,7 @@ public class CodeGenerator {
     }
 
     public String WHILE(PassNode n) {
-        return "while (" + genericCombine(n, ")");
+        return "while (" + n.getChild(0).getText() + ") " + n.getChild(2).getText();
     }
 
     //for
@@ -197,11 +200,7 @@ public class CodeGenerator {
             	s = "\n";
                 break;
             default:
-          //	return null;
-            // return "";
-            return n.getText();
-            // System.out.println("INVALID NODE TYPE GRAMMAR FAIL");
-            // System.exit(-1);
+                return n.getText();
         }
 
         return s;

@@ -20,12 +20,12 @@ public class PassC {
 		grammar.setTreeAdaptor(pass_adaptor);
 		PassParser.prog_return ret = grammar.prog();
 		PassNode tree = (PassNode) ret.getTree();
-		if(tree == null){
+		if (tree == null) {
 			System.out.println("Input Rejected by grammar: no tree generated");
 			System.exit(-1);
 		}
 		gen = new CodeGenerator();
-     //   tree = (PassNode)tree.getChild(0);
+        tree = (PassNode) tree.getChild(0);
 		walkTree(tree);
 		System.out.println(tree.getText());
 	}
@@ -55,13 +55,8 @@ public class PassC {
 				PassNode w = s.pop();
 				w.setVisitedTrue();
 				String decided = gen.nodeDecider(w);
-
 				System.out.println(w.text + " -> " + decided);
-
-				if (decided!=null ){
-					w.setText(decided);
-        		}
-
+				w.setText(decided);
         	}
         }
         
