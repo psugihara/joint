@@ -7,7 +7,7 @@
 var fs = require('fs'),
     path = require('path'),
     source = path.resolve(process.argv[2]),
-    target = process.cwd() + '/' + path.basename(source, '.pass'),
+    target = process.cwd() + '/' + path.basename(source, '.pass') + '.js',
     compiler = path.join(path.dirname(fs.realpathSync(__filename)), '../compiler');
 
 process.chdir(compiler);
