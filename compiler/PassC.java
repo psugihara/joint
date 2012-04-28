@@ -29,14 +29,7 @@ public class PassC {
 		walkTree(tree);
 		System.out.println(tree.getText());
 	}
-	public void concat(PassNode n, String text){
-		if(n == null || n.getParent() == null)
-			return;
-		PassNode tmp = (PassNode)n.getParent().getChild(0);
-		if(tmp == n)
-			return;
-		tmp.setText(tmp.getText()+text);
-	}
+
 	public void walkTree(PassNode n) {
 		Stack<PassNode> s = new Stack<PassNode>();
 		s.push(n);
@@ -59,52 +52,6 @@ public class PassC {
 				w.setText(decided);
         	}
         }
-        
-
-        
-
-       
-       
-       
-  
-  
-  
-  
-   /*     while (!s.empty()) {
-            PassNode t = s.pop();
-            for (int j = 0; j < t.getChildCount(); j++) {
-                PassNode subT = (PassNode) t.getChild(j);
-                if (!subT.isVisited()) {
-                    subT.setText(gen.nodeDecider(subT));
-                     t.setChild(j, subT);
-                      st += subT.getText();
-                    subT.setVisitedTrue();
-                    s.push(subT);
-                     System.out.println("SUBT:"+subT.getText());
-                }
-
-            }
-        }
-
-        System.out.println(n.getText() + ":s:" + st);
-        return st;*/
-     /*   if (n == null) 
-        	return "";
-
-String s = "";
-            for (int i = 0; i < n.getChildCount(); i++) {
-            	PassNode thisChild = (PassNode)n.getChild(i);
-            	 n.setText(walkTree(thisChild));  
-          
-s               thisChild.setText(gen.nodeDecider(thisChild));                 	
-               	n.setChild(i, thisChild);   
-               	s+= thisChild.getText();
-               	       //  System.out.println("S: "+thisChild.getText());
-            }
-
-            System.out.println(n.getText() + ":s:"+s);
-            return s;
-       */ 
     }
 
     public static void main(String[] args) throws Exception {
