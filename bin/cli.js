@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-// Pass.js
 // This is the main executable for the Pass translator and server.
 // Running this program with 3 arguments will translate the Pass to JS
 // and start a Node.js server on the given port which serves files from the 
@@ -57,7 +56,7 @@ if (process.argv.length === 5) {
 // ####Source Compilation
 
 if (path.extname(sourcePath) == 'pass')
-   sourcePath = COMPILED SOURCE
+   sourcePath = exe
 
 var program = require(sourcePath);
 

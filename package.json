@@ -7,6 +7,9 @@
     "browserify"    : "latest",
     "connect"       : "latest"
   },
-  "bin" : { "pass" : "./bin/cli.js" },
+  "bin" : {
+    "pass"  : "./bin/cli.js",
+    "passc" : "./bin/passc.js"
+  },
   "main" : "./lib/stdlib.js"
 }
