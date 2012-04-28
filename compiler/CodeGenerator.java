@@ -137,9 +137,10 @@ public class CodeGenerator {
             case 3:
                 return n.getChild(0).getText() + middleString + n.getChild(1).getText() + middleString1 + n.getChild(2).getText();
             default:
+                System.out.println(middleString);
                 String s = n.getChild(0).getText();
                 for (int i = 1; i < n.getChildCount(); i++)
-                    s += middleString + n.getChild(i);
+                    s += middleString + n.getChild(i).getText();
                 return s;
         }
     }                         
