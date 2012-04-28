@@ -5,11 +5,11 @@ JC = javac
 	javac $<
 
 default:
-	cp ../../PhaseI/Pass.g Pass.g;
+	cp ../../compiler/Pass.g Pass.g;
 	java org.antlr.Tool Pass.g;
-	cp ../../PhaseI/PassC.java PassC.java;
-	cp ../../PhaseI/PassNode.java PassNode.java;
-	cp ../../PhaseI/CodeGenerator.java CodeGenerator.java; 
+	cp ../../compiler/PassC.java PassC.java;
+	cp ../../compiler/PassNode.java PassNode.java;
+	cp ../../compiler/CodeGenerator.java CodeGenerator.java; 
 	javac ./*.java;
 
 test: 
