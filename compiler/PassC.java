@@ -33,9 +33,11 @@ CodeGenerator gen;
     	if(n == null || n.getParent() == null)
     		return;
     	PassNode tmp = (PassNode)n.getParent().getChild(0);
-    	if(tmp == n)
+    	if(tmp == n || tmp.getText().equals(text) || ! tmp.isVisited())
     		return;
+
     	tmp.setText(tmp.getText()+text);
+
     }
     public void walkTree(PassNode n) {
         Stack<PassNode> s = new Stack<PassNode>();
@@ -57,7 +59,7 @@ CodeGenerator gen;
         		String decided = gen.nodeDecider(w);
 
    
-        		if (decided!=null ){
+        		if (decided!=null && !decided.equals("")){
         		        w.setText(decided);
         		        concat(w, decided);
         		}

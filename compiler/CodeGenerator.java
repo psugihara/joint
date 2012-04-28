@@ -203,9 +203,9 @@ public class CodeGenerator {
             	s = "\n";
             	break;
             default:
-          //	return null;
+          	return "";
             // return "";
-            return n.getText();
+           // return n.getText();
             // System.out.println("INVALID NODE TYPE GRAMMAR FAIL");
             // System.exit(-1);
         }
