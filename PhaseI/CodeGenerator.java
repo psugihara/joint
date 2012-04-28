@@ -8,7 +8,8 @@ public class CodeGenerator {
 
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, "");
-        text = text.replace("\n", "\n  ");
+        text = "  "+text.replace("\n", "\n  ");
+
         return "{\n" + text + "\n}\n";
     }
 
@@ -164,6 +165,8 @@ public class CodeGenerator {
             case PassParser.DICTIONARY_DEFINITION:
                 s = DICTIONARY_DEFINITION(n);
                 break;
+            case PassParser.LT:
+            	s = "\n";
             default:
             // return "";
             return n.getText();
