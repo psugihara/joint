@@ -29,7 +29,14 @@ CodeGenerator gen;
         walkTree(tree);
 	System.out.println(tree.getText());
     }
-
+    public void concat(PassNode n, String text){
+    	if(n == null || n.getParent() == null)
+    		return;
+    	PassNode tmp = (PassNode)n.getParent().getChild(0);
+    	if(tmp == n)
+    		return;
+    	tmp.setText(tmp.getText()+text);
+    }
     public void walkTree(PassNode n) {
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);
@@ -48,10 +55,13 @@ CodeGenerator gen;
         		PassNode w = s.pop();
         		w.setVisitedTrue();
         		String decided = gen.nodeDecider(w);
- //   System.out.println(decided+" :LEVEL: "+w.getText());
-        		if (decided!=null){
+
+   
+        		if (decided!=null ){
         		        w.setText(decided);
+        		        concat(w, decided);
         		}
+
         	}
         }
         
