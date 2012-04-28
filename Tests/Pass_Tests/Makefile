@@ -15,7 +15,8 @@ default:
 tests: 
 	@echo "Testing all Pass files in ./Pass_Test_Files" ;
 	@echo "-----------------------";
-	java PassC ./Pass_Test_Files/helloworld.pass;
+	java PassC ./Pass_Test_Files/helloworld.pass > ./output.txt;
+	diff ./output.txt ./Pass_Test_Files/ExpectedOutputs_EO/helloworldEO.txt
 	
 clean:
 	$(RM) *.class PassLexer.java PassParser.java Pass.tokens Pass.g PassC.java PassNode.java CodeGenerator.java
