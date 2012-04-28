@@ -8,16 +8,13 @@ public class CodeGenerator {
 
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, "");
-        //text = text.replace("\n","\n  ");
-        return "{" + text + "}\n";
+        text = text.replace("\n", "\n  ");
+        return "{\n" + text + "\n}\n";
     }
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
-        String text;
-        if ((text = n.getText()) == null)
-            return "";
-        return genericCombine(n, " " + text + " ");
+        return genericCombine(n, " ");
     }
 
 
@@ -93,8 +90,10 @@ public class CodeGenerator {
 
     //double check failure handling
     public String genericCombine(PassNode n, String middleString, String middleString1) {
+ 
         if (n == null || middleString == null || middleString1 == null)
             return "";
+
         int childCount = n.getChildCount();
         switch (childCount) {
             case 0:
@@ -124,14 +123,13 @@ public class CodeGenerator {
             case PassParser.IBLOCK:
                 s = IBLOCK(n);
                 break;
-        /*  DONOT DELETE
             case PassParser.GENERIC_OP:
                 s = GENERIC_OP(n);
                 break;
             case PassParser.RETURN:
                 s = RETURN(n);
                 break;
-      */
+
             case PassParser.ARRAY_ACCESS:
                 s = ARRAY_ACCESS(n);
                 break;
@@ -167,10 +165,12 @@ public class CodeGenerator {
                 s = DICTIONARY_DEFINITION(n);
                 break;
             default:
-                return "";
-               // System.out.println("INVALID NODE TYPE GRAMMAR FAIL");
-               // System.exit(-1);
+            // return "";
+            return n.getText();
+            // System.out.println("INVALID NODE TYPE GRAMMAR FAIL");
+            // System.exit(-1);
         }
+
         return s;
     }
 

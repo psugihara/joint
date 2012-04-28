@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Pass.g 2012-04-27 16:18:17
+// $ANTLR 3.4 Pass.g 2012-04-27 22:07:45
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,10 +8,6 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class PassLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__38=38;
-    public static final int T__39=39;
-    public static final int T__40=40;
-    public static final int T__41=41;
     public static final int T__42=42;
     public static final int T__43=43;
     public static final int T__44=44;
@@ -32,40 +28,49 @@ public class PassLexer extends Lexer {
     public static final int T__59=59;
     public static final int T__60=60;
     public static final int T__61=61;
+    public static final int T__62=62;
+    public static final int T__63=63;
+    public static final int T__64=64;
+    public static final int T__65=65;
+    public static final int T__66=66;
     public static final int ARGUMENTS=4;
     public static final int ARITH_ASSIGN=5;
     public static final int ARRAY_ACCESS=6;
     public static final int ARRAY_DECLARATION=7;
     public static final int ASSIGNMENT=8;
     public static final int BOP=9;
-    public static final int CMP=10;
-    public static final int COMMENT=11;
-    public static final int DEDENT=12;
-    public static final int DICTIONARY_DECLARATION=13;
-    public static final int DICTIONARY_DEFINITION=14;
-    public static final int DICT_ACCESS=15;
-    public static final int ELSE=16;
-    public static final int ELSE_IF=17;
-    public static final int ESC_SEQ=18;
-    public static final int EXPONENT=19;
-    public static final int FOR=20;
-    public static final int FUNCTION=21;
-    public static final int FUNC_CALL=22;
-    public static final int HEX_DIGIT=23;
-    public static final int IBLOCK=24;
-    public static final int ID=25;
-    public static final int IF=26;
-    public static final int IF_CONDITIONS=27;
-    public static final int INDENT=28;
-    public static final int LT=29;
-    public static final int NUMBER=30;
-    public static final int OCTAL_ESC=31;
-    public static final int OP=32;
-    public static final int PROG=33;
-    public static final int STRING=34;
-    public static final int UNICODE_ESC=35;
-    public static final int WHILE=36;
-    public static final int WS=37;
+    public static final int BREAK=10;
+    public static final int CMP=11;
+    public static final int COMMENT=12;
+    public static final int DEDENT=13;
+    public static final int DICTIONARY_DECLARATION=14;
+    public static final int DICTIONARY_DEFINITION=15;
+    public static final int DICT_ACCESS=16;
+    public static final int ELSE=17;
+    public static final int ELSE_IF=18;
+    public static final int ESC_SEQ=19;
+    public static final int EXPONENT=20;
+    public static final int FOR=21;
+    public static final int FUNCTION=22;
+    public static final int FUNC_CALL=23;
+    public static final int GENERIC_OP=24;
+    public static final int GEN_OP=25;
+    public static final int HEX_DIGIT=26;
+    public static final int IBLOCK=27;
+    public static final int ID=28;
+    public static final int IF=29;
+    public static final int IF_CONDITIONS=30;
+    public static final int INDENT=31;
+    public static final int LT=32;
+    public static final int NUMBER=33;
+    public static final int OCTAL_ESC=34;
+    public static final int OP=35;
+    public static final int PROG=36;
+    public static final int RETURN=37;
+    public static final int STRING=38;
+    public static final int UNICODE_ESC=39;
+    public static final int WHILE=40;
+    public static final int WS=41;
 
       int DENT_SIZE = 2;
 
@@ -172,99 +177,15 @@ public class PassLexer extends Lexer {
     }
     public String getGrammarFileName() { return "Pass.g"; }
 
-    // $ANTLR start "T__38"
-    public final void mT__38() throws RecognitionException {
-        try {
-            int _type = T__38;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:93:7: ( '%' )
-            // Pass.g:93:9: '%'
-            {
-            match('%'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__38"
-
-    // $ANTLR start "T__39"
-    public final void mT__39() throws RecognitionException {
-        try {
-            int _type = T__39;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:94:7: ( '(' )
-            // Pass.g:94:9: '('
-            {
-            match('('); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__39"
-
-    // $ANTLR start "T__40"
-    public final void mT__40() throws RecognitionException {
-        try {
-            int _type = T__40;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:95:7: ( ')' )
-            // Pass.g:95:9: ')'
-            {
-            match(')'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__40"
-
-    // $ANTLR start "T__41"
-    public final void mT__41() throws RecognitionException {
-        try {
-            int _type = T__41;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:96:7: ( '*' )
-            // Pass.g:96:9: '*'
-            {
-            match('*'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__41"
-
     // $ANTLR start "T__42"
     public final void mT__42() throws RecognitionException {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:97:7: ( '+' )
-            // Pass.g:97:9: '+'
+            // Pass.g:93:7: ( '%' )
+            // Pass.g:93:9: '%'
             {
-            match('+'); 
+            match('%'); 
 
             }
 
@@ -282,10 +203,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:98:7: ( ',' )
-            // Pass.g:98:9: ','
+            // Pass.g:94:7: ( '(' )
+            // Pass.g:94:9: '('
             {
-            match(','); 
+            match('('); 
 
             }
 
@@ -303,10 +224,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:99:7: ( '-' )
-            // Pass.g:99:9: '-'
+            // Pass.g:95:7: ( ')' )
+            // Pass.g:95:9: ')'
             {
-            match('-'); 
+            match(')'); 
 
             }
 
@@ -324,10 +245,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:100:7: ( '.' )
-            // Pass.g:100:9: '.'
+            // Pass.g:96:7: ( '*' )
+            // Pass.g:96:9: '*'
             {
-            match('.'); 
+            match('*'); 
 
             }
 
@@ -345,10 +266,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:101:7: ( '/' )
-            // Pass.g:101:9: '/'
+            // Pass.g:97:7: ( '+' )
+            // Pass.g:97:9: '+'
             {
-            match('/'); 
+            match('+'); 
 
             }
 
@@ -366,10 +287,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:102:7: ( ':' )
-            // Pass.g:102:9: ':'
+            // Pass.g:98:7: ( ',' )
+            // Pass.g:98:9: ','
             {
-            match(':'); 
+            match(','); 
 
             }
 
@@ -387,10 +308,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:103:7: ( '=' )
-            // Pass.g:103:9: '='
+            // Pass.g:99:7: ( '-' )
+            // Pass.g:99:9: '-'
             {
-            match('='); 
+            match('-'); 
 
             }
 
@@ -408,10 +329,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:104:7: ( '[' )
-            // Pass.g:104:9: '['
+            // Pass.g:100:7: ( '.' )
+            // Pass.g:100:9: '.'
             {
-            match('['); 
+            match('.'); 
 
             }
 
@@ -429,10 +350,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:105:7: ( ']' )
-            // Pass.g:105:9: ']'
+            // Pass.g:101:7: ( '/' )
+            // Pass.g:101:9: '/'
             {
-            match(']'); 
+            match('/'); 
 
             }
 
@@ -450,12 +371,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:106:7: ( 'break' )
-            // Pass.g:106:9: 'break'
+            // Pass.g:102:7: ( ':' )
+            // Pass.g:102:9: ':'
             {
-            match("break"); 
-
-
+            match(':'); 
 
             }
 
@@ -473,12 +392,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:107:7: ( 'else if' )
-            // Pass.g:107:9: 'else if'
+            // Pass.g:103:7: ( '=' )
+            // Pass.g:103:9: '='
             {
-            match("else if"); 
-
-
+            match('='); 
 
             }
 
@@ -496,12 +413,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:108:7: ( 'else' )
-            // Pass.g:108:9: 'else'
+            // Pass.g:104:7: ( '[' )
+            // Pass.g:104:9: '['
             {
-            match("else"); 
-
-
+            match('['); 
 
             }
 
@@ -519,12 +434,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:109:7: ( 'for' )
-            // Pass.g:109:9: 'for'
+            // Pass.g:105:7: ( ']' )
+            // Pass.g:105:9: ']'
             {
-            match("for"); 
-
-
+            match(']'); 
 
             }
 
@@ -542,12 +455,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:110:7: ( 'if' )
-            // Pass.g:110:9: 'if'
+            // Pass.g:106:7: ( '^' )
+            // Pass.g:106:9: '^'
             {
-            match("if"); 
-
-
+            match('^'); 
 
             }
 
@@ -565,10 +476,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:111:7: ( 'in' )
-            // Pass.g:111:9: 'in'
+            // Pass.g:107:7: ( 'break' )
+            // Pass.g:107:9: 'break'
             {
-            match("in"); 
+            match("break"); 
 
 
 
@@ -588,10 +499,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:112:7: ( 'return' )
-            // Pass.g:112:9: 'return'
+            // Pass.g:108:7: ( 'else if' )
+            // Pass.g:108:9: 'else if'
             {
-            match("return"); 
+            match("else if"); 
 
 
 
@@ -611,10 +522,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:113:7: ( 'while' )
-            // Pass.g:113:9: 'while'
+            // Pass.g:109:7: ( 'else' )
+            // Pass.g:109:9: 'else'
             {
-            match("while"); 
+            match("else"); 
 
 
 
@@ -634,10 +545,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:114:7: ( '{' )
-            // Pass.g:114:9: '{'
+            // Pass.g:110:7: ( 'for' )
+            // Pass.g:110:9: 'for'
             {
-            match('{'); 
+            match("for"); 
+
+
 
             }
 
@@ -655,10 +568,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:115:7: ( '}' )
-            // Pass.g:115:9: '}'
+            // Pass.g:111:7: ( 'if' )
+            // Pass.g:111:9: 'if'
             {
-            match('}'); 
+            match("if"); 
+
+
 
             }
 
@@ -676,10 +591,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:116:7: ( '~' )
-            // Pass.g:116:9: '~'
+            // Pass.g:112:7: ( 'in' )
+            // Pass.g:112:9: 'in'
             {
-            match('~'); 
+            match("in"); 
+
+
 
             }
 
@@ -692,13 +609,122 @@ public class PassLexer extends Lexer {
     }
     // $ANTLR end "T__61"
 
+    // $ANTLR start "T__62"
+    public final void mT__62() throws RecognitionException {
+        try {
+            int _type = T__62;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:113:7: ( 'return' )
+            // Pass.g:113:9: 'return'
+            {
+            match("return"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__62"
+
+    // $ANTLR start "T__63"
+    public final void mT__63() throws RecognitionException {
+        try {
+            int _type = T__63;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:114:7: ( 'while' )
+            // Pass.g:114:9: 'while'
+            {
+            match("while"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__63"
+
+    // $ANTLR start "T__64"
+    public final void mT__64() throws RecognitionException {
+        try {
+            int _type = T__64;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:115:7: ( '{' )
+            // Pass.g:115:9: '{'
+            {
+            match('{'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__64"
+
+    // $ANTLR start "T__65"
+    public final void mT__65() throws RecognitionException {
+        try {
+            int _type = T__65;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:116:7: ( '}' )
+            // Pass.g:116:9: '}'
+            {
+            match('}'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__65"
+
+    // $ANTLR start "T__66"
+    public final void mT__66() throws RecognitionException {
+        try {
+            int _type = T__66;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:117:7: ( '~' )
+            // Pass.g:117:9: '~'
+            {
+            match('~'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__66"
+
     // $ANTLR start "OP"
     public final void mOP() throws RecognitionException {
         try {
             int _type = OP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:234:2: ( 'OP' )
-            // Pass.g:234:4: 'OP'
+            // Pass.g:247:2: ( 'OP' )
+            // Pass.g:247:4: 'OP'
             {
             match("OP"); 
 
@@ -720,8 +746,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = PROG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:238:2: ( 'PROG' )
-            // Pass.g:238:4: 'PROG'
+            // Pass.g:251:2: ( 'PROG' )
+            // Pass.g:251:4: 'PROG'
             {
             match("PROG"); 
 
@@ -738,13 +764,36 @@ public class PassLexer extends Lexer {
     }
     // $ANTLR end "PROG"
 
+    // $ANTLR start "RETURN"
+    public final void mRETURN() throws RecognitionException {
+        try {
+            int _type = RETURN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:255:2: ( 'RETURN' )
+            // Pass.g:255:4: 'RETURN'
+            {
+            match("RETURN"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "RETURN"
+
     // $ANTLR start "FUNCTION"
     public final void mFUNCTION() throws RecognitionException {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:242:2: ( 'FUNCTION' )
-            // Pass.g:242:4: 'FUNCTION'
+            // Pass.g:259:2: ( 'FUNCTION' )
+            // Pass.g:259:4: 'FUNCTION'
             {
             match("FUNCTION"); 
 
@@ -766,8 +815,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ASSIGNMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:246:2: ( 'ASSIGNMENT' )
-            // Pass.g:246:4: 'ASSIGNMENT'
+            // Pass.g:263:2: ( 'ASSIGNMENT' )
+            // Pass.g:263:4: 'ASSIGNMENT'
             {
             match("ASSIGNMENT"); 
 
@@ -784,13 +833,59 @@ public class PassLexer extends Lexer {
     }
     // $ANTLR end "ASSIGNMENT"
 
+    // $ANTLR start "BREAK"
+    public final void mBREAK() throws RecognitionException {
+        try {
+            int _type = BREAK;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:267:2: ( 'BREAK' )
+            // Pass.g:267:4: 'BREAK'
+            {
+            match("BREAK"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "BREAK"
+
+    // $ANTLR start "GENERIC_OP"
+    public final void mGENERIC_OP() throws RecognitionException {
+        try {
+            int _type = GENERIC_OP;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Pass.g:271:2: ( 'GENERIC_OP' )
+            // Pass.g:271:3: 'GENERIC_OP'
+            {
+            match("GENERIC_OP"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "GENERIC_OP"
+
     // $ANTLR start "ARRAY_ACCESS"
     public final void mARRAY_ACCESS() throws RecognitionException {
         try {
             int _type = ARRAY_ACCESS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:250:2: ( 'ARRAY ENTRY' )
-            // Pass.g:250:4: 'ARRAY ENTRY'
+            // Pass.g:275:2: ( 'ARRAY ENTRY' )
+            // Pass.g:275:4: 'ARRAY ENTRY'
             {
             match("ARRAY ENTRY"); 
 
@@ -812,8 +907,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DICTIONARY_DEFINITION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:254:2: ( 'DICTIONARY DEFINITION' )
-            // Pass.g:254:4: 'DICTIONARY DEFINITION'
+            // Pass.g:279:2: ( 'DICTIONARY DEFINITION' )
+            // Pass.g:279:4: 'DICTIONARY DEFINITION'
             {
             match("DICTIONARY DEFINITION"); 
 
@@ -835,8 +930,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DICT_ACCESS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:258:2: ( 'DICTIONARY ENTRY' )
-            // Pass.g:258:4: 'DICTIONARY ENTRY'
+            // Pass.g:283:2: ( 'DICTIONARY ENTRY' )
+            // Pass.g:283:4: 'DICTIONARY ENTRY'
             {
             match("DICTIONARY ENTRY"); 
 
@@ -858,8 +953,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = IF_CONDITIONS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:262:2: ( 'IF_CONDITIONS' )
-            // Pass.g:262:4: 'IF_CONDITIONS'
+            // Pass.g:287:2: ( 'IF_CONDITIONS' )
+            // Pass.g:287:4: 'IF_CONDITIONS'
             {
             match("IF_CONDITIONS"); 
 
@@ -881,8 +976,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:266:2: ( 'IF' )
-            // Pass.g:266:4: 'IF'
+            // Pass.g:291:2: ( 'IF' )
+            // Pass.g:291:4: 'IF'
             {
             match("IF"); 
 
@@ -904,8 +999,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ELSE_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:270:2: ( 'ELSE_IF' )
-            // Pass.g:270:4: 'ELSE_IF'
+            // Pass.g:295:2: ( 'ELSE_IF' )
+            // Pass.g:295:4: 'ELSE_IF'
             {
             match("ELSE_IF"); 
 
@@ -927,8 +1022,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:274:2: ( 'ELSE' )
-            // Pass.g:274:4: 'ELSE'
+            // Pass.g:299:2: ( 'ELSE' )
+            // Pass.g:299:4: 'ELSE'
             {
             match("ELSE"); 
 
@@ -950,8 +1045,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:278:2: ( 'WHILE' )
-            // Pass.g:278:4: 'WHILE'
+            // Pass.g:303:2: ( 'WHILE' )
+            // Pass.g:303:4: 'WHILE'
             {
             match("WHILE"); 
 
@@ -973,8 +1068,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:282:2: ( 'FOR' )
-            // Pass.g:282:4: 'FOR'
+            // Pass.g:307:2: ( 'FOR' )
+            // Pass.g:307:4: 'FOR'
             {
             match("FOR"); 
 
@@ -996,8 +1091,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = FUNC_CALL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:286:2: ( 'FUNC_CALL' )
-            // Pass.g:286:4: 'FUNC_CALL'
+            // Pass.g:311:2: ( 'FUNC_CALL' )
+            // Pass.g:311:4: 'FUNC_CALL'
             {
             match("FUNC_CALL"); 
 
@@ -1019,8 +1114,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARGUMENTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:290:2: ( 'ARGUMENTS' )
-            // Pass.g:290:4: 'ARGUMENTS'
+            // Pass.g:315:2: ( 'ARGUMENTS' )
+            // Pass.g:315:4: 'ARGUMENTS'
             {
             match("ARGUMENTS"); 
 
@@ -1042,8 +1137,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = IBLOCK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:294:2: ( 'IBLOCK' )
-            // Pass.g:294:4: 'IBLOCK'
+            // Pass.g:319:2: ( 'IBLOCK' )
+            // Pass.g:319:4: 'IBLOCK'
             {
             match("IBLOCK"); 
 
@@ -1065,8 +1160,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARRAY_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:298:2: ( 'ARRAY_DECLARATION' )
-            // Pass.g:298:4: 'ARRAY_DECLARATION'
+            // Pass.g:323:2: ( 'ARRAY_DECLARATION' )
+            // Pass.g:323:4: 'ARRAY_DECLARATION'
             {
             match("ARRAY_DECLARATION"); 
 
@@ -1088,8 +1183,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DICTIONARY_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:302:2: ( 'DICTIONARY_DECLARATIOn' )
-            // Pass.g:302:4: 'DICTIONARY_DECLARATIOn'
+            // Pass.g:327:2: ( 'DICTIONARY_DECLARATIOn' )
+            // Pass.g:327:4: 'DICTIONARY_DECLARATIOn'
             {
             match("DICTIONARY_DECLARATIOn"); 
 
@@ -1111,10 +1206,10 @@ public class PassLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:305:5: ( ( '\\n' | 'r\\n' )+ )
-            // Pass.g:305:9: ( '\\n' | 'r\\n' )+
+            // Pass.g:330:5: ( ( '\\n' | 'r\\n' )+ )
+            // Pass.g:330:9: ( '\\n' | 'r\\n' )+
             {
-            // Pass.g:305:9: ( '\\n' | 'r\\n' )+
+            // Pass.g:330:9: ( '\\n' | 'r\\n' )+
             int cnt1=0;
             loop1:
             do {
@@ -1131,14 +1226,14 @@ public class PassLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // Pass.g:305:10: '\\n'
+            	    // Pass.g:330:10: '\\n'
             	    {
             	    match('\n'); 
 
             	    }
             	    break;
             	case 2 :
-            	    // Pass.g:305:15: 'r\\n'
+            	    // Pass.g:330:15: 'r\\n'
             	    {
             	    match("r\n"); 
 
@@ -1173,14 +1268,14 @@ public class PassLexer extends Lexer {
         try {
             int _type = INDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:309:5: ({...}? => ( ' ' )+ )
-            // Pass.g:310:8: {...}? => ( ' ' )+
+            // Pass.g:334:5: ({...}? => ( ' ' )+ )
+            // Pass.g:335:8: {...}? => ( ' ' )+
             {
             if ( !((getCharPositionInLine()==0)) ) {
                 throw new FailedPredicateException(input, "INDENT", "getCharPositionInLine()==0");
             }
 
-            // Pass.g:311:9: ( ' ' )+
+            // Pass.g:336:9: ( ' ' )+
             int cnt2=0;
             loop2:
             do {
@@ -1194,7 +1289,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // Pass.g:311:10: ' '
+            	    // Pass.g:336:10: ' '
             	    {
             	    match(' '); 
 
@@ -1232,8 +1327,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = DEDENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:319:5: ( LT (~ ' ' ) )
-            // Pass.g:319:9: LT (~ ' ' )
+            // Pass.g:344:5: ( LT (~ ' ' ) )
+            // Pass.g:344:9: LT (~ ' ' )
             {
             mLT(); 
 
@@ -1272,7 +1367,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = ARITH_ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:330:5: ( '+=' | '-=' | '*=' | '/=' | '%=' )
+            // Pass.g:355:5: ( '+=' | '-=' | '*=' | '/=' | '%=' )
             int alt3=5;
             switch ( input.LA(1) ) {
             case '+':
@@ -1310,7 +1405,7 @@ public class PassLexer extends Lexer {
 
             switch (alt3) {
                 case 1 :
-                    // Pass.g:330:9: '+='
+                    // Pass.g:355:9: '+='
                     {
                     match("+="); 
 
@@ -1319,7 +1414,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:330:14: '-='
+                    // Pass.g:355:14: '-='
                     {
                     match("-="); 
 
@@ -1328,7 +1423,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:330:19: '*='
+                    // Pass.g:355:19: '*='
                     {
                     match("*="); 
 
@@ -1337,7 +1432,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Pass.g:330:24: '/='
+                    // Pass.g:355:24: '/='
                     {
                     match("/="); 
 
@@ -1346,7 +1441,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // Pass.g:330:29: '%='
+                    // Pass.g:355:29: '%='
                     {
                     match("%="); 
 
@@ -1370,7 +1465,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = CMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:334:5: ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' )
+            // Pass.g:359:5: ( '<' | '>' | '==' | '>=' | '<=' | '<>' | '!=' )
             int alt4=7;
             switch ( input.LA(1) ) {
             case '<':
@@ -1424,21 +1519,21 @@ public class PassLexer extends Lexer {
 
             switch (alt4) {
                 case 1 :
-                    // Pass.g:334:9: '<'
+                    // Pass.g:359:9: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 2 :
-                    // Pass.g:334:13: '>'
+                    // Pass.g:359:13: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 3 :
-                    // Pass.g:334:17: '=='
+                    // Pass.g:359:17: '=='
                     {
                     match("=="); 
 
@@ -1447,7 +1542,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Pass.g:334:22: '>='
+                    // Pass.g:359:22: '>='
                     {
                     match(">="); 
 
@@ -1456,7 +1551,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // Pass.g:334:27: '<='
+                    // Pass.g:359:27: '<='
                     {
                     match("<="); 
 
@@ -1465,7 +1560,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // Pass.g:334:32: '<>'
+                    // Pass.g:359:32: '<>'
                     {
                     match("<>"); 
 
@@ -1474,7 +1569,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 7 :
-                    // Pass.g:334:37: '!='
+                    // Pass.g:359:37: '!='
                     {
                     match("!="); 
 
@@ -1498,7 +1593,7 @@ public class PassLexer extends Lexer {
         try {
             int _type = BOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:338:5: ( '||' | '&&' )
+            // Pass.g:363:5: ( '||' | '&&' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1517,7 +1612,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // Pass.g:338:9: '||'
+                    // Pass.g:363:9: '||'
                     {
                     match("||"); 
 
@@ -1526,7 +1621,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:338:14: '&&'
+                    // Pass.g:363:14: '&&'
                     {
                     match("&&"); 
 
@@ -1550,8 +1645,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:341:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // Pass.g:341:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Pass.g:366:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // Pass.g:366:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1563,7 +1658,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // Pass.g:341:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Pass.g:366:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop6:
             do {
                 int alt6=2;
@@ -1613,14 +1708,14 @@ public class PassLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:345:5: ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT )
+            // Pass.g:370:5: ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT )
             int alt18=4;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // Pass.g:345:9: ( '-' )? ( '0' .. '9' )+
+                    // Pass.g:370:9: ( '-' )? ( '0' .. '9' )+
                     {
-                    // Pass.g:345:9: ( '-' )?
+                    // Pass.g:370:9: ( '-' )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -1629,7 +1724,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt7) {
                         case 1 :
-                            // Pass.g:345:9: '-'
+                            // Pass.g:370:9: '-'
                             {
                             match('-'); 
 
@@ -1639,7 +1734,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // Pass.g:345:13: ( '0' .. '9' )+
+                    // Pass.g:370:13: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -1681,9 +1776,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:346:9: ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+                    // Pass.g:371:9: ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
                     {
-                    // Pass.g:346:9: ( '-' )?
+                    // Pass.g:371:9: ( '-' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1692,7 +1787,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // Pass.g:346:9: '-'
+                            // Pass.g:371:9: '-'
                             {
                             match('-'); 
 
@@ -1702,7 +1797,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // Pass.g:346:13: ( '0' .. '9' )+
+                    // Pass.g:371:13: ( '0' .. '9' )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1743,7 +1838,7 @@ public class PassLexer extends Lexer {
 
                     match('.'); 
 
-                    // Pass.g:346:29: ( '0' .. '9' )*
+                    // Pass.g:371:29: ( '0' .. '9' )*
                     loop11:
                     do {
                         int alt11=2;
@@ -1777,7 +1872,7 @@ public class PassLexer extends Lexer {
                     } while (true);
 
 
-                    // Pass.g:346:41: ( EXPONENT )?
+                    // Pass.g:371:41: ( EXPONENT )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1786,7 +1881,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // Pass.g:346:41: EXPONENT
+                            // Pass.g:371:41: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1800,9 +1895,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:347:9: ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )?
+                    // Pass.g:372:9: ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )?
                     {
-                    // Pass.g:347:9: ( '-' )?
+                    // Pass.g:372:9: ( '-' )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1811,7 +1906,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // Pass.g:347:9: '-'
+                            // Pass.g:372:9: '-'
                             {
                             match('-'); 
 
@@ -1823,7 +1918,7 @@ public class PassLexer extends Lexer {
 
                     match('.'); 
 
-                    // Pass.g:347:17: ( '0' .. '9' )+
+                    // Pass.g:372:17: ( '0' .. '9' )+
                     int cnt14=0;
                     loop14:
                     do {
@@ -1862,7 +1957,7 @@ public class PassLexer extends Lexer {
                     } while (true);
 
 
-                    // Pass.g:347:29: ( EXPONENT )?
+                    // Pass.g:372:29: ( EXPONENT )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -1871,7 +1966,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt15) {
                         case 1 :
-                            // Pass.g:347:29: EXPONENT
+                            // Pass.g:372:29: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -1885,9 +1980,9 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Pass.g:348:9: ( '-' )? ( '0' .. '9' )+ EXPONENT
+                    // Pass.g:373:9: ( '-' )? ( '0' .. '9' )+ EXPONENT
                     {
-                    // Pass.g:348:9: ( '-' )?
+                    // Pass.g:373:9: ( '-' )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1896,7 +1991,7 @@ public class PassLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // Pass.g:348:9: '-'
+                            // Pass.g:373:9: '-'
                             {
                             match('-'); 
 
@@ -1906,7 +2001,7 @@ public class PassLexer extends Lexer {
                     }
 
 
-                    // Pass.g:348:13: ( '0' .. '9' )+
+                    // Pass.g:373:13: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -1966,12 +2061,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:352:5: ( '#' ( options {greedy=false; } : . )* '#' )
-            // Pass.g:352:9: '#' ( options {greedy=false; } : . )* '#'
+            // Pass.g:377:5: ( '#' ( options {greedy=false; } : . )* '#' )
+            // Pass.g:377:9: '#' ( options {greedy=false; } : . )* '#'
             {
             match('#'); 
 
-            // Pass.g:352:13: ( options {greedy=false; } : . )*
+            // Pass.g:377:13: ( options {greedy=false; } : . )*
             loop19:
             do {
                 int alt19=2;
@@ -1987,7 +2082,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // Pass.g:352:41: .
+            	    // Pass.g:377:41: .
             	    {
             	    matchAny(); 
 
@@ -2020,8 +2115,8 @@ public class PassLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:355:5: ( ( ' ' | '\\t' | '\\r' ) )
-            // Pass.g:355:9: ( ' ' | '\\t' | '\\r' )
+            // Pass.g:380:5: ( ( ' ' | '\\t' | '\\r' ) )
+            // Pass.g:380:9: ( ' ' | '\\t' | '\\r' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2051,12 +2146,12 @@ public class PassLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Pass.g:362:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-            // Pass.g:362:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+            // Pass.g:387:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+            // Pass.g:387:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // Pass.g:362:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+            // Pass.g:387:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
             loop20:
             do {
                 int alt20=3;
@@ -2072,7 +2167,7 @@ public class PassLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-            	    // Pass.g:362:14: ESC_SEQ
+            	    // Pass.g:387:14: ESC_SEQ
             	    {
             	    mESC_SEQ(); 
 
@@ -2080,7 +2175,7 @@ public class PassLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Pass.g:362:24: ~ ( '\\\\' | '\"' )
+            	    // Pass.g:387:24: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -2117,8 +2212,8 @@ public class PassLexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // Pass.g:368:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // Pass.g:368:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // Pass.g:393:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // Pass.g:393:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2130,7 +2225,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // Pass.g:368:19: ( '+' | '-' )?
+            // Pass.g:393:19: ( '+' | '-' )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2157,7 +2252,7 @@ public class PassLexer extends Lexer {
             }
 
 
-            // Pass.g:368:30: ( '0' .. '9' )+
+            // Pass.g:393:30: ( '0' .. '9' )+
             int cnt22=0;
             loop22:
             do {
@@ -2209,7 +2304,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // Pass.g:373:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // Pass.g:398:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // Pass.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -2235,7 +2330,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // Pass.g:378:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // Pass.g:403:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt23=3;
             int LA23_0 = input.LA(1);
 
@@ -2288,7 +2383,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt23) {
                 case 1 :
-                    // Pass.g:378:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // Pass.g:403:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -2305,7 +2400,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:379:9: UNICODE_ESC
+                    // Pass.g:404:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -2313,7 +2408,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:380:9: OCTAL_ESC
+                    // Pass.g:405:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -2333,7 +2428,7 @@ public class PassLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // Pass.g:385:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // Pass.g:410:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt24=3;
             int LA24_0 = input.LA(1);
 
@@ -2384,7 +2479,7 @@ public class PassLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // Pass.g:385:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // Pass.g:410:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2421,7 +2516,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Pass.g:386:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // Pass.g:411:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2448,7 +2543,7 @@ public class PassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Pass.g:387:9: '\\\\' ( '0' .. '7' )
+                    // Pass.g:412:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -2477,8 +2572,8 @@ public class PassLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // Pass.g:392:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // Pass.g:392:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // Pass.g:417:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // Pass.g:417:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 
@@ -2507,428 +2602,460 @@ public class PassLexer extends Lexer {
     // $ANTLR end "UNICODE_ESC"
 
     public void mTokens() throws RecognitionException {
-        // Pass.g:1:8: ( T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | OP | PROG | FUNCTION | ASSIGNMENT | ARRAY_ACCESS | DICTIONARY_DEFINITION | DICT_ACCESS | IF_CONDITIONS | IF | ELSE_IF | ELSE | WHILE | FOR | FUNC_CALL | ARGUMENTS | IBLOCK | ARRAY_DECLARATION | DICTIONARY_DECLARATION | LT | INDENT | DEDENT | ARITH_ASSIGN | CMP | BOP | ID | NUMBER | COMMENT | WS | STRING )
-        int alt25=53;
+        // Pass.g:1:8: ( T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | OP | PROG | RETURN | FUNCTION | ASSIGNMENT | BREAK | GENERIC_OP | ARRAY_ACCESS | DICTIONARY_DEFINITION | DICT_ACCESS | IF_CONDITIONS | IF | ELSE_IF | ELSE | WHILE | FOR | FUNC_CALL | ARGUMENTS | IBLOCK | ARRAY_DECLARATION | DICTIONARY_DECLARATION | LT | INDENT | DEDENT | ARITH_ASSIGN | CMP | BOP | ID | NUMBER | COMMENT | WS | STRING )
+        int alt25=57;
         alt25 = dfa25.predict(input);
         switch (alt25) {
             case 1 :
-                // Pass.g:1:10: T__38
-                {
-                mT__38(); 
-
-
-                }
-                break;
-            case 2 :
-                // Pass.g:1:16: T__39
-                {
-                mT__39(); 
-
-
-                }
-                break;
-            case 3 :
-                // Pass.g:1:22: T__40
-                {
-                mT__40(); 
-
-
-                }
-                break;
-            case 4 :
-                // Pass.g:1:28: T__41
-                {
-                mT__41(); 
-
-
-                }
-                break;
-            case 5 :
-                // Pass.g:1:34: T__42
+                // Pass.g:1:10: T__42
                 {
                 mT__42(); 
 
 
                 }
                 break;
-            case 6 :
-                // Pass.g:1:40: T__43
+            case 2 :
+                // Pass.g:1:16: T__43
                 {
                 mT__43(); 
 
 
                 }
                 break;
-            case 7 :
-                // Pass.g:1:46: T__44
+            case 3 :
+                // Pass.g:1:22: T__44
                 {
                 mT__44(); 
 
 
                 }
                 break;
-            case 8 :
-                // Pass.g:1:52: T__45
+            case 4 :
+                // Pass.g:1:28: T__45
                 {
                 mT__45(); 
 
 
                 }
                 break;
-            case 9 :
-                // Pass.g:1:58: T__46
+            case 5 :
+                // Pass.g:1:34: T__46
                 {
                 mT__46(); 
 
 
                 }
                 break;
-            case 10 :
-                // Pass.g:1:64: T__47
+            case 6 :
+                // Pass.g:1:40: T__47
                 {
                 mT__47(); 
 
 
                 }
                 break;
-            case 11 :
-                // Pass.g:1:70: T__48
+            case 7 :
+                // Pass.g:1:46: T__48
                 {
                 mT__48(); 
 
 
                 }
                 break;
-            case 12 :
-                // Pass.g:1:76: T__49
+            case 8 :
+                // Pass.g:1:52: T__49
                 {
                 mT__49(); 
 
 
                 }
                 break;
-            case 13 :
-                // Pass.g:1:82: T__50
+            case 9 :
+                // Pass.g:1:58: T__50
                 {
                 mT__50(); 
 
 
                 }
                 break;
-            case 14 :
-                // Pass.g:1:88: T__51
+            case 10 :
+                // Pass.g:1:64: T__51
                 {
                 mT__51(); 
 
 
                 }
                 break;
-            case 15 :
-                // Pass.g:1:94: T__52
+            case 11 :
+                // Pass.g:1:70: T__52
                 {
                 mT__52(); 
 
 
                 }
                 break;
-            case 16 :
-                // Pass.g:1:100: T__53
+            case 12 :
+                // Pass.g:1:76: T__53
                 {
                 mT__53(); 
 
 
                 }
                 break;
-            case 17 :
-                // Pass.g:1:106: T__54
+            case 13 :
+                // Pass.g:1:82: T__54
                 {
                 mT__54(); 
 
 
                 }
                 break;
-            case 18 :
-                // Pass.g:1:112: T__55
+            case 14 :
+                // Pass.g:1:88: T__55
                 {
                 mT__55(); 
 
 
                 }
                 break;
-            case 19 :
-                // Pass.g:1:118: T__56
+            case 15 :
+                // Pass.g:1:94: T__56
                 {
                 mT__56(); 
 
 
                 }
                 break;
-            case 20 :
-                // Pass.g:1:124: T__57
+            case 16 :
+                // Pass.g:1:100: T__57
                 {
                 mT__57(); 
 
 
                 }
                 break;
-            case 21 :
-                // Pass.g:1:130: T__58
+            case 17 :
+                // Pass.g:1:106: T__58
                 {
                 mT__58(); 
 
 
                 }
                 break;
-            case 22 :
-                // Pass.g:1:136: T__59
+            case 18 :
+                // Pass.g:1:112: T__59
                 {
                 mT__59(); 
 
 
                 }
                 break;
-            case 23 :
-                // Pass.g:1:142: T__60
+            case 19 :
+                // Pass.g:1:118: T__60
                 {
                 mT__60(); 
 
 
                 }
                 break;
-            case 24 :
-                // Pass.g:1:148: T__61
+            case 20 :
+                // Pass.g:1:124: T__61
                 {
                 mT__61(); 
 
 
                 }
                 break;
+            case 21 :
+                // Pass.g:1:130: T__62
+                {
+                mT__62(); 
+
+
+                }
+                break;
+            case 22 :
+                // Pass.g:1:136: T__63
+                {
+                mT__63(); 
+
+
+                }
+                break;
+            case 23 :
+                // Pass.g:1:142: T__64
+                {
+                mT__64(); 
+
+
+                }
+                break;
+            case 24 :
+                // Pass.g:1:148: T__65
+                {
+                mT__65(); 
+
+
+                }
+                break;
             case 25 :
-                // Pass.g:1:154: OP
+                // Pass.g:1:154: T__66
+                {
+                mT__66(); 
+
+
+                }
+                break;
+            case 26 :
+                // Pass.g:1:160: OP
                 {
                 mOP(); 
 
 
                 }
                 break;
-            case 26 :
-                // Pass.g:1:157: PROG
+            case 27 :
+                // Pass.g:1:163: PROG
                 {
                 mPROG(); 
 
 
                 }
                 break;
-            case 27 :
-                // Pass.g:1:162: FUNCTION
+            case 28 :
+                // Pass.g:1:168: RETURN
+                {
+                mRETURN(); 
+
+
+                }
+                break;
+            case 29 :
+                // Pass.g:1:175: FUNCTION
                 {
                 mFUNCTION(); 
 
 
                 }
                 break;
-            case 28 :
-                // Pass.g:1:171: ASSIGNMENT
+            case 30 :
+                // Pass.g:1:184: ASSIGNMENT
                 {
                 mASSIGNMENT(); 
 
 
                 }
                 break;
-            case 29 :
-                // Pass.g:1:182: ARRAY_ACCESS
+            case 31 :
+                // Pass.g:1:195: BREAK
+                {
+                mBREAK(); 
+
+
+                }
+                break;
+            case 32 :
+                // Pass.g:1:201: GENERIC_OP
+                {
+                mGENERIC_OP(); 
+
+
+                }
+                break;
+            case 33 :
+                // Pass.g:1:212: ARRAY_ACCESS
                 {
                 mARRAY_ACCESS(); 
 
 
                 }
                 break;
-            case 30 :
-                // Pass.g:1:195: DICTIONARY_DEFINITION
+            case 34 :
+                // Pass.g:1:225: DICTIONARY_DEFINITION
                 {
                 mDICTIONARY_DEFINITION(); 
 
 
                 }
                 break;
-            case 31 :
-                // Pass.g:1:217: DICT_ACCESS
+            case 35 :
+                // Pass.g:1:247: DICT_ACCESS
                 {
                 mDICT_ACCESS(); 
 
 
                 }
                 break;
-            case 32 :
-                // Pass.g:1:229: IF_CONDITIONS
+            case 36 :
+                // Pass.g:1:259: IF_CONDITIONS
                 {
                 mIF_CONDITIONS(); 
 
 
                 }
                 break;
-            case 33 :
-                // Pass.g:1:243: IF
+            case 37 :
+                // Pass.g:1:273: IF
                 {
                 mIF(); 
 
 
                 }
                 break;
-            case 34 :
-                // Pass.g:1:246: ELSE_IF
+            case 38 :
+                // Pass.g:1:276: ELSE_IF
                 {
                 mELSE_IF(); 
 
 
                 }
                 break;
-            case 35 :
-                // Pass.g:1:254: ELSE
+            case 39 :
+                // Pass.g:1:284: ELSE
                 {
                 mELSE(); 
 
 
                 }
                 break;
-            case 36 :
-                // Pass.g:1:259: WHILE
+            case 40 :
+                // Pass.g:1:289: WHILE
                 {
                 mWHILE(); 
 
 
                 }
                 break;
-            case 37 :
-                // Pass.g:1:265: FOR
+            case 41 :
+                // Pass.g:1:295: FOR
                 {
                 mFOR(); 
 
 
                 }
                 break;
-            case 38 :
-                // Pass.g:1:269: FUNC_CALL
+            case 42 :
+                // Pass.g:1:299: FUNC_CALL
                 {
                 mFUNC_CALL(); 
 
 
                 }
                 break;
-            case 39 :
-                // Pass.g:1:279: ARGUMENTS
+            case 43 :
+                // Pass.g:1:309: ARGUMENTS
                 {
                 mARGUMENTS(); 
 
 
                 }
                 break;
-            case 40 :
-                // Pass.g:1:289: IBLOCK
+            case 44 :
+                // Pass.g:1:319: IBLOCK
                 {
                 mIBLOCK(); 
 
 
                 }
                 break;
-            case 41 :
-                // Pass.g:1:296: ARRAY_DECLARATION
+            case 45 :
+                // Pass.g:1:326: ARRAY_DECLARATION
                 {
                 mARRAY_DECLARATION(); 
 
 
                 }
                 break;
-            case 42 :
-                // Pass.g:1:314: DICTIONARY_DECLARATION
+            case 46 :
+                // Pass.g:1:344: DICTIONARY_DECLARATION
                 {
                 mDICTIONARY_DECLARATION(); 
 
 
                 }
                 break;
-            case 43 :
-                // Pass.g:1:337: LT
+            case 47 :
+                // Pass.g:1:367: LT
                 {
                 mLT(); 
 
 
                 }
                 break;
-            case 44 :
-                // Pass.g:1:340: INDENT
+            case 48 :
+                // Pass.g:1:370: INDENT
                 {
                 mINDENT(); 
 
 
                 }
                 break;
-            case 45 :
-                // Pass.g:1:347: DEDENT
+            case 49 :
+                // Pass.g:1:377: DEDENT
                 {
                 mDEDENT(); 
 
 
                 }
                 break;
-            case 46 :
-                // Pass.g:1:354: ARITH_ASSIGN
+            case 50 :
+                // Pass.g:1:384: ARITH_ASSIGN
                 {
                 mARITH_ASSIGN(); 
 
 
                 }
                 break;
-            case 47 :
-                // Pass.g:1:367: CMP
+            case 51 :
+                // Pass.g:1:397: CMP
                 {
                 mCMP(); 
 
 
                 }
                 break;
-            case 48 :
-                // Pass.g:1:371: BOP
+            case 52 :
+                // Pass.g:1:401: BOP
                 {
                 mBOP(); 
 
 
                 }
                 break;
-            case 49 :
-                // Pass.g:1:375: ID
+            case 53 :
+                // Pass.g:1:405: ID
                 {
                 mID(); 
 
 
                 }
                 break;
-            case 50 :
-                // Pass.g:1:378: NUMBER
+            case 54 :
+                // Pass.g:1:408: NUMBER
                 {
                 mNUMBER(); 
 
 
                 }
                 break;
-            case 51 :
-                // Pass.g:1:385: COMMENT
+            case 55 :
+                // Pass.g:1:415: COMMENT
                 {
                 mCOMMENT(); 
 
 
                 }
                 break;
-            case 52 :
-                // Pass.g:1:393: WS
+            case 56 :
+                // Pass.g:1:423: WS
                 {
                 mWS(); 
 
 
                 }
                 break;
-            case 53 :
-                // Pass.g:1:396: STRING
+            case 57 :
+                // Pass.g:1:426: STRING
                 {
                 mSTRING(); 
 
@@ -2995,275 +3122,306 @@ public class PassLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "344:1: NUMBER : ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT );";
+            return "369:1: NUMBER : ( ( '-' )? ( '0' .. '9' )+ | ( '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | ( '-' )? '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '-' )? ( '0' .. '9' )+ EXPONENT );";
         }
     }
     static final String DFA25_eotS =
-        "\1\uffff\1\51\2\uffff\1\52\1\53\1\uffff\1\54\1\55\1\56\1\uffff\1"+
-        "\57\2\uffff\6\43\3\uffff\10\43\1\103\1\107\17\uffff\3\43\1\114\1"+
-        "\115\1\43\1\103\1\43\1\120\6\43\1\131\3\43\1\uffff\1\103\1\106\3"+
-        "\uffff\2\43\1\137\2\uffff\2\43\1\uffff\2\43\1\144\5\43\1\uffff\4"+
-        "\43\1\157\1\uffff\2\43\1\162\1\43\1\uffff\6\43\1\174\1\43\1\176"+
-        "\2\uffff\1\43\1\u0080\1\uffff\11\43\1\uffff\1\u008b\1\uffff\1\u008c"+
-        "\1\uffff\3\43\1\uffff\4\43\1\u0094\1\43\2\uffff\7\43\1\uffff\1\u009d"+
-        "\1\u009e\6\43\2\uffff\1\u00a5\2\43\1\u00a8\2\43\1\uffff\1\u00ab"+
-        "\1\43\1\uffff\2\43\1\uffff\1\43\1\uffff\3\43\2\uffff\4\43\1\u00ba"+
-        "\2\43\1\uffff\4\43\1\u00c1\1\43\1\uffff\4\43\1\u00c7\1\uffff";
+        "\1\uffff\1\55\2\uffff\1\56\1\57\1\uffff\1\60\1\61\1\62\1\uffff\1"+
+        "\63\3\uffff\6\47\3\uffff\13\47\1\112\1\116\17\uffff\3\47\1\123\1"+
+        "\124\1\47\1\112\1\47\1\127\11\47\1\143\3\47\1\uffff\1\112\1\115"+
+        "\3\uffff\2\47\1\151\2\uffff\2\47\1\uffff\3\47\1\157\7\47\1\uffff"+
+        "\4\47\1\174\1\uffff\2\47\1\177\2\47\1\uffff\10\47\1\u008c\1\47\1"+
+        "\u008e\2\uffff\1\47\1\u0090\1\uffff\6\47\1\u0098\5\47\1\uffff\1"+
+        "\u009e\1\uffff\1\u009f\1\uffff\1\u00a0\3\47\1\uffff\2\47\1\uffff"+
+        "\3\47\1\u00a9\1\47\3\uffff\10\47\1\uffff\1\u00b3\1\u00b4\7\47\2"+
+        "\uffff\1\u00bc\2\47\1\u00bf\3\47\1\uffff\1\u00c3\1\47\1\uffff\1"+
+        "\u00c5\2\47\1\uffff\1\47\2\uffff\3\47\2\uffff\4\47\1\u00d3\2\47"+
+        "\1\uffff\4\47\1\u00da\1\47\1\uffff\4\47\1\u00e0\1\uffff";
     static final String DFA25_eofS =
-        "\u00c8\uffff";
+        "\u00e1\uffff";
     static final String DFA25_minS =
-        "\1\11\1\75\2\uffff\2\75\1\uffff\1\56\1\60\1\75\1\uffff\1\75\2\uffff"+
-        "\1\162\1\154\1\157\1\146\1\12\1\150\3\uffff\1\120\1\122\1\117\1"+
-        "\122\1\111\1\102\1\114\1\110\1\0\1\40\17\uffff\1\145\1\163\1\162"+
-        "\2\60\1\164\1\0\1\151\1\60\1\117\1\116\1\122\1\123\1\107\1\103\1"+
-        "\60\1\114\1\123\1\111\1\uffff\1\0\1\12\1\uffff\1\0\1\uffff\1\141"+
-        "\1\145\1\60\2\uffff\1\165\1\154\1\uffff\1\107\1\103\1\60\1\111\1"+
-        "\101\1\125\1\124\1\103\1\uffff\1\117\1\105\1\114\1\153\1\40\1\uffff"+
-        "\1\162\1\145\1\60\1\124\1\uffff\1\107\1\131\1\115\1\111\1\117\1"+
-        "\103\1\60\1\105\1\60\2\uffff\1\156\1\60\1\uffff\1\111\1\103\1\116"+
-        "\1\40\1\105\1\117\1\116\1\113\1\111\1\uffff\1\60\1\uffff\1\60\1"+
-        "\uffff\1\117\1\101\1\115\1\uffff\1\104\2\116\1\104\1\60\1\106\2"+
-        "\uffff\1\116\1\114\2\105\1\124\1\101\1\111\1\uffff\2\60\1\114\1"+
-        "\116\1\103\1\123\1\122\1\124\2\uffff\1\60\1\124\1\114\1\60\1\131"+
-        "\1\111\1\uffff\1\60\1\101\1\uffff\1\40\1\117\1\uffff\1\122\2\104"+
-        "\1\116\1\101\2\uffff\1\105\1\123\1\124\1\103\1\60\1\111\1\114\1"+
-        "\uffff\1\117\1\101\1\116\1\122\1\60\1\101\1\uffff\1\124\1\111\1"+
-        "\117\1\156\1\60\1\uffff";
+        "\1\11\1\75\2\uffff\2\75\1\uffff\1\56\1\60\1\75\1\uffff\1\75\3\uffff"+
+        "\1\162\1\154\1\157\1\146\1\12\1\150\3\uffff\1\120\1\122\1\105\1"+
+        "\117\2\122\1\105\1\111\1\102\1\114\1\110\1\0\1\40\17\uffff\1\145"+
+        "\1\163\1\162\2\60\1\164\1\0\1\151\1\60\1\117\1\124\1\116\1\122\1"+
+        "\123\1\107\1\105\1\116\1\103\1\60\1\114\1\123\1\111\1\uffff\1\0"+
+        "\1\12\1\uffff\1\0\1\uffff\1\141\1\145\1\60\2\uffff\1\165\1\154\1"+
+        "\uffff\1\107\1\125\1\103\1\60\1\111\1\101\1\125\1\101\1\105\1\124"+
+        "\1\103\1\uffff\1\117\1\105\1\114\1\153\1\40\1\uffff\1\162\1\145"+
+        "\1\60\1\122\1\124\1\uffff\1\107\1\131\1\115\1\113\1\122\1\111\1"+
+        "\117\1\103\1\60\1\105\1\60\2\uffff\1\156\1\60\1\uffff\1\116\1\111"+
+        "\1\103\1\116\1\40\1\105\1\60\1\111\1\117\1\116\1\113\1\111\1\uffff"+
+        "\1\60\1\uffff\1\60\1\uffff\1\60\1\117\1\101\1\115\1\uffff\1\104"+
+        "\1\116\1\uffff\1\103\1\116\1\104\1\60\1\106\3\uffff\1\116\1\114"+
+        "\2\105\1\124\1\137\1\101\1\111\1\uffff\2\60\1\114\1\116\1\103\1"+
+        "\123\1\117\1\122\1\124\2\uffff\1\60\1\124\1\114\1\60\1\120\1\131"+
+        "\1\111\1\uffff\1\60\1\101\1\uffff\1\60\1\40\1\117\1\uffff\1\122"+
+        "\1\uffff\2\104\1\116\1\101\2\uffff\1\105\1\123\1\124\1\103\1\60"+
+        "\1\111\1\114\1\uffff\1\117\1\101\1\116\1\122\1\60\1\101\1\uffff"+
+        "\1\124\1\111\1\117\1\156\1\60\1\uffff";
     static final String DFA25_maxS =
-        "\1\176\1\75\2\uffff\2\75\1\uffff\1\75\1\71\1\75\1\uffff\1\75\2\uffff"+
-        "\1\162\1\154\1\157\1\156\1\145\1\150\3\uffff\1\120\1\122\1\125\1"+
-        "\123\1\111\1\106\1\114\1\110\1\uffff\1\40\17\uffff\1\145\1\163\1"+
-        "\162\2\172\1\164\1\uffff\1\151\1\172\1\117\1\116\1\122\1\123\1\122"+
-        "\1\103\1\172\1\114\1\123\1\111\1\uffff\1\uffff\1\12\1\uffff\1\0"+
-        "\1\uffff\1\141\1\145\1\172\2\uffff\1\165\1\154\1\uffff\1\107\1\103"+
-        "\1\172\1\111\1\101\1\125\1\124\1\103\1\uffff\1\117\1\105\1\114\1"+
-        "\153\1\172\1\uffff\1\162\1\145\1\172\1\137\1\uffff\1\107\1\131\1"+
-        "\115\1\111\1\117\1\103\1\172\1\105\1\172\2\uffff\1\156\1\172\1\uffff"+
-        "\1\111\1\103\1\116\1\137\1\105\1\117\1\116\1\113\1\111\1\uffff\1"+
-        "\172\1\uffff\1\172\1\uffff\1\117\1\101\1\115\1\uffff\1\104\2\116"+
-        "\1\104\1\172\1\106\2\uffff\1\116\1\114\2\105\1\124\1\101\1\111\1"+
-        "\uffff\2\172\1\114\1\116\1\103\1\123\1\122\1\124\2\uffff\1\172\1"+
-        "\124\1\114\1\172\1\131\1\111\1\uffff\1\172\1\101\1\uffff\1\137\1"+
-        "\117\1\uffff\1\122\1\105\1\104\1\116\1\101\2\uffff\1\105\1\123\1"+
-        "\124\1\103\1\172\1\111\1\114\1\uffff\1\117\1\101\1\116\1\122\1\172"+
-        "\1\101\1\uffff\1\124\1\111\1\117\1\156\1\172\1\uffff";
+        "\1\176\1\75\2\uffff\2\75\1\uffff\1\75\1\71\1\75\1\uffff\1\75\3\uffff"+
+        "\1\162\1\154\1\157\1\156\1\145\1\150\3\uffff\1\120\1\122\1\105\1"+
+        "\125\1\123\1\122\1\105\1\111\1\106\1\114\1\110\1\uffff\1\40\17\uffff"+
+        "\1\145\1\163\1\162\2\172\1\164\1\uffff\1\151\1\172\1\117\1\124\1"+
+        "\116\1\122\1\123\1\122\1\105\1\116\1\103\1\172\1\114\1\123\1\111"+
+        "\1\uffff\1\uffff\1\12\1\uffff\1\0\1\uffff\1\141\1\145\1\172\2\uffff"+
+        "\1\165\1\154\1\uffff\1\107\1\125\1\103\1\172\1\111\1\101\1\125\1"+
+        "\101\1\105\1\124\1\103\1\uffff\1\117\1\105\1\114\1\153\1\172\1\uffff"+
+        "\1\162\1\145\1\172\1\122\1\137\1\uffff\1\107\1\131\1\115\1\113\1"+
+        "\122\1\111\1\117\1\103\1\172\1\105\1\172\2\uffff\1\156\1\172\1\uffff"+
+        "\1\116\1\111\1\103\1\116\1\137\1\105\1\172\1\111\1\117\1\116\1\113"+
+        "\1\111\1\uffff\1\172\1\uffff\1\172\1\uffff\1\172\1\117\1\101\1\115"+
+        "\1\uffff\1\104\1\116\1\uffff\1\103\1\116\1\104\1\172\1\106\3\uffff"+
+        "\1\116\1\114\2\105\1\124\1\137\1\101\1\111\1\uffff\2\172\1\114\1"+
+        "\116\1\103\1\123\1\117\1\122\1\124\2\uffff\1\172\1\124\1\114\1\172"+
+        "\1\120\1\131\1\111\1\uffff\1\172\1\101\1\uffff\1\172\1\137\1\117"+
+        "\1\uffff\1\122\1\uffff\1\105\1\104\1\116\1\101\2\uffff\1\105\1\123"+
+        "\1\124\1\103\1\172\1\111\1\114\1\uffff\1\117\1\101\1\116\1\122\1"+
+        "\172\1\101\1\uffff\1\124\1\111\1\117\1\156\1\172\1\uffff";
     static final String DFA25_acceptS =
-        "\2\uffff\1\2\1\3\2\uffff\1\6\3\uffff\1\12\1\uffff\1\14\1\15\6\uffff"+
-        "\1\26\1\27\1\30\12\uffff\1\57\1\60\1\61\1\62\1\63\1\64\1\65\1\56"+
-        "\1\1\1\4\1\5\1\7\1\10\1\11\1\13\23\uffff\1\53\2\uffff\1\55\1\uffff"+
-        "\1\54\3\uffff\1\22\1\23\2\uffff\1\31\10\uffff\1\41\5\uffff\1\21"+
-        "\4\uffff\1\45\11\uffff\1\17\1\20\2\uffff\1\32\11\uffff\1\43\1\uffff"+
-        "\1\16\1\uffff\1\25\3\uffff\1\35\6\uffff\1\44\1\24\7\uffff\1\50\10"+
-        "\uffff\1\42\1\33\6\uffff\1\46\2\uffff\1\47\2\uffff\1\34\5\uffff"+
-        "\1\36\1\37\7\uffff\1\40\6\uffff\1\51\5\uffff\1\52";
+        "\2\uffff\1\2\1\3\2\uffff\1\6\3\uffff\1\12\1\uffff\1\14\1\15\1\16"+
+        "\6\uffff\1\27\1\30\1\31\15\uffff\1\63\1\64\1\65\1\66\1\67\1\70\1"+
+        "\71\1\62\1\1\1\4\1\5\1\7\1\10\1\11\1\13\26\uffff\1\57\2\uffff\1"+
+        "\61\1\uffff\1\60\3\uffff\1\23\1\24\2\uffff\1\32\13\uffff\1\45\5"+
+        "\uffff\1\22\5\uffff\1\51\13\uffff\1\20\1\21\2\uffff\1\33\14\uffff"+
+        "\1\47\1\uffff\1\17\1\uffff\1\26\4\uffff\1\41\2\uffff\1\37\5\uffff"+
+        "\1\50\1\25\1\34\10\uffff\1\54\11\uffff\1\46\1\35\7\uffff\1\52\2"+
+        "\uffff\1\53\3\uffff\1\36\1\uffff\1\40\4\uffff\1\42\1\43\7\uffff"+
+        "\1\44\6\uffff\1\55\5\uffff\1\56";
     static final String DFA25_specialS =
-        "\37\uffff\1\4\1\0\25\uffff\1\3\15\uffff\1\1\2\uffff\1\2\u0080\uffff}>";
+        "\43\uffff\1\2\1\0\25\uffff\1\1\20\uffff\1\4\2\uffff\1\3\u0092\uffff}>";
     static final String[] DFA25_transitionS = {
-            "\1\46\1\37\2\uffff\1\46\22\uffff\1\40\1\41\1\47\1\45\1\uffff"+
-            "\1\1\1\42\1\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\12\44\1"+
-            "\12\1\uffff\1\41\1\13\1\41\2\uffff\1\32\2\43\1\33\1\35\1\31"+
-            "\2\43\1\34\5\43\1\27\1\30\6\43\1\36\3\43\1\14\1\uffff\1\15\1"+
-            "\uffff\1\43\1\uffff\1\43\1\16\2\43\1\17\1\20\2\43\1\21\10\43"+
-            "\1\22\4\43\1\23\3\43\1\24\1\42\1\25\1\26",
-            "\1\50",
+            "\1\52\1\43\2\uffff\1\52\22\uffff\1\44\1\45\1\53\1\51\1\uffff"+
+            "\1\1\1\46\1\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\12\50\1"+
+            "\12\1\uffff\1\45\1\13\1\45\2\uffff\1\34\1\35\1\47\1\37\1\41"+
+            "\1\33\1\36\1\47\1\40\5\47\1\30\1\31\1\47\1\32\4\47\1\42\3\47"+
+            "\1\14\1\uffff\1\15\1\16\1\47\1\uffff\1\47\1\17\2\47\1\20\1\21"+
+            "\2\47\1\22\10\47\1\23\4\47\1\24\3\47\1\25\1\46\1\26\1\27",
+            "\1\54",
             "",
             "",
-            "\1\50",
-            "\1\50",
+            "\1\54",
+            "\1\54",
             "",
-            "\1\44\1\uffff\12\44\3\uffff\1\50",
-            "\12\44",
-            "\1\50",
+            "\1\50\1\uffff\12\50\3\uffff\1\54",
+            "\12\50",
+            "\1\54",
             "",
-            "\1\41",
-            "",
-            "",
-            "\1\60",
-            "\1\61",
-            "\1\62",
-            "\1\63\7\uffff\1\64",
-            "\1\66\132\uffff\1\65",
-            "\1\67",
+            "\1\45",
             "",
             "",
             "",
-            "\1\70",
-            "\1\71",
-            "\1\73\5\uffff\1\72",
-            "\1\75\1\74",
+            "\1\64",
+            "\1\65",
+            "\1\66",
+            "\1\67\7\uffff\1\70",
+            "\1\72\132\uffff\1\71",
+            "\1\73",
+            "",
+            "",
+            "",
+            "\1\74",
+            "\1\75",
             "\1\76",
-            "\1\100\3\uffff\1\77",
-            "\1\101",
-            "\1\102",
-            "\12\106\1\104\25\106\1\uffff\121\106\1\105\uff8d\106",
+            "\1\100\5\uffff\1\77",
+            "\1\102\1\101",
+            "\1\103",
+            "\1\104",
+            "\1\105",
+            "\1\107\3\uffff\1\106",
             "\1\110",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\111",
-            "\1\112",
-            "\1\113",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\1\116",
-            "\12\106\1\104\25\106\1\uffff\121\106\1\105\uff8d\106",
+            "\12\115\1\113\25\115\1\uffff\121\115\1\114\uff8d\115",
             "\1\117",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\120",
             "\1\121",
             "\1\122",
-            "\1\123",
-            "\1\124",
-            "\1\126\12\uffff\1\125",
-            "\1\127",
-            "\12\43\7\uffff\32\43\4\uffff\1\130\1\uffff\32\43",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\1\125",
+            "\12\115\1\113\25\115\1\uffff\121\115\1\114\uff8d\115",
+            "\1\126",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\1\130",
+            "\1\131",
             "\1\132",
             "\1\133",
             "\1\134",
+            "\1\136\12\uffff\1\135",
+            "\1\137",
+            "\1\140",
+            "\1\141",
+            "\12\47\7\uffff\32\47\4\uffff\1\142\1\uffff\32\47",
+            "\1\144",
+            "\1\145",
+            "\1\146",
             "",
-            "\12\106\1\104\25\106\1\uffff\121\106\1\105\uff8d\106",
-            "\1\66",
+            "\12\115\1\113\25\115\1\uffff\121\115\1\114\uff8d\115",
+            "\1\72",
             "",
             "\1\uffff",
             "",
-            "\1\135",
-            "\1\136",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "",
-            "",
-            "\1\140",
-            "\1\141",
-            "",
-            "\1\142",
-            "\1\143",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\1\145",
-            "\1\146",
             "\1\147",
             "\1\150",
-            "\1\151",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "",
             "",
             "\1\152",
             "\1\153",
+            "",
             "\1\154",
             "\1\155",
-            "\1\156\17\uffff\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32"+
-            "\43",
-            "",
+            "\1\156",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\160",
             "\1\161",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\1\163\12\uffff\1\164",
-            "",
+            "\1\162",
+            "\1\163",
+            "\1\164",
             "\1\165",
             "\1\166",
+            "",
             "\1\167",
             "\1\170",
             "\1\171",
             "\1\172",
-            "\12\43\7\uffff\32\43\4\uffff\1\173\1\uffff\32\43",
+            "\1\173\17\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
+            "\47",
+            "",
             "\1\175",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\1\176",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\1\u0080",
+            "\1\u0081\12\uffff\1\u0082",
             "",
-            "",
-            "\1\177",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "",
-            "\1\u0081",
-            "\1\u0082",
             "\1\u0083",
-            "\1\u0084\76\uffff\1\u0085",
+            "\1\u0084",
+            "\1\u0085",
             "\1\u0086",
             "\1\u0087",
             "\1\u0088",
             "\1\u0089",
             "\1\u008a",
-            "",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\u008b\1\uffff\32\47",
             "\1\u008d",
-            "\1\u008e",
-            "\1\u008f",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "",
-            "\1\u0090",
+            "",
+            "\1\u008f",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "",
             "\1\u0091",
             "\1\u0092",
             "\1\u0093",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\1\u0095",
-            "",
-            "",
-            "\1\u0096",
+            "\1\u0094",
+            "\1\u0095\76\uffff\1\u0096",
             "\1\u0097",
-            "\1\u0098",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u0099",
             "\1\u009a",
             "\1\u009b",
             "\1\u009c",
+            "\1\u009d",
             "",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\1\u009f",
-            "\1\u00a0",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00a1",
             "\1\u00a2",
             "\1\u00a3",
+            "",
             "\1\u00a4",
+            "\1\u00a5",
             "",
-            "",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
             "\1\u00a6",
             "\1\u00a7",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
-            "\1\u00a9",
+            "\1\u00a8",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00aa",
             "",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "",
+            "",
+            "\1\u00ab",
             "\1\u00ac",
-            "",
-            "\1\u00ad\76\uffff\1\u00ae",
+            "\1\u00ad",
+            "\1\u00ae",
             "\1\u00af",
-            "",
             "\1\u00b0",
-            "\1\u00b1\1\u00b2",
-            "\1\u00b3",
-            "\1\u00b4",
+            "\1\u00b1",
+            "\1\u00b2",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00b5",
-            "",
-            "",
             "\1\u00b6",
             "\1\u00b7",
             "\1\u00b8",
             "\1\u00b9",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\1\u00ba",
             "\1\u00bb",
-            "\1\u00bc",
             "",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00bd",
             "\1\u00be",
-            "\1\u00bf",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00c0",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "\1\u00c1",
             "\1\u00c2",
             "",
-            "\1\u00c3",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             "\1\u00c4",
-            "\1\u00c5",
-            "\1\u00c6",
-            "\12\43\7\uffff\32\43\4\uffff\1\43\1\uffff\32\43",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\1\u00c6\76\uffff\1\u00c7",
+            "\1\u00c8",
+            "",
+            "\1\u00c9",
+            "",
+            "\1\u00ca\1\u00cb",
+            "\1\u00cc",
+            "\1\u00cd",
+            "\1\u00ce",
+            "",
+            "",
+            "\1\u00cf",
+            "\1\u00d0",
+            "\1\u00d1",
+            "\1\u00d2",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\1\u00d4",
+            "\1\u00d5",
+            "",
+            "\1\u00d6",
+            "\1\u00d7",
+            "\1\u00d8",
+            "\1\u00d9",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
+            "\1\u00db",
+            "",
+            "\1\u00dc",
+            "\1\u00dd",
+            "\1\u00de",
+            "\1\u00df",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47",
             ""
     };
 
@@ -3297,89 +3455,89 @@ public class PassLexer extends Lexer {
             this.transition = DFA25_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | OP | PROG | FUNCTION | ASSIGNMENT | ARRAY_ACCESS | DICTIONARY_DEFINITION | DICT_ACCESS | IF_CONDITIONS | IF | ELSE_IF | ELSE | WHILE | FOR | FUNC_CALL | ARGUMENTS | IBLOCK | ARRAY_DECLARATION | DICTIONARY_DECLARATION | LT | INDENT | DEDENT | ARITH_ASSIGN | CMP | BOP | ID | NUMBER | COMMENT | WS | STRING );";
+            return "1:1: Tokens : ( T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | OP | PROG | RETURN | FUNCTION | ASSIGNMENT | BREAK | GENERIC_OP | ARRAY_ACCESS | DICTIONARY_DEFINITION | DICT_ACCESS | IF_CONDITIONS | IF | ELSE_IF | ELSE | WHILE | FOR | FUNC_CALL | ARGUMENTS | IBLOCK | ARRAY_DECLARATION | DICTIONARY_DECLARATION | LT | INDENT | DEDENT | ARITH_ASSIGN | CMP | BOP | ID | NUMBER | COMMENT | WS | STRING );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA25_32 = input.LA(1);
+                        int LA25_36 = input.LA(1);
 
                          
-                        int index25_32 = input.index();
+                        int index25_36 = input.index();
                         input.rewind();
 
                         s = -1;
-                        if ( (LA25_32==' ') && ((getCharPositionInLine()==0))) {s = 72;}
+                        if ( (LA25_36==' ') && ((getCharPositionInLine()==0))) {s = 79;}
 
-                        else s = 71;
+                        else s = 78;
 
                          
-                        input.seek(index25_32);
+                        input.seek(index25_36);
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 1 : 
-                        int LA25_68 = input.LA(1);
+                        int LA25_58 = input.LA(1);
 
                         s = -1;
-                        if ( (LA25_68=='\n') ) {s = 68;}
+                        if ( (LA25_58=='\n') ) {s = 75;}
 
-                        else if ( (LA25_68=='r') ) {s = 69;}
+                        else if ( (LA25_58=='r') ) {s = 76;}
 
-                        else if ( ((LA25_68 >= '\u0000' && LA25_68 <= '\t')||(LA25_68 >= '\u000B' && LA25_68 <= '\u001F')||(LA25_68 >= '!' && LA25_68 <= 'q')||(LA25_68 >= 's' && LA25_68 <= '\uFFFF')) ) {s = 70;}
+                        else if ( ((LA25_58 >= '\u0000' && LA25_58 <= '\t')||(LA25_58 >= '\u000B' && LA25_58 <= '\u001F')||(LA25_58 >= '!' && LA25_58 <= 'q')||(LA25_58 >= 's' && LA25_58 <= '\uFFFF')) ) {s = 77;}
 
-                        else s = 67;
+                        else s = 74;
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 2 : 
-                        int LA25_71 = input.LA(1);
-
-                         
-                        int index25_71 = input.index();
-                        input.rewind();
+                        int LA25_35 = input.LA(1);
 
                         s = -1;
-                        if ( ((getCharPositionInLine()==0)) ) {s = 72;}
+                        if ( (LA25_35=='\n') ) {s = 75;}
 
-                        else if ( (true) ) {s = 38;}
+                        else if ( (LA25_35=='r') ) {s = 76;}
 
-                         
-                        input.seek(index25_71);
+                        else if ( ((LA25_35 >= '\u0000' && LA25_35 <= '\t')||(LA25_35 >= '\u000B' && LA25_35 <= '\u001F')||(LA25_35 >= '!' && LA25_35 <= 'q')||(LA25_35 >= 's' && LA25_35 <= '\uFFFF')) ) {s = 77;}
+
+                        else s = 74;
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 3 : 
-                        int LA25_54 = input.LA(1);
+                        int LA25_78 = input.LA(1);
+
+                         
+                        int index25_78 = input.index();
+                        input.rewind();
 
                         s = -1;
-                        if ( (LA25_54=='\n') ) {s = 68;}
+                        if ( ((getCharPositionInLine()==0)) ) {s = 79;}
 
-                        else if ( (LA25_54=='r') ) {s = 69;}
+                        else if ( (true) ) {s = 42;}
 
-                        else if ( ((LA25_54 >= '\u0000' && LA25_54 <= '\t')||(LA25_54 >= '\u000B' && LA25_54 <= '\u001F')||(LA25_54 >= '!' && LA25_54 <= 'q')||(LA25_54 >= 's' && LA25_54 <= '\uFFFF')) ) {s = 70;}
-
-                        else s = 67;
+                         
+                        input.seek(index25_78);
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 4 : 
-                        int LA25_31 = input.LA(1);
+                        int LA25_75 = input.LA(1);
 
                         s = -1;
-                        if ( (LA25_31=='\n') ) {s = 68;}
+                        if ( (LA25_75=='\n') ) {s = 75;}
 
-                        else if ( (LA25_31=='r') ) {s = 69;}
+                        else if ( (LA25_75=='r') ) {s = 76;}
 
-                        else if ( ((LA25_31 >= '\u0000' && LA25_31 <= '\t')||(LA25_31 >= '\u000B' && LA25_31 <= '\u001F')||(LA25_31 >= '!' && LA25_31 <= 'q')||(LA25_31 >= 's' && LA25_31 <= '\uFFFF')) ) {s = 70;}
+                        else if ( ((LA25_75 >= '\u0000' && LA25_75 <= '\t')||(LA25_75 >= '\u000B' && LA25_75 <= '\u001F')||(LA25_75 >= '!' && LA25_75 <= 'q')||(LA25_75 >= 's' && LA25_75 <= '\uFFFF')) ) {s = 77;}
 
-                        else s = 67;
+                        else s = 74;
 
                         if ( s>=0 ) return s;
                         break;

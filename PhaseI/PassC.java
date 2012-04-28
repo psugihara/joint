@@ -21,22 +21,28 @@ CodeGenerator gen;
         PassParser.prog_return ret = grammar.prog();
         PassNode tree = (PassNode) ret.getTree();
          gen = new CodeGenerator();
-        walkTree(tree);
+        walkTree((PassNode)tree);
 	System.out.println(tree.getText());
     }
 
 //todo write iterative version of this method
-    public void walkTree(PassNode n) {
+    public String walkTree(PassNode n) {
         if (n == null) 
-        	return;
+        	return "";
 
+String s = "";
             for (int i = 0; i < n.getChildCount(); i++) {
-          //  	PassNode thisChild = (PassNode)n.getChild(i);
-               	walkTree((PassNode) n.getChild(i));  
-               	((PassNode)n.getChild(i)).text = gen.nodeDecider((PassNode)n.getChild(i));  
-               //	n.getChild(i) = thisChild;   
+            	PassNode thisChild = (PassNode)n.getChild(i);
+            	 n.setText(walkTree(thisChild));  
+          
+               thisChild.setText(gen.nodeDecider(thisChild));                 	
+               	n.setChild(i, thisChild);   
+               	s+= thisChild.getText();
+               	       //  System.out.println("S: "+thisChild.getText());
             }
-            
+
+            System.out.println(n.getText() + ":s:"+s);
+            return s;
         
     }
 
