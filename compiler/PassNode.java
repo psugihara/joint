@@ -17,19 +17,16 @@ public class PassNode extends CommonTree {
 	public boolean isVisited(){
 		return visited;
 	}
+    /*check if we need to add var and set the scope of a new variable*/
     public boolean isDefined(String varName) {
-
     	if(varName == null)
     		return false;
-        if (defined.containsKey(varName))
-            return true;
- /*       PassNode tmp;
-        while ((tmp = (PassNode) getParent()) != null){
-            if (defined.containsKey(varName))
+        PassNode tmp = this;
+       do{
+            if (tmp.defined.containsKey(varName))
                 return true;
-            System.out.println("DEFED");
-        }
-     */   defined.put(varName,"");
+        }while ((tmp = (PassNode) tmp.getParent()) != null);
+        ((PassNode)getParent()).defined.put(varName,"");
         return false;
     }
 
