@@ -107,7 +107,7 @@ block
     :   LT* stmt*
     ;
     
-stmt:   expr (LT!+|EOF)
+stmt:   expr (LT+|EOF)
     |   control LT+
     ;   
     
@@ -204,13 +204,13 @@ atom:   NUMBER
 
 control
     :   'for' iterator=ID 'in' 
-    					(container=ID args+ LT+ iblock -> ^(FOR $iterator ^(FUNC_CALL $container args*) iblock)
-    					|container=ID access+ LT+ iblock -> ^(FOR $iterator ^($container access*) iblock)
-    				    |array_definition LT+ iblock -> ^(FOR $iterator array_definition iblock)
-    				    |container=ID LT+ iblock -> ^(FOR $iterator $container iblock)
+    					(container=ID args+ LT+ iblock -> ^(FOR $iterator ^(FUNC_CALL $container args*) LT+ iblock)
+    					|container=ID access+ LT+ iblock -> ^(FOR $iterator ^($container access*) LT+ iblock)
+    				    |array_definition LT+ iblock -> ^(FOR $iterator array_definition LT+ iblock)
+    				    |container=ID LT+ iblock -> ^(FOR $iterator $container LT+ iblock)
     				    )
-    |   'while' bool LT+ iblock -> ^(WHILE bool iblock)
-    |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool iblock) else_test*)
+    |   'while' bool LT+ iblock -> ^(WHILE bool LT+ iblock)
+    |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool LT+ iblock) else_test*)
     ;    
 
 else_body
@@ -225,7 +225,7 @@ else_if_body
 
 /** dangling else solution **/
 else_test
-    : ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(else_test)*
+    : ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
     | 'else' else_body -> ^(ELSE else_body)
     ;
 
