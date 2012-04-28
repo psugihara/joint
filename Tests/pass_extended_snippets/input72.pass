@@ -1,0 +1,13 @@
+# comments!!! #
+x = 2
+# comments!!! #
+x = 4
+# comments!!! #
+y = 2
+# comments!!! #
+y = x + 2 + y + 2
+# comments!!! #
+log(y)
+# comments!!! #
+num(y)
+# comments!!! #

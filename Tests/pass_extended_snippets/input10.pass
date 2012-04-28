@@ -1,0 +1,3 @@
+server.publish = (message, channel) ~
+  for connection in conns(channel)
+    connection.onMsg(message)

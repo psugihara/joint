@@ -1,0 +1,34 @@
+x = "soccer"
+if x == "basketball"
+  z = "traf"
+else if x == "sports"
+  x = "hey"
+  a = 3493 * e34
+  if a > 3
+    x = "no"
+    log("hello")
+  else if a < 3
+    x = "yes"
+  else
+    x = x
+    dict = {key1 : 4, key2 : 3}
+else if x == "ball"
+  a = 0
+else
+  z = "burp"
+if x != "soccer"
+  a = 12 - 34 + 2
+  x = "what"
+  exampleFunction = (arg0, arg1) ~
+    nestedExampleFunction = (arg0, arg1) ~
+      return arg0 + arg1
+  nestedExamplefunction(2, 3)
+else if x == "football"
+  x = "montana"
+  x = "marino"
+  b = 2
+  while b > 0
+    x = x + " touchdown"
+    b = b - 1
+else
+  a = 4
