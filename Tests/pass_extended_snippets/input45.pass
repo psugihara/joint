@@ -1,0 +1,39 @@
+x = "soccer"
+if x == "basketball"
+  z = "traf"
+  i = 0
+  while i<8
+    i+=1
+    log(i)
+else if x == "sports"
+  bar = []
+  x = "hey"
+  a = 3493 * e34
+  if a > 3
+    x = "no"
+  else if a < 3
+    x = "yes"
+  else
+    x = x
+else if x == "ball"
+  a = 0
+else
+  z = "burp"
+  server.publish = (message, channel) ~
+    for connection in conns(channel)
+      connection.onMsg(message)
+if x != "soccer"
+  a = 12 - 34 + 2
+  x = "what"
+else if x == "football"
+  x = "montana"
+  x = "marino"
+  b = 2
+  server.publish = (message, channel) ~
+    for connection in conns(channel)
+      connection.onMsg(message)  
+  while b > 0
+    x = x + " touchdown"
+    b = b - 1
+else
+  a = 4

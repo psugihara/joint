@@ -1,0 +1,8 @@
+exampleFunction = (arg0, arg1) ~
+  nestedExampleFunction = (arg0, arg1) ~
+    x = 2
+    while x < 5
+      x = x + 1
+      num(x)
+    return arg0 + arg1 + x
+  nestedExamplefunction(2, 3)

@@ -1,0 +1,37 @@
+server.arrive = (name) ~
+  log(name + " arrived")
+x = "soccer"
+# comments #
+# comments #
+# comments #
+if x == "basketball"
+  z = "traf"
+else if x == "sports"
+  x = "hey"
+  # comments #
+  # comments #
+  # comments #
+  a = 3493 * e34
+  if a > 3
+    x = "no"
+  else if a < 3
+    x = "yes"
+  else
+    x = x
+else if x == "ball"
+  a = 0
+else
+  z = "burp"
+if x != "soccer"
+# comments #
+  a = 12 - 34 + 2
+  x = "what"
+else if x == "football"
+  x = "montana"
+  x = "marino"
+  b = 2
+  while b > 0
+    x = x + " touchdown"
+    b = b - 1
+else
+  a = 4

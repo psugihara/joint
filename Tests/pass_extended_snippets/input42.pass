@@ -1,0 +1,8 @@
+for i in [1, 2, 3]
+  log(i)
+  for j in [i, 2, 1]
+    log(j)
+    for i in [1, 2, 3]
+      log(i)
+  for j in [i, 2, 1]
+    log(j)

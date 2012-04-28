@@ -1,0 +1,17 @@
+x = 3
+if x == 4
+  z = "traf"
+else if x == 2
+  x = "hey"
+  a = 3493 * e34
+  if a == 3
+    x = 4
+else if x == 1
+  while x < 4
+    x = x + 1
+else
+  z = "burp"
+if x < 2
+  a = "hey"
+else
+  a = 4

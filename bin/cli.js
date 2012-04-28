@@ -88,13 +88,19 @@ app.use(connect.static(staticPath));
 
 var server = http.createServer(app);
 
+var connections = require(lib + '/connections.js');
+
 dnode(function (client, conn) {
-  program.bind(this, conn);
-  // conn.on('end', function() {
-  //    var tagged = stdlib.tags(connServer.conn);
-  //    for (var t in tagged)
-  //      stdlib.untag(connServer.conn, tagged[t]); 
-  // });
+  // Bind server functions to dnode object with the connection.
+  for (var key in program) {
+    this[key] = program[key].bind({"conn":conn});
+  }
+
+  connections.onConnect(conn);
+
+  conn.on('end', function() {
+    connections.onDisconnect(conn);
+  });
 }).listen(server);
 
 server.listen(port);
