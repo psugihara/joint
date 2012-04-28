@@ -44,11 +44,11 @@ public class PassC {
 					break;
 				}		
 			}	
-			if(tmp==s.peek()){
+			if(tmp == s.peek()) {
 				PassNode w = s.pop();
 				w.setVisitedTrue();
 				String decided = gen.nodeDecider(w);
-				System.out.println(w.text + " -> " + decided);
+				// System.out.println(w.text + " -> " + decided);
 				w.setText(decided);
         	}
         }
@@ -59,6 +59,7 @@ public class PassC {
             System.out.println("usage: pass <INPUT_FILE.pass>\n");
             return;
         }
+
         if (!args[0].endsWith(".pass")) {
             System.out.println(args[0] + ": Input file must be a \".pass\" file.");
             return;
