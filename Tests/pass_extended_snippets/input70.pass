@@ -1,0 +1,18 @@
+x = 2  
+y = 1
+z = "nah"
+while x == 2 && x != 2 || z == "hey!!"
+  while x == 2 && y != 2      
+    while x == 2 && y != 2
+      while x == 2 && y != 2
+        x = 1
+        if x == 1 && y != 2 || z == "hey!!"
+          x = 0
+        x = x + 1
+        if x == 4 && y != 2
+          while x != 3 && y != 2 || z == "hey!!" || z == "nah"
+            x = x - 1
+        else if x == 2 || x < 10
+          return 0
+        else
+          return "chillllllowerfw09erj0w9erjbruh"

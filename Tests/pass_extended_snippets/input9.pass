@@ -1,0 +1,3 @@
+server.subscribe = (channel, onMsg) ~
+  tag(conn, channel)
+  conn.onMsg = onMsg

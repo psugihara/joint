@@ -1,0 +1,9 @@
+i = 0
+evenSum = 0
+oddSum = 0
+while i < 5
+  if i % 2 == 0
+    evenSum += i
+  else
+    oddSum += i
+  i += 1
