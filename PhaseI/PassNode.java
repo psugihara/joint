@@ -1,11 +1,11 @@
 import org.antlr.runtime.tree.*;
 import org.antlr.runtime.Token;
 
-public class PassAST extends CommonTree {
+public class PassNode extends CommonTree {
 	public String text; 
-        public int type;
-	
-    public PassAST(Token t) {
+	public int type;
+
+    public PassNode(Token t) {
 		super(t);
 		text = (t != null? t.getText(): "[]");
 		this.type = type;
@@ -24,6 +24,6 @@ public class PassAST extends CommonTree {
 
 class PassAdaptor extends CommonTreeAdaptor {
     public Object create(Token payload) {
-	return new PassAST(payload);
+	return new PassNode(payload);
     }
 }
