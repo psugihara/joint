@@ -160,7 +160,6 @@ public class CodeGenerator {
             case PassParser.RETURN:
                 s = RETURN(n);
                 break;
-
             case PassParser.ARRAY_ACCESS:
                 s = ARRAY_ACCESS(n);
                 break;
@@ -176,7 +175,6 @@ public class CodeGenerator {
             case PassParser.FUNCTION:
                 s = FUNCTION(n);
                 break;
-
             case PassParser.WHILE:
                 s = WHILE(n);
                 break;
@@ -197,6 +195,7 @@ public class CodeGenerator {
                 break;
             case PassParser.LT:
             	s = "\n";
+                break;
             default:
           //	return null;
             // return "";

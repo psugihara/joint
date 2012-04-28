@@ -9,57 +9,57 @@ import org.antlr.runtime.tree.*;
 import java.io.*;
 
 public class PassC {
-    public static PassParser grammar;
-CodeGenerator gen;
-    public  void run(String inputFile) throws Exception {
-        ANTLRFileStream fs = new ANTLRFileStream(inputFile);
-        PassLexer lex = new PassLexer(fs);
-        TokenRewriteStream tokens = new TokenRewriteStream(lex);
-        PassParser grammar = new PassParser(tokens);
-        PassAdaptor pass_adaptor = new PassAdaptor();
-        grammar.setTreeAdaptor(pass_adaptor);
-        PassParser.prog_return ret = grammar.prog();
-        PassNode tree = (PassNode) ret.getTree();
-        if(tree == null){
-        	System.out.println("Input Rejected by grammar: no tree generated");
-        	System.exit(-1);
-        }
-        gen = new CodeGenerator();
+	public static PassParser grammar;
+	CodeGenerator gen;
+	public  void run(String inputFile) throws Exception {
+		ANTLRFileStream fs = new ANTLRFileStream(inputFile);
+		PassLexer lex = new PassLexer(fs);
+		TokenRewriteStream tokens = new TokenRewriteStream(lex);
+		PassParser grammar = new PassParser(tokens);
+		PassAdaptor pass_adaptor = new PassAdaptor();
+		grammar.setTreeAdaptor(pass_adaptor);
+		PassParser.prog_return ret = grammar.prog();
+		PassNode tree = (PassNode) ret.getTree();
+		if(tree == null){
+			System.out.println("Input Rejected by grammar: no tree generated");
+			System.exit(-1);
+		}
+		gen = new CodeGenerator();
      //   tree = (PassNode)tree.getChild(0);
-        walkTree(tree);
-	System.out.println(tree.getText());
-    }
-    public void concat(PassNode n, String text){
-    	if(n == null || n.getParent() == null)
-    		return;
-    	PassNode tmp = (PassNode)n.getParent().getChild(0);
-    	if(tmp == n)
-    		return;
-    	tmp.setText(tmp.getText()+text);
-    }
-    public void walkTree(PassNode n) {
-        Stack<PassNode> s = new Stack<PassNode>();
-        s.push(n);
-        PassNode tmp = null;
-        PassNode leftMostUnvisited = null;
-        while(!s.empty()){
-		tmp = s.peek();
-         	for (int i = 0; i < tmp.getChildCount(); i++){
-         		PassNode thisChild = (PassNode)tmp.getChild(i);
-			if(!thisChild.isVisited()){
-				s.push(thisChild);
-				break;
-			}		
-        	}	
-        	if(tmp==s.peek()){
-        		PassNode w = s.pop();
-        		w.setVisitedTrue();
-        		String decided = gen.nodeDecider(w);
+		walkTree(tree);
+		System.out.println(tree.getText());
+	}
+	public void concat(PassNode n, String text){
+		if(n == null || n.getParent() == null)
+			return;
+		PassNode tmp = (PassNode)n.getParent().getChild(0);
+		if(tmp == n)
+			return;
+		tmp.setText(tmp.getText()+text);
+	}
+	public void walkTree(PassNode n) {
+		Stack<PassNode> s = new Stack<PassNode>();
+		s.push(n);
+		PassNode tmp = null;
+		PassNode leftMostUnvisited = null;
+		while(!s.empty()){
+			tmp = s.peek();
+			for (int i = 0; i < tmp.getChildCount(); i++){
+				PassNode thisChild = (PassNode)tmp.getChild(i);
+				if(!thisChild.isVisited()){
+					s.push(thisChild);
+					break;
+				}		
+			}	
+			if(tmp==s.peek()){
+				PassNode w = s.pop();
+				w.setVisitedTrue();
+				String decided = gen.nodeDecider(w);
 
-   
-        		if (decided!=null ){
-        		        w.setText(decided);
-        		        concat(w, decided);
+				System.out.println(w.text + " -> " + decided);
+
+				if (decided!=null ){
+					w.setText(decided);
         		}
 
         	}
