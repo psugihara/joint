@@ -40,7 +40,7 @@ public class CodeGenerator {
     }
 
 	public String PROG(PassNode n ){
-	return n.getChild(0);
+	return n.getChild(0).getText();
 	}
     public String ARGUMENTS(PassNode n) {
         return genericCombine(n, ", ");
