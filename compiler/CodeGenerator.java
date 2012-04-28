@@ -39,9 +39,9 @@ public class CodeGenerator {
         return genericCombine(n, " ");
     }
 
-    public String PROG(PassNode n ){
-	return genericCombine(n,"");
-    }
+	public String PROG(PassNode n ){
+	return n.getChild(0).getText();
+	}
     public String ARGUMENTS(PassNode n) {
         return genericCombine(n, ", ");
     }
@@ -149,12 +149,8 @@ public class CodeGenerator {
         }
         int nodeNumber = n.getType();
         switch (nodeNumber) {
-/*            case PassParser.BLOCK:
-                s = PROG(n);
-                break;
-  */          case PassParser.PROG:
-        	s = PROG(n);
-        	break;
+        	case PassParser.PROG:
+        		s = PROG(n);
             case PassParser.IBLOCK:
                 s = IBLOCK(n);
                 break;
@@ -201,7 +197,6 @@ public class CodeGenerator {
                 break;
             case PassParser.LT:
             	s = "\n";
-            	break;
             default:
           //	return null;
             // return "";

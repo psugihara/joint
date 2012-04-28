@@ -345,8 +345,7 @@ DICTIONARY_DECLARATION
 	: 'DICTIONARY_DECLARATIOn'
 	;
 
-fragment
-LT  :   ('\n'|'r\n')+
+LT  :   ('\n'|'r\n')+ { emit(new CommonToken(LT, "LT")); }
     ;
 
 INDENT
