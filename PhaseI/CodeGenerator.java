@@ -2,7 +2,7 @@
 //function 2 //args and
 //arguments 2
 // assignment
-
+//todo check node inheritance behavior 
 public class CodeGenerator {
 
 
@@ -11,7 +11,7 @@ public class CodeGenerator {
         text = "  "+text.replace("\n", "\n  ");
         return "{\n" + text + "\n}\n";
     }
-    
+
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
@@ -24,10 +24,24 @@ public class CodeGenerator {
     }
 
     public String ASSIGNMENT(PassNode n) {
+    	PassNode node = (PassNode)n.getChild(0);
+    	String varName = node.getText();
+    	if(varName == null){
+    	//this should never happen
+    		System.out.println("FATAL ERROR: no function name ");
+    		System.exit(-1);
+    	}
+    	//check if the var was defined
+    	if(n.isDefined(varName) == false){
+    		node.setText("var " + varName);
+    		n.setChild(0, node);	
+    	}
         return genericCombine(n, " ");
     }
 
-
+	public String PROG(PassNode n ){
+	return n.getChild(0);
+	}
     public String ARGUMENTS(PassNode n) {
         return genericCombine(n, ", ");
     }
@@ -42,13 +56,13 @@ public class CodeGenerator {
     }
 
     public String WHILE(PassNode n) {
-        return "while(" + genericCombine(n, ")");
+        return "while (" + genericCombine(n, ")");
     }
 
     //for
     public String FOR(PassNode n) {
         //for(var i in ARRAY) IBLOCK
-        String text = "for(var " + genericCombine(n, " in ", ")");
+        String text = "for (var " + genericCombine(n, " in ", ")");
         return null;
     }
 
@@ -82,8 +96,8 @@ public class CodeGenerator {
     public String ARRAY_ACCESS(PassNode n) {
         if (n.getText() == null || n.getChildCount() < 2)
             return ""; //error
-        String ret = n.getChild(0).getText();
-        for (int i = 1; n.getChildCount() < i; i++)
+        String ret = n.getText();
+        for (int i = 0; n.getChildCount() < i; i++)
             ret += "[" + n.getChild(i).getText() + "]";
         return ret;
     }
@@ -135,6 +149,8 @@ public class CodeGenerator {
         }
         int nodeNumber = n.getType();
         switch (nodeNumber) {
+        	case PassParser.PROG:
+        		s = PROG(n);
             case PassParser.IBLOCK:
                 s = IBLOCK(n);
                 break;
@@ -182,6 +198,7 @@ public class CodeGenerator {
             case PassParser.LT:
             	s = "\n";
             default:
+          //	return null;
             // return "";
             return n.getText();
             // System.out.println("INVALID NODE TYPE GRAMMAR FAIL");
