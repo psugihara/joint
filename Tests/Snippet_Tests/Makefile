@@ -5,7 +5,7 @@ JC = javac
 	javac $<
 
 default:
-	cp ../../PhaseI/Pass.g Pass.g;
+	cp ../../compiler/Pass.g Pass.g;
 	java org.antlr.Tool Pass.g; 
 	javac TestSnippets.java;
    

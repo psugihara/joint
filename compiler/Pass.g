@@ -65,8 +65,7 @@ tokens {
 
     return tokens.poll();
   }
-  
-  
+
   // This is rediculous but for some reason the modulo operator isn't working here.
   int mod(int a, int b) {
    while (a >= b)
@@ -76,14 +75,16 @@ tokens {
 
   void reindent(int spaces) {
     if (mod(spaces, DENT_SIZE) != 0) {
-      System.out.println("Odd indentation (" + spaces + " spaces).");
-      // TODO: report an error... sloppy indentation
+      System.out.println("line " + getLine());
+      System.out.println("    " + getText());
+      System.out.println("odd indentation (" + spaces + " spaces)");
+      System.exit(-1);
     }
     
     int indents = spaces / DENT_SIZE;
       if ((indents - indentLevel) > 1) {
-        System.out.println("too many indents");
-        // TODO: report an error... too many indents
+        System.out.println("too many indents on line " + getLine());
+        System.exit(-1);
       }
 
     if (indents > indentLevel)
@@ -99,6 +100,9 @@ tokens {
       
     indentLevel = indents;
   }
+  
+  
+  
 }
 
 prog:   block EOF -> ^(PROG block)
@@ -210,7 +214,7 @@ control
     ;    
 
 accessid
-	:(ID->ID) 
+	:   (ID->ID) 
 	( args ->  ^(FUNC_CALL $accessid args)
     | array_access -> ^(ARRAY_ACCESS $accessid array_access)
     | dictionary_access -> ^(DICT_ACCESS $accessid dictionary_access)
@@ -219,18 +223,18 @@ accessid
 
 else_body
 	:	return_stmt LT
-	| LT iblock
+	|   LT iblock
 	;
 
 else_if_body
-	:  return_stmt
-	| LT iblock
+	:   return_stmt
+	|   LT iblock
 	;
 
 /** dangling else solution **/
 else_test
-    : ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
-    | 'else' else_body -> ^(ELSE else_body)
+    :   ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
+    |   'else' else_body -> ^(ELSE else_body)
     ;
 
     
@@ -341,7 +345,7 @@ DICTIONARY_DECLARATION
 	: 'DICTIONARY_DECLARATIOn'
 	;
 
-LT  :   ('\n'|'r\n')+
+LT  :   ('\n'|'r\n')+ { emit(new CommonToken(LT, "LT")); }
     ;
 
 INDENT
@@ -349,7 +353,9 @@ INDENT
        {getCharPositionInLine()==0}?=>
         (' ')+
         {
-          reindent(getText().length());
+                  int spaces = getText().length();
+
+          reindent(spaces);
           skip();
         }
     ;
