@@ -168,15 +168,25 @@ exponent
 	;
 
 factor
-    :   (modable -> modable) (args -> ^(FUNC_CALL $factor args*)
-    						 |access -> ^($factor access*)
+    :   (modable -> modable) 
+							 (args -> ^(FUNC_CALL $factor args)
+    						 |array_access -> ^(ARRAY_ACCESS $factor array_access)
+    						 |dictionary_access -> ^(DICT_ACCESS $factor dictionary_access)
     						 )*
     |   atom
     ;
 
+array_access
+	:   '[' NUMBER ']' -> NUMBER
+	;
+
+dictionary_access
+	:   '.' def=ID -> $def
+	;
+
 access
-    :   '[' NUMBER ']' -> ^(ARRAY_ACCESS NUMBER)
-    |   '.' def=ID -> ^(DICT_ACCESS $def)
+    :   array_access
+    |   dictionary_access
     ;
 
 mod :   args
