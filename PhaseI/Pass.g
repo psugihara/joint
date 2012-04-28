@@ -6,6 +6,7 @@ options {
 tokens {
   DEDENT;
   INDENT;
+  GEN_OP;
 }
 
 @lexer::members {
@@ -133,31 +134,43 @@ short_stmt
     ;
     
 break_stmt
-    :   'break'^
+    :   'break' -> ^(BREAK)
     ;
 
 return_stmt
-    :   'return'^ argument
+    :   'return' argument -> ^(RETURN argument)
     ;
 
 bool:   (args '~')=> func
-    |   (logic -> logic) (CMP logic -> ^(OP $bool logic))*
+    |   (logic -> logic) 
+    					(operator=CMP logic -> ^(GENERIC_OP $bool $operator logic))*
     ;
 
 logic
-    :   eval (BOP^ eval)*
+    :   (eval->eval) 
+    				(operator=BOP eval -> ^(GENERIC_OP $logic $operator eval))* 
     ;
 
-eval:   term (('+'|'-')^ term)*
+eval:   (term->term) 
+					(operator='+' term -> ^(GENERIC_OP $eval $operator term)
+					|operator='-' term -> ^(GENERIC_OP $eval $operator term)
+				    )*
     ;
 
-term:   factor (('*'|'/'|'%')^ factor)*
+term:   (exponent -> exponent)
+				(operator='*' exponent -> ^(GENERIC_OP $term $operator exponent)
+				|operator='/' exponent -> ^(GENERIC_OP $term $operator exponent)
+				|operator='%' exponent -> ^(GENERIC_OP $term $operator exponent))*
     ;
+
+exponent
+	:	(factor -> factor) (operator='^' factor -> ^(GENERIC_OP $exponent $operator factor))*
+	;
 
 factor
     :   (modable -> modable) (args -> ^(FUNC_CALL $factor args*)
     						 |access -> ^($factor access*)
-    						  )*
+    						 )*
     |   atom
     ;
 
@@ -238,12 +251,24 @@ PROG
 	: 'PROG'
 	;  
 
+RETURN
+	: 'RETURN'
+	;
+
 FUNCTION
 	: 'FUNCTION'
 	;
 
 ASSIGNMENT
 	: 'ASSIGNMENT'
+	;
+
+BREAK
+	: 'BREAK'
+	;
+
+GENERIC_OP
+	:'GENERIC_OP'
 	;
 
 ARRAY_ACCESS
