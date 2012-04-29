@@ -54,12 +54,20 @@ public class PassC {
     public static void main(String[] args) throws Exception {
         PassC passCompiler = new PassC();
 
+        // If no arguments are present, compile input from stdin.
         if (args == null || args.length == 0) {
             Scanner lines = new Scanner(System.in);
             String input = "";
 
             while (lines.hasNext())
                 input += lines.nextLine();
+
+            System.out.println(input);
+
+            if (input.trim().equals("")) {
+                System.out.println("usage: pass <INPUT_FILE.pass>\n");
+                return;
+            }
 
             passCompiler.run(new ANTLRStringStream(input));
             return;
