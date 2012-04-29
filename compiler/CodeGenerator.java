@@ -4,39 +4,41 @@
 // assignment
 //todo check node inheritance behavior 
 public class CodeGenerator {
-    public static final String LOG = "log";
-    public static final String CONSOLE_LOG = "console.log";
-    public static final String TAG = "tag";
-    public static final String STDLIB_TAG = "stdlib.tag";
-    public static final String CONTAINS = "contains";
-    public static final String STDLIB_CONTAINS = "stdlib.contains";
-    public static final String UNTAG = "untag";
-    public static final String STDLIB_UNTAG = "stdlib.untag";
-    public static final String TAGS = "tags";
-    public static final String STDLIB_TAGS = "stdlib.tags";
-    public static final String CONNS = "conns";
-    public static final String STDLIB_CONNS = "stdlib.conns";
-    public static final String IF = "if (";
-    public static final String ELSE = "else";
-    public static final String ELSE_IF = "else if (";
-    public static final String FOR = "for (";
-    public static final String WHILE = "while (";
-    public static final String RETURN = "return ";
-    public static final String FUNCTION = "function (";
-    public static final String RIGHT_PAREN = ")";
+    private static final String LOG = "log";
+    private static final String CONSOLE_LOG = "console.log";
+    private static final String TAG = "tag";
+    private static final String STDLIB_TAG = "stdlib.tag";
+    private static final String CONTAINS = "contains";
+    private static final String STDLIB_CONTAINS = "stdlib.contains";
+    private static final String UNTAG = "untag";
+    private static final String STDLIB_UNTAG = "stdlib.untag";
+    private static final String TAGS = "tags";
+    private static final String STDLIB_TAGS = "stdlib.tags";
+    private static final String CONNS = "conns";
+    private static final String STDLIB_CONNS = "stdlib.conns";
+    private static final String IF = "if (";
+    private static final String ELSE = "else";
+    private static final String ELSE_IF = "else if (";
+    private static final String FOR = "for (";
+    private static final String WHILE = "while (";
+    private static final String RETURN = "return";
+    private static final String FUNCTION = "function (";
+    private static final String RIGHT_PAREN = ")";
+    private static final String WHITE_SPACE = " ";
+    private static final String EMPTY_STRING = "";
     private boolean stdLibFunctionsCalled = false;
     //the dir needs to be modified later
     private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
 
     public String IBLOCK(PassNode n) {
-        String text = genericCombine(n, "");
+        String text = genericCombine(n, EMPTY_STRING);
         text = "  " + text.replace("\n", "\n  ");
         return " {\n  " + text.trim() + "\n}";
     }
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
-        return genericCombine(n, " ");
+        return genericCombine(n, WHITE_SPACE);
     }
 
     public String DICT_ACCESS(PassNode n) {
@@ -66,15 +68,15 @@ public class CodeGenerator {
             node.setText("var " + varName);
             n.setChild(0, node);
         }
-        return genericCombine(n, " ");
+        return genericCombine(n, WHITE_SPACE);
     }
 
     public String PROG(PassNode n) {
-        String res = "";
+        String res = EMPTY_STRING;
         for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
         }
-        return (stdLibFunctionsCalled ? jsIncludeString : "") + res.trim();
+        return (stdLibFunctionsCalled ? jsIncludeString : EMPTY_STRING) + res.trim();
     }
 
     public String ARGUMENTS(PassNode n) {
@@ -86,7 +88,7 @@ public class CodeGenerator {
     }
 
     public String RETURN(PassNode n) {
-        return RETURN + genericCombine(n, "");
+        return RETURN + genericCombine(n, WHITE_SPACE);
     }
 
     public String WHILE(PassNode n) {
@@ -132,20 +134,20 @@ public class CodeGenerator {
         } else if (funcName.equals(CONNS)) {
             funcName = STDLIB_CONNS;
             stdLibFunctionsCalled = true;
-        } /*else if (funcName.equals("")) {
+        } /*else if (funcName.equals(EMPTY_STRING)) {
             funcName = "stdlib.";
             stdLibFunctionsCalled = true;
         }*/
         node.setText(funcName);
         n.setChild(0, node);
-        String text = genericCombine(n, "(") + ")";
+        String text = genericCombine(n, "(") + RIGHT_PAREN;
         return text;
     }
 
     //arrayName accessElement, accessELEMENT....
     public String ARRAY_ACCESS(PassNode n) {
         if (n.getText() == null || n.getChildCount() < 2)
-            return ""; //error
+            return EMPTY_STRING; //error
         String ret = n.getText();
         for (int i = 0; n.getChildCount() < i; i++)
             ret += "[" + n.getChild(i).getText() + "]";
@@ -174,7 +176,7 @@ public class CodeGenerator {
     }
 
     public String IF_CONDITIONS(PassNode n) {
-        return genericCombine(n, "");
+        return genericCombine(n, EMPTY_STRING);
     }
 
 
@@ -185,12 +187,12 @@ public class CodeGenerator {
     //double check failure handling
     public String genericCombine(PassNode n, String middleString, String middleString1) {
         if (n == null || middleString == null || middleString1 == null)
-            return "";
+            return EMPTY_STRING;
 
         int childCount = n.getChildCount();
         switch (childCount) {
             case 0:
-                return "";
+                return EMPTY_STRING;
             case 1:
                 return n.getChild(0).getText();
             case 2:
@@ -206,7 +208,7 @@ public class CodeGenerator {
     }
 
     public String nodeDecider(PassNode n) {
-        String s = "";
+        String s;
 
         if (n == null) {
             return null;
