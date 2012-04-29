@@ -17,7 +17,7 @@ public class CodeGenerator {
     public static final String CONNS = "conns";
     public static final String STDLIB_CONNS = "stdlib.conns";
     public static final String IF = "if (";
-    public static final String ELSE = "else ";
+    public static final String ELSE = "else";
     public static final String ELSE_IF = "else if (";
     public static final String FOR = "for (";
     public static final String WHILE = "while (";
