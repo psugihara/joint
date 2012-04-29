@@ -7,7 +7,6 @@
 var fs = require('fs'),
     path = require('path'),
     exec = require('child_process').exec,
-    spawn = require('child_process').spawn,
     compiler = path.join(path.dirname(fs.realpathSync(__filename)), '../compiler');
 
 
@@ -17,13 +16,14 @@ if (process.argv.length > 2) {
 
   process.chdir(compiler);
   var ps = exec('java PassC ' + source, toFile);
-}
 
-process.stdin.resume();
-process.stdin.on("data", function(chunk) {
-  process.chdir(compiler);
-  exec('echo "' + chunk + '" | java PassC', toConsole)
-});
+} else {
+  process.stdin.resume();
+  process.stdin.on("data", function(chunk) {
+    process.chdir(compiler);
+    exec('echo "' + chunk + '" | java PassC', toConsole)
+  });
+}
 
 function toFile (error, stdout, stderr) {
   if (error === null) {
