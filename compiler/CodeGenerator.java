@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 //for has three children
 //function 2 //args and
 //arguments 2
@@ -19,7 +21,7 @@ public class CodeGenerator {
     private static final String IF = "if (";
     private static final String ELSE = "else";
     private static final String ELSE_IF = "else if (";
-    private static final String FOR = "for (";
+    private static final String FOR = "for (var ";
     private static final String WHILE = "while (";
     private static final String RETURN = "return";
     private static final String FUNCTION = "function (";
@@ -27,8 +29,18 @@ public class CodeGenerator {
     private static final String WHITE_SPACE = " ";
     private static final String EMPTY_STRING = "";
     private boolean stdLibFunctionsCalled = false;
+    private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
     //the dir needs to be modified later
     private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
+
+    public CodeGenerator() {
+        stdLibMembers.put(LOG, EMPTY_STRING);
+        stdLibMembers.put(TAG, EMPTY_STRING);
+        stdLibMembers.put(TAGS, EMPTY_STRING);
+        stdLibMembers.put(CONTAINS, EMPTY_STRING);
+        stdLibMembers.put(CONNS, EMPTY_STRING);
+        stdLibMembers.put(UNTAG, EMPTY_STRING);
+    }
 
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, EMPTY_STRING);
@@ -53,7 +65,7 @@ public class CodeGenerator {
             System.out.println("FATAL ERROR: no function name ");
             System.exit(-1);
         }
-        if (n.getChild(0).getType() == PassParser.DICT_ACCESS) {
+        /*     if (n.getChild(0).getType() == PassParser.DICT_ACCESS) {
             if (n.isDefined(n.getChild(0).toString())) {
                 System.out.println("hey");
                 node.setText(varName);
@@ -62,9 +74,10 @@ public class CodeGenerator {
                  System.out.println("ERROR");
                  System.exit(-1);
                  return;
-                 **/
+
             }
-        } else if (n.isDefined(varName) == false) {
+        }*/
+        else if (!stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
             node.setText("var " + varName);
             n.setChild(0, node);
         }
