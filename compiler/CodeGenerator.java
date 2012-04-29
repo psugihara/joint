@@ -9,7 +9,7 @@ public class CodeGenerator {
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, "");
         text = "  "+text.replace("\n", "\n  ");
-        return "{\n  " + text.trim() + "\n}\n";
+        return "{\n  " + text.trim() + "\n}";
     }
 
 
@@ -26,32 +26,50 @@ public class CodeGenerator {
     public String ASSIGNMENT(PassNode n) {
     	PassNode node = (PassNode)n.getChild(0);
     	String varName = node.getText();
+	System.out.println(n.getChild(0).toString());
+	System.out.println("Testing node " + n.getText()  + " " +  n.isDefined(n.getChild(0).toString()) + (n.getType() == PassParser.DICT_ACCESS));
     	if(varName == null){
     	//this should never happen
     		System.out.println("FATAL ERROR: no function name ");
     		System.exit(-1);
     	}
-    	//check if the var was defined
-    	if(n.isDefined(varName) == false){
+	else if(n.getChild(0).getType() == PassParser.DICT_ACCESS) {
+	    if(n.isDefined(n.getChild(0).toString()))
+		{
+		    System.out.println("hey");
+		    node.setText(varName);
+		}
+	    else
+		{
+		    /**
+		    System.out.println("ERROR");
+		    System.exit(-1);
+		    return;
+		    **/
+		}
+	}
+    	else if(n.isDefined(varName) == false){
     		node.setText("var " + varName);
     		n.setChild(0, node);	
     	}
         return genericCombine(n, " ");
     }
 
-	public String PROG(PassNode n) {
+    public String PROG(PassNode n) {
         String res = "";
-        for (int i = 0; i < n.getChildCount(); i++)
+        for (int i = 0; i < n.getChildCount(); i++){
+	    
             res += n.getChild(i).getText();
-	   return res.trim();
 	}
+	return res.trim();
+    }
+
     public String ARGUMENTS(PassNode n) {
         return genericCombine(n, ", ");
     }
 
-
     public String FUNCTION(PassNode n) {
-        return "function (" + genericCombine(n, ",") + ")";
+        return "function (" + n.getChild(0).getText() + ") " + n.getChild(1).getText();
     }
 
     public String RETURN(PassNode n) {
@@ -65,14 +83,13 @@ public class CodeGenerator {
     //for
     public String FOR(PassNode n) {
         //for(var i in ARRAY) IBLOCK
-        String text = "for (var " + genericCombine(n, " in ", ")");
-        return null;
+        return  "for (var " + genericCombine(n, " in ", ")") + "\n";
+       
     }
 
     //todo this needs to be worked out on cody's end
     public String ARRAY_DECLARATION(PassNode n) {
-        String text = "[" + genericCombine(n, ", ") + "]";
-        return null;
+        return "[" + genericCombine(n, ", ") + "]";
     }
 
     public String FUNC_CALL(PassNode n) {
@@ -107,20 +124,29 @@ public class CodeGenerator {
 
     //parent of dict_declar
     public String DICTIONARY_DEFINITION(PassNode n) {
-        return "{" + genericCombine(n, ",") + "}";
+        return  genericCombine(n, ":");
     }       //child of dict_def
 
     public String DICTIONARY_DECLARATION(PassNode n) {
-        return genericCombine(n, ":");
+        return "{" + genericCombine(n, ",") + "}";
     }
 
     public String IF(PassNode n) {
-        return "if (" + n.getChild(0).getText() + ") " + n.getChild(2).getText();
+        return "if (" + n.getChild(0).getText() + ") " + n.getChild(1).getText() + "\n";
+    }
+
+    public String ELSE(PassNode n) {
+	return "else " + n.getChild(0).getText() + "\n";
+    }
+   
+    public String ELSE_IF(PassNode n) {
+	return "else if (" + n.getChild(0).getText() + ") " + n.getChild(1).getText() + "\n";
     }
 
     public String IF_CONDITIONS(PassNode n) {
         return genericCombine(n, "");
     }
+
 
     public String genericCombine(PassNode n, String middleString) {
         return genericCombine(n, middleString, middleString);
@@ -128,7 +154,6 @@ public class CodeGenerator {
 
     //double check failure handling
     public String genericCombine(PassNode n, String middleString, String middleString1) {
- 
         if (n == null || middleString == null || middleString1 == null)
             return "";
 
@@ -153,13 +178,15 @@ public class CodeGenerator {
 
     public String nodeDecider(PassNode n) {
         String s = "";
+	
         if (n == null) {
             return null;
         }
         int nodeNumber = n.getType();
         switch (nodeNumber) {
-        	case PassParser.PROG:
-        		s = PROG(n);
+            case PassParser.PROG:
+               	s = PROG(n);
+		break;
             case PassParser.IBLOCK:
                 s = IBLOCK(n);
                 break;
@@ -203,11 +230,17 @@ public class CodeGenerator {
                 s = DICTIONARY_DEFINITION(n);
                 break;
             case PassParser.LT:
-            	s = "\n";
+            	s = ";\n";
                 break;
             case PassParser.IF:
                 s = IF(n);
                 break;
+	    case PassParser.ELSE:
+		s = ELSE(n);
+		break;
+	    case PassParser.ELSE_IF:
+		s = ELSE_IF(n);
+		break;
             case PassParser.IF_CONDITIONS:
                 s = IF_CONDITIONS(n);
                 break;
