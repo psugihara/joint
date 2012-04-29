@@ -22,7 +22,7 @@ public class PassC {
 			System.exit(-1);
 		}
 		gen = new CodeGenerator();
-        tree = (PassNode) tree.getChild(0);
+		tree = (PassNode) tree;
 		walkTree(tree);
 		System.out.println(tree.getText());
 	}
