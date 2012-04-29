@@ -20,12 +20,13 @@ public class PassNode extends CommonTree {
     /*check if we need to add var and set the scope of a new variable*/
     public boolean isDefined(String varName) {
     	if(varName == null)
-    		return false;
+	    return false;
         PassNode tmp = this;
-       do{
+	do{
             if (tmp.defined.containsKey(varName))
                 return true;
-        }while ((tmp = (PassNode) tmp.getParent()) != null);
+        }
+	while ((tmp = (PassNode) tmp.getParent()) != null);
         ((PassNode)getParent()).defined.put(varName,"");
         return false;
     }

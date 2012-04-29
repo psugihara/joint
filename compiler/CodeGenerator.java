@@ -5,19 +5,16 @@
 //todo check node inheritance behavior 
 public class CodeGenerator {
 
-
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, "");
         text = "  "+text.replace("\n", "\n  ");
         return "{\n  " + text.trim() + "\n}";
     }
 
-
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
         return genericCombine(n, " ");
     }
-
 
     public String DICT_ACCESS(PassNode n) {
         return genericCombine(n, ".");
@@ -61,6 +58,7 @@ public class CodeGenerator {
 	    
             res += n.getChild(i).getText();
 	}
+
 	return res.trim();
     }
 
@@ -174,7 +172,6 @@ public class CodeGenerator {
                 return s;
         }
     }                         
-
 
     public String nodeDecider(PassNode n) {
         String s = "";

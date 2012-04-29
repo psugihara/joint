@@ -1,6 +1,4 @@
 import org.antlr.runtime.*;
-import org.antlr.runtime.ANTLRFileStream;
-import org.antlr.runtime.TokenRewriteStream;
 
 import java.util.*;
 
@@ -11,9 +9,8 @@ import java.io.*;
 public class PassC {
 	public static PassParser grammar;
 	CodeGenerator gen;
-	public  void run(String inputFile) throws Exception {
-		ANTLRFileStream fs = new ANTLRFileStream(inputFile);
-		PassLexer lex = new PassLexer(fs);
+	public  void run(CharStream inputStream) throws Exception {
+		PassLexer lex = new PassLexer(inputStream);
 		TokenRewriteStream tokens = new TokenRewriteStream(lex);
 		PassParser grammar = new PassParser(tokens);
 		PassAdaptor pass_adaptor = new PassAdaptor();
@@ -55,10 +52,26 @@ public class PassC {
     }
 
     public static void main(String[] args) throws Exception {
-        if (args == null || args.length == 0) {
-            System.out.println("usage: pass <INPUT_FILE.pass>\n");
+        PassC passCompiler = new PassC();
+
+        // If no arguments are present, compile input from stdin.
+        if ((args == null || args.length == 0)) {
+            if (System.in.available() == 0) {
+                System.out.println("usage: passc <INPUT_FILE.pass>\n     | echo \"pass code\" > passc");
+                return;
+            }
+
+            Scanner lines = new Scanner(System.in);
+            String input = "";
+
+            while (lines.hasNext())
+                input += lines.nextLine();
+
+            passCompiler.run(new ANTLRStringStream(input));
             return;
         }
+
+
 
         if (!args[0].endsWith(".pass")) {
             System.out.println(args[0] + ": Input file must be a \".pass\" file.");
@@ -66,8 +79,7 @@ public class PassC {
         }
 
         try {
-         PassC passCompiler = new PassC();
-            passCompiler.run(args[0]);
+            passCompiler.run(new ANTLRFileStream(args[0]));
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Cannot access \"" + args[0] + "\"");
