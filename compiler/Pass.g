@@ -210,7 +210,7 @@ control
     				    		|array_definition LT+ iblock -> ^(FOR $iterator array_definition LT+ iblock)
     				    		)
     |   'while' bool LT+ iblock -> ^(WHILE bool LT+ iblock)
-    |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool LT+ iblock) else_test*)
+    |   'if' bool LT+ iblock (LT* else_test)? -> ^(IF_CONDITIONS ^(IF bool LT+ iblock) else_test*)
     ;    
 
 accessid
@@ -234,7 +234,7 @@ else_if_body
 /** dangling else solution **/
 else_test
     :   ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
-    |   'else' else_body -> ^(ELSE else_body)
+    |   ELSE else_body -> ^(ELSE else_body)
     ;
 
     
@@ -261,78 +261,86 @@ argument
 
 //AST IMAGINARY NODE TOKENS
 
-OP
-	: 'OP'
-	;
-
+fragment
 PROG
 	: 'PROG'
 	;  
 
+fragment
 RETURN
 	: 'RETURN'
 	;
 
+fragment
 FUNCTION
 	: 'FUNCTION'
 	;
 
+fragment
 ASSIGNMENT
 	: 'ASSIGNMENT'
 	;
 
+fragment
 BREAK
 	: 'BREAK'
 	;
 
+fragment
 GENERIC_OP
 	:'GENERIC_OP'
 	;
 
+fragment
 ARRAY_ACCESS
 	: 'ARRAY ENTRY'
 	;
 
+fragment
 DICTIONARY_DEFINITION
 	: 'DICTIONARY DEFINITION'
 	;
 
+fragment
 DICT_ACCESS
 	: 'DICTIONARY ENTRY'
 	;
-	
+
+fragment
 IF_CONDITIONS
 	: 'IF_CONDITIONS'
 	;
 
-IF
-	: 'IF'
-	;
-	
+fragment
+IF  : 'IF'
+    ;
+
+fragment
 ELSE_IF
 	: 'ELSE_IF'
 	;
 
-ELSE
-	: 'ELSE'
-	;
-	
+fragment
 WHILE
 	: 'WHILE'
 	;
 
+fragment
 FOR
 	: 'FOR'
 	;
 
+fragment
 FUNC_CALL
 	: 'FUNC_CALL'
 	;
 
+fragment
 ARGUMENTS
 	: 'ARGUMENTS'
 	;
 
+fragment
 IBLOCK
 	: 'IBLOCK'
 	;
@@ -341,8 +349,14 @@ ARRAY_DECLARATION
 	: 'ARRAY_DECLARATION'
 	;
 
+fragment
 DICTIONARY_DECLARATION
 	: 'DICTIONARY_DECLARATIOn'
+	;
+
+fragment
+ELSE
+    : 'else'
 	;
 
 LT  :   ('\n'|'r\n')+ { emit(new CommonToken(LT, "LT")); }
