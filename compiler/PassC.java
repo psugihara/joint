@@ -55,25 +55,25 @@ public class PassC {
         PassC passCompiler = new PassC();
 
         // If no arguments are present, compile input from stdin.
-        if (args == null || args.length == 0) {
+        if ((args == null || args.length == 0)) {
+            if (System.in.available() == 0) {
+                System.out.println("usage: passc <INPUT_FILE.pass>\n     | echo \"pass code\" > passc");
+                return;
+            }
+
             Scanner lines = new Scanner(System.in);
             String input = "";
 
             while (lines.hasNext())
                 input += lines.nextLine();
 
-            System.out.println(input);
-
-            if (input.trim().equals("")) {
-                System.out.println("usage: pass <INPUT_FILE.pass>\n");
-                return;
-            }
-
             passCompiler.run(new ANTLRStringStream(input));
             return;
         }
 
-        else if (!args[0].endsWith(".pass")) {
+
+
+        if (!args[0].endsWith(".pass")) {
             System.out.println(args[0] + ": Input file must be a \".pass\" file.");
             return;
         }

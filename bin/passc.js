@@ -6,19 +6,35 @@
 
 var fs = require('fs'),
     path = require('path'),
-    source = path.resolve(process.argv[2]),
-    target = process.cwd() + '/' + path.basename(source, '.pass') + '.js',
+    exec = require('child_process').exec,
+    spawn = require('child_process').spawn,
     compiler = path.join(path.dirname(fs.realpathSync(__filename)), '../compiler');
 
-process.chdir(compiler);
-var exec = require('child_process').exec,
-    ps = exec('java PassC ' + source, finished);
 
-function finished (error, stdout, stderr) {
+if (process.argv.length > 2) {
+  var source = path.resolve(process.argv[2]),
+      target = process.cwd() + '/' + path.basename(source, '.pass') + '.js';
+
+  process.chdir(compiler);
+  var ps = exec('java PassC ' + source, toFile);
+}
+
+process.stdin.resume();
+process.stdin.on("data", function(chunk) {
+  process.chdir(compiler);
+  exec('echo "' + chunk + '" | java PassC', toConsole)
+});
+
+function toFile (error, stdout, stderr) {
   if (error === null) {
     fs.writeFile(target, stdout);
   } else {
     console.log(stdout);
     console.log(stderr);
   }
+}
+
+function toConsole (error, stdout, stderr) {
+  console.log(stdout);
+  console.log(stderr);
 }
