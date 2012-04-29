@@ -1,6 +1,7 @@
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeAdaptor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,23 +12,26 @@ public class PassNode extends CommonTree {
     private boolean visited;
 
     private HashMap<String, String> defined = new HashMap<String, String>();
-	public void setVisitedTrue(){
-		visited = true;
-	}
-	public boolean isVisited(){
-		return visited;
-	}
+
+    public void setVisitedTrue() {
+        visited = true;
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
     /*check if we need to add var and set the scope of a new variable*/
     public boolean isDefined(String varName) {
-    	if(varName == null)
-	    return false;
+        if (varName == null)
+            return false;
         PassNode tmp = this;
-	do{
+        do {
             if (tmp.defined.containsKey(varName))
                 return true;
         }
-	while ((tmp = (PassNode) tmp.getParent()) != null);
-        ((PassNode)getParent()).defined.put(varName,"");
+        while ((tmp = (PassNode) tmp.getParent()) != null);
+        ((PassNode) getParent()).defined.put(varName, "");
         return false;
     }
 

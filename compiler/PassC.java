@@ -1,53 +1,51 @@
 import org.antlr.runtime.*;
-
 import java.util.*;
-
 import org.antlr.runtime.tree.*;
-
 import java.io.*;
 
 public class PassC {
-	public static PassParser grammar;
-	CodeGenerator gen;
-	public  void run(CharStream inputStream) throws Exception {
-		PassLexer lex = new PassLexer(inputStream);
-		TokenRewriteStream tokens = new TokenRewriteStream(lex);
-		PassParser grammar = new PassParser(tokens);
-		PassAdaptor pass_adaptor = new PassAdaptor();
-		grammar.setTreeAdaptor(pass_adaptor);
-		PassParser.prog_return ret = grammar.prog();
-		PassNode tree = (PassNode) ret.getTree();
-		if (tree == null) {
-			System.out.println("Input Rejected by grammar: no tree generated");
-			System.exit(-1);
-		}
-		gen = new CodeGenerator();
-		tree = (PassNode) tree;
-		walkTree(tree);
-		System.out.println(tree.getText());
-	}
+    public static PassParser grammar;
+    CodeGenerator gen;
 
-	public void walkTree(PassNode n) {
-		Stack<PassNode> s = new Stack<PassNode>();
-		s.push(n);
-		PassNode tmp = null;
-		PassNode leftMostUnvisited = null;
-		while(!s.empty()){
-			tmp = s.peek();
-			for (int i = 0; i < tmp.getChildCount(); i++){
-				PassNode thisChild = (PassNode)tmp.getChild(i);
-				if(!thisChild.isVisited()){
-					s.push(thisChild);
-					break;
-				}		
-			}	
-			if(tmp == s.peek()) {
-				PassNode w = s.pop();
-				w.setVisitedTrue();
-				String decided = gen.nodeDecider(w);
-				// System.out.println(w.text + " -> " + decided);
-				w.setText(decided);
-        	}
+    public void run(CharStream inputStream) throws Exception {
+        PassLexer lex = new PassLexer(inputStream);
+        TokenRewriteStream tokens = new TokenRewriteStream(lex);
+        PassParser grammar = new PassParser(tokens);
+        PassAdaptor pass_adaptor = new PassAdaptor();
+        grammar.setTreeAdaptor(pass_adaptor);
+        PassParser.prog_return ret = grammar.prog();
+        PassNode tree = (PassNode) ret.getTree();
+        if (tree == null) {
+            System.out.println("Input Rejected by grammar: no tree generated");
+            System.exit(-1);
+        }
+        gen = new CodeGenerator();
+        tree = (PassNode) tree;
+        walkTree(tree);
+        System.out.println(tree.getText());
+    }
+
+    public void walkTree(PassNode n) {
+        Stack<PassNode> s = new Stack<PassNode>();
+        s.push(n);
+        PassNode tmp = null;
+        PassNode leftMostUnvisited = null;
+        while (!s.empty()) {
+            tmp = s.peek();
+            for (int i = 0; i < tmp.getChildCount(); i++) {
+                PassNode thisChild = (PassNode) tmp.getChild(i);
+                if (!thisChild.isVisited()) {
+                    s.push(thisChild);
+                    break;
+                }
+            }
+            if (tmp == s.peek()) {
+                PassNode w = s.pop();
+                w.setVisitedTrue();
+                String decided = gen.nodeDecider(w);
+                // System.out.println(w.text + " -> " + decided);
+                w.setText(decided);
+            }
         }
     }
 
@@ -70,7 +68,6 @@ public class PassC {
             passCompiler.run(new ANTLRStringStream(input));
             return;
         }
-
 
 
         if (!args[0].endsWith(".pass")) {
