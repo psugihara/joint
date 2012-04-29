@@ -112,8 +112,8 @@ block
     :   LT* stmt*
     ;
     
-stmt:   expr (LT+|EOF)
-    |   control LT+
+stmt:   expr (LT+|EOF) -> expr LT
+    |   control LT+ -> control 
     ;   
     
 iblock
@@ -206,11 +206,11 @@ atom:   NUMBER
 
 control
     :   'for' iterator=ID 'in' 
-    				    		(accessid LT+ iblock -> ^(FOR $iterator accessid LT+ iblock)
-    				    		|array_definition LT+ iblock -> ^(FOR $iterator array_definition LT+ iblock)
+    				    		(accessid LT+ iblock -> ^(FOR $iterator accessid  iblock)
+    				    		|array_definition LT+ iblock -> ^(FOR $iterator array_definition  iblock)
     				    		)
     |   'while' bool LT+ iblock -> ^(WHILE bool LT+ iblock)
-    |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool LT+ iblock) else_test*)
+    |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool iblock) else_test*)
     ;    
 
 accessid
@@ -222,22 +222,22 @@ accessid
 	;
 
 else_body
-	:	return_stmt LT
-	|   LT iblock
+	:	return_stmt LT -> return_stmt
+	|   LT iblock -> iblock
 	;
 
 else_if_body
 	:   return_stmt
-	|   LT iblock
+	|   LT iblock -> iblock
 	;
 
 /** dangling else solution **/
 else_test
-    :   ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
+    :   ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body) else_test*
     |   'else' else_body -> ^(ELSE else_body)
     ;
 
-    
+
 assign
     :   '=' (expr|dictionary_definition|array_definition)
     |   ARITH_ASSIGN bool
