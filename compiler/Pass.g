@@ -234,7 +234,7 @@ else_if_body
 /** dangling else solution **/
 else_test
     :   ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body)(LT+ else_test)*
-    |   ELSE else_body -> ^(ELSE else_body)
+    |   'else' else_body -> ^(ELSE else_body)
     ;
 
     
@@ -356,7 +356,7 @@ DICTIONARY_DECLARATION
 
 fragment
 ELSE
-    : 'else'
+    : 'ELSE'
 	;
 
 LT  :   ('\n'|'r\n')+ { emit(new CommonToken(LT, "LT")); }

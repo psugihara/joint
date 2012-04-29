@@ -9,7 +9,7 @@ var fs = require('fs'),
     exec = require('child_process').exec,
     compiler = path.join(path.dirname(fs.realpathSync(__filename)), '../compiler');
 
-
+// If there is an argument, give it to PassC.
 if (process.argv.length > 2) {
   var source = path.resolve(process.argv[2]),
       target = process.cwd() + '/' + path.basename(source, '.pass') + '.js';
