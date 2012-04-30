@@ -54,13 +54,20 @@ public class PassNode extends CommonTree {
     public int get_type() {
         return type;
     }
-
+/*   @Override
+    public int getLine(){
+    	return super.getToken().getLine();
+    }
+ */
     @SuppressWarnings("unchecked")
     public void setChild(int i, PassNode t) {
         if (children == null) {
             children = createChildrenList();
         }
         children.set(i, t);
+    }
+    public Object deleteChild(int i){
+    	return super.deleteChild (i);
     }
 
     public void setText(String s) {
