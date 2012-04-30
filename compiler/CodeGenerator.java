@@ -24,7 +24,7 @@ public class CodeGenerator {
     private static final String ELSE_IF = "else if (";
     private static final String FOR = "for (var ";
     private static final String WHILE = "while (";
-    private static final String RETURN = "return";
+    private static final String RETURN = "return ";
     private static final String FUNCTION = "function (";
     private static final String RIGHT_PAREN = ")";
     private static final String WHITE_SPACE = " ";
