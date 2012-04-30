@@ -1,19 +1,57 @@
+import javax.xml.soap.Node;
+import java.util.HashMap;
+
 //for has three children
 //function 2 //args and
 //arguments 2
 // assignment
 //todo check node inheritance behavior 
 public class CodeGenerator {
+    private static final String LOG = "log";
+    private static final String CONSOLE_LOG = "console.log";
+    private static final String TAG = "tag";
+    private static final String STDLIB_TAG = "stdlib.tag";
+    private static final String CONTAINS = "contains";
+    private static final String STDLIB_CONTAINS = "stdlib.contains";
+    private static final String UNTAG = "untag";
+    private static final String STDLIB_UNTAG = "stdlib.untag";
+    private static final String TAGS = "tags";
+    private static final String STDLIB_TAGS = "stdlib.tags";
+    private static final String CONNS = "conns";
+    private static final String STDLIB_CONNS = "stdlib.conns";
+    private static final String IF = "if (";
+    private static final String ELSE = "else";
+    private static final String ELSE_IF = "else if (";
+    private static final String FOR = "for (var ";
+    private static final String WHILE = "while (";
+    private static final String RETURN = "return ";
+    private static final String FUNCTION = "function (";
+    private static final String RIGHT_PAREN = ")";
+    private static final String WHITE_SPACE = " ";
+    private static final String EMPTY_STRING = "";
+    private boolean stdLibFunctionsCalled = false;
+    private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
+    //the dir needs to be modified later
+    private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
+
+    public CodeGenerator() {
+        stdLibMembers.put(LOG, EMPTY_STRING);
+        stdLibMembers.put(TAG, EMPTY_STRING);
+        stdLibMembers.put(TAGS, EMPTY_STRING);
+        stdLibMembers.put(CONTAINS, EMPTY_STRING);
+        stdLibMembers.put(CONNS, EMPTY_STRING);
+        stdLibMembers.put(UNTAG, EMPTY_STRING);
+    }
 
     public String IBLOCK(PassNode n) {
-        String text = genericCombine(n, "");
-        text = "  "+text.replace("\n", "\n  ");
-        return "{\n  " + text.trim() + "\n}";
+        String text = genericCombine(n, EMPTY_STRING);
+        text = "  " + text.replace("\n", "\n  ");
+        return " {\n  " + text.trim() + "\n}";
     }
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
-        return genericCombine(n, " ");
+        return genericCombine(n, WHITE_SPACE);
     }
 
     public String DICT_ACCESS(PassNode n) {
@@ -21,45 +59,29 @@ public class CodeGenerator {
     }
 
     public String ASSIGNMENT(PassNode n) {
-    	PassNode node = (PassNode)n.getChild(0);
-    	String varName = node.getText();
-	System.out.println(n.getChild(0).toString());
-	System.out.println("Testing node " + n.getText()  + " " +  n.isDefined(n.getChild(0).toString()) + (n.getType() == PassParser.DICT_ACCESS));
-    	if(varName == null){
-    	//this should never happen
-    		System.out.println("FATAL ERROR: no function name ");
-    		System.exit(-1);
-    	}
-	else if(n.getChild(0).getType() == PassParser.DICT_ACCESS) {
-	    if(n.isDefined(n.getChild(0).toString()))
-		{
-		    System.out.println("hey");
-		    node.setText(varName);
-		}
-	    else
-		{
-		    /**
-		    System.out.println("ERROR");
-		    System.exit(-1);
-		    return;
-		    **/
-		}
-	}
-    	else if(n.isDefined(varName) == false){
-    		node.setText("var " + varName);
-    		n.setChild(0, node);	
-    	}
-        return genericCombine(n, " ");
+        PassNode node = (PassNode) n.getChild(0);
+        String varName = node.getText();
+        int type = 0;
+        if (node != null)
+            type = node.getType();
+
+        if (varName == null) {
+            //this should never happen
+            System.out.println("FATAL ERROR: no function name ");
+            System.exit(-1);
+        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
+            node.setText("var " + varName);
+            n.setChild(0, node);
+        }
+        return genericCombine(n, WHITE_SPACE);
     }
 
     public String PROG(PassNode n) {
-        String res = "";
-        for (int i = 0; i < n.getChildCount(); i++){
-	    
+        String res = EMPTY_STRING;
+        for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
-	}
-
-	return res.trim();
+        }
+        return (stdLibFunctionsCalled ? jsIncludeString : EMPTY_STRING) + res.trim();
     }
 
     public String ARGUMENTS(PassNode n) {
@@ -67,22 +89,22 @@ public class CodeGenerator {
     }
 
     public String FUNCTION(PassNode n) {
-        return "function (" + n.getChild(0).getText() + ") " + n.getChild(1).getText();
+        return FUNCTION + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(1).getText();
     }
 
     public String RETURN(PassNode n) {
-        return "return " + genericCombine(n, "");
+        return RETURN + genericCombine(n, WHITE_SPACE);
     }
 
     public String WHILE(PassNode n) {
-        return "while (" + n.getChild(0).getText() + ") " + n.getChild(2).getText();
+        return WHILE + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(2).getText();
     }
 
     //for
     public String FOR(PassNode n) {
         //for(var i in ARRAY) IBLOCK
-        return  "for (var " + genericCombine(n, " in ", ")") + "\n";
-       
+        return FOR + genericCombine(n, " in ", RIGHT_PAREN) + "\n";
+
     }
 
     //todo this needs to be worked out on cody's end
@@ -91,29 +113,46 @@ public class CodeGenerator {
     }
 
     public String FUNC_CALL(PassNode n) {
-    	PassNode node = (PassNode)n.getChild(0);
-    	String funcName = node.getText();
-    	if(funcName == null){
-    	//this should never happen
-    		System.out.println("FATAL ERROR: no function name ");
-    		System.exit(-1);
-    	}
-    	if(funcName.equals("log")){
-    		funcName = "console.log";
-    	}// todo add other special functions
-    	/*else if(funcName.equals("")){
-        	funcName = "";
+        PassNode node = (PassNode) n.getChild(0);
+        String funcName = node.getText();
+        if (funcName == null) {
+            //this should never happen
+            System.out.println("FATAL ERROR: no function name ");
+            System.exit(-1);
+        }
+        /*function transformations */
+        if (funcName.equals(LOG)) {
+            funcName = CONSOLE_LOG;
+            stdLibFunctionsCalled = true;
+        } else if (funcName.equals(TAG)) {
+            funcName = STDLIB_TAG;
+            stdLibFunctionsCalled = true;
+        } else if (funcName.equals(CONTAINS)) {
+            funcName = STDLIB_CONTAINS;
+            stdLibFunctionsCalled = true;
+        } else if (funcName.equals(UNTAG)) {
+            funcName = STDLIB_UNTAG;
+            stdLibFunctionsCalled = true;
+        } else if (funcName.equals(TAGS)) {
+            funcName = STDLIB_TAGS;
+            stdLibFunctionsCalled = true;
+        } else if (funcName.equals(CONNS)) {
+            funcName = STDLIB_CONNS;
+            stdLibFunctionsCalled = true;
+        } /*else if (funcName.equals(EMPTY_STRING)) {
+            funcName = "stdlib.";
+            stdLibFunctionsCalled = true;
         }*/
         node.setText(funcName);
-    	n.setChild(0, node);	
-        String text = genericCombine(n, "(") + ")";
+        n.setChild(0, node);
+        String text = genericCombine(n, "(") + RIGHT_PAREN;
         return text;
     }
 
-    //arrayName accessElement, accessELEMENTi....
+    //arrayName accessElement, accessELEMENT....
     public String ARRAY_ACCESS(PassNode n) {
         if (n.getText() == null || n.getChildCount() < 2)
-            return ""; //error
+            return EMPTY_STRING; //error
         String ret = n.getText();
         for (int i = 0; n.getChildCount() < i; i++)
             ret += "[" + n.getChild(i).getText() + "]";
@@ -122,7 +161,7 @@ public class CodeGenerator {
 
     //parent of dict_declar
     public String DICTIONARY_DEFINITION(PassNode n) {
-        return  genericCombine(n, ":");
+        return genericCombine(n, ":");
     }       //child of dict_def
 
     public String DICTIONARY_DECLARATION(PassNode n) {
@@ -130,19 +169,19 @@ public class CodeGenerator {
     }
 
     public String IF(PassNode n) {
-        return "if (" + n.getChild(0).getText() + ") " + n.getChild(1).getText() + "\n";
+        return IF + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(1).getText() + "\n";
     }
 
     public String ELSE(PassNode n) {
-	return "else " + n.getChild(0).getText() + "\n";
+        return ELSE + n.getChild(0).getText() + "\n";
     }
-   
+
     public String ELSE_IF(PassNode n) {
-	return "else if (" + n.getChild(0).getText() + ") " + n.getChild(1).getText() + "\n";
+        return ELSE_IF + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(1).getText() + "\n";
     }
 
     public String IF_CONDITIONS(PassNode n) {
-        return genericCombine(n, "");
+        return genericCombine(n, EMPTY_STRING);
     }
 
 
@@ -153,12 +192,12 @@ public class CodeGenerator {
     //double check failure handling
     public String genericCombine(PassNode n, String middleString, String middleString1) {
         if (n == null || middleString == null || middleString1 == null)
-            return "";
+            return EMPTY_STRING;
 
         int childCount = n.getChildCount();
         switch (childCount) {
             case 0:
-                return "";
+                return EMPTY_STRING;
             case 1:
                 return n.getChild(0).getText();
             case 2:
@@ -171,19 +210,19 @@ public class CodeGenerator {
                     s += middleString + n.getChild(i).getText();
                 return s;
         }
-    }                         
+    }
 
     public String nodeDecider(PassNode n) {
-        String s = "";
-	
+        String s;
+
         if (n == null) {
             return null;
         }
         int nodeNumber = n.getType();
         switch (nodeNumber) {
             case PassParser.PROG:
-               	s = PROG(n);
-		break;
+                s = PROG(n);
+                break;
             case PassParser.IBLOCK:
                 s = IBLOCK(n);
                 break;
@@ -227,17 +266,17 @@ public class CodeGenerator {
                 s = DICTIONARY_DEFINITION(n);
                 break;
             case PassParser.LT:
-            	s = ";\n";
+                s = ";\n";
                 break;
             case PassParser.IF:
                 s = IF(n);
                 break;
-	    case PassParser.ELSE:
-		s = ELSE(n);
-		break;
-	    case PassParser.ELSE_IF:
-		s = ELSE_IF(n);
-		break;
+            case PassParser.ELSE:
+                s = ELSE(n);
+                break;
+            case PassParser.ELSE_IF:
+                s = ELSE_IF(n);
+                break;
             case PassParser.IF_CONDITIONS:
                 s = IF_CONDITIONS(n);
                 break;
