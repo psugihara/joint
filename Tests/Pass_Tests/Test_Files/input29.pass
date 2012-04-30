@@ -1,5 +1,9 @@
 arrFoo = [3,"hello"]
+log(arrFoo[0])
 arrFoo[0] += 3
 arrFoo[1] = "goodbye"
+log(arrFoo[1])
 arrFoo[0] = 12e4
 arrFoo[1] = "nahnah nahhh nah283u283ndod"
+log(arrFoo[0])
+log(arrFoo[1])
