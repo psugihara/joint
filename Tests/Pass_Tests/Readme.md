@@ -1,3 +1,21 @@
+UPDATED**
+=======
+To test run times of programs in Test_Files, run:
+
+$make clean
+$make effTests
+
+This will test 10 pass programs.
+
+It will print out the elapsed run time in ms.
+
+If the run time > 2 seconds, the test fails and "FAILED! FAILED! FAILED!. OVER 2 SEC RUNTIME" is printed and the next
+program is nexted. Otherwise, "PASSED" is printed out and the next program is tested.
+
+The memory in the JVM before and after the is also printed.
+
+
+--------------------------------------------------------------------------------
 ============
 Purpose
 ============

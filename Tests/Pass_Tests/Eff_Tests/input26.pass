@@ -1,0 +1,5 @@
+exampleFunction = (arg0, arg1) ~
+  nestedExampleFunction = (arg0, arg1) ~
+    log(arg0 + arg1)
+    return arg0 + arg1
+  nestedExamplefunction(2, 3)

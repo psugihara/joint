@@ -1,0 +1,7 @@
+bar = ["hello", 4, "ok"]
+first = bar[1]
+second = bar[2]
+third = bar[3]
+log(first)
+log(second)
+log(third)
