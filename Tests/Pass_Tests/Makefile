@@ -12,12 +12,27 @@ default:
 	cp ../../compiler/CodeGenerator.java CodeGenerator.java; 
 	javac ./*.java;
 
-eff:
+effTests:
+	cp ../../compiler/Pass.g Pass.g;
+	java org.antlr.Tool Pass.g;
 	cp ../../compiler/PassC.java PassC.java;
 	cp ../../compiler/PassNode.java PassNode.java;
-	cp ../../compiler/CodeGenerator.java CodeGenerator.java; 
-	javac Efficiency.java;
-	java Efficiency;
+	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
+	cp ./Eff_Tests/Efficiency.java Efficiency.java;  
+	javac ./*.java;
+	@echo "-----------------------";
+	@echo "Testing Runtimes of Pass Programs in ./Test_Files" ;
+	@echo "-----------------------";
+	java Efficiency ./Test_Files/program1.pass;
+	java Efficiency ./Test_Files/program2.pass;
+	java Efficiency ./Test_Files/program3.pass;
+	java Efficiency ./Test_Files/program4.pass;
+	java Efficiency ./Test_Files/program5.pass;
+	java Efficiency ./Test_Files/program6.pass;
+	java Efficiency ./Test_Files/program7.pass;
+	java Efficiency ./Test_Files/program8.pass;
+	java Efficiency ./Test_Files/program9.pass;
+	java Efficiency ./Test_Files/program10.pass;
 
 test: 
 	java PassC ./Test_Files/test.pass;
@@ -376,4 +391,4 @@ tests75:
 
 	
 clean:
-	$(RM) *.class PassLexer.java PassParser.java Pass.tokens Pass.g PassC.java PassNode.java CodeGenerator.java
+	$(RM) *.class *.java Pass.tokens Pass.g PassC.java PassNode.java CodeGenerator.java
