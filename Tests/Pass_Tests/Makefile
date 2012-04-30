@@ -12,8 +12,15 @@ default:
 	cp ../../compiler/CodeGenerator.java CodeGenerator.java; 
 	javac ./*.java;
 
+eff:
+	cp ../../compiler/PassC.java PassC.java;
+	cp ../../compiler/PassNode.java PassNode.java;
+	cp ../../compiler/CodeGenerator.java CodeGenerator.java; 
+	javac Efficiency.java;
+	java Efficiency;
+
 test: 
-	java PassC ./Test_Files/test.pass
+	java PassC ./Test_Files/test.pass;
 
 
 tests: 
