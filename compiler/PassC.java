@@ -1,12 +1,16 @@
 import org.antlr.runtime.*;
+
 import java.util.*;
+
 import org.antlr.runtime.tree.*;
+
 import java.io.*;
 
 public class PassC {
     public static PassParser grammar;
     CodeGenerator gen;
     CodeOptimizer opt;
+
     public void run(CharStream inputStream) throws Exception {
         PassLexer lex = new PassLexer(inputStream);
         TokenRewriteStream tokens = new TokenRewriteStream(lex);
@@ -21,28 +25,28 @@ public class PassC {
         }
         gen = new CodeGenerator();
         opt = new CodeOptimizer();
-    	try{
-    		optimizeTree(tree);
-        	walkTree(tree);
-        //tree building error
-        }catch(java.lang.ClassCastException e){
-        	System.out.println("ERROR: unable to parse input program");
-		System.exit(-1);
+        try {
+            optimizeTree(tree);
+            walkTree(tree);
+            //tree building error
+        } catch (java.lang.ClassCastException e) {
+            System.out.println("ERROR: unable to parse input program");
+            System.exit(-1);
         }
 
         System.out.println(tree.getText());
-        
-        if(opt.hasErrors())
-        	System.exit(-1);
-        if(opt.hasWarnings())
-        	System.exit(-2);
+
+        if (opt.hasErrors())
+            System.exit(-1);
+        if (opt.hasWarnings())
+            System.exit(-2);
         System.exit(0);
     }
 
-   
-   //first pass
-    public void optimizeTree(PassNode n) throws java.lang.ClassCastException{
-    	Stack<PassNode> s = new Stack<PassNode>();
+
+    //first pass
+    public void optimizeTree(PassNode n) throws java.lang.ClassCastException {
+        Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);
         PassNode tmp = null;
         while (!s.empty()) {
@@ -61,7 +65,8 @@ public class PassC {
                 opt.nodeDecider(w);
             }
         }
-    }    
+    }
+
     //second pass
     public void walkTree(PassNode n) {
         Stack<PassNode> s = new Stack<PassNode>();
