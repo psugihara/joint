@@ -31,6 +31,12 @@ public class PassC {
         }
 
         System.out.println(tree.getText());
+        
+        if(opt.hasErrors())
+        	System.exit(-1);
+        if(opt.hasWarnings())
+        	System.exit(-2);
+        System.exit(0);
     }
 
    
