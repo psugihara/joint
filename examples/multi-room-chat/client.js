@@ -3,7 +3,7 @@
 
   pass.connect(5050, function(remote) {
     server = remote;
-    
+    server.register(callbacks);
   });
 
   var receive = function (name, message) {
@@ -45,7 +45,3 @@
     if(name.length > 0)
       server.setName(name);
   }
-
-  setTimeout(function() {
-    server.register(callbacks);
-  }, 1000);

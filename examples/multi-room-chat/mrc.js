@@ -9,38 +9,38 @@ var contains = pass.contains;
 var server = {};
 
 server.register = function (callbacks) {
-  console.log('CONN ID: '+conn.id);
+  console.log('CONN ID: '+this.conn.id);
   for(var i in callbacks) {
-    conn[i] = callbacks[i];
+    this.conn[i] = callbacks[i];
   }
 };
 
 server.setName = function (name) {
-  conn.name = name;
+  this.conn.name = name;
 };
 
 server.join = function (room) {
-  var rooms = tags(conn);
+  var rooms = tags(this.conn);
   var r, c;
   for(r in rooms)
     if(r == room) return;
   for(r in rooms) {
-    var connections = conns(r);
+    var connections = conns(rooms[r]);
     for(c in connections) {
-      if(conn != connections[c])
-        connections[c].onLeave(conn.name, r);
+      if(this.conn != connections[c])
+        connections[c].onLeave(this.conn.name, rooms[r]);
     }
-    untag(conn, r);
+    untag(this.conn, rooms[r]);
   }
-  tag(conn, room);
+  tag(this.conn, room);
   var connections = conns(room);
   for(c in connections)
-    connections[c].onEnter(conn.name, room);
+    connections[c].onEnter(this.conn.name, room);
 };
 
 server.chat = function (message) {
-  var name = conn.name;
-  var rooms = tags(conn);
+  var name = this.conn.name;
+  var rooms = tags(this.conn);
   console.log('tags for '+name+': '+rooms);
   for(var i in rooms) {
     var connections = conns(rooms[i]);
@@ -52,3 +52,5 @@ server.chat = function (message) {
 server.log = function (message) {
   console.log(message);
 };
+
+module.exports = server;
