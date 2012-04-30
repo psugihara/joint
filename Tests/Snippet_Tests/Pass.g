@@ -23,8 +23,9 @@ tokens {
   // Note that this will occur at the end of each production if it is not
   // called explicitly.
   @Override
-  public void emit(Token t) {   
-  
+  public void emit(Token t) {
+    System.out.println(t.getText());
+    
     // Dedent when we hit a close paren to where we were when we opened it.
     String text = t.getText();
     if (text.equals("INDENT") || text.equals("("))
@@ -38,7 +39,8 @@ tokens {
         indentLevel--;
       }
     }
-     
+    System.out.println(t.getText());
+    
     state.token = t;
     tokens.offer(t);
   }
@@ -209,8 +211,8 @@ control
     				    		(accessid LT+ iblock -> ^(FOR $iterator accessid  iblock)
     				    		|array_definition LT+ iblock -> ^(FOR $iterator array_definition  iblock)
     				    		)
-    |   'while' bool LT+ iblock -> ^(WHILE bool LT+ iblock)
-    |   'if' bool LT+ iblock (LT+ else_test)? -> ^(IF_CONDITIONS ^(IF bool iblock) else_test*)
+    |   'while' bool LT+ iblock -> ^(WHILE bool iblock)
+    |   'if' bool LT+ iblock (LT else_test)? -> ^(IF_CONDITIONS ^(IF bool iblock) else_test*)
     ;    
 
 accessid
@@ -363,13 +365,11 @@ LT  :   ('\n'|'r\n')+ { emit(new CommonToken(LT, "LT")); }
     ;
 
 INDENT
-    :   
+    :
        {getCharPositionInLine()==0}?=>
         (' ')+
         {
-                  int spaces = getText().length();
-
-          reindent(spaces);
+          reindent(getText().length());
           skip();
         }
     ;
