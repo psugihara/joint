@@ -75,16 +75,16 @@ public class CodeOptimizer {
     }
 
 
-
+          //if a variable is defined as an argument to the function, don't add var to it
     public void FUNCTION(PassNode n) {
-  /*      n = (PassNode) n.getChild(1);
+        n = (PassNode) n.getChild(1);
         for(int i=0; i<n.getChildCount();i++){
-            System.out.println(n.getChild(i).getText());
+  //          System.out.println(n.getChild(i).getText());
         }
-    */
+
 
     }
-    
+
     public void WHILE(PassNode n) {
     }
 
@@ -115,7 +115,6 @@ public class CodeOptimizer {
     }
 
     public void ELSE_IF(PassNode n) {
-
     }
 
     public void IF_CONDITIONS(PassNode n) {
@@ -124,9 +123,32 @@ public class CodeOptimizer {
     public void removeNodesAfter(PassNode n){
 
     }
+    public String genericCombine(PassNode n, String middleString) {
+        return genericCombine(n, middleString, middleString);
+    }
 
+    //double check failure handling
+    public String genericCombine(PassNode n, String middleString, String middleString1) {
+        if (n == null || middleString == null || middleString1 == null)
+            return EMPTY_STRING;
 
-    
+        int childCount = n.getChildCount();
+        switch (childCount) {
+            case 0:
+                return EMPTY_STRING;
+            case 1:
+                return n.getChild(0).getText();
+            case 2:
+                return n.getChild(0).getText() + middleString + n.getChild(1).getText();
+            case 3:
+                return n.getChild(0).getText() + middleString + n.getChild(1).getText() + middleString1 + n.getChild(2).getText();
+            default:
+                String s = n.getChild(0).getText();
+                for (int i = 1; i < n.getChildCount(); i++)
+                    s += middleString + n.getChild(i).getText();
+                return s;
+        }
+    }
 
     public void nodeDecider(PassNode n) {
         if (n == null) {
@@ -179,6 +201,8 @@ public class CodeOptimizer {
             default:
                 break;
         }
+
+
     }
 
 }

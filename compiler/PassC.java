@@ -75,7 +75,6 @@ public class PassC {
                 w.setVisitedFalse();
                 String decided = gen.nodeDecider(w);
                 w.setText(decided);
-                System.out.println(w.getText());
             }
         }
     }
