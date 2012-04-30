@@ -24,7 +24,7 @@ tokens {
   // called explicitly.
   @Override
   public void emit(Token t) {
- //   System.out.println(t.getText());
+
     
     // Dedent when we hit a close paren to where we were when we opened it.
     String text = t.getText();
@@ -39,7 +39,7 @@ tokens {
         indentLevel--;
       }
     }
- //   System.out.println(t.getText());
+
     
     state.token = t;
     tokens.offer(t);
