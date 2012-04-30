@@ -1,3 +1,4 @@
+import javax.xml.soap.Node;
 import java.util.HashMap;
 
 //for has three children
@@ -60,24 +61,15 @@ public class CodeGenerator {
     public String ASSIGNMENT(PassNode n) {
         PassNode node = (PassNode) n.getChild(0);
         String varName = node.getText();
+        int type = 0;
+        if (node != null)
+            type = node.getType();
+
         if (varName == null) {
             //this should never happen
             System.out.println("FATAL ERROR: no function name ");
             System.exit(-1);
-        }
-        /*     if (n.getChild(0).getType() == PassParser.DICT_ACCESS) {
-            if (n.isDefined(n.getChild(0).toString())) {
-                System.out.println("hey");
-                node.setText(varName);
-            } else {
-                /**
-                 System.out.println("ERROR");
-                 System.exit(-1);
-                 return;
-
-            }
-        }*/
-        else if (!stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
+        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
             node.setText("var " + varName);
             n.setChild(0, node);
         }
