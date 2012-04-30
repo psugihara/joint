@@ -97,7 +97,7 @@ public class CodeGenerator {
     }
 
     public String WHILE(PassNode n) {
-        return WHILE + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(2).getText();
+        return WHILE + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(1).getText();
     }
 
     //for
