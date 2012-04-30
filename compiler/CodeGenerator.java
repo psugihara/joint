@@ -24,7 +24,7 @@ public class CodeGenerator {
     private static final String ELSE_IF = "else if (";
     private static final String FOR = "for (var ";
     private static final String WHILE = "while (";
-    private static final String RETURN = "return ";
+    private static final String RETURN = "return";
     private static final String FUNCTION = "function (";
     private static final String RIGHT_PAREN = ")";
     private static final String WHITE_SPACE = " ";
@@ -59,20 +59,6 @@ public class CodeGenerator {
     }
 
     public String ASSIGNMENT(PassNode n) {
-        PassNode node = (PassNode) n.getChild(0);
-        String varName = node.getText();
-        int type = 0;
-        if (node != null)
-            type = node.getType();
-
-        if (varName == null) {
-            //this should never happen
-            System.out.println("FATAL ERROR: no function name ");
-            System.exit(-1);
-        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
-            node.setText("var " + varName);
-            n.setChild(0, node);
-        }
         return genericCombine(n, WHITE_SPACE);
     }
 
@@ -89,6 +75,7 @@ public class CodeGenerator {
     }
 
     public String FUNCTION(PassNode n) {
+
         return FUNCTION + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(1).getText();
     }
 
@@ -97,7 +84,7 @@ public class CodeGenerator {
     }
 
     public String WHILE(PassNode n) {
-        return WHILE + n.getChild(0).getText() + RIGHT_PAREN + n.getChild(1).getText();
+        return WHILE + genericCombine(n, RIGHT_PAREN);
     }
 
     //for
@@ -153,8 +140,8 @@ public class CodeGenerator {
     public String ARRAY_ACCESS(PassNode n) {
         if (n.getText() == null || n.getChildCount() < 2)
             return EMPTY_STRING; //error
-        String ret = n.getChild(0).getText();
-        for (int i = 1; i < n.getChildCount(); i++)
+        String ret = n.getText();
+        for (int i = 0; n.getChildCount() < i; i++)
             ret += "[" + n.getChild(i).getText() + "]";
         return ret;
     }
@@ -279,6 +266,9 @@ public class CodeGenerator {
                 break;
             case PassParser.IF_CONDITIONS:
                 s = IF_CONDITIONS(n);
+                break;
+            case PassParser.BREAK:
+                s = "break;";
                 break;
             default:
                 return n.getText();

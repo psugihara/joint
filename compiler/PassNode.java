@@ -16,11 +16,16 @@ public class PassNode extends CommonTree {
     public void setVisitedTrue() {
         visited = true;
     }
-
+    public void setVisitedFalse() {
+        visited = false;
+    }
     public boolean isVisited() {
         return visited;
     }
 
+    public void setDefined(String varName){
+  	((PassNode) getParent()).defined.put(varName, "");
+    }
     /*check if we need to add var and set the scope of a new variable*/
     public boolean isDefined(String varName) {
         if (varName == null)
@@ -31,6 +36,7 @@ public class PassNode extends CommonTree {
                 return true;
         }
         while ((tmp = (PassNode) tmp.getParent()) != null);
+        
         ((PassNode) getParent()).defined.put(varName, "");
         return false;
     }
