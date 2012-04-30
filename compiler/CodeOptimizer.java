@@ -79,7 +79,8 @@ public class CodeOptimizer {
     public void FUNCTION(PassNode n) {
         n = (PassNode) n.getChild(1);
         for(int i=0; i<n.getChildCount();i++){
-  //          System.out.println(n.getChild(i).getText());
+            if(n.getChild(i).getType() == PassParser.ARGUMENTS)
+            System.out.println(n.getChild(i).getChild(0).getText());
         }
 
 
@@ -119,9 +120,25 @@ public class CodeOptimizer {
 
     public void IF_CONDITIONS(PassNode n) {
     }
-
+    
+//TODO get line numbers working
     public void removeNodesAfter(PassNode n){
-
+	PassNode parent = (PassNode)n.getParent();
+	int i;
+	for(i=0; i<parent.getChildCount();i++){
+		if(parent.getChild(i)==n)
+			break;
+	}
+	if(parent.getChildCount() != i+1){
+		warnings = true;
+		int line = n.getLine();
+		System.out.println("Warning: line "+ line+" dead code in contol block after line "+line);
+		//now delete dead code
+		for(int j=parent.getChildCount()-1;i<j; j--)
+			parent.deleteChild(j);
+		
+		
+	}
     }
     public String genericCombine(PassNode n, String middleString) {
         return genericCombine(n, middleString, middleString);
