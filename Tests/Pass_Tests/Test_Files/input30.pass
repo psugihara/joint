@@ -1,3 +1,6 @@
 i = 0
+log(i)
+log(i + 1000000)
 while i < 3
   i += 1
+log(i)

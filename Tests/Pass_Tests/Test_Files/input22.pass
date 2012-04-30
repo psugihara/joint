@@ -1,1 +1,1 @@
-jsLib = include("lib.js")
+jsLib = include("stlib.js")
