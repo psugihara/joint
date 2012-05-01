@@ -127,8 +127,10 @@ public class CodeGenerator {
 
     //for
     public String FOR(PassNode n) {
-        //for(var i in ARRAY) IBLOCK
-        return FOR + genericCombine(n, " in ", ")") + "\n";
+	String iterator = n.getChild(0).getText();
+	String collection = n.getChild(1).getText();
+	String body = n.getChild(2).getText();
+        return FOR + iterator + " in " + collection + ')' +  translateIterator(iterator,collection,body) + "\n";
 
     }
 
@@ -200,16 +202,15 @@ public class CodeGenerator {
     public String ELSE(PassNode n) {
         return ELSE + n.getChild(0).getText() + "\n";
     }
-
+    
     public String ELSE_IF(PassNode n) {
         return ELSE_IF + n.getChild(0).getText() + ")" + n.getChild(1).getText() + "\n";
     }
-
+    
     public String IF_CONDITIONS(PassNode n) {
         return genericCombine(n, "");
     }
-
-
+    
     public String genericCombine(PassNode n, String middleString) {
         return genericCombine(n, middleString, middleString);
     }
@@ -236,7 +237,13 @@ public class CodeGenerator {
                 return s;
         }
     }
-
+    
+    private String translateIterator(String iterator, String collection, String body) {
+	String regex = "\\b" + iterator + "\\b";
+	String jsTranslation = collection + '[' + iterator + ']';
+	return body.replaceAll(regex, jsTranslation);
+    }
+    
     public String nodeDecider(PassNode n) {
         String s;
 
