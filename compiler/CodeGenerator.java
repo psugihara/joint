@@ -1,5 +1,7 @@
 import javax.xml.soap.Node;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Set;
 import java.util.regex.*;
 
 //for has three children
@@ -7,38 +9,15 @@ import java.util.regex.*;
 public class CodeGenerator {
     private static final String LOG = "log";
     private static final String CONSOLE_LOG = "console.log";
-    private static final String TAG = "tag";
-    private static final String STDLIB_TAG = "stdlib.tag";
-    private static final String CONTAINS = "contains";
-    private static final String STDLIB_CONTAINS = "stdlib.contains";
-    private static final String UNTAG = "untag";
-    private static final String STDLIB_UNTAG = "stdlib.untag";
-    private static final String TAGS = "tags";
-    private static final String STDLIB_TAGS = "stdlib.tags";
     private static final String CONNS = "conns";
-    private static final String STDLIB_CONNS = "stdlib.conns";
-    private static final String IF = "if (";
-    private static final String ELSE = "else";
-    private static final String ELSE_IF = "else if (";
-    private static final String FOR = "for (var ";
-    private static final String WHILE = "while (";
-    private static final String RETURN = "return ";
-    private static final String FUNCTION = "function (";
+    private static final Set<String> STDLIB = new HashSet<String>(Arrays.asList(
+        new String[] {"getTag","getTags","contains","untag"}));
+
     private static final Pattern variablePattern = Pattern.compile("([a-zA-Z])+[0-9_]*[a-zA-Z 0-9_]*");
     private boolean errors = false;
     private boolean warnings = false;
     private boolean stdLibFunctionsCalled = false;
     private static final String jsRequire = "var pass = require('pass');\nfor (var x in pass)\n  global[x] = pass[x];\n\n";
-    private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
-
-    public CodeGenerator() {
-        stdLibMembers.put(LOG, "");
-        stdLibMembers.put(TAG, "");
-        stdLibMembers.put(TAGS, "");
-        stdLibMembers.put(CONTAINS, "");
-        stdLibMembers.put(CONNS, "");
-        stdLibMembers.put(UNTAG, "");
-    }
 
     private void removeVar(PassNode n) {
         if (n == null)
@@ -88,7 +67,7 @@ public class CodeGenerator {
             //this should never happen
             System.out.println("FATAL ERROR: no function name ");
             System.exit(-1);
-        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
+        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) && n.isDefined(varName) == false) {
             node.setText("var " + varName);
             n.setChild(0, node);
         }
@@ -109,18 +88,17 @@ public class CodeGenerator {
 
     public String FUNCTION(PassNode n) {
         if(n.getChild(1).getType() != PassParser.IBLOCK)
-            return FUNCTION + n.getChild(0).getText() + ") " + IBLOCK((PassNode) n.getChild(1));
+            return "function (" + n.getChild(0).getText() + ") " + IBLOCK((PassNode) n.getChild(1));
 
-
-        return FUNCTION + n.getChild(0).getText() + ")" + n.getChild(1).getText();
+        return "function (" + n.getChild(0).getText() + ")" + n.getChild(1).getText();
     }
 
     public String RETURN(PassNode n) {
-        return RETURN + genericCombine(n, " ");
+        return "return" + genericCombine(n, " ");
     }
 
     public String WHILE(PassNode n) {
-        return WHILE + genericCombine(n, ")");
+        return "while (" + genericCombine(n, ")");
     }
 
     //for
@@ -128,7 +106,7 @@ public class CodeGenerator {
 	String iterator = n.getChild(0).getText();
 	String collection = n.getChild(1).getText();
 	String body = n.getChild(2).getText();
-        return FOR + iterator + " in " + collection + ')' +  translateIterator(iterator,collection,body) + "\n";
+        return "for (" + iterator + " in " + collection + ')' +  translateIterator(iterator,collection,body) + "\n";
 
     }
 
@@ -149,25 +127,9 @@ public class CodeGenerator {
         if (funcName.equals(LOG)) {
             funcName = CONSOLE_LOG;
             stdLibFunctionsCalled = true;
-        } else if (funcName.equals(TAG)) {
-            funcName = STDLIB_TAG;
+        } else if (STDLIB.contains(funcName)) {
             stdLibFunctionsCalled = true;
-        } else if (funcName.equals(CONTAINS)) {
-            funcName = STDLIB_CONTAINS;
-            stdLibFunctionsCalled = true;
-        } else if (funcName.equals(UNTAG)) {
-            funcName = STDLIB_UNTAG;
-            stdLibFunctionsCalled = true;
-        } else if (funcName.equals(TAGS)) {
-            funcName = STDLIB_TAGS;
-            stdLibFunctionsCalled = true;
-        } else if (funcName.equals(CONNS)) {
-            funcName = STDLIB_CONNS;
-            stdLibFunctionsCalled = true;
-        } /*else if (funcName.equals("")) {
-            funcName = "stdlib.";
-            stdLibFunctionsCalled = true;
-        }*/
+        }
         node.setText(funcName);
         n.setChild(0, node);
         String text = genericCombine(n, "(") + ")";
@@ -194,15 +156,15 @@ public class CodeGenerator {
     }
 
     public String IF(PassNode n) {
-        return IF + n.getChild(0).getText() + ")" + n.getChild(1).getText() + "\n";
+        return "if (" + n.getChild(0).getText() + ")" + n.getChild(1).getText() + "\n";
     }
 
     public String ELSE(PassNode n) {
-        return ELSE + n.getChild(0).getText() + "\n";
+        return "else (" + n.getChild(0).getText() + "\n";
     }
     
     public String ELSE_IF(PassNode n) {
-        return ELSE_IF + n.getChild(0).getText() + ")" + n.getChild(1).getText() + "\n";
+        return "else if (" + n.getChild(0).getText() + ")" + n.getChild(1).getText() + "\n";
     }
     
     public String IF_CONDITIONS(PassNode n) {

@@ -49,7 +49,6 @@ public class PassC {
         s.push(n);
         PassNode tmp = null;
         while (!s.empty()) {
-
             tmp = s.peek();
             for (int i = 0; i < tmp.getChildCount(); i++) {
                 PassNode thisChild = (PassNode) tmp.getChild(i);
@@ -101,7 +100,6 @@ public class PassC {
                 passCompiler.run(new ANTLRStringStream(input));
             }
         }
-
 
         if (!args[0].endsWith(".pass")) {
             System.out.println(args[0] + ": Input file must be a \".pass\" file.");
