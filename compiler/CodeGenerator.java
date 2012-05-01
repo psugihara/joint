@@ -88,8 +88,7 @@ public class CodeGenerator {
 
     public String FUNCTION(PassNode n) {
         if(n.getChild(1).getType() != PassParser.IBLOCK)
-            return "function (" + n.getChild(0).getText() + ") " + IBLOCK((PassNode) n.getChild(1));
-
+            return "function (" + n.getChild(0).getText() + ") { " + n.getChild(1).getText() +" }";
         return "function (" + n.getChild(0).getText() + ")" + n.getChild(1).getText();
     }
 
@@ -107,7 +106,6 @@ public class CodeGenerator {
 	String collection = n.getChild(1).getText();
 	String body = n.getChild(2).getText();
         return "for (" + iterator + " in " + collection + ')' +  translateIterator(iterator,collection,body) + "\n";
-
     }
 
     //todo this needs to be worked out on cody's end
@@ -162,14 +160,16 @@ public class CodeGenerator {
     public String ELSE(PassNode n) {
         return "else (" + n.getChild(0).getText() + "\n";
     }
-    
+
     public String ELSE_IF(PassNode n) {
         return "else if (" + n.getChild(0).getText() + ")" + n.getChild(1).getText() + "\n";
     }
-    
+
     public String IF_CONDITIONS(PassNode n) {
         return genericCombine(n, "");
     }
+
+
 
     public String genericCombine(PassNode n, String middleString) {
         return genericCombine(n, middleString, middleString);
@@ -197,13 +197,13 @@ public class CodeGenerator {
                 return s;
         }
     }
-    
+
     private String translateIterator(String iterator, String collection, String body) {
-	String regex = "\\b" + iterator + "\\b";
-	String jsTranslation = collection + '[' + iterator + ']';
-	return body.replaceAll(regex, jsTranslation);
+        String regex = "\\b" + iterator + "\\b";
+        String jsTranslation = collection + '[' + iterator + ']';
+        return body.replaceAll(regex, jsTranslation);
     }
-    
+
     public String nodeDecider(PassNode n) {
         String s;
 
