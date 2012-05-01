@@ -32,8 +32,16 @@ public class CodeGenerator {
     private boolean stdLibFunctionsCalled = false;
     //the dir needs to be modified later
     private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
+    private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
 
-
+        public CodeGenerator() {
+        stdLibMembers.put(LOG, EMPTY_STRING);
+        stdLibMembers.put(TAG, EMPTY_STRING);
+        stdLibMembers.put(TAGS, EMPTY_STRING);
+        stdLibMembers.put(CONTAINS, EMPTY_STRING);
+        stdLibMembers.put(CONNS, EMPTY_STRING);
+        stdLibMembers.put(UNTAG, EMPTY_STRING);
+    }
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, EMPTY_STRING);
         text = "  " + text.replace("\n", "\n  ");
@@ -50,6 +58,19 @@ public class CodeGenerator {
     }
 
     public String ASSIGNMENT(PassNode n) {
+        PassNode node = (PassNode) n.getChild(0);
+        String varName = node.getText();
+        int type = 0;
+        if (node != null)
+            type = node.getType();
+        if (varName == null) {
+            //this should never happen
+            System.out.println("FATAL ERROR: no function name ");
+            System.exit(-1);
+        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
+            node.setText("var " + varName);
+            n.setChild(0, node);
+        }
         return genericCombine(n, WHITE_SPACE);
     }
 
