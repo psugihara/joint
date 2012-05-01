@@ -40,7 +40,8 @@ function toFile (error, stdout, stderr) {
 
 function toConsole (error, stdout, stderr) {
   console.log(stdout);
-  console.log(stderr);
+  if (stderr)
+    console.log(stderr);
   process.exit(0);
 }
 
