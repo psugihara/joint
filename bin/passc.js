@@ -6,19 +6,19 @@
 
 var fs = require('fs'),
     path = require('path'),
-    exec = require('child_process').exec,
-    compiler = path.join(path.dirname(fs.realpathSync(__filename)), '../compiler'),
-    target;
+    child = require('child_process'),
+    compiler = path.join(path.dirname(fs.realpathSync(__filename)), '../compiler');
 
 // If there is an argument, give it to PassC.
 if (process.argv.length > 2) {
   compileToFile(process.argv[2]);
 } else {
   process.chdir(compiler);
-  var spawn = require('child_process').spawn;
-  var javaPassC = spawn('java', ['PassC']);
+  var javaPassC = child.spawn('java', ['PassC']);
+
   javaPassC.stdout.pipe(process.stdout, { end: false });
-  process.stdin.resume();
+  javaPassC.stderr.pipe(process.stderr, { end: false });
+
   process.stdin.pipe(javaPassC.stdin, { end: false });
 }
 
@@ -31,7 +31,7 @@ function compileToFile(sourceName, cb) {
       target = process.cwd() + '/' + path.basename(source, '.pass') + '.js';
 
   process.chdir(compiler);
-  exec('java PassC ' + source, function (error, stdout, stderr) {
+  child.exec('java PassC ' + source, function (error, stdout, stderr) {
       if (error === null) {
         fs.writeFile(target, stdout, function (err) {
           if (cb)

@@ -9,8 +9,8 @@
 
 /*jshint node: true*/
 
-var path = require('path');
-var fs = require('fs');
+var path = require('path'),
+    fs = require('fs');
 
 
 // ####Argument Validation
@@ -53,13 +53,18 @@ if (process.argv.length === 5) {
     usageDie('static arg must be directory');
 }
 
+
 // ####Source Compilation
+
 if (path.extname(sourcePath) == '.pass') {
   // Compile to this directory and run with the new source path.
   require('./passc.js').compileToFile(sourcePath, run);
 } else {
   run(sourcePath);
 }
+
+
+// ####Program Execution
 
 function run (sourcePath) {
 
@@ -71,12 +76,12 @@ function run (sourcePath) {
 
   // ####Server Configuration
 
-  var connect = require('connect');
-  var browserify = require('browserify');
-  var dnode = require('dnode');
-  var http = require('http');
-  var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
-  var stdlib = require(lib + '/stdlib.js');
+  var connect = require('connect'),
+      browserify = require('browserify'),
+      dnode = require('dnode'),
+      http = require('http'),
+      lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib'),
+      stdlib = require(lib + '/stdlib.js');
 
   var app = connect();
 
