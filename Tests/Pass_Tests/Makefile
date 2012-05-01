@@ -371,7 +371,6 @@ tests70:
 
 tests75:
 	@echo "Testing input71-input75 in ./Test_Files" ;
-	@echo "--------------------------------------------------";
 	java PassC ./Test_Files/input71.pass;
 	@echo "--------------------------------------------------";
 	java PassC ./Test_Files/input72.pass;
