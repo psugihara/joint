@@ -140,8 +140,8 @@ public class CodeGenerator {
     public String ARRAY_ACCESS(PassNode n) {
         if (n.getText() == null || n.getChildCount() < 2)
             return EMPTY_STRING; //error
-        String ret = n.getText();
-        for (int i = 0; n.getChildCount() < i; i++)
+        String ret = n.getChild(0).getText();
+        for (int i = 1; i <  n.getChildCount(); i++)
             ret += "[" + n.getChild(i).getText() + "]";
         return ret;
     }
