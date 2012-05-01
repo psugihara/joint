@@ -67,7 +67,7 @@ public class CodeOptimizer {
     public void FUNCTION(PassNode n) {
         n = (PassNode) n.getChild(0);
         for (int i = 0; i < n.getChildCount(); i++) {
-           n.setDefined(n.getChild(i).getText());
+            n.setDefined(n.getChild(i).getText());
         }
     }
 
@@ -126,8 +126,8 @@ public class CodeOptimizer {
         //now delete dead code
         boolean removed = false;
         for (int j = parent.getChildCount() - 1; i < j; j--) {
-            if(!"LT".equals(((PassNode)parent.deleteChild(j)).getText()))
-             removed = true;
+            if (!"LT".equals(((PassNode) parent.deleteChild(j)).getText()))
+                removed = true;
         }
         if (removed == true) {
             System.out.println("Warning: line " + line + " dead code in control block after line " + line);

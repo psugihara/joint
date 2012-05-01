@@ -36,9 +36,9 @@ public class PassC {
 
         System.out.println(tree.getText());
 
-        if (opt.hasErrors())
+        if (opt.hasErrors() || gen.hasErrors())
             System.exit(-1);
-        if (opt.hasWarnings())
+        if (opt.hasWarnings() || gen.hasWarnings())
             System.exit(-2);
         System.exit(0);
     }

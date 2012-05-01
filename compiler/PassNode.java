@@ -43,6 +43,18 @@ public class PassNode extends CommonTree {
         ((PassNode) getParent()).defined.put(varName, "");
         return false;
     }
+    public boolean isVarDefined(String varName) {
+        if (varName == null)
+            return false;
+        PassNode tmp = this;
+        do {
+            if (tmp.defined.containsKey(varName))
+                return true;
+        }
+        while ((tmp = (PassNode) tmp.getParent()) != null);
+
+        return false;
+    }
 
     public PassNode(Token t) {
         super(t);

@@ -1,11 +1,9 @@
 import javax.xml.soap.Node;
 import java.util.HashMap;
+import java.util.regex.*;
 
 //for has three children
 //function 2 //args and
-//arguments 2
-// assignment
-//todo check node inheritance behavior 
 public class CodeGenerator {
     private static final String LOG = "log";
     private static final String CONSOLE_LOG = "console.log";
@@ -29,12 +27,16 @@ public class CodeGenerator {
     private static final String RIGHT_PAREN = ")";
     private static final String WHITE_SPACE = " ";
     private static final String EMPTY_STRING = "";
+    private static final Pattern variablePattern = Pattern.compile("([a-zA-Z])+[0-9_]*[a-zA-Z 0-9_]*");
+    private boolean errors = false;
+    private boolean warnings = false;
+
     private boolean stdLibFunctionsCalled = false;
     //the dir needs to be modified later
     private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
     private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
 
-        public CodeGenerator() {
+    public CodeGenerator() {
         stdLibMembers.put(LOG, EMPTY_STRING);
         stdLibMembers.put(TAG, EMPTY_STRING);
         stdLibMembers.put(TAGS, EMPTY_STRING);
@@ -42,11 +44,35 @@ public class CodeGenerator {
         stdLibMembers.put(CONNS, EMPTY_STRING);
         stdLibMembers.put(UNTAG, EMPTY_STRING);
     }
+
+    private void removeVar(PassNode n) {
+        if (n == null)
+            return;
+        String var = n.getText();
+        Matcher m = variablePattern.matcher(var);
+        if (m.matches()) {
+            if (n.isVarDefined(var)) {
+                errors = true;
+                System.out.println("ERROR: line " + n.getLine() + " :: variable " + var + " is used before it is defined");
+            }
+
+        }
+    }
+
+    public boolean hasErrors() {
+        return errors;
+    }
+
+    public boolean hasWarnings() {
+        return warnings;
+    }
+
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, EMPTY_STRING);
         text = "  " + text.replace("\n", "\n  ");
         return " {\n  " + text.trim() + "\n}";
     }
+
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
@@ -153,7 +179,7 @@ public class CodeGenerator {
         if (n.getText() == null || n.getChildCount() < 2)
             return EMPTY_STRING; //error
         String ret = n.getChild(0).getText();
-        for (int i = 1; i <  n.getChildCount(); i++)
+        for (int i = 1; i < n.getChildCount(); i++)
             ret += "[" + n.getChild(i).getText() + "]";
         return ret;
     }
