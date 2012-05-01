@@ -41,6 +41,13 @@ test:
 
 
 tests: 
+	cp ../../compiler/Pass.g Pass.g;
+	java org.antlr.Tool Pass.g;
+	cp ../../compiler/PassC.java PassC.java;
+	cp ../../compiler/PassNode.java PassNode.java;
+	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
+	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
+	javac ./*.java;
 	@echo "Testing all Pass files in ./Test_Files" ;
 	@echo "-----------------------";
 	java PassC ./Test_Files/helloworld.pass;
