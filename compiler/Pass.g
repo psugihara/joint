@@ -107,7 +107,7 @@ tokens {
   
 }
 
-prog:   block EOF -> ^(PROG block)
+prog:   block EOF -> ^(PROG block EOF)
     ;
 
 block
@@ -127,7 +127,7 @@ args:   '(' (argument (',' argument)*)? (LT+)?')' -> ^(ARGUMENTS argument*)
     ;
     
 func:   args '~' 
-				 (expr -> ^(FUNCTION args expr)
+				 (expr -> ^(FUNCTION args ^(IBLOCK expr))
 				 |LT iblock -> ^(FUNCTION args iblock)
 				 )
     ;
@@ -406,7 +406,7 @@ NUMBER
     ;
 
 COMMENT
-    :   '#' ( options {greedy=false;} : . )* '#'('\n')* {$channel=HIDDEN;}
+    :   '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
     ;
 
 WS  :   ( ' '
