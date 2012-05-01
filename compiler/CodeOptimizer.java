@@ -56,19 +56,7 @@ public class CodeOptimizer {
     }
 
     public void ASSIGNMENT(PassNode n) {
-        PassNode node = (PassNode) n.getChild(0);
-        String varName = node.getText();
-        int type = 0;
-        if (node != null)
-            type = node.getType();
-        if (varName == null) {
-            //this should never happen
-            System.out.println("FATAL ERROR: no function name ");
-            System.exit(-1);
-        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
-            node.setText("var " + varName);
-            n.setChild(0, node);
-        }
+
     }
 
     public void PROG(PassNode n) {
@@ -77,14 +65,10 @@ public class CodeOptimizer {
 
     //if a variable is defined as an argument to the function, don't add var to it
     public void FUNCTION(PassNode n) {
-        n = (PassNode) n.getChild(1);
+        n = (PassNode) n.getChild(0);
         for (int i = 0; i < n.getChildCount(); i++) {
-            if (n.getChild(i).getType() == PassParser.ARGUMENTS) {
-                //  System.out.println(n.getChild(i).getChild(0).getText());
-            }
+            n.setDefined(n.getChild(i).getText());
         }
-
-
     }
 
     public void WHILE(PassNode n) {
@@ -92,7 +76,6 @@ public class CodeOptimizer {
 
     //for
     public void FOR(PassNode n) {
-
     }
 
     public void ARRAY_DECLARATION(PassNode n) {
@@ -115,8 +98,6 @@ public class CodeOptimizer {
 
     public void LT(PassNode n) {
         PassNode parent = (PassNode) n.getParent();
-
-
         if (parent.getChildCount() == 1) {
             parent.deleteChild(0);
 
@@ -145,8 +126,8 @@ public class CodeOptimizer {
         //now delete dead code
         boolean removed = false;
         for (int j = parent.getChildCount() - 1; i < j; j--) {
-            if(!"LT".equals(((PassNode)parent.deleteChild(j)).getText()))
-             removed = true;
+            if (!"LT".equals(((PassNode) parent.deleteChild(j)).getText()))
+                removed = true;
         }
         if (removed == true) {
             System.out.println("Warning: line " + line + " dead code in control block after line " + line);

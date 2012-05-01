@@ -1,11 +1,9 @@
 import javax.xml.soap.Node;
 import java.util.HashMap;
+import java.util.regex.*;
 
 //for has three children
 //function 2 //args and
-//arguments 2
-// assignment
-//todo check node inheritance behavior 
 public class CodeGenerator {
     private static final String LOG = "log";
     private static final String CONSOLE_LOG = "console.log";
@@ -29,16 +27,52 @@ public class CodeGenerator {
     private static final String RIGHT_PAREN = ")";
     private static final String WHITE_SPACE = " ";
     private static final String EMPTY_STRING = "";
+    private static final Pattern variablePattern = Pattern.compile("([a-zA-Z])+[0-9_]*[a-zA-Z 0-9_]*");
+    private boolean errors = false;
+    private boolean warnings = false;
+
     private boolean stdLibFunctionsCalled = false;
     //the dir needs to be modified later
     private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
+    private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
 
+    public CodeGenerator() {
+        stdLibMembers.put(LOG, EMPTY_STRING);
+        stdLibMembers.put(TAG, EMPTY_STRING);
+        stdLibMembers.put(TAGS, EMPTY_STRING);
+        stdLibMembers.put(CONTAINS, EMPTY_STRING);
+        stdLibMembers.put(CONNS, EMPTY_STRING);
+        stdLibMembers.put(UNTAG, EMPTY_STRING);
+    }
+
+    private void removeVar(PassNode n) {
+        if (n == null)
+            return;
+        String var = n.getText();
+        Matcher m = variablePattern.matcher(var);
+        if (m.matches()) {
+            if (n.isVarDefined(var)) {
+                errors = true;
+                System.out.println("ERROR: line " + n.getLine() + " :: variable " + var + " is used before it is defined");
+            }
+
+        }
+    }
+
+    public boolean hasErrors() {
+        return errors;
+    }
+
+    public boolean hasWarnings() {
+        return warnings;
+    }
 
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, EMPTY_STRING);
         text = "  " + text.replace("\n", "\n  ");
         return " {\n  " + text.trim() + "\n}";
     }
+
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
@@ -50,6 +84,19 @@ public class CodeGenerator {
     }
 
     public String ASSIGNMENT(PassNode n) {
+        PassNode node = (PassNode) n.getChild(0);
+        String varName = node.getText();
+        int type = 0;
+        if (node != null)
+            type = node.getType();
+        if (varName == null) {
+            //this should never happen
+            System.out.println("FATAL ERROR: no function name ");
+            System.exit(-1);
+        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !stdLibMembers.containsKey(varName) && n.isDefined(varName) == false) {
+            node.setText("var " + varName);
+            n.setChild(0, node);
+        }
         return genericCombine(n, WHITE_SPACE);
     }
 
@@ -135,7 +182,7 @@ public class CodeGenerator {
         if (n.getText() == null || n.getChildCount() < 2)
             return EMPTY_STRING; //error
         String ret = n.getChild(0).getText();
-        for (int i = 1; i <  n.getChildCount(); i++)
+        for (int i = 1; i < n.getChildCount(); i++)
             ret += "[" + n.getChild(i).getText() + "]";
         return ret;
     }
