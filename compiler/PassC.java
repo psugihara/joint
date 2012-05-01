@@ -1,9 +1,6 @@
 import org.antlr.runtime.*;
-
 import java.util.*;
-
 import org.antlr.runtime.tree.*;
-
 import java.io.*;
 
 public class PassC {
@@ -36,11 +33,10 @@ public class PassC {
 
         System.out.println(tree.getText());
 
-        if (opt.hasErrors())
+        if (opt.hasErrors() || gen.hasErrors())
             System.exit(-1);
-        if (opt.hasWarnings())
+        if (opt.hasWarnings() || gen.hasWarnings())
             System.exit(-2);
-        System.exit(0);
     }
 
 
@@ -50,7 +46,6 @@ public class PassC {
         s.push(n);
         PassNode tmp = null;
         while (!s.empty()) {
-
             tmp = s.peek();
             for (int i = 0; i < tmp.getChildCount(); i++) {
                 PassNode thisChild = (PassNode) tmp.getChild(i);
@@ -95,21 +90,12 @@ public class PassC {
 
         // If no arguments are present, compile input from stdin.
         if ((args == null || args.length == 0)) {
-            if (System.in.available() == 0) {
-                System.out.println("usage: passc <INPUT_FILE.pass>\n     | echo \"pass code\" > passc");
-                return;
-            }
-
             Scanner lines = new Scanner(System.in);
-            String input = "";
-
-            while (lines.hasNext())
-                input += lines.nextLine();
-
-            passCompiler.run(new ANTLRStringStream(input));
-            return;
+            while (true) {
+                String input = lines.nextLine();
+                passCompiler.run(new ANTLRStringStream(input));
+            }
         }
-
 
         if (!args[0].endsWith(".pass")) {
             System.out.println(args[0] + ": Input file must be a \".pass\" file.");

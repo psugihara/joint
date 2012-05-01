@@ -27,21 +27,22 @@
   var callbacks = {'receive':receive, 'onEnter':onEnter, 'onLeave':onLeave};
 
   var joinRoom = function() {
-    server.log('joinroomcalled');
     var room = document.getElementById('room-name').value;
-    server.log(room + ', ' + room.length);
+    document.getElementById('room-name').value = "";
     if(room.length > 0)
       server.join(room);
   }
 
   var sendMessage = function() {
     var message = document.getElementById('chat-message').value;
+    document.getElementById('chat-message').value = "";
     if(message.length > 0)
       server.chat(message);
   }
 
   var setName = function() {
     var name = document.getElementById('name').value;
+    document.getElementById('name').value = "";
     if(name.length > 0)
       server.setName(name);
   }
