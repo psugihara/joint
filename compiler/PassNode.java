@@ -16,16 +16,19 @@ public class PassNode extends CommonTree {
     public void setVisitedTrue() {
         visited = true;
     }
+
     public void setVisitedFalse() {
         visited = false;
     }
+
     public boolean isVisited() {
         return visited;
     }
 
-    public void setDefined(String varName){
-  	((PassNode) getParent()).defined.put(varName, "");
+    public void setDefined(String varName) {
+        ((PassNode) getParent()).defined.put(varName, "");
     }
+
     /*check if we need to add var and set the scope of a new variable*/
     public boolean isDefined(String varName) {
         if (varName == null)
@@ -36,7 +39,7 @@ public class PassNode extends CommonTree {
                 return true;
         }
         while ((tmp = (PassNode) tmp.getParent()) != null);
-        
+
         ((PassNode) getParent()).defined.put(varName, "");
         return false;
     }
@@ -54,11 +57,12 @@ public class PassNode extends CommonTree {
     public int get_type() {
         return type;
     }
-/*   @Override
-    public int getLine(){
-    	return super.getToken().getLine();
-    }
- */
+
+    /*   @Override
+       public int getLine(){
+           return super.getToken().getLine();
+       }
+    */
     @SuppressWarnings("unchecked")
     public void setChild(int i, PassNode t) {
         if (children == null) {
@@ -66,8 +70,9 @@ public class PassNode extends CommonTree {
         }
         children.set(i, t);
     }
-    public Object deleteChild(int i){
-    	return super.deleteChild (i);
+
+    public Object deleteChild(int i) {
+        return super.deleteChild(i);
     }
 
     public void setText(String s) {
