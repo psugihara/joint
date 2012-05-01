@@ -1,17 +1,12 @@
-import javax.xml.soap.Node;
 import java.util.HashSet;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.regex.*;
 
-//for has three children
-//function 2 //args and
 public class CodeGenerator {
-    private static final String LOG = "log";
-    private static final String CONSOLE_LOG = "console.log";
-    private static final String CONNS = "conns";
     private static final Set<String> STDLIB = new HashSet<String>(Arrays.asList(
-        new String[] {"getTag","getTags","contains","untag"}));
+        new String[] {"getTag","getTags","contains","untag","conns"}
+    ));
 
     private static final Pattern variablePattern = Pattern.compile("([a-zA-Z])+[0-9_]*[a-zA-Z 0-9_]*");
     private boolean errors = false;
@@ -29,7 +24,6 @@ public class CodeGenerator {
                 errors = true;
                 System.out.println("ERROR: line " + n.getLine() + " :: variable " + var + " is used before it is defined");
             }
-
         }
     }
 
@@ -46,7 +40,6 @@ public class CodeGenerator {
         text = "  " + text.replace("\n", "\n  ");
         return " {\n  " + text.trim() + "\n}";
     }
-
 
     // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
@@ -100,7 +93,6 @@ public class CodeGenerator {
         return "while (" + genericCombine(n, ")");
     }
 
-    //for
     public String FOR(PassNode n) {
 	String iterator = n.getChild(0).getText();
 	String collection = n.getChild(1).getText();
@@ -108,7 +100,6 @@ public class CodeGenerator {
         return "for (" + iterator + " in " + collection + ')' +  translateIterator(iterator,collection,body) + "\n";
     }
 
-    //todo this needs to be worked out on cody's end
     public String ARRAY_DECLARATION(PassNode n) {
         return "[" + genericCombine(n, ", ") + "]";
     }
@@ -122,8 +113,8 @@ public class CodeGenerator {
             System.exit(-1);
         }
         /*function transformations */
-        if (funcName.equals(LOG)) {
-            funcName = CONSOLE_LOG;
+        if (funcName.equals("log")) {
+            funcName = "console.log";
             stdLibFunctionsCalled = true;
         } else if (STDLIB.contains(funcName)) {
             stdLibFunctionsCalled = true;

@@ -1,35 +1,9 @@
-import javax.xml.soap.Node;
-import java.util.HashMap;
-
-
 //todo check node inheritance behavior 
 public class CodeOptimizer {
-    private static final String LOG = "log";
-    private static final String CONSOLE_LOG = "console.log";
-    private static final String TAG = "tag";
-    private static final String CONTAINS = "contains";
-    private static final String UNTAG = "untag";
-    private static final String TAGS = "tags";
-    private static final String CONNS = "conns";
-    private static final String RIGHT_PAREN = ")";
-    private static final String WHITE_SPACE = " ";
-    private static final String EMPTY_STRING = "";
 
     private boolean stdLibFunctionsCalled = false;
-    private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
-    //the dir needs to be modified later
-    private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
     private boolean errors = false;
     private boolean warnings = false;
-
-    public CodeOptimizer() {
-        stdLibMembers.put(LOG, EMPTY_STRING);
-        stdLibMembers.put(TAG, EMPTY_STRING);
-        stdLibMembers.put(TAGS, EMPTY_STRING);
-        stdLibMembers.put(CONTAINS, EMPTY_STRING);
-        stdLibMembers.put(CONNS, EMPTY_STRING);
-        stdLibMembers.put(UNTAG, EMPTY_STRING);
-    }
 
     public boolean hasErrors() {
         return errors;
@@ -40,10 +14,8 @@ public class CodeOptimizer {
     }
 
     public void IBLOCK(PassNode n) {
-
     }
 
-    // n.child(0) + n.getText + n.child(1)
     public void GENERIC_OP(PassNode n) {
     }
 
@@ -57,7 +29,6 @@ public class CodeOptimizer {
     public void PROG(PassNode n) {
     }
 
-
     //if a variable is defined as an argument to the function, don't add var to it
     public void FUNCTION(PassNode n) {
         n = (PassNode) n.getChild(0);
@@ -69,19 +40,18 @@ public class CodeOptimizer {
     public void WHILE(PassNode n) {
     }
 
-    //for
     public void FOR(PassNode n) {
     }
 
     public void ARRAY_DECLARATION(PassNode n) {
     }
 
-    //arrayName accessElement, accessELEMENT....
+    // arrayName accessElement, accessElement....
     public void ARRAY_ACCESS(PassNode n) {
 
     }
 
-    //parent of dict_declar
+    // parent of DICTIONARY_DECLARATION
     public void DICTIONARY_DEFINITION(PassNode n) {
     }       //child of dict_def
 
@@ -95,8 +65,6 @@ public class CodeOptimizer {
         PassNode parent = (PassNode) n.getParent();
         if (parent.getChildCount() == 1) {
             parent.deleteChild(0);
-
-
         }
     }
 
@@ -129,7 +97,6 @@ public class CodeOptimizer {
             warnings = true;
         }
 
-
     }
 
     public String genericCombine(PassNode n, String middleString) {
@@ -139,12 +106,12 @@ public class CodeOptimizer {
     //double check failure handling
     public String genericCombine(PassNode n, String middleString, String middleString1) {
         if (n == null || middleString == null || middleString1 == null)
-            return EMPTY_STRING;
+            return "";
 
         int childCount = n.getChildCount();
         switch (childCount) {
             case 0:
-                return EMPTY_STRING;
+                return "";
             case 1:
                 return n.getChild(0).getText();
             case 2:
@@ -213,7 +180,6 @@ public class CodeOptimizer {
             default:
                 break;
         }
-
 
     }
 

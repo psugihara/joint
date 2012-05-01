@@ -1,9 +1,6 @@
 import org.antlr.runtime.*;
-
 import java.util.*;
-
 import org.antlr.runtime.tree.*;
-
 import java.io.*;
 
 public class PassC {
@@ -89,7 +86,6 @@ public class PassC {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println("HELLO");
         PassC passCompiler = new PassC();
 
         // If no arguments are present, compile input from stdin.
