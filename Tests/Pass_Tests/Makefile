@@ -44,6 +44,10 @@ effTests:
 	java Efficiency ./Eff_Tests/program9.pass;
 	@echo "===================New Pass Test====================";
 	java Efficiency ./Eff_Tests/program10.pass;
+	@echo "===================New Pass Test====================";
+	java Efficiency ./Eff_Tests/program11.pass;
+	@echo "===================New Pass Test====================";
+	java Efficiency ./Eff_Tests/program12.pass;
 
 errorTests:
 	cp ../../compiler/Pass.g Pass.g;

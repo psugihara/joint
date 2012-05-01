@@ -24,6 +24,10 @@ $make errorTests
 This compiles the program that has an error and prints stdout.
 
 ---------------------------------------------------------------------------------
+
+
+
+
 ============
 Purpose
 ============
