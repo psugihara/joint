@@ -54,52 +54,57 @@ if (process.argv.length === 5) {
 }
 
 // ####Source Compilation
+if (path.extname(sourcePath) == '.pass') {
+  // Compile to this directory and run with the new source path.
+  require('./passc.js').compileToFile(sourcePath, run);
+} else {
+  run(sourcePath);
+}
 
-if (path.extname(sourcePath) == 'pass')
-   sourcePath = exe
+function run (sourcePath) {
+  var program = require(sourcePath);
 
-var program = require(sourcePath);
+  // If there's no server to start, we're done.
+  if (!(port && staticPath))
+    process.exit(0);
 
-// If there's no server to start, we're done.
-if (!(port && staticPath))
-  process.exit(0);
+  // ####Server Configuration
 
-// ####Server Configuration
+  var connect = require('connect');
+  var browserify = require('browserify');
+  var dnode = require('dnode');
+  var http = require('http');
+  var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+  var stdlib = require(lib + '/stdlib.js');
 
-var connect = require('connect');
-var browserify = require('browserify');
-var dnode = require('dnode');
-var http = require('http');
-var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
-var stdlib = require(lib + '/stdlib.js');
+  var app = connect();
 
-var app = connect();
-
-// Wrap dnode in pass.js, wih a little extra sugar at the end.
-var b = browserify({
-  require: 'dnode',
-  mount: '/pass.js'
-});
-b.append(fs.readFileSync(__dirname + '/../browser/pass_client.js'));
-app.use(b);
-
-app.use(connect.static(staticPath));
-
-var server = http.createServer(app);
-
-var connections = require(lib + '/connections.js');
-
-dnode(function (client, conn) {
-  // Bind server functions to dnode object with the connection.
-  for (var key in program) {
-    this[key] = program[key].bind({"conn":conn});
-  }
-
-  connections.onConnect(conn);
-
-  conn.on('end', function() {
-    connections.onDisconnect(conn);
+  // Wrap dnode in pass.js, wih a little extra sugar at the end.
+  var b = browserify({
+    require: 'dnode',
+    mount: '/pass.js'
   });
-}).listen(server);
+  b.append(fs.readFileSync(__dirname + '/../browser/pass_client.js'));
+  app.use(b);
 
-server.listen(port);
+  app.use(connect.static(staticPath));
+
+  var server = http.createServer(app);
+
+  var connections = require(lib + '/connections.js');
+
+  dnode(function (client, conn) {
+    // Bind server functions to dnode object with the connection.
+    for (var key in program) {
+      this[key] = program[key].bind({"conn":conn});
+    }
+
+    connections.onConnect(conn);
+
+    conn.on('end', function() {
+      connections.onDisconnect(conn);
+    });
+  }).listen(server);
+
+  server.listen(port);
+}
