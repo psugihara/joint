@@ -79,8 +79,9 @@ public class CodeOptimizer {
     public void FUNCTION(PassNode n) {
         n = (PassNode) n.getChild(1);
         for (int i = 0; i < n.getChildCount(); i++) {
-            if (n.getChild(i).getType() == PassParser.ARGUMENTS)
-                System.out.println(n.getChild(i).getChild(0).getText());
+            if (n.getChild(i).getType() == PassParser.ARGUMENTS) {
+                //  System.out.println(n.getChild(i).getChild(0).getText());
+            }
         }
 
 
@@ -112,6 +113,17 @@ public class CodeOptimizer {
     public void IF(PassNode n) {
     }
 
+    public void LT(PassNode n) {
+        PassNode parent = (PassNode) n.getParent();
+
+
+        if (parent.getChildCount() == 1) {
+            parent.deleteChild(0);
+
+
+        }
+    }
+
     public void ELSE(PassNode n) {
     }
 
@@ -126,19 +138,22 @@ public class CodeOptimizer {
         PassNode parent = (PassNode) n.getParent();
         int i;
         for (i = 0; i < parent.getChildCount(); i++) {
-            if (parent.getChild(i) == n)
+            if ((PassNode) parent.getChild(i) == n)
                 break;
         }
-        if (parent.getChildCount() != i + 1) {
-            warnings = true;
-            int line = n.getLine();
-            System.out.println("Warning: line " + line + " dead code in contol block after line " + line);
-            //now delete dead code
-            for (int j = parent.getChildCount() - 1; i < j; j--)
-                parent.deleteChild(j);
-
-
+        int line = n.getLine();
+        //now delete dead code
+        boolean removed = false;
+        for (int j = parent.getChildCount() - 1; i < j; j--) {
+            if(!"LT".equals(((PassNode)parent.deleteChild(j)).getText()))
+             removed = true;
         }
+        if (removed == true) {
+            System.out.println("Warning: line " + line + " dead code in control block after line " + line);
+            warnings = true;
+        }
+
+
     }
 
     public String genericCombine(PassNode n, String middleString) {
@@ -215,6 +230,9 @@ public class CodeOptimizer {
                 break;
             case PassParser.DICTIONARY_DEFINITION:
                 DICTIONARY_DEFINITION(n);
+                break;
+            case PassParser.LT:
+                LT(n);
                 break;
             default:
                 break;
