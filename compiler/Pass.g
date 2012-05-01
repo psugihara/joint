@@ -111,7 +111,7 @@ prog:   block EOF -> ^(PROG block)
     ;
 
 block
-    :   LT* stmt*
+    :   LT* stmt* 
     ;
     
 stmt:   expr (LT+ -> expr LT
@@ -406,7 +406,7 @@ NUMBER
     ;
 
 COMMENT
-    :   '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
+    :   '#' ( options {greedy=false;} : . )* '#'('\n')* {$channel=HIDDEN;}
     ;
 
 WS  :   ( ' '
