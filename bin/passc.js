@@ -13,20 +13,33 @@ var fs = require('fs'),
 if (process.argv.length > 2) {
   compileToFile(process.argv[2]);
 } else {
+  startREPL();
+}
+
+function startREPL () {
+  prompt();
+  
   process.chdir(compiler);
   var javaPassC = child.spawn('java', ['PassC']);
 
   javaPassC.stdout.pipe(process.stdout, { end: false });
   javaPassC.stderr.pipe(process.stderr, { end: false });
 
+  process.stdin.resume();
   process.stdin.pipe(javaPassC.stdin, { end: false });
+
+  javaPassC.stdout.on('data', prompt);
+  javaPassC.on('exit', startREPL);
 }
 
+function prompt () {
+  process.stdout.write('~~~> ');
+}
 
 // Take the name of a source file relative to the current directory and
 // output the compiled js. When done compiling, call cb with target path
 // as arg.
-function compileToFile(sourceName, cb) {
+function compileToFile (sourceName, cb) {
   var source = path.resolve(sourceName),
       target = process.cwd() + '/' + path.basename(source, '.pass') + '.js';
 
