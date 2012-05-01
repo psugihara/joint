@@ -33,7 +33,7 @@ public class CodeOptimizer {
     public void FUNCTION(PassNode n) {
         n = (PassNode) n.getChild(0);
         for (int i = 0; i < n.getChildCount(); i++) {
-            n.setDefined(n.getChild(i).getText());
+            n.setDefinedFunctionVar(n.getChild(i).getText());
         }
     }
 

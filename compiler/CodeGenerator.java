@@ -1,5 +1,6 @@
 import java.util.HashSet;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.regex.*;
 
@@ -36,7 +37,7 @@ public class CodeGenerator {
     }
 
     public String IBLOCK(PassNode n) {
-        String text = genericCombine(n, "");
+        String text = n.getDefinedVarNames() + genericCombine(n, "");
         text = "  " + text.replace("\n", "\n  ");
         return " {\n  " + text.trim() + "\n}";
     }
@@ -61,7 +62,7 @@ public class CodeGenerator {
             System.out.println("FATAL ERROR: no function name ");
             System.exit(-1);
         } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) && n.isDefined(varName) == false) {
-            node.setText("var " + varName);
+            node.setText( varName);
             n.setChild(0, node);
         }
         return genericCombine(n, " ");
@@ -72,7 +73,7 @@ public class CodeGenerator {
         for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
         }
-        return (stdLibFunctionsCalled ? jsRequire : "") + res.trim();
+        return (stdLibFunctionsCalled ? jsRequire : "") +n.getDefinedVarNames() + res.trim();
     }
 
     public String ARGUMENTS(PassNode n) {
