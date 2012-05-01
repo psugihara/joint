@@ -2,6 +2,11 @@
 <head>
   <script src="/pass.js" type="text/javascript"></script>
   <script src="client.js"></script>
+  <script type="text/javascript">
+    function checkEnter(event, callback) {
+       if(event.keyCode == 13) callback();
+    }
+  </script>
   <style type="text/css">
     #name {
       float: left;
@@ -24,16 +29,14 @@
   </style>
 </head>
   <BODY><h1>Multi-room chat server</h1><br>
-    <input placeholder="enter your name" id="name" />
+    <input placeholder="enter your name" onkeydown="checkEnter(event, setName)" id="name" />
     <button type="button" id="name-button" onClick="setName()">Set Name</button>
     <br><br>
-    <input placeholder="chatroom" id="room-name" />
+    <input placeholder="chatroom" onkeydown="checkEnter(event, joinRoom)" id="room-name" />
     <button type="button" id="join-button" onClick="joinRoom();">Join</button>
     <br><br>
-    <input  placeholder="type message here" id="chat-message" />
+    <input  placeholder="type message here" onkeydown="checkEnter(event, sendMessage)" id="chat-message" />
     <button type="button" id="send-button" onClick="sendMessage();">Send</button>
     <br><br>
   </body>
-
 </HTML>
-

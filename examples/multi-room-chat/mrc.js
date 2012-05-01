@@ -1,15 +1,13 @@
 
 var pass = require('pass');
-var conns = pass.conns;
-var tag = pass.tag;
-var tags = pass.tags;
-var untag = pass.untag;
-var contains = pass.contains;
+
+for (var x in pass) {
+  global[x] = pass[x];
+}
 
 var server = {};
 
 server.register = function (callbacks) {
-  console.log('CONN ID: '+this.conn.id);
   for(var i in callbacks) {
     this.conn[i] = callbacks[i];
   }
@@ -19,34 +17,25 @@ server.setName = function (name) {
   this.conn.name = name;
 };
 
-server.join = function (room) {
-  var rooms = tags(this.conn);
-  var r, c;
-  for(r in rooms)
-    if(r == room) return;
-  for(r in rooms) {
-    var connections = conns(rooms[r]);
-    for(c in connections) {
-      if(this.conn != connections[c])
-        connections[c].onLeave(this.conn.name, rooms[r]);
-    }
-    untag(this.conn, rooms[r]);
+server.join = function (newRoom) {
+  var oldRoom = getTag(this.conn);
+  if(oldRoom && oldRoom == newRoom) return;
+  if(oldRoom) {
+    var oldRoomMembers = conns(oldRoom);
+    for(var c in oldRoomMembers)
+      oldRoomMembers[c].onLeave(this.conn.name, oldRoom);
   }
-  tag(this.conn, room);
-  var connections = conns(room);
-  for(c in connections)
-    connections[c].onEnter(this.conn.name, room);
+  setTag(this.conn, newRoom);
+  var newRoomMembers = conns(newRoom);
+  for(var c in newRoomMembers)
+    newRoomMembers[c].onEnter(this.conn.name, newRoom);
 };
 
 server.chat = function (message) {
-  var name = this.conn.name;
-  var rooms = tags(this.conn);
-  console.log('tags for '+name+': '+rooms);
-  for(var i in rooms) {
-    var connections = conns(rooms[i]);
-    for(var c in connections)
-      connections[c].receive(name, message);
-  }
+  var room = getTag(this.conn);
+  var connections = conns(room);
+  for(var c in connections)
+    connections[c].receive(this.conn.name, message);
 };
 
 server.log = function (message) {
