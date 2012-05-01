@@ -406,7 +406,7 @@ NUMBER
     ;
 
 COMMENT
-    :   '#' ( options {greedy=false;} : . )* '#'('\n')* {$channel=HIDDEN;}
+    :   '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
     ;
 
 WS  :   ( ' '
