@@ -19,6 +19,7 @@ effTests:
 	cp ../../compiler/PassC.java PassC.java;
 	cp ../../compiler/PassNode.java PassNode.java;
 	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
+	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
 	cp ./Eff_Tests/Efficiency.java Efficiency.java;  
 	javac ./*.java;
 	@echo "--------------------------------------------------";
@@ -40,6 +41,13 @@ test:
 
 
 tests: 
+	cp ../../compiler/Pass.g Pass.g;
+	java org.antlr.Tool Pass.g;
+	cp ../../compiler/PassC.java PassC.java;
+	cp ../../compiler/PassNode.java PassNode.java;
+	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
+	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
+	javac ./*.java;
 	@echo "Testing all Pass files in ./Test_Files" ;
 	@echo "-----------------------";
 	java PassC ./Test_Files/helloworld.pass;
@@ -371,7 +379,6 @@ tests70:
 
 tests75:
 	@echo "Testing input71-input75 in ./Test_Files" ;
-	@echo "--------------------------------------------------";
 	java PassC ./Test_Files/input71.pass;
 	@echo "--------------------------------------------------";
 	java PassC ./Test_Files/input72.pass;
