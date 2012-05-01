@@ -2550,4 +2550,3 @@ if x == 2
 exampleFunction = (arg0, arg1) ~
   # if you delete line 'x = x + 2', or if you add a comment in between 'x = x + 2' and nestedExampleFunction, it compiles #
   nestedExampleFunction = (arg0, arg1) ~
-    x = x + 2

@@ -14,11 +14,12 @@ var fs = require('fs'),
 if (process.argv.length > 2) {
   compileToFile(process.argv[2]);
 } else {
+  process.chdir(compiler);
+  var spawn = require('child_process').spawn;
+  var javaPassC = spawn('java', ['PassC']);
+  javaPassC.stdout.pipe(process.stdout, { end: false });
   process.stdin.resume();
-  process.stdin.on("data", function(chunk) {
-    process.chdir(compiler);
-    exec('echo "' + chunk + '" | java PassC', toConsole)
-  });
+  process.stdin.pipe(javaPassC.stdin, { end: false });
 }
 
 
@@ -30,13 +31,12 @@ function compileToFile(sourceName, cb) {
       target = process.cwd() + '/' + path.basename(source, '.pass') + '.js';
 
   process.chdir(compiler);
-  var ps = exec('java PassC ' + source, function (error, stdout, stderr) {
+  exec('java PassC ' + source, function (error, stdout, stderr) {
       if (error === null) {
         fs.writeFile(target, stdout);
         if (cb)
           cb(target);
       } else {
-        console.log('error');
         console.log(stdout);
         console.log(stderr);
       }
