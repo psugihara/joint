@@ -24,7 +24,7 @@ tokens {
   // called explicitly.
   @Override
   public void emit(Token t) {
-    System.out.println(t.getText());
+
     
     // Dedent when we hit a close paren to where we were when we opened it.
     String text = t.getText();
@@ -39,7 +39,7 @@ tokens {
         indentLevel--;
       }
     }
-    System.out.println(t.getText());
+
     
     state.token = t;
     tokens.offer(t);
@@ -114,7 +114,8 @@ block
     :   LT* stmt*
     ;
     
-stmt:   expr (LT+|EOF) -> expr LT
+stmt:   expr (LT+ -> expr LT
+			  |EOF -> expr)
     |   control LT+ -> control 
     ;   
     
@@ -185,17 +186,14 @@ factor
     ;
 
 array_access
-	:   '[' NUMBER ']' -> NUMBER
+	:   '[' (NUMBER ']' -> NUMBER 
+		    |accessid ']' -> accessid
+		    )
 	;
 
 dictionary_access
 	:   '.' def=ID ->  $def
 	;
-
-access
-    :   '[' NUMBER ']' -> ^(ARRAY_ACCESS NUMBER)
-    |   '.' def=ID -> ^(DICT_ACCESS $def)
-    ;
 
 modable
     :   ID
