@@ -30,18 +30,9 @@ public class CodeGenerator {
     private static final String WHITE_SPACE = " ";
     private static final String EMPTY_STRING = "";
     private boolean stdLibFunctionsCalled = false;
-    private static HashMap<String, String> stdLibMembers = new HashMap<String, String>();
     //the dir needs to be modified later
     private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
 
-    public CodeGenerator() {
-        stdLibMembers.put(LOG, EMPTY_STRING);
-        stdLibMembers.put(TAG, EMPTY_STRING);
-        stdLibMembers.put(TAGS, EMPTY_STRING);
-        stdLibMembers.put(CONTAINS, EMPTY_STRING);
-        stdLibMembers.put(CONNS, EMPTY_STRING);
-        stdLibMembers.put(UNTAG, EMPTY_STRING);
-    }
 
     public String IBLOCK(PassNode n) {
         String text = genericCombine(n, EMPTY_STRING);

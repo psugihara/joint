@@ -12,11 +12,12 @@ public class Efficiency {
 		  // get free memory
 		  long beforeMemory = rt.freeMemory();
 		  
-		  // get time before running pass program
-		  long before = System.currentTimeMillis();
+		
 		  System.out.println("--------------");
 		  System.out.println("Testing " + args[0]);
 		  
+		  // get time before running pass program
+		  long before = System.currentTimeMillis();
 		  // run pass program in new process
 		  Process p = Runtime.getRuntime().exec("java PassC " + args[0]);
 		  
