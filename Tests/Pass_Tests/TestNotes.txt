@@ -1,4 +1,6 @@
 Notes
 ---
-In "make errorTests" compiler is OK with accessing undeclared/undefined variables.
+In "make errorTests" compiler is OK with accessing undeclared/undefined variables, also with setting "x = _".
  
+
+Failing tests: error3.pass, error7.pass, error8.pass, error9.pass, error10.pass
