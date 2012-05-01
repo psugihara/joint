@@ -30,8 +30,7 @@ public class CodeGenerator {
     private static final String WHITE_SPACE = " ";
     private static final String EMPTY_STRING = "";
     private boolean stdLibFunctionsCalled = false;
-    //the dir needs to be modified later
-    private static final String jsIncludeString = "var stdlib = require('../lib/stdlib.js');\n\n";
+    private static final String jsRequire = "var pass = require('pass');\nfor (var x in pass)\n  global[x] = pass[x];\n\n";
 
 
     public String IBLOCK(PassNode n) {
@@ -58,7 +57,7 @@ public class CodeGenerator {
         for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
         }
-        return (stdLibFunctionsCalled ? jsIncludeString : EMPTY_STRING) + res.trim();
+        return (stdLibFunctionsCalled ? jsRequire : EMPTY_STRING) + res.trim();
     }
 
     public String ARGUMENTS(PassNode n) {
@@ -161,7 +160,6 @@ public class CodeGenerator {
     public String IF_CONDITIONS(PassNode n) {
         return genericCombine(n, EMPTY_STRING);
     }
-
 
     public String genericCombine(PassNode n, String middleString) {
         return genericCombine(n, middleString, middleString);

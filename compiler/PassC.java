@@ -91,14 +91,15 @@ public class PassC {
     }
 
     public static void main(String[] args) throws Exception {
+        System.out.println("HELLO");
         PassC passCompiler = new PassC();
 
         // If no arguments are present, compile input from stdin.
         if ((args == null || args.length == 0)) {
-            if (System.in.available() == 0) {
-                System.out.println("usage: passc <INPUT_FILE.pass>\n     | echo \"pass code\" > passc");
-                return;
-            }
+            // if (System.in.available() == 0) {
+            //     System.out.println("usage: passc <INPUT_FILE.pass>\n     | echo \"pass code\" > passc");
+            //     return;
+            // }
 
             Scanner lines = new Scanner(System.in);
             String input = "";
