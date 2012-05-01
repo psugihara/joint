@@ -33,9 +33,10 @@ function compileToFile(sourceName, cb) {
   process.chdir(compiler);
   exec('java PassC ' + source, function (error, stdout, stderr) {
       if (error === null) {
-        fs.writeFile(target, stdout);
-        if (cb)
-          cb(target);
+        fs.writeFile(target, stdout, function (err) {
+          if (cb)
+            cb(target);          
+        });
       } else {
         console.log(stdout);
         console.log(stderr);
