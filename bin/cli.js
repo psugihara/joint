@@ -55,8 +55,8 @@ if (process.argv.length === 5) {
 
 // ####Source Compilation
 
-if (path.extname(sourcePath) == 'pass')
-   sourcePath = exe
+// if (path.extname(sourcePath) == 'pass')
+//    sourcePath = exec()
 
 var program = require(sourcePath);
 
