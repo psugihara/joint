@@ -31,7 +31,7 @@ function compileToFile(sourceName, cb) {
       target = process.cwd() + '/' + path.basename(source, '.pass') + '.js';
 
   process.chdir(compiler);
-  var ps = exec('java PassC ' + source, function (error, stdout, stderr) {
+  exec('java PassC ' + source, function (error, stdout, stderr) {
       if (error === null) {
         fs.writeFile(target, stdout);
         if (cb)

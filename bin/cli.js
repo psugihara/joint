@@ -62,11 +62,12 @@ if (path.extname(sourcePath) == '.pass') {
 }
 
 function run (sourcePath) {
-  var program = require(sourcePath);
+
+  console.log(var program = require(sourcePath));
 
   // If there's no server to start, we're done.
   if (!(port && staticPath))
-    process.exit(0);
+    return;
 
   // ####Server Configuration
 
