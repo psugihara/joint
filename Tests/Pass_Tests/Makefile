@@ -19,6 +19,7 @@ effTests:
 	cp ../../compiler/PassC.java PassC.java;
 	cp ../../compiler/PassNode.java PassNode.java;
 	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
+	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
 	cp ./Eff_Tests/Efficiency.java Efficiency.java;  
 	javac ./*.java;
 	@echo "--------------------------------------------------";
