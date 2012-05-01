@@ -1,3 +1,4 @@
 Notes
 ---
 In "make errorTests" compiler is OK with accessing undeclared/undefined variables.
+ 
