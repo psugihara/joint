@@ -1,6 +1,6 @@
 UPDATED**
 =======
-To test run times of programs in Test_Files, run:
+To test run times of programs in Eff_Tests, run:
 
 $make clean
 $make effTests
@@ -16,6 +16,14 @@ The memory in the JVM before and after the is also printed.
 
 
 --------------------------------------------------------------------------------
+
+To test files that contain errors in Eff_Tests (listed error#.pass), run:
+$make clean
+$make errorTests
+
+This compiles the program that has an error and prints stdout.
+
+---------------------------------------------------------------------------------
 ============
 Purpose
 ============
