@@ -20,9 +20,9 @@ public class PassNode extends CommonTree {
 
     public String getDefinedVarNames(){
      Iterator<String> it = getDefinedVars();
-       String varNames="var ";
-    	int i =0;
-       while(it.hasNext()){
+        String varNames="var ";
+        int i =0;
+        while(it.hasNext()){
             String s = it.next();
             Matcher m = variablePattern.matcher(s);
             //make sure it's actually a valid var
@@ -68,10 +68,10 @@ public class PassNode extends CommonTree {
         }
         while ((tmp = (PassNode) tmp.getParent()) != null);
 
-	tmp = (PassNode) getParent();
-	while(tmp != null && tmp.getType() == PassParser.ASSIGNMENT)
-		tmp = (PassNode) tmp.getParent();
-	if(tmp == null){
+        tmp = (PassNode) getParent();
+        while (tmp != null && tmp.getType() == PassParser.ASSIGNMENT)
+        	tmp = (PassNode) tmp.getParent();
+        if (tmp == null) {
 		System.out.println("FATAL ERROR: improperly constructed AST!");
 		System.exit(-1);
 	}

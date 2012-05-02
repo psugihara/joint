@@ -62,15 +62,20 @@ public class CodeGenerator {
             lval.setText(varName);
             n.setChild(0, lval);
         } else if (type == PassParser.DICT_ACCESS && rval.getType() == PassParser.FUNCTION && lval.getText().startsWith("server.")) {
-            // Replace conn with this.conn in server functions.
-            String[] func = rval.getText().split(";", 2);
-            rval.setText(func[0] + ";\n  conn = this.conn;" + func[1]);
+            // Set conn = this.conn in server functions.
+            if (rval.getText().contains("\\bvar\\b")) {
+                String[] func = rval.getText().split(";", 2);
+                rval.setText(func[0] + ";\n  conn = this.conn;" + func[1]);
+            } else {
+                String[] func = rval.getText().split("\\{", 2);
+                rval.setText(func[0] + "{\n  var conn = this.conn;" + func[1]);
+            }
         }
         return genericCombine(n, " ");
     }
 
     public String PROG(PassNode n) {
-        String res = "server = {};\n\n";
+        String res = "var server = {};\n\n";
         for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
         }
