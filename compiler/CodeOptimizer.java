@@ -23,7 +23,6 @@ public class CodeOptimizer {
     }
 
     public void ASSIGNMENT(PassNode n) {
-
     }
 
     public void PROG(PassNode n) {

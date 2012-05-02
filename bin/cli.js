@@ -10,11 +10,11 @@
 /*jshint node: true*/
 
 var path = require('path'),
-    fs = require('fs');
+    fs  = require('fs');
 
 
 // ####Argument Validation
-// ___________________
+// _______________________
 
 var sourcePath, port, staticPath;
 
@@ -55,6 +55,7 @@ if (process.argv.length === 5) {
 
 
 // ####Source Compilation
+// ______________________
 
 if (path.extname(sourcePath) == '.pass') {
   // Compile to this directory and run with the new source path.
@@ -65,6 +66,7 @@ if (path.extname(sourcePath) == '.pass') {
 
 
 // ####Program Execution
+// _____________________
 
 function run (sourcePath) {
 
@@ -81,7 +83,7 @@ function run (sourcePath) {
       dnode = require('dnode'),
       http = require('http'),
       lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib'),
-      stdlib = require(lib + '/stdlib.js');
+      connections = require(lib + '/connections.js');
 
   var app = connect();
 
@@ -90,14 +92,12 @@ function run (sourcePath) {
     require: 'dnode',
     mount: '/pass.js'
   });
-  b.append(fs.readFileSync(__dirname + '/../browser/pass_client.js'));
+  b.append(fs.readFileSync(lib + '/browser/pass_client.js'));
   app.use(b);
 
   app.use(connect.static(staticPath));
 
   var server = http.createServer(app);
-
-  var connections = require(lib + '/connections.js');
 
   dnode(function (client, conn) {
     // Bind server functions to dnode object with the connection.
