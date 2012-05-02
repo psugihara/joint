@@ -36,6 +36,13 @@ public class PassNode extends CommonTree {
         return "";
 
     }
+    
+    public boolean isValidDefinedVar(String s){
+      if(variablePattern.matcher(s).matches()){
+    	      
+      }
+      return false;
+    }
     public Iterator<String> getDefinedVars(){
         return defined.keySet().iterator();
     }

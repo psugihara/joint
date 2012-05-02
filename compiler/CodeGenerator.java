@@ -15,6 +15,7 @@ public class CodeGenerator {
     private boolean stdLibFunctionsCalled = false;
     private static final String jsRequire = "var pass = require('pass');\nfor (var x in pass)\n  global[x] = pass[x];\n\n";
 
+    
     private void removeVar(PassNode n) {
         if (n == null)
             return;
@@ -94,6 +95,9 @@ public class CodeGenerator {
         return "while (" + genericCombine(n, ")");
     }
 
+    private boolean isVar(String s){
+      return variablePattern.matcher(s).matches();
+    }
     public String FOR(PassNode n) {
 	String iterator = n.getChild(0).getText();
 	String collection = n.getChild(1).getText();
