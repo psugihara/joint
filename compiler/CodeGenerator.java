@@ -157,7 +157,7 @@ public class CodeGenerator {
     }
 
     public String ELSE(PassNode n) {
-        return "else (" + n.getChild(0).getText() + "\n";
+        return "else" + n.getChild(0).getText() + "\n";
     }
 
     public String ELSE_IF(PassNode n) {
