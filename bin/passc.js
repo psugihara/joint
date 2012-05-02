@@ -56,7 +56,7 @@ If you want super optimized, minified, non-human readable code use the -o option
     } else if (s.charAt(0) === "-") {
       console.log("ERROR: " + s + " is an invalid option.\n\n"+usageString);
       process.exit(-1);
-    } else if (argv[parseInt(i)-1] != "-o" && argv[parseInt(i)-1] != "-out" && s != undefined && s!="node") {
+    } else if (argv[parseInt(i)-1] != "-o" && argv[parseInt(i)-1] != "-out" && s != undefined && s!="node" && parseInt(i)>1) {
       inputfile = s;
     }
   }
