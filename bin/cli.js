@@ -92,7 +92,7 @@ function run (sourcePath) {
     require: 'dnode',
     mount: '/pass.js'
   });
-  b.append(fs.readFileSync(__dirname + '/../browser/pass_client.js'));
+  b.append(fs.readFileSync(lib + '/browser/pass_client.js'));
   app.use(b);
 
   app.use(connect.static(staticPath));
