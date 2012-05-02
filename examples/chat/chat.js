@@ -1,7 +1,12 @@
+17
+17
+17
 var pass = require('pass');
 for (var x in pass)
   global[x] = pass[x];
-server = {};server.arrive = function (msgCallback) {
+server = {};
+
+server.arrive = function (msgCallback) {
   conn.onMsg = msgCallback;
 };
 server.broadcast = function (msg) {
@@ -10,4 +15,5 @@ server.broadcast = function (msg) {
     conns()[c].onMsg(msg);
   }
 };
+
 module.exports = server;

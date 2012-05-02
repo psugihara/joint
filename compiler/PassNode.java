@@ -94,7 +94,6 @@ public class PassNode extends CommonTree {
     public PassNode(Token t) {
         super(t);
         text = (t != null ? t.getText() : "[]");
-        this.type = type;
     }
 
     public String toString() {

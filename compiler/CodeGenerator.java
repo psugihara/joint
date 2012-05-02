@@ -15,7 +15,7 @@ public class CodeGenerator {
     private boolean stdLibFunctionsCalled = false;
     private static final String jsRequire = "var pass = require('pass');\n"
                                           + "for (var x in pass)\n"
-                                          + "  global[x] = pass[x];\n\n";
+                                          + "  global[x] = pass[x];\n";
 
     private void removeVar(PassNode n) {
         if (n == null)
@@ -54,24 +54,23 @@ public class CodeGenerator {
     }
 
     public String ASSIGNMENT(PassNode n) {
-        PassNode node = (PassNode) n.getChild(0);
-        String varName = node.getText();
-        int type = 0;
-        if (node != null)
-            type = node.getType();
-        if (varName == null) {
-            //this should never happen
-            System.out.println("FATAL ERROR: no function name ");
-            System.exit(-1);
-        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) && n.isDefined(varName) == false) {
-            node.setText( varName);
-            n.setChild(0, node);
+        PassNode lval = (PassNode) n.getChild(0);
+        PassNode rval = (PassNode) n.getChild(2);
+        String varName = lval.getText();
+        int type = lval.getType();
+        if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) && n.isDefined(varName) == false) {
+            lval.setText(varName);
+            n.setChild(0, lval);
+        } else if (type == PassParser.DICT_ACCESS && rval.getType() == PassParser.FUNCTION && lval.getText().startsWith("server.")) {
+            // Replace conn with this.conn in server functions.
+            String[] func = rval.getText().split(";", 2);
+            rval.setText(func[0] + ";\n  conn = this.conn;" + func[1]);
         }
         return genericCombine(n, " ");
     }
 
     public String PROG(PassNode n) {
-        String res = "server = {};";
+        String res = "server = {};\n\n";
         for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
         }
