@@ -35,11 +35,11 @@ function processOptions(argv){
     s = argv[i];
     if(s === "-h" || s === "-help" || s === "?"){
       console.log("\
-This is the pass translator, it compiles pass into javascript.\n\
+This is the Pass translator, it compiles pass into JavaScript.\n\
 If no arguments are specified the pass interpreter will start.\n\
 If you specifiy an input file with no options the input file \"program.pass\" will\n\
-translated to the output file \"program.js\"\nThis program will be human readable.\n\
-If you want super optimized, minified, non-human readable code use the -o option.\n\
+be translated to the output file \"program.js\"\nThis program will be human readable.\n\
+If you want super optimized, minified, non-human readable code use the -m option.\n\
 \n"+usageString);
       process.exit(0);
     } else if (s === "-m" || s === "--min") {
