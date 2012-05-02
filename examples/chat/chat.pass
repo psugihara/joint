@@ -3,4 +3,5 @@ server.arrive = (msgCallback) ~
 
 server.broadcast = (msg) ~
   for c in conns()
+    log(c)
     c.onMsg(msg)

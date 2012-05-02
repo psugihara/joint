@@ -13,7 +13,9 @@ public class CodeGenerator {
     private boolean errors = false;
     private boolean warnings = false;
     private boolean stdLibFunctionsCalled = false;
-    private static final String jsRequire = "var pass = require('pass');\nfor (var x in pass)\n  global[x] = pass[x];\n\n";
+    private static final String jsRequire = "var pass = require('pass');\n"
+                                          + "for (var x in pass)\n"
+                                          + "  global[x] = pass[x];\n\n";
 
     private void removeVar(PassNode n) {
         if (n == null)
@@ -69,10 +71,11 @@ public class CodeGenerator {
     }
 
     public String PROG(PassNode n) {
-        String res = "";
+        String res = "server = {};";
         for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
         }
+        res += "\nmodule.exports = server;";
         return (stdLibFunctionsCalled ? jsRequire : "") +n.getDefinedVarNames() + res.trim();
     }
 
@@ -266,6 +269,9 @@ public class CodeGenerator {
                 break;
             case PassParser.BREAK:
                 s = "break;";
+                break;
+            case PassParser.EOF:
+                s = "";
                 break;
             default:
                 return n.getText();

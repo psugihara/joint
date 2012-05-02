@@ -1,20 +1,13 @@
-// Possible generated output for chat.pass.
-
-/*jshint node: true*/
-
-var pass = require('pass')
-var conns = pass.conns;
-var server = {};
-
-server.arrive = function (msgCallback) {
-  this.conn.onMsg = msgCallback;
-}
-
+var pass = require('pass');
+for (var x in pass)
+  global[x] = pass[x];
+server = {};server.arrive = function (msgCallback) {
+  conn.onMsg = msgCallback;
+};
 server.broadcast = function (msg) {
-  this.conn.onMsg(msg);
-  // var connections = conns();
-  // for (var c in connections)
-  //   connections[c].onMsg(msg);
-}
-
+  for (c in conns()) {
+    console.log(conns()[c]);
+    conns()[c].onMsg(msg);
+  }
+};
 module.exports = server;
