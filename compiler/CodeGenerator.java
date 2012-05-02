@@ -13,7 +13,9 @@ public class CodeGenerator {
     private boolean errors = false;
     private boolean warnings = false;
     private boolean stdLibFunctionsCalled = false;
-    private static final String jsRequire = "var pass = require('pass');\nfor (var x in pass)\n  global[x] = pass[x];\n\n";
+    private static final String jsRequire = "var pass = require('pass');\n"
+                                          + "for (var x in pass)\n"
+                                          + "  global[x] = pass[x];\n";
 
     
     private void removeVar(PassNode n) {
@@ -53,27 +55,32 @@ public class CodeGenerator {
     }
 
     public String ASSIGNMENT(PassNode n) {
-        PassNode node = (PassNode) n.getChild(0);
-        String varName = node.getText();
-        int type = 0;
-        if (node != null)
-            type = node.getType();
-        if (varName == null) {
-            //this should never happen
-            System.out.println("FATAL ERROR: no function name ");
-            System.exit(-1);
-        } else if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) && n.isDefined(varName) == false) {
-            node.setText( varName);
-            n.setChild(0, node);
+        PassNode lval = (PassNode) n.getChild(0);
+        PassNode rval = (PassNode) n.getChild(2);
+        String varName = lval.getText();
+        int type = lval.getType();
+        if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) && n.isDefined(varName) == false) {
+            lval.setText(varName);
+            n.setChild(0, lval);
+        } else if (type == PassParser.DICT_ACCESS && rval.getType() == PassParser.FUNCTION && lval.getText().startsWith("server.")) {
+            // Set conn = this.conn in server functions.
+            if (rval.getText().contains("\\bvar\\b")) {
+                String[] func = rval.getText().split(";", 2);
+                rval.setText(func[0] + ";\n  conn = this.conn;" + func[1]);
+            } else {
+                String[] func = rval.getText().split("\\{", 2);
+                rval.setText(func[0] + "{\n  var conn = this.conn;" + func[1]);
+            }
         }
         return genericCombine(n, " ");
     }
 
     public String PROG(PassNode n) {
-        String res = "";
+        String res = "var server = {};\n\n";
         for (int i = 0; i < n.getChildCount(); i++) {
             res += n.getChild(i).getText();
         }
+        res += "\nmodule.exports = server;";
         return (stdLibFunctionsCalled ? jsRequire : "") +n.getDefinedVarNames() + res.trim();
     }
 
@@ -154,7 +161,7 @@ public class CodeGenerator {
     }
 
     public String ELSE(PassNode n) {
-        return "else (" + n.getChild(0).getText() + "\n";
+        return "else" + n.getChild(0).getText() + "\n";
     }
 
     public String ELSE_IF(PassNode n) {
@@ -270,6 +277,9 @@ public class CodeGenerator {
                 break;
             case PassParser.BREAK:
                 s = "break;";
+                break;
+            case PassParser.EOF:
+                s = "";
                 break;
             default:
                 return n.getText();
