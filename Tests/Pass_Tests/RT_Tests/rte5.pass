@@ -1,0 +1,2 @@
+dictionary = {key1 : 1, key2 : 2}
+dictionary.key0 = dictionary.key3

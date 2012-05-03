@@ -1,0 +1,2 @@
+list = ["first", "second"]
+log(list[3])
