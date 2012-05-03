@@ -1,6 +1,8 @@
 Notes
 ---
-In "make errorTests" compiler is OK with accessing undeclared/undefined variables, also with setting "x = _".
- 
-
-Failing tests: error3.pass, error7.pass, error8.pass, error9.pass, error10.pass
+error6.pass
+error13.pass
+error33.pass
+error38.pass
+------
+-These print errors to stderr but not stdout
