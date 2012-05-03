@@ -9,12 +9,12 @@
 
 /*jshint node: true*/
 
-var path = require('path');
-var fs = require('fs');
+var path = require('path'),
+    fs  = require('fs');
 
 
 // ####Argument Validation
-// ___________________
+// _______________________
 
 var sourcePath, port, staticPath;
 
@@ -53,7 +53,10 @@ if (process.argv.length === 5) {
     usageDie('static arg must be directory');
 }
 
+
 // ####Source Compilation
+// ______________________
+
 if (path.extname(sourcePath) == '.pass') {
   // Compile to this directory and run with the new source path.
   require('./passc.js').compileToFile(sourcePath, run);
@@ -61,21 +64,26 @@ if (path.extname(sourcePath) == '.pass') {
   run(sourcePath);
 }
 
+
+// ####Program Execution
+// _____________________
+
 function run (sourcePath) {
+
   var program = require(sourcePath);
 
   // If there's no server to start, we're done.
   if (!(port && staticPath))
-    process.exit(0);
+    return;
 
   // ####Server Configuration
 
-  var connect = require('connect');
-  var browserify = require('browserify');
-  var dnode = require('dnode');
-  var http = require('http');
-  var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
-  var stdlib = require(lib + '/stdlib.js');
+  var connect = require('connect'),
+      browserify = require('browserify'),
+      dnode = require('dnode'),
+      http = require('http'),
+      lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib'),
+      connections = require(lib + '/connections.js');
 
   var app = connect();
 
@@ -84,14 +92,12 @@ function run (sourcePath) {
     require: 'dnode',
     mount: '/pass.js'
   });
-  b.append(fs.readFileSync(__dirname + '/../browser/pass_client.js'));
+  b.append(fs.readFileSync(lib + '/browser/pass_client.js'));
   app.use(b);
 
   app.use(connect.static(staticPath));
 
   var server = http.createServer(app);
-
-  var connections = require(lib + '/connections.js');
 
   dnode(function (client, conn) {
     // Bind server functions to dnode object with the connection.

@@ -10,6 +10,13 @@ tokens {
   ACCESS;
 }
 
+@header {
+	import java.util.Iterator;
+	import java.util.Set;
+	import java.util.Arrays;
+	import java.util.HashSet;
+}
+
 @lexer::members {
   int DENT_SIZE = 2;
 
@@ -106,33 +113,125 @@ tokens {
   
   
 }
+@members {
+	//declare useful types
+	Set<String> reserved = new HashSet<String>(Arrays.asList(
+        new String[] {"getTag","getTags","contains","untag","conns","conn","log","server","channel"}));
+	ArrayList errors = new ArrayList();
+	public int i = 0;
+	boolean inFunc = false;
+	boolean inFormalArgs = false;
+	private final String NUM = "number";
+	private final String STR = "string";
+	
+	public boolean isLive(String variable) {
+		if(reserved.contains(variable)) {
+			return true;
+		}
+		
+		for(int z = $block.size() - 1; z >= 0; z--) {
+			if($block[z]::ST.get(variable) != null) {
+				return true;
+				}
+		}
+		
+		return false;
+	}
+	
+	public String makeError(Token culprit, String culpritName, String message) {
+		return String.format(position(culprit) + ": " + message, culpritName);
+	}
+	
+	public void addError(String error) {
+		errors.add(error);
+	}
+	
+	public void returnErrors() {
+		int numErrors = errors.size();
+		String s = numErrors + ((numErrors == 1)? " Error has occured\n" : " Errors have occured\n");
+		Iterator<String> it = errors.listIterator();
+		while(it.hasNext()) {
+			s += it.next() + "\n";
+		}
+		System.out.println(s);
+		//System.exit(1);
+	}
+	
+	public String position(Token i) {
+		return "Line " + i.getLine() + ":" + i.getTokenIndex();
+	}
 
-prog:   block EOF -> ^(PROG block)
+	public void addToST(List l) {
+		Iterator<String> it =  l.iterator();
+		while(it.hasNext()) {
+			String tmp = it.next();
+			$block::ST.put(tmp,"formal argument");
+		}
+	}
+	
+	public void removeFromST(List l) {
+		Iterator<String> it = l.iterator();
+		while(it.hasNext()) {
+			String tmp = it.next();
+			$block::ST.remove(tmp);
+		}
+	}
+	
+	public String getST(HashMap symbolTable){
+		String s = "~~~Symbol Table~~~\n";
+		Iterator it = symbolTable.keySet().iterator();
+		while(it.hasNext()) {
+			String key = (String) it.next();
+			String value = (String) symbolTable.get(key);
+			s += key + " : " + value + "\n";
+		}
+		return s;
+	}
+}
+
+prog
+	@after{if(!errors.isEmpty()) {
+				returnErrors();
+			}}
+	: block EOF -> ^(PROG block EOF)
     ;
 
 block
-    :   LT* stmt*
+	scope {HashMap ST;}
+	@init {$block::ST = new HashMap(); int order = i++;}
+	@after {i--;
+		//System.out.println("Symbol Table for block " + order + "\n" + getST($block::ST));
+		}
+    :   LT* stmt* 
     ;
-    
+   
 stmt:   expr (LT+ -> expr LT
-			  |EOF -> expr)
+			 |EOF -> expr)
     |   control LT+ -> control 
     ;   
-    
+   
 iblock
     :   INDENT block DEDENT -> ^(IBLOCK block)
     ;
 
-args:   '(' (argument (',' argument)*)? (LT+)?')' -> ^(ARGUMENTS argument*)
+args returns [List arguments]
+	@init {List argList = new ArrayList();}
+	:   '(' (ar1=argument {if($ar1.isVariable) argList.add($ar1.id);} (',' argn=argument {if($argn.isVariable) argList.add($argn.id);})*)? (LT+)?')' 	{$arguments = argList;}
+														-> ^(ARGUMENTS argument*)
     ;
     
-func:   args '~' 
-				 (expr -> ^(FUNCTION args expr)
+func
+	@init {inFunc = true; inFormalArgs = true;}
+	@after {inFunc = false;
+			removeFromST($formalArgs.arguments);}
+	:   formalArgs=args '~' {inFormalArgs = false; addToST($formalArgs.arguments);}
+				 (expr -> ^(FUNCTION args ^(IBLOCK expr))
 				 |LT iblock -> ^(FUNCTION args iblock)
 				 )
     ;
 
-expr:   (accessid ('='|ARITH_ASSIGN))=> accessid assign -> ^(ASSIGNMENT accessid assign)
+expr:   (accessid ('='|ARITH_ASSIGN))=> accessid assign {$block::ST.put($accessid.id, $accessid.type);}
+								-> ^(ASSIGNMENT accessid assign)
     |   short_stmt
     |   bool
     ;
@@ -150,43 +249,95 @@ return_stmt
     :   'return' argument -> ^(RETURN argument)
     ;
 
-bool:   (args '~')=> func
-    |   (logic -> logic) 
-    					(operator=CMP logic -> ^(GENERIC_OP $bool $operator logic))*
+bool returns [String type, String id]
+	:   (args '~')=> func
+    |   (l1=logic {$type = $l1.type; $id = $l1.id;} -> logic) 
+    				(operator=CMP logic {$type = NUM;} -> ^(GENERIC_OP $bool $operator logic))*
     ;
 
-logic
-    :   (eval->eval) 
-    				(operator=BOP eval -> ^(GENERIC_OP $logic $operator eval))* 
+logic returns [String type, String id]
+    :   (e1=eval {$id = $e1.id; $type = $e1.type;} ->eval) 
+    				(operator=BOP eval {$type = NUM;}-> ^(GENERIC_OP $logic $operator eval))* 
     ;
 
-eval:   (term->term) 
-					(operator='+' term -> ^(GENERIC_OP $eval $operator term)
-					|operator='-' term -> ^(GENERIC_OP $eval $operator term)
+eval returns [String type, String id]
+	:   (t1=term {$id = $t1.id; $type = $t1.type;} ->term) 
+					(operator='+' t2=term { if($t2.type != null && $t2.type.equals(STR)) {
+												$type = STR;
+											}}										  
+						-> ^(GENERIC_OP $eval $operator term) 
+					|operator='-' t2=term { if($t1.type.equals(STR)) {
+												addError(makeError($t1.start,$t1.id,"Cannot substract String '\%s'"));
+											} else if ($t2.type.equals(STR)) {
+												addError(makeError($t1.start,$t1.id,"Cannot substract String '\%s'"));
+											}
+											}
+						-> ^(GENERIC_OP $eval $operator term)
 				    )*
     ;
 
-term:   (exponent -> exponent)
-				(operator='*' exponent -> ^(GENERIC_OP $term $operator exponent)
-				|operator='/' exponent -> ^(GENERIC_OP $term $operator exponent)
-				|operator='%' exponent -> ^(GENERIC_OP $term $operator exponent))*
+term returns [String type, String id]
+	:   
+		(e1=exponent {$id = $e1.id; $type = $e1.type;} -> exponent)
+				(operator='*' e2=exponent   {if($e1.type != null && $e1.type.equals(STR)) {
+												addError(makeError($e1.start, $e1.id, "Cannot use String '\%s' as a factor")); 
+												}
+											 else if($e2.type != null && $e2.type.equals(STR)) {
+											 	addError(makeError($e2.start, $e2.id,"Cannot use String '\%s' as a factor"));
+											 	}
+												}
+				
+											-> ^(GENERIC_OP $term $operator exponent) 		
+				|operator='/' exponent 		{if($e1.type != null && $e1.type.equals(STR)) {
+												addError(makeError($e1.start, $e1.id, "Cannot use String '\%s' as a divisor")); 
+												}
+											 else if($e2.type != null && $e2.type.equals(STR)) {
+											 	addError(makeError($e2.start, $e2.id,"Cannot use String '\%s' as a divisor"));
+											 	}
+												}
+											-> ^(GENERIC_OP $term $operator exponent)
+				|operator='%' exponent {if($e1.type != null && $e1.type.equals(STR)) {
+												addError(makeError($e1.start, $e1.id, "Cannot use String '\%s' in mod statement")); 
+												}
+											 else if($e2.type != null && $e2.type.equals(STR)) {
+											 	addError(makeError($e2.start, $e2.id,"Cannot use String '\%s' in mod statement"));
+											 	}
+												}
+											-> ^(GENERIC_OP $term $operator exponent))*
     ;
 
-exponent
-	:	(factor -> factor) (operator='^' factor -> ^(GENERIC_OP $exponent $operator factor))*
+exponent returns [String type, String id]
+	:	(f1=factor {$id = $f1.id; $type = $f1.type;} -> factor) 
+									(operator='^' f2=factor 
+										{ 
+										  if($f1.id != null && $f1.type.equals(STR)) {
+										 	addError(makeError($f1.start,$f1.id, "Cannot use String '\%s' as base of exponent"));
+											}
+										  else if($f2.id != null && $f2.type.equals(STR)) {
+										 	addError(makeError($f2.start,$f2.id,"Cannot use String '\%s' as exponent"));
+										  }
+										}
+										-> ^(GENERIC_OP $exponent $operator factor))*
 	;
 
-factor
-    :   (modable -> modable) 
-							 (args ->  ^(FUNC_CALL $factor args)
-    						 |array_access -> ^(ARRAY_ACCESS $factor array_access)
-    						 |dictionary_access -> ^(DICT_ACCESS $factor dictionary_access)
-    						 )*
-    |   atom
+factor returns [String type, String id]
+    :   accessid {	if(!isLive($accessid.id) && !inFormalArgs) {
+    					addError(makeError($accessid.start,$accessid.id,"undefined variable '\%s'"));
+    				   }
+    				else {
+    					$type = $accessid.type;
+    					$id = $accessid.id;
+    				}
+    			  }
+    |   '(' bool {$type = $bool.type; $id = $bool.id;}  ')'
+    					-> bool	
+    |   atom {$type = $atom.type;
+    		  $id = $atom.id;}
     ;
-
+    
 array_access
-	:   '[' (NUMBER ']' -> NUMBER 
+	:   '[' 
+			(NUMBER ']' -> NUMBER 
 		    |accessid ']' -> accessid
 		    )
 	;
@@ -195,17 +346,15 @@ dictionary_access
 	:   '.' def=ID ->  $def
 	;
 
-modable
-    :   ID
-    |   '(' bool ')' -> bool
-    ;
-
-atom:   NUMBER
-    |   STRING
+atom returns [String type, String id]
+	:   num=NUMBER {$type = NUM; $id = $num.text;}
+    |   str=STRING {$type = STR; $id = $str.text;}
     ;
 
 control
-    :   'for' iterator=ID 'in' 
+	@after {if($iterator != null) {
+			$block::ST.remove($iterator.getText());}}
+    :   'for' iterator=ID 'in' 	{$block::ST.put($iterator.getText(), "iterator");}
     				    		(accessid LT+ iblock -> ^(FOR $iterator accessid  iblock)
     				    		|array_definition LT+ iblock -> ^(FOR $iterator array_definition  iblock)
     				    		)
@@ -213,11 +362,15 @@ control
     |   'if' bool LT+ iblock (LT else_test)? -> ^(IF_CONDITIONS ^(IF bool iblock) else_test*)
     ;    
 
-accessid
-	:   (ID->ID) 
-	( args ->  ^(FUNC_CALL $accessid args)
-    | array_access -> ^(ARRAY_ACCESS $accessid array_access)
-    | dictionary_access -> ^(DICT_ACCESS $accessid dictionary_access)
+accessid returns [String id, String type]
+	:   (ID {$id = $ID.text; $type = "variable";}
+			->ID) 
+	( args	{$type = "function";}
+			->  ^(FUNC_CALL $accessid args)
+    | array_access 	{$type = "array";}
+    		-> ^(ARRAY_ACCESS $accessid array_access)
+    | dictionary_access	{$type = "dictionary";}
+    		-> ^(DICT_ACCESS $accessid dictionary_access)
     )*
 	;
 
@@ -233,13 +386,14 @@ else_if_body
 
 /** dangling else solution **/
 else_test
-    :   ('else if')=> 'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body) else_test*
+    :   'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body) else_test*
     |   'else' else_body -> ^(ELSE else_body)
     ;
 
-
-assign
-    :   '=' (expr|dictionary_definition|array_definition)
+assign returns [String type]
+    :   '=' (expr 
+    		|dictionary_definition
+    		|array_definition) 
     |   ARITH_ASSIGN bool
     ;
 
@@ -255,8 +409,13 @@ array_definition
     :   '[' (argument (',' argument)*)? ']' -> ^(ARRAY_DECLARATION argument*)
     ;
     
-argument
-    :   LT? bool
+argument returns [Boolean isVariable, String id]
+    :   LT? bool {	$id = $bool.id;
+    				$isVariable = false;
+    				if($bool.type != null && $bool.type.equals("variable")) {
+    					$isVariable = true;
+    				}
+    			}
     ;
 
 //AST IMAGINARY NODE TOKENS
@@ -447,4 +606,3 @@ fragment
 UNICODE_ESC
     :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
- 
