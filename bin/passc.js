@@ -113,7 +113,7 @@ function compileToFile (sourceName, cb) {
         if(minify){
         //TODO fix path compiler.jar
           process.chdir(thirdPass);
-      	target = "/home/albatros/t/pass/bin/out.js";
+
           child.exec("java -jar compiler.jar --js "+ target  +" --js_output_file "+ target +" --warning_level VERBOSE", function (error, stdout, stderr) {
             if(error === null) {
               if ((stdOut && outputfile != null) || !stdOut) {
