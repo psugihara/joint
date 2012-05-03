@@ -6,22 +6,30 @@
     server.register(callbacks);
   });
 
+  var dispName = function(name) {
+    if(Boolean(name))
+      return name;
+    return "[anonymous]";
+  }
+
   var receive = function (name, message) {
-    append(name + ' : ' + message + '<br>');
+    append(dispName(name) + " : " + message);
   }
 
   var onEnter = function (name, room) {
-    append(name + ' entered \'' + room + '\'<br>');
+    append(dispName(name) + ' entered \'' + room + '\'<br>');
   }
 
   var onLeave = function (name, room) {
-    append(name + ' left \'' + room + '\'<br>');
+    append(dispName(name) + ' left \'' + room + '\'<br>');
   }
 
   var append = function (message) {
     var oNewNode = document.createElement("DIV");
     oNewNode.innerHTML = message;
-    document.body.appendChild(oNewNode);
+    var x = document.getElementById("messages");
+    x.appendChild(oNewNode);
+    x.scrollTop = x.scrollHeight;
   }
 
   var callbacks = {'receive':receive, 'onEnter':onEnter, 'onLeave':onLeave};
