@@ -1,0 +1,25 @@
+x = 2
+y = 2
+a = 0
+# oops #
+z =
+exampleFunction = (arg0, arg1) ~
+  nestedExampleFunction = (arg0, arg1) ~
+    x = x + 2
+    y = x + 4
+    z = arg0 - arg1
+    a = x * y * arg0 * z
+    exampleFunction1 = (arg0, arg1) ~
+      nestedExampleFunction2 = (arg0, arg1) ~
+        x = x + 2
+        y = x + 4
+        z = arg0 - arg1
+        a = x * y * arg0 * z
+        if x == 4
+          x = 6
+          while x < 10
+            x = x + 2
+        return a
+      nestedExamplefunction2(2, 3)
+    return a * exampleFunction1
+  nestedExamplefunction(2, 3)

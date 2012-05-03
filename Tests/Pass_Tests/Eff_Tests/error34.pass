@@ -1,0 +1,2 @@
+# no comma? #
+listB = ["first" "second", "bla", "stop here!", "fifth"]
