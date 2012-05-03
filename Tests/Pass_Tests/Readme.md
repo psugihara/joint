@@ -24,6 +24,9 @@ $make errorTests
 This compiles the program that has an error and prints stdout.
 
 ---------------------------------------------------------------------------------
+RT_Tests has programs that test possible runtime errors for semantic issues.
+$make clean
+$make rtTests
 
 
 

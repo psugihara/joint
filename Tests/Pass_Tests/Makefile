@@ -144,6 +144,38 @@ errorTests:
 test: 
 	java PassC ./Test_Files/test.pass;
 
+rtTests:
+	cp ../../compiler/Pass.g Pass.g;
+	java org.antlr.Tool Pass.g;
+	cp ../../compiler/PassC.java PassC.java;
+	cp ../../compiler/PassNode.java PassNode.java;
+	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
+	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
+	cp ./Eff_Tests/Error.java Error.java;  
+	javac ./*.java;
+	@echo "===================New Pass Test====================";
+	@echo "Testing Runtimes of Pass Programs in ./Test_Files" ;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte1.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte2.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte3.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte4.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte5.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte6.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte7.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte8.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte9.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte10.pass;
+
 
 tests: 
 	cp ../../compiler/Pass.g Pass.g;
