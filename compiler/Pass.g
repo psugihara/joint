@@ -116,7 +116,7 @@ tokens {
 @members {
 	//declare useful types
 	Set<String> reserved = new HashSet<String>(Arrays.asList(
-        new String[] {"getTag","getTags","contains","untag","conns","conn","log","server","channel"}));
+        new String[] {"getTag","getTags","contains","untag","conns","conn","log","server","channel", "setTag" }));
 	ArrayList errors = new ArrayList();
 	public int i = 0;
 	boolean inFunc = false;
