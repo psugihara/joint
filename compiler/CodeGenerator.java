@@ -96,9 +96,9 @@ public class CodeGenerator {
 
     public String RETURN(PassNode n) {
     	String value = "";
-    	if("".equals(value = genericCombine(n, " "))
-    	    return "return " + genericCombine(n, " ");
-        return "return" + genericCombine(n, " ");
+    	if("".equals(value = genericCombine(n, " ")))
+    	    return "return " + value;
+        return "return";
     }
 
     public String WHILE(PassNode n) {
