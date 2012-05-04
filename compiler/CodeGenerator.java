@@ -95,7 +95,7 @@ public class CodeGenerator {
     }
 
     public String RETURN(PassNode n) {
-        return "return" + genericCombine(n, " ");
+        return "return " + genericCombine(n, " ");
     }
 
     public String WHILE(PassNode n) {
