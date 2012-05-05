@@ -146,6 +146,15 @@ tokens {
 		errors.add(error);
 	}
 	
+	public void displayRecognitionError(String[] tokenNames,
+                                        RecognitionException e) {
+        String hdr = getErrorHeader(e);
+        String msg = getErrorMessage(e, tokenNames);
+        addError(hdr);
+    }
+	
+	
+	
 	public void returnErrors() {
 		int numErrors = errors.size();
 		String s = numErrors + ((numErrors == 1)? " Error has occured\n" : " Errors have occured\n");
@@ -213,7 +222,9 @@ stmt:   expr (LT+ -> expr LT
 iblock
     :   INDENT block DEDENT -> ^(IBLOCK block)
     ;
-
+	catch [MismatchedTokenException mme] {
+		System.err.println("missing indent");
+	}
 args returns [List arguments]
 	@init {List argList = new ArrayList();}
 	:   '(' (ar1=argument {if($ar1.isVariable) argList.add($ar1.id);} (',' argn=argument {if($argn.isVariable) argList.add($argn.id);})*)? (LT+)?')' 	{$arguments = argList;}
@@ -255,7 +266,7 @@ return_stmt
     ;
 
 bool returns [String type, String id]
-	:   (args '~')=> func
+	:   (formal_parameters '~')=> func
     |   (l1=logic {$type = $l1.type; $id = $l1.id;} -> logic) 
     				(operator=CMP logic {$type = NUM;} -> ^(GENERIC_OP $bool $operator logic))*
     ;
@@ -353,7 +364,7 @@ dictionary_access
 
 atom returns [String type, String id]
 	:   num=NUMBER {$type = NUM; $id = $num.text;}
-    |   str=STRING {$type = STR; $id = $str.text;} -> ^(LSTRING $str)
+    |   str=STRING {$type = STR; $id = $str.text;}
     ;
 
 control
@@ -453,11 +464,6 @@ BREAK
 fragment
 GENERIC_OP
 	:'GENERIC_OP'
-	;
-
-fragment
-LSTRING
-	: 'LSTRING'
 	;
 
 fragment
@@ -569,7 +575,7 @@ CMP :   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
 BOP :   '||'|'&&'
     ;
 
-ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+ID  :   ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 
 NUMBER
@@ -590,7 +596,7 @@ WS  :   ( ' '
     ;
     
 STRING
-    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+    :  '"' (options {greedy=false;} : .)* (ESC_SEQ  | ~('\\'|'"') )* '"'
     ;
 
 fragment

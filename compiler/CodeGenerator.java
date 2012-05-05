@@ -287,9 +287,6 @@ public class CodeGenerator {
             case PassParser.EOF:
                 s = "";
                 break;
-            case PassParser.LSTRING:
-		//System.out.println(n.getText());
-                break;
             default:
                 return n.getText();
         }
