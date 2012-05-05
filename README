@@ -5,12 +5,11 @@ COMPILATION FROM SOURCE
 2) Build the java class files for the end user 
 	./build.sh
 	
-3) Install
+3) untar pass.tar.gz
+	cd pass-production
 	./install.sh
 	
 4) Pass is installed. Type
 	pass
 
 5) Have fun! 
-
-
