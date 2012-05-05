@@ -154,7 +154,7 @@ tokens {
 		while(it.hasNext()) {
 			s += it.next() + "\n";
 		}
-		System.out.println(s);
+		System.err.println(s);
 		//System.exit(1);
 	}
 	

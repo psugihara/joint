@@ -1,6 +1,6 @@
 server.register = (callbacks) ~
-  for i in keys(callbacks)
-    conn.i = callbacks.i
+  for i in callbacks
+    conn[i] = callbacks[i]
 
 server.setName = (name) ~
   conn.name = name
@@ -12,14 +12,14 @@ server.join = (newRoom) ~
   if oldRoom
     oldRoomMembers = conns(oldRoom)
     for c in oldRoomMembers
-      c.onLeave(conn.name, oldRoom)
+      oldRoomMembers[c].onLeave(conn.name, oldRoom)
   setTag(conn, newRoom)
   newRoomMembers = conns(newRoom)
   for c in newRoomMembers
-    c.onEnter(conn.name, newRoom)
+    newRoomMembers[c].onEnter(conn.name, newRoom)
 
-server.chat = (message) ~
+server.chat = (message)
   room = getTag(conn)
   connections = conns(room)
   for c in connections
-    c.receive(conn.name, message)
+    connections[c].receive(conn.name, message)
