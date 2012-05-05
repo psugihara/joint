@@ -25,15 +25,15 @@ server.join = function (newRoom) {
     var oldRoomMembers;
     oldRoomMembers = conns(oldRoom);
     __tmp = oldRoomMembers;
-    for (var __i = 0, __len = oldRoomMembers.length; __i < __len; __i++) {
-      __tmp[__i].onLeave(conn.name, oldRoom);
+    for (var __c = 0, __len = oldRoomMembers.length; __c < __len; __c++) {
+      __tmp[__c].onLeave(conn.name, oldRoom);
     }
   }
   setTag(conn, newRoom);
   newRoomMembers = conns(newRoom);
   __tmp = newRoomMembers;
-  for (var __i = 0, __len = newRoomMembers.length; __i < __len; __i++) {
-    __tmp[__i].onEnter(conn.name, newRoom);
+  for (var __c = 0, __len = newRoomMembers.length; __c < __len; __c++) {
+    __tmp[__c].onEnter(conn.name, newRoom);
   }
 };
 server.chat = function (message) {
@@ -42,9 +42,13 @@ server.chat = function (message) {
   room = getTag(conn);
   connections = conns(room);
   __tmp = connections;
-  for (var __i = 0, __len = connections.length; __i < __len; __i++) {
-    __tmp[__i].receive(conn.name, message);
+  for (var __c = 0, __len = connections.length; __c < __len; __c++) {
+    __tmp[__c].receive(conn.name, message);
   }
+};
+server.getRooms = function () {
+  var conn = this.conn;
+  conn.getRooms(allTags());
 };
 
 module.exports = server;

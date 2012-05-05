@@ -29,9 +29,12 @@
     }
     #messages {
       height: 500px;
-      width: 500px;
+      width: 1000px;
       border: 2px solid blue;
       overflow-y: scroll;
+    }
+    #rooms-button {
+      float: left;
     }
   </style>
 </head>
@@ -42,10 +45,10 @@
     <input placeholder="chatroom" onkeydown="checkEnter(event, joinRoom)" id="room-name" />
     <button type="button" id="join-button" onClick="joinRoom();">Join</button>
     <br><br>
-    <div id="messages">
-      <div>You have entered "The Void"</div>
-    </div>
+    <button type="button" id="rooms-button" onclick="server.getRooms();">Get open rooms</button><div id="rooms"></div>
+    <br><br>
+    <div id="messages"></div>
     <input placeholder="type message here" onkeydown="checkEnter(event, sendMessage)" id="chat-message">
-    <button type = button" id="send-button" onClick="sendMessage();">Send</button>
+    <button type="button" id="send-button" onClick="sendMessage();">Send</button>
   </body>
 </HTML>
