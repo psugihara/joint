@@ -281,7 +281,7 @@ public class CodeGenerator {
                 s = "";
                 break;
             case PassParser.LSTRING:
-                s = n.getText().replace("\n", "\\n");
+		System.out.println(n.getText());
                 break;
             default:
                 return n.getText();
