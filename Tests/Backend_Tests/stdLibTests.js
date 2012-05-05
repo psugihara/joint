@@ -43,7 +43,7 @@ if(!array_eql(lib.allTags(), ['x', 'y']))
 
 lib.popTag(c1, 'x');
 if(!array_eql(lib.getTags(c1), ['y']))
-  die('popTag failed');
+  die('popTag failed, array output: ' + lib.getTags(c1));
 if(!array_eql(lib.allTags(), ['y']))
   die('allTags returned incorrect value after popTag');
 if(Boolean(lib.conns('x')))
