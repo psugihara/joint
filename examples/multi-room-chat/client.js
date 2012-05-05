@@ -39,11 +39,16 @@
     document.getElementById("rooms").innerHTML = list;
   }
 
+  var getMembers = function(members) {
+    
+  }
+
   var callbacks = {'receive':receive, 'onEnter':onEnter, 'onLeave':onLeave, 'getRooms':getRooms};
 
   var joinRoom = function() {
-    var room = document.getElementById('room-name').value;
-    document.getElementById('room-name').value = "";
+    var room = document.getElementById('room-input').value;
+    document.getElementById('room-input').value = "";
+    document.getElementById('room-name') = room;
     if(room.length > 0)
       server.join(room);
   }
@@ -51,7 +56,7 @@
   var sendMessage = function() {
     var message = document.getElementById('chat-message').value;
     document.getElementById('chat-message').value = "";
-    if(message.length > 0)
+   if(message.length > 0)
       server.chat(message);
   }
 
