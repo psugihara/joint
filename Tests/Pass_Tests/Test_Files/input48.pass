@@ -1,22 +1,12 @@
-if hello
+x = "hello"
+hey = "hey"
+shoot = "shoot"
+if x
   return x
-else if goobye
+else if x == "good"
   return hey
 
-if another_if
+if x != "HEY"
   return shoot
-else if hello
-  return damn
-
-
-
-else
-  return end
-
-if hello
-  return ok
-else
-  return 2 + 3
-
-if ok
-  return 2
+else if x
+  return hey

@@ -1,12 +1,12 @@
 x = 0
 if x == 0
-  x = 4 - 3  + 4 * 2 * 10e22222
-  num(x)
+  x = 4 - 3  + 4 * 2 * 10e22222 * 9e100
+  log(x)
 list = [4, 3, 2, 1, 0]
 while x > 10
   for thisElement in list
     if thisElement == 3 && x == 4
       break
   x = x - 1
-num(x)
-num(x)
+log(x)
+log(x)

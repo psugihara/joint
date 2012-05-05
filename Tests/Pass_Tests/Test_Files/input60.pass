@@ -13,6 +13,7 @@ while x < 10
           z = arg0 - arg1
           a = x * y * arg0 * z
           return a
-        nestedExamplefunction2(2, 3)
       return a * exampleFunction1 + 4
-    nestedExamplefunction(2, 3)
+  y = exampleFunction(2, 3)
+  if y == 1
+    return 10

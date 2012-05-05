@@ -5,7 +5,7 @@ if x == "basketball"
   z = "traf"
 else if x == "sports"
   x = "hey"
-  a = 3493 * e34
+  a = 3493 * 9e34
   if a > 3
     x = "no"
   else if a < 3
