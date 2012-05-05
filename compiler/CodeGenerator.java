@@ -98,7 +98,7 @@ public class CodeGenerator {
     	String value = "";
     	if(!"".equals(value = genericCombine(n, " ")))
     	    return "return " + value;
-        return "return";
+        return "return;";
     }
 
     public String WHILE(PassNode n) {
@@ -113,9 +113,7 @@ public class CodeGenerator {
 	String iterator = n.getChild(0).getText();
 	String collection = n.getChild(1).getText();
 	String body = n.getChild(2).getText();
-	String tmpLength = "__len";
-        return "for (var " + iterator + " = 0, " + tmpLength + " = " +  collection + ".length;"
-	    + iterator + " < " + tmpLength + "; " + iterator + "++)" +  translateIterator(iterator,collection,body) + "\n";
+	return "for (var " + iterator + " in " + collection + ")" + body;
     }
 
     public String ARRAY_DECLARATION(PassNode n) {
@@ -203,12 +201,6 @@ public class CodeGenerator {
                     s += middleString + n.getChild(i).getText();
                 return s;
         }
-    }
-
-    private String translateIterator(String iterator, String collection, String body) {
-        String regex = "\\b" + iterator + "\\b";
-        String jsTranslation = collection + '[' + iterator + ']';
-        return body.replaceAll(regex, jsTranslation);
     }
 
     public String nodeDecider(PassNode n) {
