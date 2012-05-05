@@ -18,7 +18,7 @@ server.join = (newRoom) ~
   for c in newRoomMembers
     newRoomMembers[c].onEnter(conn.name, newRoom)
 
-server.chat = (message)
+server.chat = (message) ~
   room = getTag(conn)
   connections = conns(room)
   for c in connections
