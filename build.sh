@@ -17,6 +17,6 @@ sed -e "s/org.antlr.runtime/runtime/ig" $file > /tmp/tempfile.tmp
 mv /tmp/tempfile.tmp $file
 done
 javac *.java
-rm *.java Pass.g Makefile README
+rm *.java 
 echo "Pass compiler package is built!\nSee output is in compiler/bin"
 
