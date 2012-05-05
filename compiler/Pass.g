@@ -121,7 +121,6 @@ tokens {
 	ArrayList errors = new ArrayList();
 	public int i = 0;
 	boolean inFunc = false;
-	boolean inFormalArgs = false;
 	private final String NUM = "number";
 	private final String STR = "string";
 	
@@ -222,14 +221,19 @@ args returns [List arguments]
     ;
     
 func
-	@init {inFunc = true; inFormalArgs = true;}
+	@init {inFunc = true;}
 	@after {inFunc = false;
-			removeFromST($formalArgs.arguments);}
-	:   formalArgs=args '~' {inFormalArgs = false; addToST($formalArgs.arguments);}
-				 (expr -> ^(FUNCTION args ^(IBLOCK expr))
-				 |LT iblock -> ^(FUNCTION args iblock)
+			removeFromST($parameters.payload);}
+	:   parameters=formal_parameters '~' {addToST($parameters.payload);}
+				 (expr -> ^(FUNCTION $parameters ^(IBLOCK expr))
+				 |LT iblock -> ^(FUNCTION $parameters iblock)
 				 )
     ;
+
+formal_parameters returns [List payload]
+	@init {List paramList = new ArrayList();}
+	: '(' (parameters=ID {paramList.add($parameters.text);}(',' parameters=ID {paramList.add($parameters.text);})*)? ')' {$payload = paramList;} -> ^(FORMAL_PARAMETERS ID*)
+	;
 
 expr:   (accessid ('='|ARITH_ASSIGN))=> accessid assign {$block::ST.put($accessid.id, $accessid.type);}
 								-> ^(ASSIGNMENT accessid assign)
@@ -322,7 +326,7 @@ exponent returns [String type, String id]
 	;
 
 factor returns [String type, String id]
-    :   accessid {	if(!isLive($accessid.id) && !inFormalArgs) {
+    :   accessid {	if(!isLive($accessid.id)) {
     					addError(makeError($accessid.start,$accessid.id,"undefined variable '\%s'"));
     				   }
     				else {
@@ -498,6 +502,11 @@ FUNC_CALL
 fragment
 ARGUMENTS
 	: 'ARGUMENTS'
+	;
+	
+fragment
+FORMAL_PARAMETERS
+	: 'FORMAL_PARAMETERS'
 	;
 
 fragment
