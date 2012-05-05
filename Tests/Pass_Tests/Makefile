@@ -175,6 +175,22 @@ rtTests:
 	java Error ./RT_Tests/rte9.pass;
 	@echo "===================New Pass Test====================";
 	java Error ./RT_Tests/rte10.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte11.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte12.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte13.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte14.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte15.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte16.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte17.pass;
+	@echo "===================New Pass Test====================";
+	java Error ./RT_Tests/rte18.pass;
 
 
 tests: 

@@ -1,1 +1,3 @@
+include = (arg1) ~
+  return arg1
 jsLib = include("stlib.js")

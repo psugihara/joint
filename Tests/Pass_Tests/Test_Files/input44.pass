@@ -3,7 +3,7 @@ if x == 4
   z = "traf"
 else if x == 2
   x = "hey"
-  a = 3493 * e34
+  a = 3493 * 10e34
   if a == 3
     x = 4
 else if x == 1

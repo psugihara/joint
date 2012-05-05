@@ -1,7 +1,10 @@
 #!/bin/sh
-
+#this script builds the self contained class binaries for the pass compiler
+#Note: you must have antler installed for this build script to work
+#The files produced by this build script do not require antler!
 
 cd compiler
+
 make
 cp *.java bin
 make clean
@@ -16,3 +19,6 @@ javac *.java
 rm *.java Pass.g Makefile README
 echo "Pass compiler package is built!\nSee output is in compiler/bin"
 
+npm install
+npm link
+npm link pass

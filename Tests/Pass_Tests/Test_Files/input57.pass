@@ -3,6 +3,6 @@ exampleFunction = (arg0, arg1) ~
     x = 2
     while x < 5
       x = x + 1
-      num(x)
+      log(log(x))
     return arg0 + arg1 + x
-  nestedExamplefunction(2, 3)
+exampleFunction(10,20)

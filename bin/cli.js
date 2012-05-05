@@ -9,6 +9,8 @@
 
 /*jshint node: true*/
 
+      
+      
 var path = require('path'),
     fs  = require('fs');
 
@@ -59,7 +61,7 @@ if (process.argv.length === 5) {
 
 if (path.extname(sourcePath) == '.pass') {
   // Compile to this directory and run with the new source path.
-  require('./passc.js').compileToFile(sourcePath, run);
+  require('./passc.js').compileToFile(sourcePath, false, run);
 } else {
   run(sourcePath);
 }
