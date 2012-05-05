@@ -280,6 +280,9 @@ public class CodeGenerator {
             case PassParser.EOF:
                 s = "";
                 break;
+            case PassParser.LSTRING:
+                s = n.getText().replace("\n", "\\n");
+                break;
             default:
                 return n.getText();
         }
