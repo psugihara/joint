@@ -352,7 +352,7 @@ factor returns [String type, String id]
     				}
     			  }
     |   '(' bool {$type = $bool.type; $id = $bool.id;}  ')'
-    					-> bool	
+    					-> ^(BPARENS bool)
     |   atom {$type = $atom.type;
     		  $id = $atom.id;}
     ;
@@ -466,7 +466,8 @@ fragment
 BREAK
 	: 'BREAK'
 	;
-
+	
+fragment
 NEGATION
 	: 'NEGATION'
 	;
@@ -508,6 +509,11 @@ ELSE_IF
 fragment
 WHILE
 	: 'WHILE'
+	;
+
+fragment
+BPARENS
+	: 'BPARENS'
 	;
 
 fragment
