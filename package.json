@@ -8,8 +8,7 @@
     "connect"       : "latest"
   },
   "bin" : {
-    "pass"  : "./bin/cli.js",
-    "passc" : "./bin/passc.js"
+    "pass"  : "./bin/cli.js"
   },
   "main" : "./lib/stdlib.js"
 }

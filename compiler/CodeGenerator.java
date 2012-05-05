@@ -212,7 +212,7 @@ public class CodeGenerator {
     }
 
     public String nodeDecider(PassNode n) {
-        String s;
+        String s ="";
 
         if (n == null) {
             return null;
@@ -287,6 +287,9 @@ public class CodeGenerator {
                 break;
             case PassParser.EOF:
                 s = "";
+                break;
+            case PassParser.LSTRING:
+		//System.out.println(n.getText());
                 break;
             default:
                 return n.getText();
