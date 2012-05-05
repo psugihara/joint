@@ -68,7 +68,8 @@ function minify (target, cb) {
   process.chdir(thirdPass);
 
   child.exec("java -jar compiler.jar " + target  + " --js_output_file " 
-  + cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS; cat "+cwd+"/.oUt > "+target, null);
+  + cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS;cd " + cwd + 
+  ";cat .oUt > " + target + ";rm .oUt", null);
 }
 
 function toConsole (error, stdout, stderr) {
