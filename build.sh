@@ -19,6 +19,6 @@ javac *.java
 rm *.java Pass.g Makefile README
 echo "Pass compiler package is built!\nSee output is in compiler/bin"
 
-npm install
-npm link
-npm link pass
+sudo npm install
+sudo npm link
+sudo npm link pass

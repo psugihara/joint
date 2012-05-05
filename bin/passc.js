@@ -44,7 +44,7 @@ function prompt () {
 // output the compiled js. When done compiling, call cb with target path
 // as arg.
 function compileToFile (sourceName, mini, cb) {
-
+  
   var source = path.resolve(sourceName),
       target = cwd + '/' + path.basename(source, '.pass') + '.js';
    
@@ -52,7 +52,7 @@ function compileToFile (sourceName, mini, cb) {
   child.exec('java PassC ' + source, function (error, stdout, stderr) {
       if (error === null) {
         fs.writeFile(target, stdout, function (err) {
-          if (true)
+          if (mini)
             minify(target, cb);
           else if (cb)
             cb(target);
@@ -66,7 +66,6 @@ function compileToFile (sourceName, mini, cb) {
 
 function minify (target, cb) {
   process.chdir(thirdPass);
-
   child.exec("java -jar compiler.jar " + target  + " --js_output_file " 
   + cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS;cd " + cwd + 
   ";cat .oUt > " + target + ";rm .oUt", null);
