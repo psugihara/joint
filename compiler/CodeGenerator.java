@@ -16,7 +16,7 @@ public class CodeGenerator {
     private static final String jsRequire = "var pass = require('pass');\n"
                                           + "for (var x in pass)\n"
                                           + "  global[x] = pass[x];\n";
-
+    private int uniqueID = 0;
     
     private void removeVar(PassNode n) {
         if (n == null)
@@ -116,10 +116,11 @@ public class CodeGenerator {
     public String FOR(PassNode n) {
         String iterator = n.getChild(0).getText();
         String collection = n.getChild(1).getText();
+        String tmp = Integer.toString(uniqueID++);
         String body = n.getChild(2).getText();
-        body = body.replaceAll("\\b" + iterator + "\\b", "__tmp[__" + iterator + "]");
-        return "__tmp = " + collection + ";\n"
-        + "for (var __" + iterator + " = 0, __len = " +  collection + ".length; __" + iterator 
+        body = body.replaceAll("\\b" + iterator + "\\b", "__" + tmp + "[__" + iterator + "]");
+        return "__" + tmp + " = " + collection + ";\n"
+        + "for (var __" + iterator + " = 0, __len = __" + tmp  + ".length; __" + iterator 
         + " < __len; __" + iterator + "++)" + body + "\n";
     }
 
