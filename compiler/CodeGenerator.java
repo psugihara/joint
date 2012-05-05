@@ -88,6 +88,10 @@ public class CodeGenerator {
         return genericCombine(n, ", ");
     }
 
+    public String BPARENS(PassNode n) {
+	return '(' + n.getChild(0).getText() + ')';
+    }
+
     public String FORMAL_PARAMETERS(PassNode n) {
 	return genericCombine(n, ", ");
     }
@@ -247,6 +251,9 @@ public class CodeGenerator {
             case PassParser.ASSIGNMENT:
                 s = ASSIGNMENT(n);
                 break;
+	    case PassParser.BPARENS:
+		s = BPARENS(n);
+		break;
             case PassParser.ARGUMENTS:
                 s = ARGUMENTS(n);
                 break;
