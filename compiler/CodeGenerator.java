@@ -115,7 +115,7 @@ public class CodeGenerator {
         String body = n.getChild(2).getText();
         body = body.replaceAll("\\b" + iterator + "\\b", "__tmp[__i]");
         return "__tmp = " + collection + ";\n"
-        + "for (var __i = 0, __len = " +  collection + ".length; " + iterator
+        + "for (var __i = 0, __len = " +  collection + ".length; __i"     
         + " < __len; __i++)" + body + "\n";
     }
 
