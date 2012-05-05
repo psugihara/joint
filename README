@@ -1,0 +1,16 @@
+COMPILATION FROM SOURCE
+
+1) Install the most recent version of nodejs 
+
+2) Build the java class files for the end user 
+	./build.sh
+	
+3) Install
+	./install.sh
+	
+4) Pass is installed. Type
+	pass
+
+5) Have fun! 
+
+
