@@ -110,10 +110,13 @@ public class CodeGenerator {
     }
 
     public String FOR(PassNode n) {
-	String iterator = n.getChild(0).getText();
-	String collection = n.getChild(1).getText();
-	String body = n.getChild(2).getText();
-	return "for (var " + iterator + " in " + collection + ")" + body;
+        String iterator = n.getChild(0).getText();
+        String collection = n.getChild(1).getText();
+        String body = n.getChild(2).getText();
+        body = body.replaceAll("\\b" + iterator + "\\b", "__tmp[__i]");
+        return "__tmp = " + collection + ";\n"
+        + "for (var __i = 0, __len = " +  collection + ".length; " + iterator
+        + " < __len; __i++)" + body + "\n";
     }
 
     public String ARRAY_DECLARATION(PassNode n) {
