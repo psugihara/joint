@@ -116,7 +116,7 @@ tokens {
 @members {
 	//declare useful types
 	Set<String> reserved = new HashSet<String>(Arrays.asList(
-        new String[] {"getTag","getTags","contains","untag","conns","conn","log","server","channel"}));
+        new String[] {"getTag","getTags","contains","pushTag","popTag","setTag","clearTag","untag","conns","conn","log","server","channel"}));
 	ArrayList errors = new ArrayList();
 	public int i = 0;
 	boolean inFunc = false;
@@ -246,7 +246,7 @@ break_stmt
     ;
 
 return_stmt
-    :   'return' argument -> ^(RETURN argument)
+    :   ('return' -> RETURN) (argument -> ^(RETURN argument))?
     ;
 
 bool returns [String type, String id]
@@ -410,7 +410,7 @@ array_definition
     ;
     
 argument returns [Boolean isVariable, String id]
-    :   LT? bool {	$id = $bool.id;
+    :  bool {	$id = $bool.id;
     				$isVariable = false;
     				if($bool.type != null && $bool.type.equals("variable")) {
     					$isVariable = true;
