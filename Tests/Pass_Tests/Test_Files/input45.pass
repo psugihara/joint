@@ -8,7 +8,7 @@ if x == "basketball"
 else if x == "sports"
   bar = []
   x = "hey"
-  a = 3493 * e34
+  a = 3493 * 10e34
   if a > 3
     x = "no"
   else if a < 3
