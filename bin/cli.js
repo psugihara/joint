@@ -114,5 +114,6 @@ function run (sourcePath) {
     });
   }).listen(server);
 
+  console.log("running '" + path.basename(process.argv[2]) + "' on port " + port);
   server.listen(port);
 }
