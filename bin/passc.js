@@ -9,6 +9,7 @@ var fs = require('fs'),
     child = require('child_process'),
     compiler = path.join(path.dirname(fs.realpathSync(__filename)),
     '../compiler'),
+    cwd = process.cwd(),
     thirdPass = path.join(compiler + "/thirdPass");
 
 // If there is an argument, give it to PassC.
@@ -43,9 +44,8 @@ function prompt () {
 // output the compiled js. When done compiling, call cb with target path
 // as arg.
 function compileToFile (sourceName, mini, cb) {
-mini = false;
+
   var source = path.resolve(sourceName),
-      cwd = process.cwd(),
       target = cwd + '/' + path.basename(source, '.pass') + '.js';
    
   process.chdir(compiler);
@@ -66,12 +66,9 @@ mini = false;
 
 function minify (target, cb) {
   process.chdir(thirdPass);
-  console.log();
-  console.log("\njava -jar compiler.jar " + target  + " --js_output_file " 
-  + target + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS; "+target+"/.oUt>"+target+"\n"+process.cwd());
 
   child.exec("java -jar compiler.jar " + target  + " --js_output_file " 
-  + target + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS; "+target+"/.oUt>"+target, null);
+  + cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS; cat "+cwd+"/.oUt > "+target, null);
 }
 
 function toConsole (error, stdout, stderr) {
