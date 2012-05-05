@@ -88,6 +88,10 @@ public class CodeGenerator {
         return genericCombine(n, ", ");
     }
 
+    public String FORMAL_PARAMETERS(PassNode n) {
+	return genericCombine(n, ", ");
+    }
+    
     public String FUNCTION(PassNode n) {
         if(n.getChild(1).getType() != PassParser.IBLOCK)
             return "function (" + n.getChild(0).getText() + ") { " + n.getChild(1).getText() +" }";
@@ -110,10 +114,13 @@ public class CodeGenerator {
     }
 
     public String FOR(PassNode n) {
-	String iterator = n.getChild(0).getText();
-	String collection = n.getChild(1).getText();
-	String body = n.getChild(2).getText();
-	return "for (var " + iterator + " in " + collection + ")" + body;
+        String iterator = n.getChild(0).getText();
+        String collection = n.getChild(1).getText();
+        String body = n.getChild(2).getText();
+        body = body.replaceAll("\\b" + iterator + "\\b", "__tmp[__i]");
+        return "__tmp = " + collection + ";\n"
+        + "for (var __i = 0, __len = " +  collection + ".length; __i"     
+        + " < __len; __i++)" + body + "\n";
     }
 
     public String ARRAY_DECLARATION(PassNode n) {
@@ -235,6 +242,9 @@ public class CodeGenerator {
             case PassParser.ARGUMENTS:
                 s = ARGUMENTS(n);
                 break;
+	    case PassParser.FORMAL_PARAMETERS:
+		s = FORMAL_PARAMETERS(n);
+		break;
             case PassParser.FUNCTION:
                 s = FUNCTION(n);
                 break;
