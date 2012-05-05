@@ -91,6 +91,10 @@ public class CodeGenerator {
     public String FORMAL_PARAMETERS(PassNode n) {
 	return genericCombine(n, ", ");
     }
+
+    public String NEGATION(PassNode n) {
+	return '!' + n.getChild(0).getText();
+    }
     
     public String FUNCTION(PassNode n) {
         if(n.getChild(1).getType() != PassParser.IBLOCK)
@@ -231,6 +235,9 @@ public class CodeGenerator {
             case PassParser.RETURN:
                 s = RETURN(n);
                 break;
+	    case PassParser.NEGATION:
+	        s = NEGATION(n);
+		break;
             case PassParser.ARRAY_ACCESS:
                 s = ARRAY_ACCESS(n);
                 break;

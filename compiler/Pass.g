@@ -270,11 +270,17 @@ bool returns [String type, String id]
     |   (l1=logic {$type = $l1.type; $id = $l1.id;} -> logic) 
     				(operator=CMP logic {$type = NUM;} -> ^(GENERIC_OP $bool $operator logic))*
     ;
+    
 
 logic returns [String type, String id]
-    :   (e1=eval {$id = $e1.id; $type = $e1.type;} ->eval) 
-    				(operator=BOP eval {$type = NUM;}-> ^(GENERIC_OP $logic $operator eval))* 
+    :   (e1=negate {$id = $e1.id; $type = $e1.type;} -> negate) 
+    				(operator=BOP negate {$type = NUM;}-> ^(GENERIC_OP $logic $operator negate))* 
     ;
+
+negate returns [String type, String id]
+	:   NOT ev1=eval {$id = $ev1.text;} -> ^(NEGATION eval)
+	|   ev1=eval {$id = $ev1.text;} -> eval
+	;
 
 eval returns [String type, String id]
 	:   (t1=term {$id = $t1.id; $type = $t1.type;} ->term) 
@@ -461,6 +467,10 @@ BREAK
 	: 'BREAK'
 	;
 
+NEGATION
+	: 'NEGATION'
+	;
+
 fragment
 GENERIC_OP
 	:'GENERIC_OP'
@@ -566,6 +576,10 @@ DEDENT
 ARITH_ASSIGN
     :   '+='|'-='|'*='|'/='|'%='
     ;
+
+NOT 
+	: '!'
+	;
 
 // Comparator
 CMP :   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
