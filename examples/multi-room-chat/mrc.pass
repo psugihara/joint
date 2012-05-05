@@ -23,3 +23,6 @@ server.chat = (message) ~
   connections = conns(room)
   for c in connections
     c.receive(conn.name, message)
+
+server.getRooms = () ~
+  conn.getRooms(allTags())

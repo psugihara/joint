@@ -46,5 +46,9 @@ server.chat = function (message) {
     __tmp[__c].receive(conn.name, message);
   }
 };
+server.getRooms = function () {
+  var conn = this.conn;
+  conn.getRooms(allTags());
+};
 
 module.exports = server;
