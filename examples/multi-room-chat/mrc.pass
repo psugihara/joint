@@ -16,12 +16,17 @@ server.join = (newRoom) ~
   broadcast = 0
   if !tagIsLive(oldRoom) || !tagIsLive(newRoom)
     broadcast = 1
+  newMembers = []
+  i = 0
   for c in conns(newRoom)
     c.onEnter(conn.name, newRoom)
+    newMembers[i] = c.name
+    i += 1
   if broadcast
     tags = allTags()
     for c in conns()
       c.getRooms(tags)
+  conn.getMembers(newMembers)
 
 server.chat = (message) ~
   room = getTag(conn)
