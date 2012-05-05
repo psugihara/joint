@@ -211,7 +211,7 @@ block
 	@after {i--;
 		//System.out.println("Symbol Table for block " + order + "\n" + getST($block::ST));
 		}
-    :   LT* stmt* 
+    :   LT!* stmt* 
     ;
    
 stmt:   expr (LT+ -> expr LT
@@ -225,6 +225,7 @@ iblock
 	catch [MismatchedTokenException mme] {
 		System.err.println("missing indent");
 	}
+	
 args returns [List arguments]
 	@init {List argList = new ArrayList();}
 	:   '(' (ar1=argument {if($ar1.isVariable) argList.add($ar1.id);} (',' argn=argument {if($argn.isVariable) argList.add($argn.id);})*)? (LT+)?')' 	{$arguments = argList;}

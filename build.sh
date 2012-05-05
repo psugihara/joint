@@ -7,10 +7,10 @@
 cd compiler
 
 make
-cp *.java ../production/bin/compiler
+cp *.java ../pass-production/bin/compiler
 make clean
 #copy bin files 
-cd ../production/bin
+cd ../pass-production/bin
 cp ../../bin/*.js  ./    
 sed -e "s:'../compiler':'./compiler':ig" passc.js > .oUt
 cp .oUt passc.js
@@ -20,7 +20,7 @@ cd compiler
 for file in $(grep -il "org.antlr.runtime" ./  -R)
 do
 sed -e "s:org.antlr.runtime:runtime:ig" $file > /tmp/tempfile.tmp
-mv /tmp/tempfile.tmp $file
+mv /tmp/tempfile.tmprm $file
 done
 javac *.java
 rm *.java 
@@ -29,15 +29,15 @@ cd ../../
 cp ../lib ./ -R
 #copy install scripts
 cp ../install.sh ./
-cp ../package.js ./
+cp ../package.json ./
 #copy other stuff
 cp ../examples ./ -R
 cp ../LICENSE ./
 #put it all into a tarbar
 cd ..
-tar cvzf pass.tar.gz production
-cd production
-#clean up the production directory
+tar cvzf pass.tar.gz pass-production
+cd pass-production
+#clean up the pass-production directory
 rm examples lib ./bin/*.js ./bin/compiler/*.class -rf
 cd ..
 #done
