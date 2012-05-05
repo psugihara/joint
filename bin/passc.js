@@ -8,7 +8,7 @@ var fs = require('fs'),
     path = require('path'),
     child = require('child_process'),
     compiler = path.join(path.dirname(fs.realpathSync(__filename)),
-    '../compiler'),
+    './compiler'),
     cwd = process.cwd(),
     thirdPass = path.join(compiler + "/thirdPass");
 
