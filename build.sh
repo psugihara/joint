@@ -19,7 +19,7 @@ cd compiler
 #remove antlr runtime dependency
 for file in $(grep -il "org.antlr.runtime" ./  -R)
 do
-sed -e "s/org.antlr.runtime/runtime/ig" $file > /tmp/tempfile.tmp
+sed -e "s:org.antlr.runtime:runtime:ig" $file > /tmp/tempfile.tmp
 mv /tmp/tempfile.tmp $file
 done
 javac *.java
