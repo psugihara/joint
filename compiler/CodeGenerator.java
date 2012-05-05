@@ -108,11 +108,14 @@ public class CodeGenerator {
     private boolean isVar(String s){
       return variablePattern.matcher(s).matches();
     }
+
     public String FOR(PassNode n) {
 	String iterator = n.getChild(0).getText();
 	String collection = n.getChild(1).getText();
 	String body = n.getChild(2).getText();
-        return "for (" + iterator + " in " + collection + ')' +  translateIterator(iterator,collection,body) + "\n";
+	String tmpLength = "__len";
+        return "for (var " + iterator + " = 0, " + tmpLength + " = " +  collection + ".length;"
+	    + iterator + " < " + tmpLength + "; " + iterator + "++)" +  translateIterator(iterator,collection,body) + "\n";
     }
 
     public String ARRAY_DECLARATION(PassNode n) {
@@ -174,8 +177,6 @@ public class CodeGenerator {
     public String IF_CONDITIONS(PassNode n) {
         return genericCombine(n, "");
     }
-
-
 
     public String genericCombine(PassNode n, String middleString) {
         return genericCombine(n, middleString, middleString);
