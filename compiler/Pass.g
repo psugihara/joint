@@ -353,7 +353,7 @@ dictionary_access
 
 atom returns [String type, String id]
 	:   num=NUMBER {$type = NUM; $id = $num.text;}
-    |   str=STRING {$type = STR; $id = $str.text;}
+    |   str=STRING {$type = STR; $id = $str.text;} -> ^(LSTRING $str)
     ;
 
 control
@@ -456,6 +456,11 @@ GENERIC_OP
 	;
 
 fragment
+LSTRING
+	: 'LSTRING'
+	;
+
+fragment
 ARRAY_ACCESS
 	: 'ARRAY ENTRY'
 	;
@@ -498,7 +503,7 @@ fragment
 FUNC_CALL
 	: 'FUNC_CALL'
 	;
-
+	
 fragment
 ARGUMENTS
 	: 'ARGUMENTS'
@@ -528,7 +533,7 @@ ELSE
     : 'ELSE'
 	;
 
-LT  :   ('\n'|'r\n')+ { emit(new CommonToken(LT, "LT")); }
+LT  :   ('\n'|'\r\n')+ { emit(new CommonToken(LT, "LT")); }
     ;
 
 INDENT
@@ -600,7 +605,7 @@ HEX_DIGIT
 
 fragment
 ESC_SEQ
-    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
+    :   '\\' ('b'|'t'|'f'|'r'|'\"'|'\''|'\\')
     |   UNICODE_ESC
     |   OCTAL_ESC
     ;
