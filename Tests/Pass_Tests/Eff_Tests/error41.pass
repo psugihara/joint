@@ -1,0 +1,3 @@
+keys = (x, y) ~
+  return x * y
+a = keys(keys(1,0))
