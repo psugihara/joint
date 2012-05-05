@@ -7,10 +7,16 @@
 cd compiler
 
 make
-cp *.java ../bin/compiler
+cp *.java ../production/bin/compiler
 make clean
-cd ../bin/compiler
-                         
+#copy bin files 
+cd ../production/bin
+cp ../../bin/*.js  ./    
+sed -e "s:'../compiler':'./compiler':ig" passc.js > .oUt
+cp .oUt passc.js
+rm .oUt "*.js"          
+cd compiler
+#remove antlr runtime dependency
 for file in $(grep -il "org.antlr.runtime" ./  -R)
 do
 sed -e "s/org.antlr.runtime/runtime/ig" $file > /tmp/tempfile.tmp
@@ -18,5 +24,22 @@ mv /tmp/tempfile.tmp $file
 done
 javac *.java
 rm *.java 
-echo "Pass compiler package is built!\nSee output is in compiler/bin"
+#copy lib files
+cd ../../
+cp ../lib ./ -R
+#copy install scripts
+cp ../install.sh ./
+cp ../package.js ./
+#copy other stuff
+cp ../examples ./ -R
+cp ../LICENSE ./
+#put it all into a tarbar
+cd ..
+tar cvzf pass.tar.gz production
+cd production
+#clean up the production directory
+rm examples lib ./bin/*.js ./bin/compiler/*.class -rf
+cd ..
+#done
+echo "Pass compiler package is built and tared!\noutput files > pass.tar.gz"
 
