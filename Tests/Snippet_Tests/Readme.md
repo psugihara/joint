@@ -26,7 +26,7 @@ the files into the current directory and then compiling inside the directory.
 This directory contains 76 files that tested basic functionality of the grammar.
 The naming convention is 'input#' where '#' ranges from 1-76.
 
-Each file is tested using the pass grammar's lexer and parser. If the file does not contain an error,
+Each file is tested using the pass grammar's lexer and parser, run in TestSnippets.java. If the file does not contain an error,
 there is no output. Otherwise, the error is printed. 
 
 To run these tests, execute the following command:
