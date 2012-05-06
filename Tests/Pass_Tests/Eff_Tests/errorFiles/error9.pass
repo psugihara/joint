@@ -1,0 +1,4 @@
+# y not declared/defined in if comparison#
+x = 4
+if x == y
+  y = 10

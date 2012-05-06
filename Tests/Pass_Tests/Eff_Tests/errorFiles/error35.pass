@@ -1,0 +1,2 @@
+# missing ending quotations for last element #
+listB = ["first", "second", "bla", "stop here!", "fifth]

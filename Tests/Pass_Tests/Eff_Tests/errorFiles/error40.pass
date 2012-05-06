@@ -1,0 +1,6 @@
+# !=== nah bruh #
+listB = ["first", "second", "bla", "stop here!", "fifth"]
+x = 0
+for thisElement in listB
+  if thisElement !=== "stop here!"
+    break    
