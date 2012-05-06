@@ -1,4 +1,0 @@
-# z isnt defined/declared #
-x = 4
-y = -100
-x = x + y + z

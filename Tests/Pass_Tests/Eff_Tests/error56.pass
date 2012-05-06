@@ -1,3 +1,0 @@
-sup = (x,y) ~
-  return x * y
-)

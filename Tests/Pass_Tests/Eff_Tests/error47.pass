@@ -1,3 +1,0 @@
-x = "hei" + "hey"
-log(x)
-x = x + 102 + "nah bruh" + 20
