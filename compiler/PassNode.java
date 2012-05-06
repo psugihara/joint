@@ -1,3 +1,9 @@
+/**
+ * author: Rafael Castellanos
+ * PassNode.java
+ * This file contains the data structures for the AST nodes
+ */
+
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeAdaptor;
