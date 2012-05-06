@@ -1,3 +1,13 @@
+
+/**
+ * -----------------------------------------------------------------------------
+ * author: Andrew Lamping
+ * Error.java
+ * This file prints the stdout and stderror of a Pass program.
+ *------------------------------------------------------------------------------
+ */
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,14 +33,14 @@ import java.io.InputStreamReader;
 	     BufferedReader stdError = new BufferedReader(new
             InputStreamReader(p.getErrorStream()));
 
-	     // read the output from the command
+	     // print the stdout from the command
             String s;
  	     System.out.println("Standard output of the program:\n");
 	     while ((s = stdInput.readLine()) != null) {
 	         System.out.println(s);
             }
 
-	     // read any errors from the attempted command
+	     // print stderr from the command
             System.out.println("Standard error of the program (if any):\n");
             while ((s = stdError.readLine()) != null) 
                 System.out.println(s);
