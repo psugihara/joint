@@ -1,7 +1,16 @@
+/**
+ * -----------------------------------------------------------------------------
+ * author: Nick
+ * contributors:
+ * /examples/multi-room-chat/client.js  
+ * The client-side JavaScript for the Multi-Room Chat example
+ *------------------------------------------------------------------------------
+ */
+
   var server;
   var connected = false;
 
-  pass.connect(5050, function(remote) {
+  pass.connect(function(remote) {
     server = remote;
     server.register(callbacks);
     var name = "";
@@ -61,7 +70,10 @@
 
   var joinRoom = function() {
     var room = document.getElementById('room-input').value;
+    if(room.length == 0) return;
     document.getElementById('room-input').value = "";
+    document.getElementById('members-label').style.color = "blue";
+    document.getElementById('room-name').style.color = "red";
     document.getElementById('room-name').innerHTML = room;
     if(room.length > 0)
       server.join(room);

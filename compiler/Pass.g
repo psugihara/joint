@@ -1,8 +1,10 @@
 //todo make RETURN AND GENERIC_OP custom nodes
 grammar Pass;
+
 options {
   output=AST;
 }
+
 tokens {
   DEDENT;
   INDENT;
@@ -22,9 +24,7 @@ tokens {
 
   int indentLevel = 0;
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
-  
   java.util.Stack<String> parensAndIndents = new java.util.Stack<String>();
-  
   boolean lineTerminatedEOF = false;
 
   // Note that this will occur at the end of each production if it is not
@@ -46,8 +46,6 @@ tokens {
         indentLevel--;
       }
     }
-
-    
     state.token = t;
     tokens.offer(t);
   }
@@ -111,14 +109,13 @@ tokens {
       
     indentLevel = indents;
   }
-  
-  
-  
 }
+
 @members {
 	//declare useful types
 	Set<String> reserved = new HashSet<String>(Arrays.asList(
-        new String[] {"getTag","getTags","contains","pushTag","popTag","setTag","clearTag","untag","conns","conn","log","server","channel"}));
+        new String[] {"getTag","getTags","tagIsLive","pushTag","num","str","popTag",
+        "setTag","clearTags","conns","conn","log","server"}));
 
 	ArrayList errors = new ArrayList();
 	public int i = 0;
@@ -152,7 +149,6 @@ tokens {
                                         RecognitionException e) {
         String hdr = getErrorHeader(e);
         String msg = getErrorMessage(e, tokenNames);
-        System.out.println(msg);
         addError(hdr);
     }
 	
@@ -204,16 +200,15 @@ tokens {
 prog
 	@after{if(!errors.isEmpty()) {
 				returnErrors();
-			}}
-	: block EOF -> ^(PROG block EOF)
+		   }
+	}
+	:   block EOF -> ^(PROG block EOF)
     ;
 
 block
 	scope {HashMap ST;}
 	@init {$block::ST = new HashMap(); int order = i++;}
-	@after {i--;
-		//System.out.println("Symbol Table for block " + order + "\n" + getST($block::ST));
-		}
+	@after {i--;}
     :   LT!* stmt* 
     ;
    
@@ -225,9 +220,6 @@ stmt:   expr (LT+ -> expr LT
 iblock
     :   INDENT block DEDENT -> ^(IBLOCK block)
     ;
-	catch [MismatchedTokenException mme] {
-		System.err.println("missing indent");
-	}
 	
 args returns [List arguments]
 	@init {List argList = new ArrayList();}
@@ -250,7 +242,9 @@ formal_parameters returns [List payload]
 	: '(' (parameters=ID {paramList.add($parameters.text);}(',' parameters=ID {paramList.add($parameters.text);})*)? ')' {$payload = paramList;} -> ^(FORMAL_PARAMETERS ID*)
 	;
 
-expr:   (accessid ('='|ARITH_ASSIGN))=> accessid assign {$block::ST.put($accessid.id, $accessid.type);}
+expr
+	scope {String LHS;}
+	:   (accessid ('='|ARITH_ASSIGN))=> accessid {$expr::LHS = $accessid.id;} assign {$block::ST.put($accessid.id, $accessid.type);}
 								-> ^(ASSIGNMENT accessid assign)
     |   short_stmt
     |   bool
@@ -347,8 +341,11 @@ exponent returns [String type, String id]
 	;
 
 factor returns [String type, String id]
-    :   accessid {	if(!isLive($accessid.id)) {
-    					addError(makeError($accessid.start,$accessid.id,"undefined variable '\%s'"));
+    :   accessid {if(!isLive($accessid.id)) {
+    					//System.out.println($accessid.type + " " + $accessid.id + $expr::LHS);
+    					if(!(inFunc && $accessid.type.equals("function") && $accessid.id.equals($assign::LHS))) {
+    						addError(makeError($accessid.start, $accessid.id,"undefined variable '\%s'"));
+    						}
     				   }
     				else {
     					$type = $accessid.type;
@@ -417,6 +414,8 @@ else_test
     ;
 
 assign returns [String type]
+	scope{String LHS;}
+	@init{$assign::LHS = $expr::LHS;}
     :   '=' (expr 
     		|dictionary_definition
     		|array_definition) 
@@ -599,7 +598,7 @@ CMP :   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
 BOP :   '||'|'&&'
     ;
 
-ID  :   ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+ID  :   (('a'..'z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*|('A'..'Z')('A'..'Z'|'0'..'9'|'_')*)
     ;
 
 NUMBER

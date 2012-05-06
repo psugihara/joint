@@ -1,12 +1,24 @@
-import org.antlr.runtime.*;
-import java.util.*;
-import org.antlr.runtime.tree.*;
-import java.io.*;
+/**
+ * author: Rafael Castelllanos
+ * contributors: Peter
+ * PassC.java
+ * This file contains the tree walker and hookups to the grammar and code 
+ * generator.
+ * It is the main class you use to compile Pass code
+ */
+ 
+import org.antlr.runtime.ANTLRFileStream;
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.TokenRewriteStream;
+
+import java.util.Scanner;
+import java.util.Stack;
 
 public class PassC {
     public static PassParser grammar;
-    CodeGenerator gen;
-    CodeOptimizer opt;
+    SecondPass gen;
+    FirstPass opt;
 
     public void run(CharStream inputStream) throws Exception {
         PassLexer lex = new PassLexer(inputStream);
@@ -20,12 +32,13 @@ public class PassC {
             System.out.println("Input Rejected by grammar: no tree generated");
             System.exit(-1);
         }
-        gen = new CodeGenerator();
-        opt = new CodeOptimizer();
+        gen = new SecondPass();
+        opt = new FirstPass();
         try {
-            optimizeTree(tree);
-            walkTree(tree);
-            //tree building error
+            /*generate code by walking the AST */
+            walkTree1(tree);
+            walkTree2(tree);
+            /*tree building error  */
         } catch (java.lang.ClassCastException e) {
             System.out.println("ERROR: unable to parse input program");
             System.exit(-1);
@@ -40,8 +53,8 @@ public class PassC {
     }
 
 
-    //first pass
-    public void optimizeTree(PassNode n) throws java.lang.ClassCastException {
+    /*first pass */
+    public void walkTree1(PassNode n) throws java.lang.ClassCastException {
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);
         PassNode tmp = null;
@@ -62,8 +75,8 @@ public class PassC {
         }
     }
 
-    //second pass
-    public void walkTree(PassNode n) {
+    /*second pass */
+    public void walkTree2(PassNode n) {
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);
         PassNode tmp = null;
@@ -88,7 +101,7 @@ public class PassC {
     public static void main(String[] args) throws Exception {
         PassC passCompiler = new PassC();
 
-        // If no arguments are present, compile input from stdin.
+        /* If no arguments are present, compile input from stdin.*/
         if ((args == null || args.length == 0)) {
             Scanner lines = new Scanner(System.in);
             while (true) {

@@ -15,15 +15,18 @@
     #messages { float: left; height: 500px; width: 75%; border: 2px solid blue; overflow-y: scroll;}
     #rooms {height: 25px;}
     #members {height: 25px;}
+    #members-label {color: white;}
+    #rooms-label {color: blue;}
+    #room-name {color: white;}
   </style>
 </head>
-  <BODY><h1>Multi-room chat server</h1><br>
+  <BODY><h1>Multi-room chat server</h1>
     <input placeholder="chatroom" onkeydown="checkEnter(event, joinRoom)" id="room-input" />
     <button type="button" id="join-button" onClick="joinRoom();">Join</button>
     <br><br>
     <div id="rooms-label">Open rooms: </div><div id="rooms"></div>
-    <div id="members-label">Members of room <a id="room-name"> </a>:</div> <div id="members"></div>
-    <br><br>
+    <div id="members-label">Members of room "<a id="room-name"> </a>":</div> <div id="members"></div>
+    <br>
     <div id="messages"></div>
     <input placeholder="type message here" onkeydown="checkEnter(event, sendMessage)" id="chat-message">
     <button type="button" id="send-button" onClick="sendMessage();">Send</button>

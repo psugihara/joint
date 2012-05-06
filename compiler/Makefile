@@ -1,3 +1,8 @@
+# ------------------------------------------------------------------------------
+# author: who really cares it's just a makefile
+# Makefile
+# Makefile for the compiler
+# ------------------------------------------------------------------------------
 CC = javac
 CC1 = java org.antlr.Tool
 CFLAGS = -nowarn
