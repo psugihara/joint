@@ -23,7 +23,7 @@ server.join = (newRoom) ~
     newMembers[i] = c.name
     i += 1
   if broadcast
-    tags = allTags()
+    tags = getTags()
     for c in conns()
       c.getRooms(tags)
   conn.getMembers(newMembers)
