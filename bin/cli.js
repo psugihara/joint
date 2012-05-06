@@ -26,18 +26,18 @@ var path = require('path'),
 // ####Argument Validation
 // _______________________
 
-var sourcePath, port, staticPath;
+var sourcePath, port, staticPath, optimize;
 
 // Print a diagnostic message followed by the usage line, then die.
 var usageDie = function (message) {
   if (message)
     console.log(message);
-  console.log('usage: pass <path/program.pass> [<port#> <static directory>]');
+  console.log('usage: pass <path/program.pass> [<port#> <static directory>][-optimize]');
   process.exit();
 };
 
 // Verify that the command was called with the correct number of arguments.
-if (process.argv.length !== 3 && process.argv.length !== 5) {
+if (process.argv.length !== 3 && process.argv.length !== 5 && process.argv.length !== 6) {
   usageDie('invalid number of arguments');
 }
 
@@ -48,7 +48,7 @@ if (!path.existsSync(sourcePath))
 if (path.extname(sourcePath) !== '.pass' && path.extname(sourcePath) !== '.js')
   usageDie('Server program must have .pass or .js extension');
 
-if (process.argv.length === 5) {
+if (process.argv.length > 4 && process.argv.length < 7 ) {
   // Verify that the port is a number in the correct range.
   port = parseFloat(process.argv[3]);
   if (!port || port < 0 || port > 65535) {
@@ -61,6 +61,9 @@ if (process.argv.length === 5) {
     usageDie('file not found: ' + staticPath);
   if (!fs.statSync(staticPath).isDirectory())
     usageDie('static arg must be directory');
+  
+  if ("-optimize" === process.argv[5])
+     optimize = true;
 }
 
 
@@ -69,7 +72,7 @@ if (process.argv.length === 5) {
 
 if (path.extname(sourcePath) == '.pass') {
   // Compile to this directory and run with the new source path.
-  require('./passc.js').compileToFile(sourcePath, false, run);
+  require('./passc.js').compileToFile(sourcePath, optimize, run);
 } else {
   run(sourcePath);
 }
