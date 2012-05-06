@@ -1,6 +1,7 @@
 server.register = (callbacks) ~
   for i in keys(callbacks)
     conn[i] = callbacks[i]
+  conn.getRooms(getTags())
 
 server.setName = (name) ~
   conn.name = name
@@ -12,9 +13,11 @@ server.join = (newRoom) ~
   if oldRoom
     for c in conns(oldRoom)
       c.onLeave(conn.name, oldRoom)
-  setTag(conn, newRoom)
   broadcast = 0
-  if !tagIsLive(oldRoom) || !tagIsLive(newRoom)
+  if !tagIsLive(newRoom)
+    broadcast = 1
+  setTag(conn, newRoom)
+  if !tagIsLive(oldRoom)
     broadcast = 1
   newMembers = []
   i = 0

@@ -103,7 +103,7 @@ public class CodeGenerator {
     public String FUNCTION(PassNode n) {
         if(n.getChild(1).getType() != PassParser.IBLOCK)
             return "function (" + n.getChild(0).getText() + ") { " + n.getChild(1).getText() +" }";
-        return "function (" + n.getChild(0).getText() + ")" + n.getChild(1).getText() + "\n";
+        return "function (" + n.getChild(0).getText() + ")" + n.getChild(1).getText();
     }
 
     public String RETURN(PassNode n) {

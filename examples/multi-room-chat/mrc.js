@@ -9,11 +9,14 @@ server.register = function (callbacks) {
   for (var __i = 0, __len = __0.length; __i < __len; __i++) {
     conn[__0[__i]] = callbacks[__0[__i]];
   }
-};
+  conn.getRooms(getTags());
+}
+;
 server.setName = function (name) {
   var conn = this.conn;
   conn.name = name;
-};
+}
+;
 server.join = function (newRoom) {
   var conn = this.conn;
   var newMembers, broadcast, i, oldRoom;
@@ -27,9 +30,12 @@ server.join = function (newRoom) {
       __1[__c].onLeave(conn.name, oldRoom);
     }
   }
-  setTag(conn, newRoom);
   broadcast = 0;
-  if (!tagIsLive(oldRoom) || !tagIsLive(newRoom)) {
+  if (!tagIsLive(newRoom)) {
+    broadcast = 1;
+  }
+  setTag(conn, newRoom);
+  if (!tagIsLive(oldRoom)) {
     broadcast = 1;
   }
   newMembers = [];
@@ -42,14 +48,15 @@ server.join = function (newRoom) {
   }
   if (broadcast) {
     var tags;
-    tags = allTags();
+    tags = getTags();
     __3 = conns();
     for (var __c = 0, __len = __3.length; __c < __len; __c++) {
       __3[__c].getRooms(tags);
     }
   }
   conn.getMembers(newMembers);
-};
+}
+;
 server.chat = function (message) {
   var conn = this.conn;
   var room;
@@ -58,6 +65,7 @@ server.chat = function (message) {
   for (var __c = 0, __len = __4.length; __c < __len; __c++) {
     __4[__c].receive(conn.name, message);
   }
-};
+}
+;
 
 module.exports = server;
