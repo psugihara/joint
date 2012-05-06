@@ -61,6 +61,7 @@
 
   var joinRoom = function() {
     var room = document.getElementById('room-input').value;
+    if(room.length == 0) return;
     document.getElementById('room-input').value = "";
     document.getElementById('members-label').style.color = "blue";
     document.getElementById('room-name').style.color = "red";
