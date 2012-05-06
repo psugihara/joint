@@ -20,6 +20,12 @@ public class PassC {
     SecondPass gen;
     FirstPass opt;
 
+    /**
+     * run the parser, syntax analyzer, and tree walkers
+     * more or less run everything 
+     * @param inputStream
+     * @throws Exception
+     */
     public void run(CharStream inputStream) throws Exception {
         PassLexer lex = new PassLexer(inputStream);
         TokenRewriteStream tokens = new TokenRewriteStream(lex);
@@ -53,7 +59,11 @@ public class PassC {
     }
 
 
-    /*first pass */
+    /**
+     * first pass of the tree walk
+      * @param n
+     * @throws java.lang.ClassCastException
+     */
     public void walkTree1(PassNode n) throws java.lang.ClassCastException {
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);
@@ -75,7 +85,10 @@ public class PassC {
         }
     }
 
-    /*second pass */
+    /**
+     * second pass of the tree walk
+     * @param n
+     */
     public void walkTree2(PassNode n) {
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);

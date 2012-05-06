@@ -18,8 +18,10 @@ public class FirstPass {
         return warnings;
     }
 
-
-    /*if a variable is defined as an argument to the function, don't add var to it  */
+    /**
+     * if a variable is defined as an argument to the function, don't add var to it 
+     * @param n
+     */
     public void FUNCTION(PassNode n) {
         n = (PassNode) n.getChild(0);
         for (int i = 0; i < n.getChildCount(); i++) {
@@ -35,8 +37,10 @@ public class FirstPass {
         }
     }
 
-
-    /* TODO get line numbers working */
+    /**
+     * remove dead code after a node
+     * @param n
+     */
     public void removeNodesAfter(PassNode n) {
         PassNode parent = (PassNode) n.getParent();
         int i;
@@ -59,7 +63,10 @@ public class FirstPass {
     }
 
 
-
+    /**
+     * decide what type of node it is and call the approriate method
+     * @param n
+     */
     public void nodeDecider(PassNode n) {
         if (n == null) {
             return;
