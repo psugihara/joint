@@ -1,12 +1,20 @@
-import java.util.HashSet;
+/**
+ * -----------------------------------------------------------------------------
+ * author: Rafael Castellanos
+ * contributors: Cody, Peter
+ * SecondPass.java
+ * This file contains the second pass code generation rules
+ *------------------------------------------------------------------------------
+ */
+ 
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.*;
+import java.util.regex.Pattern;
 
-public class CodeGenerator {
+public class SecondPass {
     private static final Set<String> STDLIB = new HashSet<String>(Arrays.asList(
-        new String[] {"getTag","getTags","contains","untag","conns"}
+            new String[]{"getTag", "getTags", "contains", "untag", "conns"}
     ));
 
     private static final Pattern variablePattern = Pattern.compile("([a-zA-Z])+[0-9_]*[a-zA-Z 0-9_]*");
@@ -14,22 +22,10 @@ public class CodeGenerator {
     private boolean warnings = false;
     private boolean stdLibFunctionsCalled = false;
     private static final String jsRequire = "var pass = require('pass');\n"
-                                          + "for (var x in pass)\n"
-                                          + "  global[x] = pass[x];\n";
+            + "for (var x in pass)\n"
+            + "  global[x] = pass[x];\n";
     private int uniqueID = 0;
-    
-    private void removeVar(PassNode n) {
-        if (n == null)
-            return;
-        String var = n.getText();
-        Matcher m = variablePattern.matcher(var);
-        if (m.matches()) {
-            if (n.isVarDefined(var)) {
-                errors = true;
-                System.out.println("ERROR: line " + n.getLine() + " :: variable " + var + " is used before it is defined");
-            }
-        }
-    }
+
 
     public boolean hasErrors() {
         return errors;
@@ -45,7 +41,6 @@ public class CodeGenerator {
         return " {\n  " + text.trim() + "\n}";
     }
 
-    // n.child(0) + n.getText + n.child(1)
     public String GENERIC_OP(PassNode n) {
         return genericCombine(n, " ");
     }
@@ -59,11 +54,12 @@ public class CodeGenerator {
         PassNode rval = (PassNode) n.getChild(2);
         String varName = lval.getText();
         int type = lval.getType();
-        if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) && n.isDefined(varName) == false) {
+        if (type != PassParser.DICT_ACCESS && type != PassParser.ARRAY_ACCESS && !STDLIB.contains(varName) &&
+                n.isDefined(varName) == false) {
             lval.setText(varName);
             n.setChild(0, lval);
-        } else if (type == PassParser.DICT_ACCESS && rval.getType() == PassParser.FUNCTION && lval.getText().startsWith("server.")) {
-            // Set conn = this.conn in server functions.
+        } else if (type == PassParser.DICT_ACCESS && rval.getType() == PassParser.FUNCTION &&
+                lval.getText().startsWith("server.")) {
             if (rval.getText().contains("\\bvar\\b")) {
                 String[] func = rval.getText().split(";", 2);
                 rval.setText(func[0] + ";\n  conn = this.conn;" + func[1]);
@@ -81,7 +77,7 @@ public class CodeGenerator {
             res += n.getChild(i).getText();
         }
         res += "\nmodule.exports = server;";
-        return (stdLibFunctionsCalled ? jsRequire : "") +n.getDefinedVarNames() + res.trim();
+        return (stdLibFunctionsCalled ? jsRequire : "") + n.getDefinedVarNames() + res.trim();
     }
 
     public String ARGUMENTS(PassNode n) {
@@ -89,27 +85,27 @@ public class CodeGenerator {
     }
 
     public String BPARENS(PassNode n) {
-	return '(' + n.getChild(0).getText() + ')';
+        return '(' + n.getChild(0).getText() + ')';
     }
 
     public String FORMAL_PARAMETERS(PassNode n) {
-	return genericCombine(n, ", ");
+        return genericCombine(n, ", ");
     }
 
     public String NEGATION(PassNode n) {
-	return '!' + n.getChild(0).getText();
+        return '!' + n.getChild(0).getText();
     }
-    
+
     public String FUNCTION(PassNode n) {
-        if(n.getChild(1).getType() != PassParser.IBLOCK)
-            return "function (" + n.getChild(0).getText() + ") { " + n.getChild(1).getText() +" }";
+        if (n.getChild(1).getType() != PassParser.IBLOCK)
+            return "function (" + n.getChild(0).getText() + ") { " + n.getChild(1).getText() + " }";
         return "function (" + n.getChild(0).getText() + ")" + n.getChild(1).getText();
     }
 
     public String RETURN(PassNode n) {
-    	String value = "";
-    	if(!"".equals(value = genericCombine(n, " ")))
-    	    return "return " + value;
+        String value = "";
+        if (!"".equals(value = genericCombine(n, " ")))
+            return "return " + value;
         return "return;";
     }
 
@@ -117,9 +113,6 @@ public class CodeGenerator {
         return "while (" + genericCombine(n, ")");
     }
 
-    private boolean isVar(String s){
-      return variablePattern.matcher(s).matches();
-    }
 
     public String FOR(PassNode n) {
         String iterator = n.getChild(0).getText();
@@ -128,8 +121,8 @@ public class CodeGenerator {
         String body = n.getChild(2).getText();
         body = body.replaceAll("\\b" + iterator + "\\b", "__" + tmp + "[__" + iterator + "]");
         return "var __" + tmp + " = " + collection + ";\n"
-        + "for (var __" + iterator + " = 0, __" + tmp + "len = __" + tmp  + ".length; __" + iterator 
-        + " < __" + tmp + "len; __" + iterator + "++)" + body + "\n";
+                + "for (var __" + iterator + " = 0, __" + tmp + "len = __" + tmp + ".length; __" + iterator
+                + " < __" + tmp + "len; __" + iterator + "++)" + body + "\n";
     }
 
     public String ARRAY_DECLARATION(PassNode n) {
@@ -140,7 +133,7 @@ public class CodeGenerator {
         PassNode node = (PassNode) n.getChild(0);
         String funcName = node.getText();
         if (funcName == null) {
-            //this should never happen
+            /*this should never happen   */
             System.out.println("FATAL ERROR: no function name ");
             System.exit(-1);
         }
@@ -148,19 +141,21 @@ public class CodeGenerator {
         if (funcName.equals("log")) {
             funcName = "console.log";
             stdLibFunctionsCalled = true;
-        }if (funcName.equals("num")) {
-            funcName = "parseFloat";
-        }if (funcName.equals("str")) {
-            String number = n.getChild(1).getText();
-            if(variablePattern.matcher(number).matches()){
-		return number + ".toString()";
-	    }
-
-	    return "(__num = " + number+").toString()";
-        }if (funcName.equals("include")){
-            funcName = "require";
         }
-         else if (STDLIB.contains(funcName)) {
+        if (funcName.equals("num")) {
+            funcName = "parseFloat";
+        }
+        if (funcName.equals("str")) {
+            String number = n.getChild(1).getText();
+            if (variablePattern.matcher(number).matches()) {
+                return number + ".toString()";
+            }
+
+            return "(__num = " + number + ").toString()";
+        }
+        if (funcName.equals("include")) {
+            funcName = "require";
+        } else if (STDLIB.contains(funcName)) {
             stdLibFunctionsCalled = true;
         }
         node.setText(funcName);
@@ -169,20 +164,18 @@ public class CodeGenerator {
         return text;
     }
 
-    //arrayName accessElement, accessELEMENT....
     public String ARRAY_ACCESS(PassNode n) {
         if (n.getText() == null || n.getChildCount() < 2)
-            return ""; //error
+            return ""; /*error */
         String ret = n.getChild(0).getText();
         for (int i = 1; i < n.getChildCount(); i++)
             ret += "[" + n.getChild(i).getText() + "]";
         return ret;
     }
 
-    //parent of dict_declaration
     public String DICTIONARY_DEFINITION(PassNode n) {
         return genericCombine(n, ":");
-    }       //child of dict_def
+    }
 
     public String DICTIONARY_DECLARATION(PassNode n) {
         return "{" + genericCombine(n, ",") + "}";
@@ -208,7 +201,6 @@ public class CodeGenerator {
         return genericCombine(n, middleString, middleString);
     }
 
-    //double check failure handling
     public String genericCombine(PassNode n, String middleString, String middleString1) {
         if (n == null || middleString == null || middleString1 == null)
             return "";
@@ -222,7 +214,8 @@ public class CodeGenerator {
             case 2:
                 return n.getChild(0).getText() + middleString + n.getChild(1).getText();
             case 3:
-                return n.getChild(0).getText() + middleString + n.getChild(1).getText() + middleString1 + n.getChild(2).getText();
+                return n.getChild(0).getText() + middleString + n.getChild(1).getText() + middleString1 +
+                        n.getChild(2).getText();
             default:
                 String s = n.getChild(0).getText();
                 for (int i = 1; i < n.getChildCount(); i++)
@@ -232,7 +225,7 @@ public class CodeGenerator {
     }
 
     public String nodeDecider(PassNode n) {
-        String s ="";
+        String s = "";
 
         if (n == null) {
             return null;
@@ -251,9 +244,9 @@ public class CodeGenerator {
             case PassParser.RETURN:
                 s = RETURN(n);
                 break;
-	    case PassParser.NEGATION:
-	        s = NEGATION(n);
-		break;
+            case PassParser.NEGATION:
+                s = NEGATION(n);
+                break;
             case PassParser.ARRAY_ACCESS:
                 s = ARRAY_ACCESS(n);
                 break;
@@ -263,15 +256,15 @@ public class CodeGenerator {
             case PassParser.ASSIGNMENT:
                 s = ASSIGNMENT(n);
                 break;
-	    case PassParser.BPARENS:
-		s = BPARENS(n);
-		break;
+            case PassParser.BPARENS:
+                s = BPARENS(n);
+                break;
             case PassParser.ARGUMENTS:
                 s = ARGUMENTS(n);
                 break;
-	    case PassParser.FORMAL_PARAMETERS:
-		s = FORMAL_PARAMETERS(n);
-		break;
+            case PassParser.FORMAL_PARAMETERS:
+                s = FORMAL_PARAMETERS(n);
+                break;
             case PassParser.FUNCTION:
                 s = FUNCTION(n);
                 break;

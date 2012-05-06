@@ -1,15 +1,23 @@
 #!/usr/bin/env node
 
+/**
+ * -----------------------------------------------------------------------------  
+ * author: Peter
+ * contributors: Nick
+ * /examples/multi-room-chat/client.js  
+ * The client-side JavaScript for the Multi-Room Chat example
+ *------------------------------------------------------------------------------
+ */
+
+
 // This is the main executable for the Pass translator and server.
 // Running this program with 3 arguments will translate the Pass to JS
 // and start a Node.js server on the given port which serves files from the 
 // given directory.
 // The JS outputted from the translator should be wrapped in a function closure.
-// Node may do this at the file level by default, we'll see.
 
 /*jshint node: true*/
 
-      
       
 var path = require('path'),
     fs  = require('fs');

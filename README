@@ -2,14 +2,16 @@ COMPILATION FROM SOURCE
 
 1) Install the most recent version of nodejs 
 
-2) Build the java class files for the end user 
+2) Install Antlr
+
+3) Build the java class files for the end user 
 	./build.sh
 	
-3) untar pass.tar.gz
+4) untar pass.tar.gz
 	cd pass-production
 	./install.sh
 	
-4) Pass is installed. Type
+5) Pass is installed. Type
 	pass
 
-5) Have fun! 
+6) Have fun! 
