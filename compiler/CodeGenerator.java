@@ -127,9 +127,9 @@ public class CodeGenerator {
         String tmp = Integer.toString(uniqueID++);
         String body = n.getChild(2).getText();
         body = body.replaceAll("\\b" + iterator + "\\b", "__" + tmp + "[__" + iterator + "]");
-        return "__" + tmp + " = " + collection + ";\n"
-        + "for (var __" + iterator + " = 0, __len = __" + tmp  + ".length; __" + iterator 
-        + " < __len; __" + iterator + "++)" + body + "\n";
+        return "var __" + tmp + " = " + collection + ";\n"
+        + "for (var __" + iterator + " = 0, __" + tmp + "len = __" + tmp  + ".length; __" + iterator 
+        + " < __" + tmp + "len; __" + iterator + "++)" + body + "\n";
     }
 
     public String ARRAY_DECLARATION(PassNode n) {
