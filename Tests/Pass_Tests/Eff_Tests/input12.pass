@@ -1,6 +1,0 @@
-x = 4
-y = 2
-z = x + y
-log(x)
-log(y)
-log(z)

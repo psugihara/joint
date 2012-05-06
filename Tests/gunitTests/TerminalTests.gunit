@@ -1,9 +1,12 @@
 gunit Pass;
 
-// Tests on the values of Atom --> STRING and NUMBER
-// Exponent is also included as NUMBER can include EXPONENT
-// April 2nd, 2012
-// AML2194
+/**
+ * -----------------------------------------------------------------------------
+ * author: Andrew Lamping
+ * TerminalTests.gunit
+ * This file contains the testing for terminal grammar productions.
+ *------------------------------------------------------------------------------
+ */
 
 NUMBER:
 	"a" FAIL					// test1
@@ -79,23 +82,23 @@ LT:
    "\r\r\n" FAIL					// test57
 
 COMMENT:
-  "// \n" OK						// test58
-  "// hey there\n" OK					// test59
-  "// forgot to put an end line" FAIL					// test60
-  "/* we can do this too */" OK					// test61
-  "/* slash star start, star slash end */" OK					// test62
+  "#// \n#" OK						// test58
+  "#// hey there\n#" OK					// test59
+  "#// forgot to put an end line" FAIL					// test60
+  "#/* we can do this too */#" OK					// test61
+  "#/* slash star start, star slash end */#" OK					// test62
   "*/ this doesnt work /*" FAIL					// test63
-  "// /* technically this works because we can put anything after the slashes */\n" OK					// test64
+  "#// /* technically this works because we can put anything after the slashes */\n#" OK					// test64
   "// /* but not this */" FAIL					// test65
 
 ID:
    "id2" OK					// test66
-   "_idsetgo" OK					// test67
+   "_idsetgo" FAIL					// test67
    "cleareyesfullhearts1" OK					// test68
    "4cantstartIDswithnumbers" FAIL					// test69
-   "_3thisworks" OK					// test70
+   "_3thisworks" FAIL					// test70
    "32232323" FAIL					// test71
-   "CapitalsWork2" 	OK				// test72
+   "CapitalsWork2" 	FAIL				// test72
 
 BOP: 
    "||" OK				// test73

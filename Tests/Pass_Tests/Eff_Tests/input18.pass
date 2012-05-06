@@ -1,4 +1,0 @@
-bar = [3, 4]
-x = 4
-log(bar[0])
-log(bar[1])

@@ -1,4 +1,0 @@
-x = 4
-while x < 6
-  x = x + 1
-  log(x)
