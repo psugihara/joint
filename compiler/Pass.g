@@ -84,15 +84,17 @@ tokens {
 
   void reindent(int spaces) {
     if (mod(spaces, DENT_SIZE) != 0) {
-      System.out.println("line " + getLine());
-      System.out.println("    " + getText());
-      System.out.println("odd indentation (" + spaces + " spaces)");
+      String s = getLine() + ":" + getCharPositionInLine() + " uneven number of indents";
+      System.err.println("Fatal Error:");
+      System.err.println(s);
       System.exit(-1);
     }
     
     int indents = spaces / DENT_SIZE;
       if ((indents - indentLevel) > 1) {
-        System.out.println("too many indents on line " + getLine());
+        String s = getLine() + ":" + getCharPositionInLine() + " too many indents";
+        System.err.println("Fatal Error:");
+        System.err.println(s);
         System.exit(-1);
       }
 
@@ -150,6 +152,7 @@ tokens {
                                         RecognitionException e) {
         String hdr = getErrorHeader(e);
         String msg = getErrorMessage(e, tokenNames);
+        System.out.println(msg);
         addError(hdr);
     }
 	
@@ -163,7 +166,7 @@ tokens {
 			s += it.next() + "\n";
 		}
 		System.err.println(s);
-		//System.exit(1);
+		System.exit(1);
 	}
 	
 	public String position(Token i) {
@@ -218,7 +221,7 @@ stmt:   expr (LT+ -> expr LT
 			 |EOF -> expr)
     |   control LT+ -> control 
     ;   
-   
+ 
 iblock
     :   INDENT block DEDENT -> ^(IBLOCK block)
     ;
