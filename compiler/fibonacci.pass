@@ -1,0 +1,12 @@
+fibonacci = (d) ~
+  if d == 0
+    return 0
+  else if d == 1
+    return 1
+  else
+    return fibonacci(d - 1) + fibonacci(d - 2)
+
+a = fibonacci(5)
+b = fibonacci(8)
+log(a)
+log(b)
