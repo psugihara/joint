@@ -1,5 +1,11 @@
 #!/usr/bin/env node
-
+/**
+ * -----------------------------------------------------------------------------
+ * author: Peter
+ * contributors: Rafael
+ * passc.js
+ * handles the output from PassC.java and calls third pass optimizations *------------------------------------------------------------------------------
+ */
 // This is the main entrypoint to the Pass compiler.
 
 /*jshint node: true*/
