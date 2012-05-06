@@ -16,28 +16,29 @@ server.setName = function (name) {
 };
 server.join = function (newRoom) {
   var conn = this.conn;
-  var newRoomMembers, broadcast, oldRoom;
+  var newMembers, broadcast, i, oldRoom;
   oldRoom = getTag(conn);
   if (oldRoom && oldRoom == newRoom) {
     return;
   }
   if (oldRoom) {
-    var oldRoomMembers;
-    oldRoomMembers = conns(oldRoom);
-    __1 = oldRoomMembers;
+    __1 = conns(oldRoom);
     for (var __c = 0, __len = __1.length; __c < __len; __c++) {
       __1[__c].onLeave(conn.name, oldRoom);
     }
   }
   setTag(conn, newRoom);
   broadcast = 0;
-  if (agIsLive(oldRoom) || agIsLive(newRoom)) {
+  if (!tagIsLive(oldRoom) || !tagIsLive(newRoom)) {
     broadcast = 1;
   }
-  newRoomMembers = conns(newRoom);
-  __2 = newRoomMembers;
+  newMembers = [];
+  i = 0;
+  __2 = conns(newRoom);
   for (var __c = 0, __len = __2.length; __c < __len; __c++) {
     __2[__c].onEnter(conn.name, newRoom);
+    newMembers[i] = __2[__c].name;
+    i += 1;
   }
   if (broadcast) {
     var tags;
@@ -47,13 +48,13 @@ server.join = function (newRoom) {
       __3[__c].getRooms(tags);
     }
   }
+  conn.getMembers(newMembers);
 };
 server.chat = function (message) {
   var conn = this.conn;
-  var connections, room;
+  var room;
   room = getTag(conn);
-  connections = conns(room);
-  __4 = connections;
+  __4 = conns(room);
   for (var __c = 0, __len = __4.length; __c < __len; __c++) {
     __4[__c].receive(conn.name, message);
   }

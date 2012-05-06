@@ -4,6 +4,11 @@
   pass.connect(5050, function(remote) {
     server = remote;
     server.register(callbacks);
+    var name = "";
+    do {
+    name =  prompt("Please enter your name:");
+    } while (name == null || name.length == 0);
+    server.setName(name);
   });
 
   var dispName = function(name) {
@@ -18,10 +23,16 @@
 
   var onEnter = function (name, room) {
     append(dispName(name) + ' entered \'' + room + '\'<br>');
+    var members = document.getElementById('members').innerHTML;
+    document.getElementById('members').innerHTML = members + " " + name;
   }
 
   var onLeave = function (name, room) {
     append(dispName(name) + ' left \'' + room + '\'<br>');
+    var members = document.getElementById('members').innerHTML;
+    var i = members.indexOf(name);
+    members = members.slice(0, i) + members.slice(i + name.length);
+    document.getElementById('members').innerHTML = members;
   }
 
   var append = function (message) {
@@ -35,20 +46,23 @@
   var getRooms = function(rooms) {
     var list = "";
     for(var i in rooms)
-      list += " " + rooms[i];
+      list += "  " + rooms[i];
     document.getElementById("rooms").innerHTML = list;
   }
 
   var getMembers = function(members) {
-    
+    var list = "";
+    for(var i in members)
+      list += "  " + members[i];
+    document.getElementById("members").innerHTML = list;
   }
 
-  var callbacks = {'receive':receive, 'onEnter':onEnter, 'onLeave':onLeave, 'getRooms':getRooms};
+  var callbacks = {'receive':receive, 'onEnter':onEnter, 'onLeave':onLeave, 'getRooms':getRooms, 'getMembers':getMembers};
 
   var joinRoom = function() {
     var room = document.getElementById('room-input').value;
     document.getElementById('room-input').value = "";
-    document.getElementById('room-name') = room;
+    document.getElementById('room-name').innerHTML = room;
     if(room.length > 0)
       server.join(room);
   }
