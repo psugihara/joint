@@ -1,6 +1,6 @@
 x = 2  
 while x == 2 && x != 2 || x == 4
-  # heylllllll #
+  # comment #
   while x == 2 && x != 2      
     while x == 2 && x != 2
       while x == 2 && x != 2 || x == 0

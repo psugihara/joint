@@ -56,22 +56,6 @@ errorTestsOut:
 	java Error $$file >> output.txt 2>&1; \
 	done
 
-rtTests:
-	@echo "Testing Pass programs with runtime errors";
-	@for file in ./RT_Tests/*.pass; do \
-	echo "===================New Pass Runtime Error Test===================="; \
-	echo $$file; \
-	java PassC $$file; \
-	done
-
-rtTestsOut:
-	@echo "Testing Pass programs with runtime errors" > output.txt 2>&1;
-	@for file in ./RT_Tests/*.pass; do \
-	echo "===================New Pass Runtime Error Test====================" >> output.txt 2>&1; \
-	echo $$file >> output.txt 2>&1; \
-	java PassC $$file >> output.txt 2>&1; \
-	done
-
 tests: 
 	@echo "Testing translation of all Pass programs in ./Test_Files";
 	@echo "This prints out the pass program followed by its translation into JavaScript";

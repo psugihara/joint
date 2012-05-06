@@ -1,6 +1,0 @@
-fun = [1,2,3,4,5,6,7]
-fun = 1
-x = 0
-while x < 10
-  log(fun[x])
-  x = x + 1
