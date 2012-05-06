@@ -1,36 +1,57 @@
+
+# (To be called when the client connects) #
+# Registers all callbacks for the client with the server #
 server.register = (callbacks) ~
   for i in keys(callbacks)
     conn[i] = callbacks[i]
   conn.getRooms(getTags())
 
+# Stores the name of the client #
 server.setName = (name) ~
   conn.name = name
 
+# The function to allow a client to join a new chatroom #
 server.join = (newRoom) ~
   oldRoom = getTag(conn)
+
+  # return if the client is already in the room #
   if oldRoom && oldRoom == newRoom
     return
+
+  # notify members of old room that the client is leaving #
   if oldRoom
     for c in conns(oldRoom)
       c.onLeave(conn.name, oldRoom)
+
+  # broadcast determines whether we need to broadcast #
+  # a change in rooms #
   broadcast = 0
   if !tagIsLive(newRoom)
     broadcast = 1
+
+  # move the client to the new room #
   setTag(conn, newRoom)
   if !tagIsLive(oldRoom)
     broadcast = 1
   newMembers = []
   i = 0
+
+  # notify members of new room that the client arrived #
   for c in conns(newRoom)
     c.onEnter(conn.name, newRoom)
     newMembers[i] = c.name
     i += 1
+
+  # notify all clients of open rooms #
   if broadcast
     tags = getTags()
     for c in conns()
       c.getRooms(tags)
+
+  # alert the client of members in the new room #
   conn.getMembers(newMembers)
 
+# sends a message to the chatroom the client is in #
 server.chat = (message) ~
   room = getTag(conn)
   for c in conns(room)
