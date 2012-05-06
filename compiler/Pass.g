@@ -82,7 +82,7 @@ tokens {
     }
 
     int mod(int a, int b) {
-        while (a >= b {
+        while (a >= b) {
             a -= b;
         }
         return (a > 0)? a : 0;
