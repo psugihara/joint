@@ -32,7 +32,7 @@ var sourcePath, port, staticPath, optimize;
 var usageDie = function (message) {
   if (message)
     console.log(message);
-  console.log('usage: pass <path/program.pass> [<port#> <static directory>][-optimize]');
+  console.log('usage: pass <path/program.pass> [<port#> <static directory>][--optimize]');
   process.exit();
 };
 
@@ -62,8 +62,14 @@ if (process.argv.length > 4 && process.argv.length < 7 ) {
   if (!fs.statSync(staticPath).isDirectory())
     usageDie('static arg must be directory');
   
-  if ("-optimize" === process.argv[5])
-     optimize = true;
+  if (process.argv.length === 6) {
+    if (process.argv[5] === '-o' || process.argv[5] === '--optimize') {
+      optimize = true;
+      console.log("optimizing compiled JS...")
+    } else {
+      usageDie('invalid option "' + process.argv[5] + '"')
+    }
+  }
 }
 
 
