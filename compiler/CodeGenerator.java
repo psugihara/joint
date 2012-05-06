@@ -157,6 +157,8 @@ public class CodeGenerator {
 	    }
 
 	    return "(__num = " + number+").toString()";
+        }if (funcName.equals("include")){
+            funcName = "require";
         }
          else if (STDLIB.contains(funcName)) {
             stdLibFunctionsCalled = true;
