@@ -1,3 +1,10 @@
+/**
+ * author: Rafael Castelllanos
+ * PassC.java
+ * This file contains the tree walker and hookups to the grammar and code 
+ * generator.
+ * It is the main class you use to compile Pass code
+ */
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
