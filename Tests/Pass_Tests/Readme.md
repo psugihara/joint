@@ -111,35 +111,3 @@ Standard error of the program (if any):
 
 To redirect the output of the testing to a file in the current directory, output.txt, run the following command:
 $make errorTestsOut
-
------------------------------------
-RT_Tests
------------------------------------
-RT_Tests contains 19 .pass programs that contain semantic errors that will result in runtime errors. 
-The programs have the naming convention 'rte#.pass' where '#' ranges from 1-19.
-Each program is compiled by the Pass compiler and the stdout is printed.
-
-To test these programs, run the following command:
-$make rtTests
-
-The following is an example output of a test:
-===================New Pass Runtime Error Test====================
-./RT_Tests/rte15.pass
-var pass = require('pass');
-for (var x in pass)
-  global[x] = pass[x];
-var fun, x;
-var server = {};
-
-fun = 1;
-fun = [1, 2, 3, 4, 5, 6, 7];
-x = 0;
-if (fun == 1) {
-  console.log("oops!");
-}
-
-module.exports = server;
-
-
-To redirect the testing output to a file in the current directory, output.txt, run the following command:
-$make rtTestsOut
