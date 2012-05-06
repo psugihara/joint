@@ -74,7 +74,11 @@ public class PassNode extends CommonTree {
         ((PassNode) getParent()).definedInFunction.put(varName, "");
     }
 
-    /*check if we need to add var and set the scope of a new variable*/
+    /**
+     * check if we need to add var and set the scope of a new variable
+     * @param varName
+     * @return
+     */
     public boolean isDefined(String varName) {
         if (varName == null)
             return false;
@@ -96,6 +100,11 @@ public class PassNode extends CommonTree {
         return false;
     }
 
+    /**
+     * check to see if var is defined without adding it to the list of defined vars
+     * @param varName
+     * @return
+     */
     public boolean isVarDefined(String varName) {
         if (varName == null)
             return false;

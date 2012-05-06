@@ -201,6 +201,13 @@ public class SecondPass {
         return genericCombine(n, middleString, middleString);
     }
 
+    /**
+     * helps avoid redundant code, combines child nodes in sequential order with specified input text
+     * @param n
+     * @param middleString
+     * @param middleString1
+     * @return
+     */
     public String genericCombine(PassNode n, String middleString, String middleString1) {
         if (n == null || middleString == null || middleString1 == null)
             return "";
@@ -224,6 +231,11 @@ public class SecondPass {
         }
     }
 
+    /**
+     *  decide what type of node it is
+     * @param n
+     * @return
+     */
     public String nodeDecider(PassNode n) {
         String s = "";
 
