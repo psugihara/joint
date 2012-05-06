@@ -11,3 +11,7 @@ default:
 
 tests:
 	java org.antlr.gunit.Interp TerminalTests.gunit
+
+	
+clean:
+	$(RM) *.class *.java Pass.tokens Pass.g output.txt
