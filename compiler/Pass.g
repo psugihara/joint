@@ -73,7 +73,6 @@ tokens {
     return tokens.poll();
   }
 
-  // This is rediculous but for some reason the modulo operator isn't working here.
   int mod(int a, int b) {
    while (a >= b)
       a -= b;
@@ -675,14 +674,17 @@ NOT
 	;
 
 // Comparator
-CMP :   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
+CMP 
+	:   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
     ;
     
 // Boolean operation
-BOP :   '||'|'&&'
+BOP 
+	:   '||'|'&&'
     ;
 
-ID  :   (('a'..'z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*|('A'..'Z')('A'..'Z'|'0'..'9'|'_')*)
+ID  
+	:   (('a'..'z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*|('A'..'Z')('A'..'Z'|'0'..'9'|'_')*)
     ;
 
 NUMBER
@@ -696,7 +698,8 @@ COMMENT
     :   '#' ( options {greedy=false;} : . )* '#' {$channel=HIDDEN;}
     ;
 
-WS  :   (' '|'\t'|'\r') {$channel=HIDDEN;}
+WS  
+	:   (' '|'\t'|'\r') {$channel=HIDDEN;}
     ;
     
 STRING
