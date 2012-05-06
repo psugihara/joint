@@ -1,3 +1,13 @@
+/**
+ * -----------------------------------------------------------------------------
+ * author: Nicolo Pizzoferrato
+ * contributors:
+ * stdLibTests.js
+ * Test suite for the standard library.
+ *------------------------------------------------------------------------------
+ */
+
+
 var lib = require('../../lib/stdlib.js');
 var con = require('../../lib/connections.js');
 
