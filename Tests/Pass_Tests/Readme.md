@@ -2,7 +2,6 @@
 # * author: Andrew Lamping 								     #
 # * Readme.md										     #
 # * This file contains makefile instructions for Pass program/file testing.	     #
-# * These instructions are laid out in ./Readme.md			            #
 # *------------------------------------------------------------------------------ #
 
 ===================================
