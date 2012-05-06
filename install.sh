@@ -1,3 +1,3 @@
-npm install
-npm link
-npm link pass
+sudo npm install
+sudo npm link
+sudo npm link pass
