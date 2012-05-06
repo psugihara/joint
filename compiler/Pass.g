@@ -1,8 +1,10 @@
 //todo make RETURN AND GENERIC_OP custom nodes
 grammar Pass;
+
 options {
   output=AST;
 }
+
 tokens {
   DEDENT;
   INDENT;
@@ -22,9 +24,7 @@ tokens {
 
   int indentLevel = 0;
   java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
-  
   java.util.Stack<String> parensAndIndents = new java.util.Stack<String>();
-  
   boolean lineTerminatedEOF = false;
 
   // Note that this will occur at the end of each production if it is not
@@ -46,8 +46,6 @@ tokens {
         indentLevel--;
       }
     }
-
-    
     state.token = t;
     tokens.offer(t);
   }
@@ -111,10 +109,8 @@ tokens {
       
     indentLevel = indents;
   }
-  
-  
-  
 }
+
 @members {
 	//declare useful types
 	Set<String> reserved = new HashSet<String>(Arrays.asList(
@@ -204,8 +200,9 @@ tokens {
 prog
 	@after{if(!errors.isEmpty()) {
 				returnErrors();
-			}}
-	: block EOF -> ^(PROG block EOF)
+		   }
+	}
+	:   block EOF -> ^(PROG block EOF)
     ;
 
 block
@@ -601,7 +598,7 @@ CMP :   '<'|'>'|'=='|'>='|'<='|'<>'|'!='
 BOP :   '||'|'&&'
     ;
 
-ID  :   ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+ID  :   (('a'..'z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*|('A'..'Z')('A'..'Z'|'0'..'9'|'_')*)
     ;
 
 NUMBER
