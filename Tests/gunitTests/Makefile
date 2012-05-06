@@ -1,3 +1,10 @@
+
+# * ----------------------------------------------------------------------------- #
+# * author: Andrew Lamping 								     #
+# * Makefile										     #
+# * This file contains makefile instructions for unit tesing                      #
+# *------------------------------------------------------------------------------ #
+
 JFLAGS = -g
 JC = javac
 .SUFFIXES: .java 
