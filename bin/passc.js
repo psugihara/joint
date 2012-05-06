@@ -18,11 +18,13 @@ var fs = require('fs'),
     cwd = process.cwd(),
     thirdPass = path.join(compiler + "/thirdPass");
 
-// If there is an argument, give it to PassC.
-if (process.argv.length > 2) {
-  compileToFile(process.argv[2]);
-} else {
-  startREPL();
+if (!module.parent) { // "main"
+  // If there is an argument, give it to PassC.
+  if (process.argv.length > 2) {
+    compileToFile(process.argv[2]);
+  } else {
+    startREPL();
+  }
 }
 
 // This is never run by the end user. It is for Pass lang development use.
@@ -50,7 +52,6 @@ function prompt () {
 // output the compiled js. When done compiling, call cb with target path
 // as arg.
 function compileToFile (sourceName, opt, cb) {
-  
   var source = path.resolve(sourceName),
       target = cwd + '/' + path.basename(source, '.pass') + '.js';
    
