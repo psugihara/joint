@@ -1,7 +1,7 @@
 /**
  * -----------------------------------------------------------------------------
  * author: Rafael Castellanos
- * contributors: Cody, Peter
+ * contributors: Cody, Peter, Nick
  * SecondPass.java
  * This file contains the second pass code generation rules
  *------------------------------------------------------------------------------
