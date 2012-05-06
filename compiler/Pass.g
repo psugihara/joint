@@ -1,4 +1,12 @@
-//todo make RETURN AND GENERIC_OP custom nodes
+/**
+ * -----------------------------------------------------------------------------
+ * author: Cody De La Vara
+ * contributors: Peter, Rafael
+ * Pass.g
+ * This file contains the ANTLR grammar for Pass, the rewrite rules for AST 
+ * generation, parser error throwing, and java snippets for semantic evaluation.
+ *------------------------------------------------------------------------------
+ */
 grammar Pass;
 
 options {
@@ -157,8 +165,6 @@ tokens {
         }
     }
 	
-	
-	
 	public void returnErrors() {
 		int numErrors = errors.size();
 		String s = numErrors + ((numErrors == 1)? " Error has occured\n" : " Errors have occured\n");
@@ -167,7 +173,7 @@ tokens {
 			s += it.next() + "\n";
 		}
 		System.err.println(s);
-		//System.exit(1);
+		System.exit(1);
 	}
 	
 	public String position(Token i) {
