@@ -496,7 +496,6 @@ else_if_body
 	|   LT iblock -> iblock
 	;
 
-/** dangling else solution **/
 else_test
     :   'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body) else_test*
     |   'else' else_body -> ^(ELSE else_body)
@@ -532,7 +531,7 @@ argument returns [Boolean isVariable, String id]
     	}
     ;
 
-//AST IMAGINARY NODE TOKENS
+//AST NODE TOKENS
 
 fragment
 PROG
@@ -590,7 +589,8 @@ IF_CONDITIONS
 	;
 
 fragment
-IF  :   'IF'
+IF  
+	:   'IF'
     ;
 
 fragment
@@ -647,7 +647,8 @@ ELSE
     :   'ELSE'
 	;
 
-LT  :   ('\n'|'\r\n')+ { emit(new CommonToken(LT, "LT")); }
+LT  
+	:   ('\n'|'\r\n')+ { emit(new CommonToken(LT, "LT")); }
     ;
 
 INDENT
