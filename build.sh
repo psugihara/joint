@@ -1,11 +1,14 @@
 #!/bin/sh
-#this script builds the self contained class binaries for the pass compiler 
-#from the source
-#Note: you must have antler installed for this build script to work
-#The files produced by this build script do not require antler!
+# ---------------------------------------------------------------------------
+# author: Rafael
+# build.sh
+# this script builds the self contained class binaries for the pass compiler 
+# from the source
+# Note: you must have antler installed for this build script to work
+# The files produced by this build script do not require antler!
+# ---------------------------------------------------------------------------
 
 cd compiler
-
 make
 cp *.java ../pass-production/bin/compiler
 make clean
@@ -42,4 +45,4 @@ rm examples lib ./bin/*.js ./bin/compiler/*.class -rf
 cd ..
 #done
 echo "Pass compiler package is built and tared!\noutput files > pass.tar.gz"
-
+sh
