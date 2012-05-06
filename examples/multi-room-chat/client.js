@@ -1,3 +1,12 @@
+/**
+ * -----------------------------------------------------------------------------
+ * author: Nick
+ * contributors:
+ * /examples/multi-room-chat/client.js  
+ * The client-side JavaScript for the Multi-Room Chat example
+ *------------------------------------------------------------------------------
+ */
+
   var server;
   var connected = false;
 

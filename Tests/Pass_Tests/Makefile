@@ -1,3 +1,12 @@
+
+# * ----------------------------------------------------------------------------- #
+# * author: Andrew Lamping 								     #
+# * Makefile										     #
+# * This file contains makefile instructions for Pass program/file testing.	     #
+# * These instructions are laid out in ./Readme.md			            #
+# *------------------------------------------------------------------------------ #
+
+
 JFLAGS = -g
 JC = javac
 .SUFFIXES: .java 
@@ -10,827 +19,83 @@ default:
 	cp ../../compiler/PassC.java PassC.java;
 	cp ../../compiler/PassNode.java PassNode.java;
 	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
-	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
+	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java;
+	cp ./Eff_Tests/Efficiency.java Efficiency.java;
+	cp ./Eff_Tests/Error.java Error.java;    
 	javac ./*.java;
 
 effTests:
-	cp ../../compiler/Pass.g Pass.g;
-	java org.antlr.Tool Pass.g;
-	cp ../../compiler/PassC.java PassC.java;
-	cp ../../compiler/PassNode.java PassNode.java;
-	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
-	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
-	cp ./Eff_Tests/Efficiency.java Efficiency.java;  
-	javac ./*.java;
-	@echo "===================New Pass Test====================";
-	@echo "Testing Runtimes of Pass Programs in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program1.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program2.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program3.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program4.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program5.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program6.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program7.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program8.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program9.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program10.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program11.pass;
-	@echo "===================New Pass Test====================";
-	java Efficiency ./Eff_Tests/program12.pass;
+	@echo "Testing runtimes/efficiency of Pass programs in ./Eff_Tests/progams";
+	@for file in ./Eff_Tests/programs/*.pass; do \
+	echo "===================New Pass Efficiency Test===================="; \
+	echo $$file; \
+	java Efficiency $$file; \
+	done
 
+effTestsOut:
+	@echo "Testing runtimes/efficiency of Pass programs in ./Eff_Tests/progams" > output.txt 2>&1;
+	@for file in ./Eff_Tests/programs/*.pass; do \
+	echo "===================New Pass Efficiency Test====================" >> output.txt 2>&1; \
+	echo $$file >> output.txt 2>&1 ; \
+	java Efficiency $$file >> output.txt 2>&1 ; \
+	done
+	
 errorTests:
-	cp ../../compiler/Pass.g Pass.g;
-	java org.antlr.Tool Pass.g;
-	cp ../../compiler/PassC.java PassC.java;
-	cp ../../compiler/PassNode.java PassNode.java;
-	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
-	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
-	cp ./Eff_Tests/Error.java Error.java;  
-	javac ./*.java;
-	@echo "===================New Pass Test====================";
-	@echo "Testing Runtimes of Pass Programs in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error1.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error2.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error3.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error4.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error5.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error6.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error7.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error8.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error9.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error10.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error11.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error12.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error13.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error14.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error15.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error16.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error17.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error18.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error19.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error20.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error21.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error22.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error23.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error24.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error25.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error26.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error27.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error28.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error29.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error30.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error31.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error32.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error33.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error34.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error35.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error36.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error37.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error38.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error39.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./Eff_Tests/error40.pass;
+	@echo "Testing stdout/stderr of invalid Pass programs in ./Eff_Tests/errorFiles";
+	@for file in ./Eff_Tests/errorFiles/*.pass; do \
+	echo "===================New Pass Error Test===================="; \
+	echo $$file; \
+	java Error $$file; \
+	done
 
-test: 
-	java PassC ./Test_Files/test.pass;
+errorTestsOut:
+	@echo "Testing stdout/stderr of invalid Pass programs in ./Eff_Tests/errorFiles" > output.txt 2>&1;
+	@for file in ./Eff_Tests/errorFiles/*.pass >> output.txt 2>&1; do \
+	echo "===================New Pass Error Test====================" >> output.txt 2>&1; \
+	echo $$file >> output.txt 2>&1; \
+	java Error $$file >> output.txt 2>&1; \
+	done
 
 rtTests:
-	cp ../../compiler/Pass.g Pass.g;
-	java org.antlr.Tool Pass.g;
-	cp ../../compiler/PassC.java PassC.java;
-	cp ../../compiler/PassNode.java PassNode.java;
-	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
-	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
-	cp ./Eff_Tests/Error.java Error.java;  
-	javac ./*.java;
-	@echo "===================New Pass Test====================";
-	@echo "Testing Runtimes of Pass Programs in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte1.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte2.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte3.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte4.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte5.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte6.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte7.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte8.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte9.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte10.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte11.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte12.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte13.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte14.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte15.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte16.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte17.pass;
-	@echo "===================New Pass Test====================";
-	java Error ./RT_Tests/rte18.pass;
+	@echo "Testing Pass programs with runtime errors";
+	@for file in ./RT_Tests/*.pass; do \
+	echo "===================New Pass Runtime Test===================="; \
+	echo $$file; \
+	java PassC $$file; \
+	done
 
+rtTestsOut:
+	@echo "Testing Pass programs with runtime errors" > output.txt 2>&1;
+	@for file in ./RT_Tests/*.pass; do \
+	echo "===================New Pass Runtime Test====================" >> output.txt 2>&1; \
+	echo $$file >> output.txt 2>&1; \
+	java PassC $$file >> output.txt 2>&1; \
+	done
 
 tests: 
-	cp ../../compiler/Pass.g Pass.g;
-	java org.antlr.Tool Pass.g;
-	cp ../../compiler/PassC.java PassC.java;
-	cp ../../compiler/PassNode.java PassNode.java;
-	cp ../../compiler/CodeGenerator.java CodeGenerator.java;
-	cp ../../compiler/CodeOptimizer.java CodeOptimizer.java; 
-	javac ./*.java;
-	@echo "Testing all Pass files in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/helloworld.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/helloworld.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input1.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input1.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input2.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input2.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input3.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input3.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input4.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input4.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input5.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input5.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input6.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input6.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input7.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input7.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input8.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input8.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input9.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input9.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input10.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input10.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input11.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input11.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input12.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input12.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input13.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input13.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input14.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input14.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input15.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input15.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input16.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input16.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input17.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input17.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input18.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input18.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input19.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input19.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input20.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input20.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input21.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input21.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input22.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input22.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input23.pass
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input23.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input24.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input24.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input25.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input25.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input26.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input26.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input27.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input27.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input28.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input28.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input29.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input29.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input30.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input30.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input31.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input31.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input32.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input32.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input33.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input33.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input34.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input34.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input35.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input35.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input36.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input36.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input37.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input37.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input38.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input38.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input39.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input39.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input40.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input40.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input41.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input41.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input42.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input42.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input43.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input43.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input44.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input44.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input45.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input45.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input46.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input46.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input47.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input47.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input48.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input48.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input49.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input49.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input50.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input50.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input51.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input51.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input52.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input52.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input53.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input53.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input54.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input54.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input55.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input55.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input56.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input56.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input57.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input57.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input58.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input58.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input59.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input59.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input60.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input60.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input61.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input61.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input62.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input62.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input63.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input63.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input64.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input64.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input65.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input65.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input66.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input66.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input67.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input67.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input68.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input68.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input69.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input69.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input70.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input70.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input71.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input71.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input72.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input72.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input73.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input73.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input74.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input74.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input75.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input75.pass;
-	
-tests10: 
-	@echo "Testing helloworld + input1-10 in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/helloworld.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/helloworld.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input1.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input1.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input2.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input2.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input3.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input3.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input4.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input4.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input5.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input5.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input6.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input6.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input7.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input7.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input8.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input8.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input9.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input9.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input10.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input10.pass;
+	@echo "Testing all Pass programs in ./Test_Files";
+	@echo "This prints out the pass program followed by its translation into JavaScript";
+	@for file in ./Test_Files/*.pass ; do \
+	echo "===================New Runtime Error Test===================="; \
+	echo $$file; \
+	cat $$file; \
+	echo "\n------------------JS Below-------------------------";\
+	java PassC $$file;\
+	done
 
-tests20:
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input11.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input11.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input12.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input12.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input13.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input13.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input14.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input14.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input15.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input15.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input16.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input16.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input17.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input17.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input18.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input18.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input19.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input19.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input20.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input20.pass;
-
-tests30:
-	@echo "Testing input21-input30 in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input21.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input22.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input23.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input24.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input25.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input26.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input27.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input28.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input29.pass;
-	@echo "===================New Pass Test====================";
-	java PassC ./Test_Files/input30.pass;
-	@echo "===================New Pass Test====================";
-
-
-tests40:
-	@echo "Testing input31-input40 in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input31.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input31.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input32.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input32.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input33.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input33.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input34.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input34.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input35.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input35.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input36.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input36.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input37.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input37.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input38.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input38.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input39.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input39.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input40.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input40.pass;
-
-
-tests50:
-	@echo "Testing input41-input50 in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input41.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input41.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input42.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input42.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input43.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input43.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input44.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input44.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input45.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input45.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input46.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input46.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input47.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input47.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input48.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input48.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input49.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input49.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input50.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input50.pass;
-
-
-tests60:
-	@echo "Testing input51-input60 in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input51.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input51.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input52.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input52.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input53.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input53.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input54.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input54.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input55.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input55.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input56.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input56.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input57.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input57.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input58.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input58.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input59.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input59.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input60.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input60.pass;
-
-
-tests70:
-	@echo "Testing input61-input70 in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input61.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input61.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input62.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input62.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input63.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input63.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input64.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input64.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input65.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input65.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input66.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input66.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input67.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input67.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input68.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input68.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input69.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input69.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input70.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input70.pass;
-
-tests75:
-	@echo "Testing input71-input75 in ./Test_Files" ;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input70.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input70.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input71.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input71.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input72.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input72.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input73.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input73.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input74.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input74.pass;
-	@echo "===================New Pass Test====================";
-	cat ./Test_Files/input75.pass;
-	@echo "\n------------------JS Below-------------------------";
-	java PassC ./Test_Files/input75.pass;
-
-
-
-
-
-
+testsOut: 
+	@echo "Testing all Pass programs in ./Test_Files" > output.txt 2>&1 ;
+	@echo "This prints out the pass program followed by its translation into JavaScript" >> output.txt 2>&1 ;
+	@for file in ./Test_Files/*.pass ; do \
+	echo "===================New Runtime Error Test====================" >> output.txt 2>&1; \
+	echo $$file >> output.txt 2>&1; \
+	cat $$file >> output.txt 2>&1; \
+	echo "\n------------------JS Below-------------------------" >> output.txt 2>&1;\
+	java PassC $$file >> output.txt 2>&1;\
+	done
 	
 clean:
-	$(RM) *.class *.java Pass.tokens Pass.g PassC.java PassNode.java CodeGenerator.java
+	$(RM) *.class *.java Pass.tokens Pass.g
 
 
 

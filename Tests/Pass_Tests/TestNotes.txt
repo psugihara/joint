@@ -1,9 +1,0 @@
-Notes
----
-error6.pass
-error13.pass
-error28.pass
-error33.pass
-error38.pass
-------
--These print errors to stderr but not stdout
