@@ -16,7 +16,7 @@ public class CodeGenerator {
     private static final String jsRequire = "var pass = require('pass');\n"
                                           + "for (var x in pass)\n"
                                           + "  global[x] = pass[x];\n";
-
+    private int uniqueID = 0;
     
     private void removeVar(PassNode n) {
         if (n == null)
@@ -88,8 +88,16 @@ public class CodeGenerator {
         return genericCombine(n, ", ");
     }
 
+    public String BPARENS(PassNode n) {
+	return '(' + n.getChild(0).getText() + ')';
+    }
+
     public String FORMAL_PARAMETERS(PassNode n) {
 	return genericCombine(n, ", ");
+    }
+
+    public String NEGATION(PassNode n) {
+	return '!' + n.getChild(0).getText();
     }
     
     public String FUNCTION(PassNode n) {
@@ -116,10 +124,11 @@ public class CodeGenerator {
     public String FOR(PassNode n) {
         String iterator = n.getChild(0).getText();
         String collection = n.getChild(1).getText();
+        String tmp = Integer.toString(uniqueID++);
         String body = n.getChild(2).getText();
-        body = body.replaceAll("\\b" + iterator + "\\b", "__tmp[__" + iterator + "]");
-        return "__tmp = " + collection + ";\n"
-        + "for (var __" + iterator + " = 0, __len = " +  collection + ".length; __" + iterator 
+        body = body.replaceAll("\\b" + iterator + "\\b", "__" + tmp + "[__" + iterator + "]");
+        return "__" + tmp + " = " + collection + ";\n"
+        + "for (var __" + iterator + " = 0, __len = __" + tmp  + ".length; __" + iterator 
         + " < __len; __" + iterator + "++)" + body + "\n";
     }
 
@@ -139,7 +148,19 @@ public class CodeGenerator {
         if (funcName.equals("log")) {
             funcName = "console.log";
             stdLibFunctionsCalled = true;
-        } else if (STDLIB.contains(funcName)) {
+        }if (funcName.equals("num")) {
+            funcName = "parseFloat";
+        }if (funcName.equals("str")) {
+            String number = n.getChild(1).getText();
+            if(variablePattern.matcher(number).matches()){
+		return number + ".toString()";
+	    }
+
+	    return "(__num = " + number+").toString()";
+        }if (funcName.equals("include")){
+            funcName = "require";
+        }
+         else if (STDLIB.contains(funcName)) {
             stdLibFunctionsCalled = true;
         }
         node.setText(funcName);
@@ -230,6 +251,9 @@ public class CodeGenerator {
             case PassParser.RETURN:
                 s = RETURN(n);
                 break;
+	    case PassParser.NEGATION:
+	        s = NEGATION(n);
+		break;
             case PassParser.ARRAY_ACCESS:
                 s = ARRAY_ACCESS(n);
                 break;
@@ -239,6 +263,9 @@ public class CodeGenerator {
             case PassParser.ASSIGNMENT:
                 s = ASSIGNMENT(n);
                 break;
+	    case PassParser.BPARENS:
+		s = BPARENS(n);
+		break;
             case PassParser.ARGUMENTS:
                 s = ARGUMENTS(n);
                 break;
@@ -286,9 +313,6 @@ public class CodeGenerator {
                 break;
             case PassParser.EOF:
                 s = "";
-                break;
-            case PassParser.LSTRING:
-		//System.out.println(n.getText());
                 break;
             default:
                 return n.getText();

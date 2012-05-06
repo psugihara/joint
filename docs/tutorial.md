@@ -126,7 +126,7 @@ In our application, when a client application connects to the server, it registe
     
 The first function takes a single argument,  `msgCallback` that is added as a value to the dictionary `conn` with key `“onMsg”`. Like server, the variable `conn` is a special dictionary. Pass maintains a `conn` dictionary for each client connection. This dictionary is intended to store client-specific information (such as a usernames and callbacks). The `conn` keyword may be used within the body of an exposed `server` function to reference the dictionary of the client that invoked the function. Here we register a callback function by which the Pass program can send a message back to the client. Notice that functions can be assigned or passed as function arguments just as a string or number can be.
 
-The second function also takes a single argument, msg which is a string to send to all other connected clients. Here we see a new flow control mechanism, the for loop. The built in function `conns()` returns an array containing all of the conn dictionaries for connected clients. Pass arrays are zero-indexed and may contain values of any type. The for construct iterates through values in an array, assigning each value to the variable `c` at the start of each iteration then executing the indented body block which starts on the next line.
+The second function also takes a single argument, msg which is a string to send to all other connected clients. Here we see a new flow control mechanism, the for loop. The built in function `conns()` returns an array containing all of the conn dictionaries for connected clients. Pass arrays are zero-indexed and may contain values of any type. The for construct iterates through values in an array, assigning each value to the variable `c` at the start of each iteration then executing the indented body block which starts on the next line. The conns() function in the declaration of the loop is only called once, so if the return value of `conns()` changes the execution of the loop with not be affected.
 
 ####Client 
 The bare bones GUI will consist of a text input box and a submit button. When the submit button is clicked, the client will broadcast the string in the text box then clear the text box. The full code listing for the client file *index.html* is below.
@@ -176,10 +176,10 @@ What if we only want to broadcast certain things to certain clients? In our fina
 
 You're probably wondering how we can write such an application in a reasonable amount of lines, and without tedious implementation of lots of data structures. Client grouping is usually a critical component when building scalable web applications. Conveniently, this functionality is provided in Pass through a small number of native functions. These functions will be utilized and explained in the present example.
 
-First, we create an exposed function that serves two purposes: it subscribes the client to the specified channel, and stores the client’s handler for receiving messages in the client connection dictionary. We subscribe a client to a group through the use of the `tag()` function, which takes two arguments: the `conn` dictionary of the client, and the group name (a string).
+First, we create an exposed function that serves two purposes: it subscribes the client to the specified channel, and stores the client’s handler for receiving messages in the client connection dictionary. We subscribe a client to a group through the use of the `pushTag()` function, which takes two arguments: the `conn` dictionary of the client, and the group name (a string).
 
     server.subscribe = (channel, onMsg) ~
-      tag(conn, channel)
+      pushTag(conn, channel)
       conn.onMsg = onMsg
 
 We then create an exposed function that allows a client to publish a message to a channel:
@@ -195,20 +195,20 @@ Also, note that with the above implementation of `publish()`, we have the option
 We can also easily implement a function that publishes a message to each channel that the client is currently subscribed to:
 
     server.publishAllSubscribed = (message) ~
-      for channel in tags(conn)
+      for channel in getTags(conn)
         for connection in conns(channel)
           connection.onMsg(message)
 
-The `tags()` function takes a client `conn` dictionary as a parameter and returns an array of group names that the client belongs to. Just like the `conns()` function, when no parameter is provided `tags()` returns an array of all open group names.
+The `getTags()` function takes a client `conn` dictionary as a parameter and returns an array of group names that the client belongs to. Just like the `conns()` function, when no parameter is provided `getTags()` returns an array of all open group names.
 
-Finally, we can unsubscribe a client from a specified channel or, if no channel is specified, all channels to which the client is subscribed. We do this by calling the `untag()` function as shown:
+Finally, we can unsubscribe a client from a specified channel or, if no channel is specified, all channels to which the client is subscribed. We do this by calling the `popTag()` function as shown:
 
     server.unsubscribe = (channel) ~
       if channel
-        untag(conn, channel)
+        popTag(conn, channel)
       else
         for channel in channels(conn)
-          untag(conn, channel)
+          popTag(conn, channel)
 
 With these functions, we have written a fully functional Publish-Subscribe server in under 20 lines of Pass code.
 

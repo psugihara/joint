@@ -8,44 +8,21 @@
     }
   </script>
   <style type="text/css">
-    #name {
-      float: left;
-    }
-    #name-button {
-      float: left;
-    }
-    #chat-message {
-      width: 500px;
-      float: left;
-    }
-    #send-button {
-      float: left;
-    }
-    #room-name {
-      float: left;
-    }
-    #join-button {
-      float: left;
-    }
-    #messages {
-      height: 500px;
-      width: 1000px;
-      border: 2px solid blue;
-      overflow-y: scroll;
-    }
-    #rooms-button {
-      float: left;
-    }
+    #chat-message {width: 500px; float: left;}
+    #send-button {float: left;}
+    #room-input {float: left;}
+    #join-button {float: left;}
+    #messages { float: left; height: 500px; width: 75%; border: 2px solid blue; overflow-y: scroll;}
+    #rooms {height: 25px;}
+    #members {height: 25px;}
   </style>
 </head>
   <BODY><h1>Multi-room chat server</h1><br>
-    <input placeholder="enter your name" onkeydown="checkEnter(event, setName)" id="name" />
-    <button type="button" id="name-button" onClick="setName()">Set Name</button>
-    <br><br>
-    <input placeholder="chatroom" onkeydown="checkEnter(event, joinRoom)" id="room-name" />
+    <input placeholder="chatroom" onkeydown="checkEnter(event, joinRoom)" id="room-input" />
     <button type="button" id="join-button" onClick="joinRoom();">Join</button>
     <br><br>
-    <button type="button" id="rooms-button" onclick="server.getRooms();">Get open rooms</button><div id="rooms"></div>
+    <div id="rooms-label">Open rooms: </div><div id="rooms"></div>
+    <div id="members-label">Members of room <a id="room-name"> </a>:</div> <div id="members"></div>
     <br><br>
     <div id="messages"></div>
     <input placeholder="type message here" onkeydown="checkEnter(event, sendMessage)" id="chat-message">
