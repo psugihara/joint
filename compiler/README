@@ -1,3 +1,5 @@
+The files contained in here are for code generation and tree walking.
+
 CODE GENERATOR BUILD INSTRUCTIONS:
 PassC is the wrapper for the Pass Compiler FYI
 =======================

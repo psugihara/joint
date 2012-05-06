@@ -14,38 +14,40 @@ public class PassNode extends CommonTree {
     public int type;
     private boolean visited;
     private static final Pattern variablePattern = Pattern.compile("([a-zA-Z])+[0-9_]*[a-zA-Z 0-9_]*");
-             
+
     private HashMap<String, String> defined = new HashMap<String, String>();
     private HashMap<String, String> definedInFunction = new HashMap<String, String>();
 
-    public String getDefinedVarNames(){
-     Iterator<String> it = getDefinedVars();
-        String varNames="var ";
-        int i =0;
-        while(it.hasNext()){
+    public String getDefinedVarNames() {
+        Iterator<String> it = getDefinedVars();
+        String varNames = "var ";
+        int i = 0;
+        while (it.hasNext()) {
             String s = it.next();
             Matcher m = variablePattern.matcher(s);
-            //make sure it's actually a valid var
-            if(m.matches()){
-            	i++;
-                varNames +=  s+", ";
+            /*make sure it's actually a valid var  */
+            if (m.matches()) {
+                i++;
+                varNames += s + ", ";
             }
         }
-        if(i>0)
-        	return varNames.substring(0, varNames.length()-2) +";\n";
+        if (i > 0)
+            return varNames.substring(0, varNames.length() - 2) + ";\n";
         return "";
 
     }
-    
-    public boolean isValidDefinedVar(String s){
-      if(variablePattern.matcher(s).matches()){
-    	      
-      }
-      return false;
+
+    public boolean isValidDefinedVar(String s) {
+        if (variablePattern.matcher(s).matches()) {
+
+        }
+        return false;
     }
-    public Iterator<String> getDefinedVars(){
+
+    public Iterator<String> getDefinedVars() {
         return defined.keySet().iterator();
     }
+
     public void setVisitedTrue() {
         visited = true;
     }
@@ -61,9 +63,11 @@ public class PassNode extends CommonTree {
     public void setDefined(String varName) {
         ((PassNode) getParent()).defined.put(varName, "");
     }
+
     public void setDefinedFunctionVar(String varName) {
         ((PassNode) getParent()).definedInFunction.put(varName, "");
     }
+
     /*check if we need to add var and set the scope of a new variable*/
     public boolean isDefined(String varName) {
         if (varName == null)
@@ -77,14 +81,15 @@ public class PassNode extends CommonTree {
 
         tmp = (PassNode) getParent();
         while (tmp != null && tmp.getType() == PassParser.ASSIGNMENT)
-        	tmp = (PassNode) tmp.getParent();
+            tmp = (PassNode) tmp.getParent();
         if (tmp == null) {
-		System.out.println("FATAL ERROR: improperly constructed AST!");
-		System.exit(-1);
-	}
+            System.out.println("FATAL ERROR: improperly constructed AST!");
+            System.exit(-1);
+        }
         tmp.defined.put(varName, "");
         return false;
     }
+
     public boolean isVarDefined(String varName) {
         if (varName == null)
             return false;
@@ -111,11 +116,7 @@ public class PassNode extends CommonTree {
         return type;
     }
 
-    /*   @Override
-       public int getLine(){
-           return super.getToken().getLine();
-       }
-    */
+
     @SuppressWarnings("unchecked")
     public void setChild(int i, PassNode t) {
         if (children == null) {
