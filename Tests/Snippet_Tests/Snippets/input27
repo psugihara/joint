@@ -3,3 +3,4 @@ callback = (arg0) ~
 x = (arg1) ~
   return arg1
 x(callback)
+log(z)

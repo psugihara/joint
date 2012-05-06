@@ -10,14 +10,14 @@
 grammar Pass;
 
 options {
-  output=AST;
+    output=AST;
 }
 
 tokens {
-  DEDENT;
-  INDENT;
-  GEN_OP;
-  ACCESS;
+    DEDENT;
+    INDENT;
+    GEN_OP;
+    ACCESS;
 }
 
 @header {
@@ -28,94 +28,96 @@ tokens {
 }
 
 @lexer::members {
-  int DENT_SIZE = 2;
+    int DENT_SIZE = 2;
 
-  int indentLevel = 0;
-  java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
-  java.util.Stack<String> parensAndIndents = new java.util.Stack<String>();
-  boolean lineTerminatedEOF = false;
+    int indentLevel = 0;
+    java.util.Queue<Token> tokens = new java.util.LinkedList<Token>();
+    java.util.Stack<String> parensAndIndents = new java.util.Stack<String>();
+    boolean lineTerminatedEOF = false;
 
-  // Note that this will occur at the end of each production if it is not
-  // called explicitly.
-  @Override
-  public void emit(Token t) {
+    // Note that this will occur at the end of each production if it is not
+    // called explicitly.
+    @Override
+    public void emit(Token t) {
 
-    
-    // Dedent when we hit a close paren to where we were when we opened it.
-    String text = t.getText();
-    if (text.equals("INDENT") || text.equals("("))
-      parensAndIndents.push(text);
-    else if (t.getText().equals("DEDENT"))
-          parensAndIndents.pop();
-    else if (t.getText().equals(")")) {
-      while (!(parensAndIndents.isEmpty() || parensAndIndents.pop().equals("("))) {
-        tokens.offer(new CommonToken(LT, "LT"));
-        tokens.offer(new CommonToken(DEDENT, "DEDENT"));
-        indentLevel--;
-      }
-    }
-    state.token = t;
-    tokens.offer(t);
-  }
-
-  @Override
-  public Token nextToken() {
-    super.nextToken();
-    
-    if (tokens.isEmpty()) { // Clean up and return EOF
-      
-      if (indentLevel != 0) {
-        emit(new CommonToken(LT, "LT"));
-        reindent(0);
-      }
-
-      if (!lineTerminatedEOF) {
-        emit(new CommonToken(LT, "LT"));
-        lineTerminatedEOF = true;
-      }
-
-      if (tokens.isEmpty()) // Still empty
-        return Token.EOF_TOKEN;
+        // Dedent when we hit a close paren to where we were when we opened it.
+        String text = t.getText();
+        if (text.equals("INDENT") || text.equals("(")) {
+            parensAndIndents.push(text);
+        } else if (t.getText().equals("DEDENT")) {
+                parensAndIndents.pop();
+        } else if (t.getText().equals(")")) {
+            while (!(parensAndIndents.isEmpty() || parensAndIndents.pop().equals("("))) {
+                tokens.offer(new CommonToken(LT, "LT"));
+                tokens.offer(new CommonToken(DEDENT, "DEDENT"));
+                indentLevel--;
+            }
+        }
+        state.token = t;
+        tokens.offer(t);
     }
 
-    return tokens.poll();
-  }
-
-  int mod(int a, int b) {
-   while (a >= b)
-      a -= b;
-    return (a > 0)? a : 0;
-  }
-
-  void reindent(int spaces) {
-    if (mod(spaces, DENT_SIZE) != 0) {
-      String s = getLine() + ":" + getCharPositionInLine() + " uneven number of indents";
-      System.err.println("Fatal Error:");
-      System.err.println(s);
-      System.exit(-1);
-    }
+    @Override
+    public Token nextToken() {
+        super.nextToken();
     
-    int indents = spaces / DENT_SIZE;
-      if ((indents - indentLevel) > 1) {
-        String s = getLine() + ":" + getCharPositionInLine() + " too many indents";
-        System.err.println("Fatal Error:");
-        System.err.println(s);
-        System.exit(-1);
-      }
+        if (tokens.isEmpty()) { // Clean up and return EOF
+          
+            if (indentLevel != 0) {
+                emit(new CommonToken(LT, "LT"));
+                reindent(0);
+            }
 
-    if (indents > indentLevel)
-      for (int i = 0; i < (indents - indentLevel); i++)
-        emit(new CommonToken(INDENT, "INDENT"));              
-    else if (indents < indentLevel)
-      for (int i = 0; i < (indentLevel - indents); i++) {
-        emit(new CommonToken(DEDENT, "DEDENT"));
-        emit(new CommonToken(LT, "LT"));
-      }
-    else
-      skip();
-      
-    indentLevel = indents;
-  }
+            if (!lineTerminatedEOF) {
+                emit(new CommonToken(LT, "LT"));
+                lineTerminatedEOF = true;
+            }
+
+            if (tokens.isEmpty()) { // Still empty
+                return Token.EOF_TOKEN;
+            }
+        }
+
+        return tokens.poll();
+    }
+
+    int mod(int a, int b) {
+        while (a >= b) {
+            a -= b;
+        }
+        return (a > 0)? a : 0;
+    }
+
+    void reindent(int spaces) {
+        if (mod(spaces, DENT_SIZE) != 0) {
+            String s = getLine() + ":" + getCharPositionInLine() + " uneven number of indents";
+            System.err.println("Fatal Error:");
+            System.err.println(s);
+            System.exit(-1);
+        }
+    
+        int indents = spaces / DENT_SIZE;
+        if ((indents - indentLevel) > 1) {
+            String s = getLine() + ":" + getCharPositionInLine() + " too many indents";
+            System.err.println("Fatal Error:");
+            System.err.println(s);
+            System.exit(-1);
+        }
+
+        if (indents > indentLevel) {
+            for (int i = 0; i < (indents - indentLevel); i++)
+            emit(new CommonToken(INDENT, "INDENT"));              
+        } else if (indents < indentLevel) {
+            for (int i = 0; i < (indentLevel - indents); i++) {
+                emit(new CommonToken(DEDENT, "DEDENT"));
+                emit(new CommonToken(LT, "LT"));
+            }
+        } else {
+            skip();
+        }
+
+        indentLevel = indents;
+    }
 }
 
 @members {
@@ -138,7 +140,7 @@ tokens {
 		for(int z = $block.size() - 1; z >= 0; z--) {
 			if($block[z]::ST.get(variable) != null) {
 				return true;
-				}
+			}
 		}
 		
 		return false;
@@ -152,8 +154,7 @@ tokens {
 		errors.add(error);
 	}
 	
-	public void displayRecognitionError(String[] tokenNames,
-                                        RecognitionException e) {
+	public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
         String hdr = getErrorHeader(e);
         String msg = getErrorMessage(e, tokenNames);
         String[] parseErr = hdr.split("\\b line \\b", 0);

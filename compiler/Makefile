@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# author: who really cares it's just a makefile
+# author: Rafael
 # Makefile
 # Makefile for the compiler
 # ------------------------------------------------------------------------------
