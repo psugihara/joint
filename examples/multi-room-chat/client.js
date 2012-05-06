@@ -1,7 +1,7 @@
   var server;
   var connected = false;
 
-  pass.connect(5050, function(remote) {
+  pass.connect(function(remote) {
     server = remote;
     server.register(callbacks);
     var name = "";
