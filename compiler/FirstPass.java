@@ -52,7 +52,7 @@ public class FirstPass {
                 removed = true;
         }
         if (removed == true) {
-            System.out.println("Warning: line " + line + " dead code in control block after line " + line);
+            System.err.println("Warning: line " + line + " dead code in control block after line " + line);
             warnings = true;
         }
 
