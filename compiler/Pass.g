@@ -1,4 +1,12 @@
-//todo make RETURN AND GENERIC_OP custom nodes
+/**
+ * -----------------------------------------------------------------------------
+ * author: Cody De La Vara
+ * contributors: Peter, Rafael
+ * Pass.g
+ * This file contains the ANTLR grammar for Pass, the rewrite rules for AST 
+ * generation, parser error throwing, and java snippets for semantic evaluation.
+ *------------------------------------------------------------------------------
+ */
 grammar Pass;
 
 options {
@@ -157,8 +165,6 @@ tokens {
         }
     }
 	
-	
-	
 	public void returnErrors() {
 		int numErrors = errors.size();
 		String s = numErrors + ((numErrors == 1)? " Error has occured\n" : " Errors have occured\n");
@@ -167,7 +173,7 @@ tokens {
 			s += it.next() + "\n";
 		}
 		System.err.println(s);
-		//System.exit(1);
+		System.exit(1);
 	}
 	
 	public String position(Token i) {
@@ -490,7 +496,6 @@ else_if_body
 	|   LT iblock -> iblock
 	;
 
-/** dangling else solution **/
 else_test
     :   'else if' bool else_if_body (LT+ else_test)? -> ^(ELSE_IF bool else_if_body) else_test*
     |   'else' else_body -> ^(ELSE else_body)
@@ -526,7 +531,7 @@ argument returns [Boolean isVariable, String id]
     	}
     ;
 
-//AST IMAGINARY NODE TOKENS
+//AST NODE TOKENS
 
 fragment
 PROG
@@ -584,7 +589,8 @@ IF_CONDITIONS
 	;
 
 fragment
-IF  :   'IF'
+IF  
+	:   'IF'
     ;
 
 fragment
@@ -641,7 +647,8 @@ ELSE
     :   'ELSE'
 	;
 
-LT  :   ('\n'|'\r\n')+ { emit(new CommonToken(LT, "LT")); }
+LT  
+	:   ('\n'|'\r\n')+ { emit(new CommonToken(LT, "LT")); }
     ;
 
 INDENT
