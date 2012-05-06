@@ -1,6 +1,6 @@
 /**
  * -----------------------------------------------------------------------------
- * author: Nicolo Pizzoferrato
+ * author: Nick
  * contributors:
  * stdLibTests.js
  * Test suite for the standard library.

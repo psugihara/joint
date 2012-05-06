@@ -1,3 +1,8 @@
+# author: Nick #
+# contributors: #
+# /examples/multi-room-chat/mrc.pass #
+# The Pass program for the Multi-Room Chat example #
+
 
 # (To be called when the client connects) #
 # Registers all callbacks for the client with the server #
