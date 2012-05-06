@@ -49,6 +49,7 @@ if (path.extname(sourcePath) !== '.pass' && path.extname(sourcePath) !== '.js')
   usageDie('Server program must have .pass or .js extension');
 
 if (process.argv.length > 4 && process.argv.length < 7 ) {
+
   // Verify that the port is a number in the correct range.
   port = parseFloat(process.argv[3]);
   if (!port || port < 0 || port > 65535) {
@@ -65,11 +66,12 @@ if (process.argv.length > 4 && process.argv.length < 7 ) {
   if (process.argv.length === 6) {
     if (process.argv[5] === '-o' || process.argv[5] === '--optimize') {
       optimize = true;
-      console.log("optimizing compiled JS...")
+      console.log("optimizing compiled JS...");
     } else {
-      usageDie('invalid option "' + process.argv[5] + '"')
+      usageDie('invalid option "' + process.argv[5] + '"');
     }
   }
+
 }
 
 

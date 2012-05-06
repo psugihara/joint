@@ -50,8 +50,9 @@ function prompt () {
 
 // Take the name of a source file relative to the current directory and
 // output the compiled js. When done compiling, call cb with target path
-// as arg.
+// as arg. If opt is true, run optimization step.
 function compileToFile (sourceName, opt, cb) {
+
   var source = path.resolve(sourceName),
       target = cwd + '/' + path.basename(source, '.pass') + '.js';
    
@@ -73,8 +74,8 @@ function compileToFile (sourceName, opt, cb) {
 
 function optimize (target, cb) {
   process.chdir(thirdPass);
-  child.exec("java -jar compiler.jar " + target  + " --js_output_file " 
-  + cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS;cd " + cwd + 
+  child.exec("java -jar compiler.jar " + target  + " --js_output_file " +
+  cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS;cd " + cwd + 
   ";cat .oUt > " + target + ";rm .oUt", function () {
     cb(target);
   });
