@@ -148,7 +148,17 @@ public class CodeGenerator {
         if (funcName.equals("log")) {
             funcName = "console.log";
             stdLibFunctionsCalled = true;
-        } else if (STDLIB.contains(funcName)) {
+        }if (funcName.equals("num")) {
+            funcName = "parseFloat";
+        }if (funcName.equals("str")) {
+            String number = n.getChild(1).getText();
+            if(variablePattern.matcher(number).matches()){
+		return number + ".toString()";
+	    }
+
+	    return "(__num = " + number+").toString()";
+        }
+         else if (STDLIB.contains(funcName)) {
             stdLibFunctionsCalled = true;
         }
         node.setText(funcName);
