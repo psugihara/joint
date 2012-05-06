@@ -18,14 +18,16 @@ var fs = require('fs'),
     cwd = process.cwd(),
     thirdPass = path.join(compiler + "/thirdPass");
 
-// If there is an argument, give it to PassC.
-if (process.argv.length > 2) {
-  compileToFile(process.argv[2]);
-} else {
-  startREPL();
+if (!module.parent) { // "main"
+  // If there is an argument, give it to PassC.
+  if (process.argv.length > 2) {
+    compileToFile(process.argv[2]);
+  } else {
+    startREPL();
+  }
 }
 
-// This is never run by the end user. It is for Pass lang development purposes.
+// This is never run by the end user. It is for Pass lang development use.
 function startREPL () {
   prompt();
   
@@ -48,9 +50,9 @@ function prompt () {
 
 // Take the name of a source file relative to the current directory and
 // output the compiled js. When done compiling, call cb with target path
-// as arg.
-function compileToFile (sourceName, mini, cb) {
-  
+// as arg. If opt is true, run optimization step.
+function compileToFile (sourceName, opt, cb) {
+
   var source = path.resolve(sourceName),
       target = cwd + '/' + path.basename(source, '.pass') + '.js';
    
@@ -58,8 +60,8 @@ function compileToFile (sourceName, mini, cb) {
   child.exec('java PassC ' + source, function (error, stdout, stderr) {
       if (error === null) {
         fs.writeFile(target, stdout, function (err) {
-          if (mini)
-            minify(target, cb);
+          if (opt)
+            optimize(target, cb);
           else if (cb)
             cb(target);
         });
@@ -70,11 +72,13 @@ function compileToFile (sourceName, mini, cb) {
   });
 }
 
-function minify (target, cb) {
+function optimize (target, cb) {
   process.chdir(thirdPass);
-  child.exec("java -jar compiler.jar " + target  + " --js_output_file " 
-  + cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS;cd " + cwd + 
-  ";cat .oUt > " + target + ";rm .oUt", null);
+  child.exec("java -jar compiler.jar " + target  + " --js_output_file " +
+  cwd + "/.oUt --compilation_level SIMPLE_OPTIMIZATIONS;cd " + cwd + 
+  ";cat .oUt > " + target + ";rm .oUt", function () {
+    cb(target);
+  });
 }
 
 function toConsole (error, stdout, stderr) {

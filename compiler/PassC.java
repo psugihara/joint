@@ -53,7 +53,7 @@ public class PassC {
     }
 
 
-    /*first pass */
+    /* first pass */
     public void walkTree1(PassNode n) throws java.lang.ClassCastException {
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);
@@ -75,7 +75,7 @@ public class PassC {
         }
     }
 
-    /*second pass */
+    /* second pass */
     public void walkTree2(PassNode n) {
         Stack<PassNode> s = new Stack<PassNode>();
         s.push(n);

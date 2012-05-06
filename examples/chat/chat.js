@@ -9,9 +9,10 @@ server.arrive = function (msgCallback) {
 };
 server.broadcast = function (msg) {
   var conn = this.conn;
-  for (c in conns()) {
-    console.log(conns()[c]);
-    conns()[c].onMsg(msg);
+  var __0 = conns();
+  for (var __c = 0, __0len = __0.length; __c < __0len; __c++) {
+    console.log(__0[__c]);
+    __0[__c].onMsg(msg);
   }
 };
 
