@@ -1,7 +1,11 @@
+# author: Peter #
+# contributors: #
+# /examples/chat/chat.pass #
+# The Pass program for the basic Chat example. #
+
 server.arrive = (msgCallback) ~
   conn.onMsg = msgCallback
 
 server.broadcast = (msg) ~
   for c in conns()
-    log(c)
     c.onMsg(msg)
