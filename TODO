@@ -1,0 +1,12 @@
+TO DO
+=====================
+Security 
+  -filter and error handling wrapper around dnode
+
+Production
+  -fix build scripts to produce a tar that works
+
+Grammar
+  -fix known bugs
+  - add ++ -- etc...
+
