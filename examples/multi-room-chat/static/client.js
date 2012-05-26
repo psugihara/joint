@@ -52,7 +52,7 @@
     x.scrollTop = x.scrollHeight;
   }
 
-  var getRooms = function(rooms) {
+  var setRooms = function(rooms) {
     var list = "";
     for(var i in rooms)
       list += "  " + rooms[i];
@@ -66,7 +66,7 @@
     document.getElementById("members").innerHTML = list;
   }
 
-  var callbacks = {'receive':receive, 'onEnter':onEnter, 'onLeave':onLeave, 'getRooms':getRooms, 'getMembers':getMembers};
+  var callbacks = {'receive':receive, 'onEnter':onEnter, 'onLeave':onLeave, 'setRooms':setRooms, 'getMembers':getMembers};
 
   var joinRoom = function() {
     var room = document.getElementById('room-input').value;

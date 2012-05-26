@@ -1,20 +1,20 @@
-var pass = require('pass');
+var sp = require('spliff');
 for (var x in pass)
   global[x] = pass[x];
 var server = {};
 
 server.register = function (callbacks) {
-  var conn = this.conn;
-  var __0 = keys(callbacks);
-  for (var __i = 0, __0len = __0.length; __i < __0len; __i++) {
-    conn[__0[__i]] = callbacks[__0[__i]];
+  for (for key in callbacks) {
+    this.conn[key] = callbacks[key];
   }
-  conn.getRooms(getTags());
+  this.conn.setRooms(getTags());
 };
+
 server.setName = function (name) {
   var conn = this.conn;
   conn.name = name;
 };
+
 server.join = function (newRoom) {
   var conn = this.conn;
   var newMembers, broadcast, i, oldRoom;
@@ -54,6 +54,7 @@ server.join = function (newRoom) {
   }
   conn.getMembers(newMembers);
 };
+
 server.chat = function (message) {
   var conn = this.conn;
   var room;

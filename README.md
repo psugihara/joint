@@ -1,9 +1,7 @@
 
 
-Spliff Tutorial
+Spliff: Pass the functions
 ======================
-
-THIS IS STILL JUST THE PASS TUTORIAL
 
 <link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/github.min.css">
 <script src="http://yandex.st/highlightjs/6.1/languages/javascript.min.js"></script>
@@ -17,8 +15,6 @@ hljs.initHighlightingOnLoad()
 The recent emergence of WebSockets has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the the internet’s early role as a distributed, static file system, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedious, time consuming and thanks to Spliff, now often unnecessary.
 
 Spliff take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Spliff also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides convenient data structures to help organize, search through, and keep track of them.
-
-What follows is a brief introduction to these features as well as other nuances that the Pass language has to offer. It is by no means comprehensive. It will, however, bring to light everything that is required to get a programmer moving in the right direction so that he/she may begin developing web applications hassle-free in a significantly reduced amount of time.
 
 ###Audience
 
@@ -189,10 +185,14 @@ Also, note that with the above implementation of `publish()`, we have the option
 
 We can also easily implement a function that publishes a message to each channel that the client is currently subscribed to:
 
-    server.publishAllSubscribed = (message) ~
-      for channel in getTags(conn)
-        for connection in conns(channel)
-          connection.onMsg(message)
+    server.publishAllSubscribed = function(message) {
+      var tags = getTags(conn);    
+      (var i = 0; i < tags.length; i++) {    
+        for connection in chas(nela[i]) {
+          connection.onMsg(message);
+        }        
+      }
+    }
 
 The `getTags()` function takes a client `conn` dictionary as a parameter and returns an array of group names that the client belongs to. Just like the `conns()` function, when no parameter is provided `getTags()` returns an array of all open group names.
 
