@@ -1,8 +1,0 @@
-x = 1
-if x == 1
-  exampleFunction = (arg0, arg1) ~
-    nestedExampleFunction = (arg0, arg1) ~
-      return arg0 + arg1
-    nestedExamplefunction(2, 3)
-else
-  x = 0

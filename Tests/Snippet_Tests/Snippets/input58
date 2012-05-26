@@ -1,8 +1,0 @@
-exampleFunction = (arg0, arg1) ~
-  nestedExampleFunction = (arg0, arg1) ~
-    x = x + 2
-    y = x + 4
-    z = arg0 - arg1
-    a = x * y * arg0 * z
-    return a
-  nestedExamplefunction(2, 3)

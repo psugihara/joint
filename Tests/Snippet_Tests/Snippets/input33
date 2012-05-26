@@ -1,4 +1,0 @@
-server.registerFoo = (function) ~
-  conn.foo = function
-server.callFoo = () ~
-  conn.foo()

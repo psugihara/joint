@@ -1,9 +1,0 @@
-x = 3
-if x > 1
-  z = "traf"
-else
-  z = "burp"
-if x < 2
-  a = "hey"
-else
-  a = 4

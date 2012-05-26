@@ -1,6 +1,0 @@
-callback = (arg0) ~
-  return 0
-x = (arg1) ~
-  return arg1
-x(callback)
-log(z)

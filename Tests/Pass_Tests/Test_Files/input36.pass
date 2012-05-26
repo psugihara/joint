@@ -1,2 +1,0 @@
-d = {one: 1, two: 2}
-log(addNums(d.one, d.two))

@@ -1,16 +1,6 @@
 #!/usr/bin/env node
 
-/**
- * -----------------------------------------------------------------------------  
- * author: Peter
- * contributors: Nick
- * /examples/multi-room-chat/client.js  
- * The client-side JavaScript for the Multi-Room Chat example
- *------------------------------------------------------------------------------
- */
-
-
-// This is the main executable for the Pass translator and server.
+// This is the main executable for Spliff.
 // Running this program with 3 arguments will translate the Pass to JS
 // and start a Node.js server on the given port which serves files from the 
 // given directory.
@@ -32,7 +22,7 @@ var sourcePath, port, staticPath, optimize;
 var usageDie = function (message) {
   if (message)
     console.log(message);
-  console.log('usage: pass <path/program.pass> [<port#> <static directory>][--optimize]');
+  console.log('usage: spliff <path/program.pass> [<port#> <static directory>][--optimize]');
   process.exit();
 };
 
@@ -45,8 +35,8 @@ sourcePath = path.resolve(process.argv[2]);
 // Verify that the source path exists and has a valid extension.
 if (!path.existsSync(sourcePath))
   usageDie('file not found: ' + sourcePath);
-if (path.extname(sourcePath) !== '.pass' && path.extname(sourcePath) !== '.js')
-  usageDie('Server program must have .pass or .js extension');
+if (path.extname(sourcePath) !== '.coffee' && path.extname(sourcePath) !== '.js')
+  usageDie('Server program must have .coffee or .js extension');
 
 if (process.argv.length > 4 && process.argv.length < 7 ) {
 
@@ -74,17 +64,7 @@ if (process.argv.length > 4 && process.argv.length < 7 ) {
 
 }
 
-
-// ####Source Compilation
-// ______________________
-
-if (path.extname(sourcePath) == '.pass') {
-  // Compile to this directory and run with the new source path.
-  require('./passc.js').compileToFile(sourcePath, optimize, run);
-} else {
-  run(sourcePath);
-}
-
+run(sourcePath);
 
 // ####Program Execution
 // _____________________

@@ -1,3 +1,0 @@
-# missing ending paren for function param #
-exampleFunction1 = (arg0, arg1 ~
-  return 10

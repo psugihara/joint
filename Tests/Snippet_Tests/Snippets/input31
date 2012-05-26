@@ -1,2 +1,0 @@
-server.timesTen = (number, callback) ~
-  callback(10 * number)

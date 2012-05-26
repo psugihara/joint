@@ -1,6 +1,0 @@
-savedFunction = 0
-server.registerFunction = (function) ~
-  savedFunction = function
-server.callFunction = () ~
-  savedFunction()
-log("passed")

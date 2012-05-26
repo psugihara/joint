@@ -1,5 +1,0 @@
-# wrong list ! #
-listB = ["first", "second", "bla", "stop here!", "fifth"]
-for thisElement in list
-  if thisElement == "stop here!"
-    break    

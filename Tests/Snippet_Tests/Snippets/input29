@@ -1,5 +1,0 @@
-arrFoo = [3,"hello"]
-arrFoo[0] += 3
-arrFoo[1] = "goodbye"
-arrFoo[0] = 12e4
-arrFoo[1] = "nahnah nahhh nah283u283ndod"
