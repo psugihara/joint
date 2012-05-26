@@ -3,22 +3,11 @@
 Spliff: Pass the functions
 ======================
 
-<link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/github.min.css">
-<script src="http://yandex.st/highlightjs/6.1/languages/javascript.min.js"></script>
-<script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
-<script>
-hljs.initHighlightingOnLoad()
-</script>
-
 ##Introduction
 
 The recent emergence of WebSockets has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the the internet’s early role as a distributed, static file system, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedious, time consuming and thanks to Spliff, now often unnecessary.
 
-Spliff take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Spliff also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides convenient data structures to help organize, search through, and keep track of them.
-
-###Audience
-
-It is our hope that the Pass programming language will prove useful to anyone who wants to write web applications requiring real-time client-server communication. It is assumed that the reader of this document has some experience building interactive websites using JavaScript and HTML but knowledge of another server side language, or even experience with server-dependent applications, is not required.
+Spliff take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Spliff also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides convenient data structures to help organize, search through, and keep track of them.[
 
 ##Hello outside world: serving static files
 
