@@ -1,6 +1,6 @@
+![image](https://github.com/ptrsghr/Spliff/raw/master/docs/images/spliff.png)
 
-
-Spliff: Pass the functions
+Pass the functions
 ======================
 
 ##Introduction
