@@ -1,5 +1,3 @@
-// Possible generated output for logger.pass.
-
 /*jshint node: true*/
 
 var server = {};

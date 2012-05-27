@@ -1,2 +1,0 @@
-server.arrive = (name) ~
-  log(name + “ arrived”)

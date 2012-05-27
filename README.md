@@ -7,27 +7,10 @@ Spliff: Pass the functions (don't fuck up the rotation)
 
 The recent emergence of WebSockets has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the the internet’s early role as a distributed, static file system, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedious, time consuming and thanks to Spliff, now often unnecessary.
 
-Spliff take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Spliff also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Pass provides convenient data structures to help organize, search through, and keep track of them.[
+Spliff take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Spliff also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Spliff provides convenient functions to help organize, search through, and keep track of them.
 
-##Hello outside world: serving static files
 
-How about something a bit more practical? The basic function of every Pass program is to transparently start a server that listens and serves static files on a specified port. To accomplish this, we supply two additional command line arguments with the port number and a file directory to use as the root from which to serve static files.
-
-Before trying this, let's add a directory at the current path called *static* that contains an *index.html*. The HTML file will simply contain:
-
-```
-Hello outside world!
-```
-
-We now have two files *hello.js*, and *static/index.html* and we can start our server with the following line.
-
-```
-$ spliff hello.js 8080 static
-```
-
-This will start a Pass server on port 8080 which serves files from the directory *static*. We will see the same output as before on the console and in a browser, visiting the url [http://localhost:8080/](http://localhost:8080/) will retrieve our *index.html*.
-
-##Logger: using dictionaries, functions, and string concatenation
+##Logger
 
 That's a bit more useful, but then what's the point of that pesky *.pass* file? Indeed, it was absolutely trivial in the last example. To give a peak at the power and simplicity of the Pass programming language, we now present a simple connection logger. Our logger program will write to stdout when a new user connects.
 
@@ -35,8 +18,9 @@ That's a bit more useful, but then what's the point of that pesky *.pass* file? 
 Pass allows us to write functions on the server which can be called from the client HTML as if they were included in the client side code. These functions run on the server but in a bit, we’ll show you how easy it is to get the results back in the client. The following two lines are the entire code listing for our *logger.pass* program.
 
 ```
-server.arrive = (name) ~
-  log(name + “ arrived”)
+server.arrive = function (name) {
+  log(name + “ arrived”);
+}
 ```
 
 The first line declares a function which can be called by the client. The built-in variable `server` is a dictionary. Dictionaries in Pass, similar to objects in JavaScript, are data structures which map variable keys to values of any type (function, number, string, array, or dictionary). Dictionary values can be accessed and assigned using the dot notation shown above. This assignment maps the key `arrive` to a function. Functions are denoted by a comma-delimited, parentheses-enclosed argument list (which may be empty) followed by a tilde. The function here takes the single argument `name`. The variable server is a special dictionary. Any functions that are mapped to keys in server can be called by the client.
