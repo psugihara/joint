@@ -9,6 +9,12 @@ The recent emergence of the WebSocket protocol has given developers a new tool t
 
 Spliff take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Spliff also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Spliff provides convenient functions to help organize, search through, and keep track of them.
 
+##Installation
+Spliff requires *node.js* and *npm*. Once you have these dependencies, simply:
+
+
+	npm install spliff
+
 
 ##Logger
 
@@ -171,4 +177,4 @@ With these functions, we have written a fully functional Publish-Subscribe serve
 
 ##Conclusion
 
-Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Spliff, and how few lines of code are required to build fully functional real-time web applications. With some luck you should be able to have a simple application of your own up and running in just minutes. We hope you will enjoy using Spliff as much as we enjoyed designing it!
+Hopefully, this tutorial has given you a good feel for what kinds of applications are best suited for Spliff, and how few lines of code are required to build them. With some luck you should be able to have a simple application of your own up and running in just minutes. We hope you will enjoy using Spliff as much as we enjoyed designing it!

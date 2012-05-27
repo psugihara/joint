@@ -1,7 +1,6 @@
 {
   "name": "spliff",
   "version": "0.0.1",
-  "private": true,
   "dependencies": {
     "dnode"         : "latest",
     "browserify"    : "latest",
