@@ -1,8 +1,5 @@
 ![image](https://github.com/ptrsghr/Spliff/raw/master/docs/images/spliff.png)
 
-Pass the functions
-======================
-
 ##Introduction
 
 The recent emergence of the WebSocket protocol has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the the internet’s early role as a distributed, static file system, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedious, time consuming and now thanks to Spliff, often unnecessary.
