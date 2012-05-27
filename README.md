@@ -1,6 +1,6 @@
 
 
-Spliff: Pass the functions
+Spliff: Pass the functions (don't fuck up the rotation)
 ======================
 
 ##Introduction

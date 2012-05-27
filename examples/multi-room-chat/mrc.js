@@ -1,6 +1,5 @@
 var sp = require('spliff');
-for (var x in pass)
-  global[x] = pass[x];
+
 var server = {};
 
 server.register = function (callbacks) {
