@@ -13,7 +13,7 @@ Spliff take care of this repetitive, boilerplate configuration automatically so 
 Spliff requires *node.js* and *npm*. Once you have these dependencies, simply:
 
 
-	npm install spliff
+	npm install spliff -g
 
 
 ##Logger
