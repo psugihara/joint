@@ -5,8 +5,7 @@
   "dependencies": {
     "dnode"         : "latest",
     "browserify"    : "latest",
-    "connect"       : "latest",
-    "underscore"    : "latest"
+    "connect"       : "latest"
   },
   "bin" : {
     "spliff"  : "./bin/cli.js"

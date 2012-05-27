@@ -1,34 +1,36 @@
 
 
-Spliff: Pass the functions (don't fuck up the rotation)
+Spliff: Pass the functions
 ======================
 
 ##Introduction
 
-The recent emergence of WebSockets has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the the internet’s early role as a distributed, static file system, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedious, time consuming and thanks to Spliff, now often unnecessary.
+The recent emergence of the WebSocket protocol has given developers a new tool to deploy dynamic real time connections and content between the client and server. Unfortunately, the tedious HTTP request/response model that was designed to facilitate the the internet’s early role as a distributed, static file system, has been folded into most libraries that support this new protocol. In order to write a functional real-time web application, a programmer must first learn these older protocols as well as the associated syntax for initializing a server, establishing socket connections, and other verbose functions associated with the traditional client-server architecture. This is tedious, time consuming and thanks to Spliff, now often unnecessary.
 
 Spliff take care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Spliff also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Spliff provides convenient functions to help organize, search through, and keep track of them.
 
 
 ##Logger
 
-That's a bit more useful, but then what's the point of that pesky *.pass* file? Indeed, it was absolutely trivial in the last example. To give a peak at the power and simplicity of the Pass programming language, we now present a simple connection logger. Our logger program will write to stdout when a new user connects.
+To give a peak at the power and simplicity of Spliff, we first present a simple connection logger. Our logger program will write to stdout when a new user connects.
 
 ####Server
-Pass allows us to write functions on the server which can be called from the client HTML as if they were included in the client side code. These functions run on the server but in a bit, we’ll show you how easy it is to get the results back in the client. The following two lines are the entire code listing for our *logger.pass* program.
+Spliff allows us to write functions on the server which can be called from the client HTML as if they were included in the client side code. These functions run on the server but in a bit, we’ll show you how easy it is to get the results back in the client. The following two lines are the entire code listing for our *logger.js* program.
 
-```
-server.arrive = function (name) {
-  log(name + “ arrived”);
-}
-```
+	
+	var server = {};
+	
+	server.arrive = function (name) {
+	    console.log(name + " arrived");
+	};
+	
+	module.exports = server;
 
-The first line declares a function which can be called by the client. The built-in variable `server` is a dictionary. Dictionaries in Pass, similar to objects in JavaScript, are data structures which map variable keys to values of any type (function, number, string, array, or dictionary). Dictionary values can be accessed and assigned using the dot notation shown above. This assignment maps the key `arrive` to a function. Functions are denoted by a comma-delimited, parentheses-enclosed argument list (which may be empty) followed by a tilde. The function here takes the single argument `name`. The variable server is a special dictionary. Any functions that are mapped to keys in server can be called by the client.
 
-The second line is the body block of our function. Enclosed blocks are indicated by a 2-space indent at the start of the line. The `log()` function should be familiar from the last example. The overloaded `+` operator, when used with strings, will create a new string which is a concatenation of the original two strings. When a string and a number are used with the `+` operator, the number is coerced to a string before being concatenated.
+The first line creates the server object. The `server` object contains methods to be called by the client. Next, the assignment maps the key `arrive` to a function that prints the client's name to stdout. Lastly, we always export the server object to be used by Spliff.
 
-####Client 
-The client side code in our modified *index.html* will import the *pass.js* client-side library and call the function we just defined on our server. The full code listing is as follows.
+####Client
+The client side code in our modified *index.html* will import Spliff's client-side library,  *pass.js*, and call the function we just defined on our server. The full code listing is as follows.
 
 
     <script src=/pass.js></script>
@@ -39,55 +41,52 @@ The client side code in our modified *index.html* will import the *pass.js* clie
     </script>
 
 
-The script *pass.js* is automatically generated and served by the Pass server. Including it and calling `pass.connect()` passes functions in the server dictionary to the client so that we can call `arrive()` in the client-side JavaScript. The connection function takes a callback function with `server` as an argument. This function is called when the connection is successfully established. Before `arrive()` is called, the user will be prompted to enter their name as the argument so that we know who they are on the server.
+The script *pass.js* is automatically generated and served by the Spliff server. Including it and calling `pass.connect()` passes functions in the server dictionary to the client so that we can call `arrive()` in the client-side JavaScript. The connection function takes a callback function with `server` as an argument. This function is called when the connection is successfully established. Before `arrive()` is called, the user will be prompted to enter their name as the argument so that we know who they are on the server.
 
 ####Run it!
 With this index.html in the *static* directory, we can have the server start listening on port 8080 just as we did in the previous example:
 
-```
-$ pass logger.pass 8080 static
-```
 
-If we visit [http://localhost:8080/](http://localhost:8080/) and enter our name, `ourName` arrived will be printed on the console. We can record the activity log by routing stdout to a file: 
+	$ spliff logger.pass 8080 static
 
-```
-$ pass logger.pass 8080 static > activity.log
-```
+
+If we visit [http://localhost:8080/](http://localhost:8080/) and enter our name, `ourName arrived` will be printed on the console. We can record the activity log by routing stdout to a file: 
+
+
+	$ pass logger.pass 8080 static > activity.log
+
 
 We’ve created a simple activity logger in just two lines of code! One could imagine extending this example to collect analytics about user activity in real-time. For instance, perhaps each button press in a single-page web app could be logged in order to evaluate the effectiveness of a user interface.
 
-### Numbers
-In Pass, all numbers are floating point numbers. All of the usual operations and operator assignments, familiar from JavaScript, Java, or C are available with the exception of postfix and prefix incrementation. So if we wanted to add a counter for the total number of connections, we could simply add the line
+##Real-time chat: *conn*, *conns()*, and callbacks
 
-```
-count = 0
-```
-
-to the top of our file, and
-
-```
-count += 1
-```
-
-somewhere inside the function.
-
-##Real-time chat: *conn*, *conns()*, arrays, for, and callbacks
-
-Hopefully, the last example illuminated the power and ease of exposing server-side functions written in Pass to client-side scripts. But Pass isn’t just for one-way communication. To show just how useful Pass can be for real-time bidirectional client-server interactions, we now present a simple chat server. The chat server will allow clients to broadcast messages to all registered users.
+Hopefully, the last example illuminated the power and ease of exposing server-side functions to client-side scripts. But Spliff isn’t just for one-way communication. To show just how useful Pass can be for real-time bidirectional client-server interactions, we now present a simple chat server. The chat server will allow clients to broadcast messages to all registered users.
 
 ####Server
-In our application, when a client application connects to the server, it registers with a callback function to let the server know how to contact it. When a client sends a message, the server iterates through all connected clients, calling the callback function that was passed to it by each connection. The code listing for our new chat.pass file is shown below.
+In our application, when a client application connects to the server, it registers with a callback function to let the server know how to contact it. When a client sends a message, the server iterates through all connected clients, calling the callback function that was passed to it by each connection. The code listing for our new *chat.js* file is shown below.
 
-    server.arrive = (msgCallback) ~
-      conn.onMsg = msgCallback
+	var sp = require('spliff');
+	
+	var server = {};
+	
+	server.arrive = function (msgCallback) {
+	  this.conn.onMsg = msgCallback;
+	};
+	
+	server.broadcast = function (msg) {
+	  sp.conns().map(function (c) {
+	    c.onMsg(msg);
+	  });
+	};
+	
+	module.exports = server;
     
-    server.broadcast = (msg) ~
-      for c in conns()
-        c.onMsg(msg)
-    
-The first function takes a single argument,  `msgCallback` that is added as a value to the dictionary `conn` with key `“onMsg”`. Like server, the variable `conn` is a special dictionary. Pass maintains a `conn` dictionary for each client connection. This dictionary is intended to store client-specific information (such as a usernames and callbacks). The `conn` keyword may be used within the body of an exposed `server` function to reference the dictionary of the client that invoked the function. Here we register a callback function by which the Pass program can send a message back to the client. Notice that functions can be assigned or passed as function arguments just as a string or number can be.
+The first function takes a single argument,  `msgCallback` that is added as a value to the dictionary `conn` with key `“onMsg”`. Like `server`, `this.conn` is a special object. Spliff maintains a `conn` object for each client connection. This object is intended to store client-specific information (such as a usernames and callbacks). The `this.conn` may be used within the body of an exposed `server` function to reference the object of the client that invoked the function. Here we register a callback function by which the Spliff program can send a message back to the client. Notice that functions can be assigned or passed as function arguments just as a string or number can be.
 
-The second function also takes a single argument, msg which is a string to send to all other connected clients. Here we see a new flow control mechanism, the `for` loop, which iterates over the set of *values* in the collection (to iterate over the keys, simply use the native construct `keys([collection])`). The built in function `conns()` returns an array containing all of the conn dictionaries for connected clients. Pass arrays are zero-indexed and may contain values of any type. The for construct iterates through values in an array, assigning each value to the variable `c` at the start of each iteration then executing the indented body block which starts on the next line. The `conns()` function in the declaration of the loop is only called once, so if the return value of `conns()` changes the execution of the loop with not be affected.
+The second function also takes a single argument, `msg` which is a string to send to all other connected clients. The built in function `conns()` returns an array containing all of the conn objects for connected clients. Here we use `conns().map()` to call the `onMsg` callback on each client. Finally, we again export the `server` object to be used by Spliff.
+
+
+
 
 ####Client 
 The bare bones GUI will consist of a text input box and a submit button. When the submit button is clicked, the client will broadcast the string in the text box then clear the text box. The full code listing for the client file *index.html* is below.
@@ -111,7 +110,7 @@ The bare bones GUI will consist of a text input box and a submit button. When th
         });
     </script>
 
-We assume basic familiarity with JavaScript and HTML but there are a few important lines specific to Pass that the reader should note. Namely, the first `script` tag includes the client side *pass.js* file which gives access to `server` functions.
+We assume basic familiarity with JavaScript and HTML but again there are a few important lines specific to Pass that the reader should note. Namely, the first `script` tag includes the client side *pass.js* file which gives access to `server` functions inside of `pass.connect()`'s callback.
 
 ####Chat!
 This program can be run in the same matter as the previous few examples. Try opening the page in two browser windows and watch as your chat instantly appears in the console of one after you send it from the other.
@@ -182,36 +181,6 @@ With these functions, we have written a fully functional Publish-Subscribe serve
 
 Note that while these methods of accessing client dictionaries are the only ones native to Pass, a programmer is free to design a custom dictionary that may better suit the needs of a particular application. For example, one might create a dictionary where user names are the keys that map to that user’s client dictionary.
 
-###Making dictionaries and arrays
-The array literal consists of an open square bracket, followed by a comma-separated list of values, followed by a closing square bracket. Values may be of mixed type.
-
-```
-[0, "one", 2]
-```
-
-The dictionary literal consists of an open curly brace, followed by comma-separated paris of colon-separated key identifiers and values, followed by a closing curly brace. A dictionary literal may also contain mixed type values.
-
-```
-{user1: "John", user2: "Jim", user3: 0}
-```
-
-Arrays and dictionaries may be assigned to variables just like functions or numbers with the variable name and assignment operator on the left hand side. Like functions and numbers, they may also be passed into operations as literals.
-
-###Passing to Pass
-When passing arguments into Pass functions from client-side JavaScript, it is important to know what data types they will take in the Pass function and vice versa. Pass datatypes have been designed with this in mind. The simple rule of thumb is that they are what they look like.
-
-* JavaScript Strings ⟺ Pass strings with the same value.
-* JavaScript Numbers ⟺ Pass numbers with the same value.
-* JavaScript Arrays ⟺ Pass arrays.
-* Javascript Functions ⟺ Pass functions.
-* JavaScript Objects (except for those mentioned above) ⟺ Pass dictionaries.
-
 ##Conclusion
 
-Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Pass, and how few lines of Pass code are required to build fully functional real-time web applications. We have covered all the basic functionality of the language. With some luck you should be able to have a simple application of your own up and running in just minutes. We hope you will enjoy using our language as much as we enjoyed designing it! 
-
-For a more detailed look at the language, please see the Pass Reference Manual.
-
-Best,
-
-*Rafael Castellanos | Cody De La Vara | Andy Lamping | Nick Pizzoferrato | Peter Sugihara*
+Hopefully, this tutorial has given you a good idea about what kinds of applications are best suited for Spliff, and how few lines of code are required to build fully functional real-time web applications. With some luck you should be able to have a simple application of your own up and running in just minutes. We hope you will enjoy using Spliff as much as we enjoyed designing it!

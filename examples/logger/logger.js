@@ -6,4 +6,4 @@ server.arrive = function (name) {
     console.log(name + " arrived");
 };
 
-exports.server = server;
+module.exports = server;
