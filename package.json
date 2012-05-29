@@ -16,7 +16,7 @@
     "node": "*"
   },
   "author": "Peter Sugihara <peter@campsh.com> (campsh.com/peter), Nick Pizzoferrato",
-  "description": "A hand-rolled real-time JS web framework for single page apps.",
+  "description": "A hand-rolled real-time node.js framework for connecting single page apps",
   "homepage": "https://github.com/ptrsghr/joint",
   "repository": {
     "type": "git",

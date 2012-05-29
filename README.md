@@ -6,6 +6,7 @@ The recent emergence of the WebSocket protocol has given developers a new tool t
 
 Joint takes care of this repetitive, boilerplate configuration automatically so that the programmer can immediately begin work on the main application logic. The entire network architecture is abstracted into a few intuitive functions that facilitate seamless communication between server and client. Joint also allows functions on the server to be called like any other function on the client, and vice versa. Moreover once these connections are established, Joint provides convenient functions to help organize, search through, and keep track of them.
 
+
 ##Installation
 Joint requires *node.js* and *npm*. Once you have these dependencies, simply:
 
