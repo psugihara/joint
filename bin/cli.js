@@ -70,14 +70,16 @@ function run (sourcePath) {
       browserify = require('browserify'),
       dnode = require('dnode'),
       http = require('http'),
-      lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib'),
+      base = path.join(path.dirname(fs.realpathSync(__filename)), '..')
+      lib  = base + '/lib',
+      modules  = base + '/node_modules',
       connections = require(lib + '/connections.js');
 
   var app = connect();
 
   // Wrap dnode in pass.js, wih a little extra sugar at the end.
   var b = browserify({
-    require: 'dnode',
+    require: modules + '/dnode',
     mount: '/pass.js'
   });
   b.append(fs.readFileSync(lib + '/browser/pass_client.js'));
