@@ -90,7 +90,6 @@ function run (sourcePath) {
   dnode(function (client, conn) {
     // Bind server functions to dnode object with the connection.
     for (var key in program) {
-      console.log(program[key]);
       this[key] = program[key].bind({"conn":conn});
     }
 
