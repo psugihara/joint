@@ -144,7 +144,7 @@ You're probably wondering how we can write such an application in a reasonable a
 First, we create an exposed function that serves two purposes: it subscribes the client to the specified channel, and stores the client’s handler for receiving messages in the client connection dictionary. We subscribe a client to a group through the use of the `pushTag()` function, which takes two arguments: the `conn` dictionary of the client, and the group name (a string).
 
     server.subscribe = function (channel, onMsg) {
-      joint.pushTag(conn, channel);
+      joint.pushTag(this.conn, channel);
       this.conn.onMsg = onMsg;
     };
 
@@ -164,10 +164,10 @@ Finally, we can unsubscribe a client from a specified channel or, if no channel 
 
     server.unsubscribe = function (channel) {
       if (channel)
-        popTag(conn, channel);
+        popTag(this.conn, channel);
       else
       	channels(this.conn).map(function (c) {
-          popTag(conn, c);
+          popTag(this.conn, c);
       	});       
     };
 
