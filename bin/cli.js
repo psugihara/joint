@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-// This is the main executable for Spliff.
+// This is the main executable for Joint.
 // Running this program with 3 arguments will translate the Pass to JS
 // and start a Node.js server on the given port which serves files from the 
 // given directory.
-// The JS outputted from the translator should be wrapped in a function closure.
 
 /*jshint node: true*/
 
@@ -22,7 +21,7 @@ var sourcePath, port, staticPath, optimize;
 var usageDie = function (message) {
   if (message)
     console.log(message);
-  console.log('usage: spliff <path/program.js> <port#> <static directory>');
+  console.log('usage: joint <path/program.js> <port#> <static directory>');
   process.exit();
 };
 

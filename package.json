@@ -1,13 +1,25 @@
 {
-  "name": "spliff",
-  "version": "0.0.1",
+  "name": "joint",
+  "version": "0.0.0",
   "dependencies": {
-    "dnode"         : "latest",
-    "browserify"    : "latest",
-    "connect"       : "latest"
+    "dnode": "latest",
+    "browserify": "latest",
+    "connect": "latest"
   },
-  "bin" : {
-    "spliff"  : "./bin/cli.js"
+  "bin": {
+    "joint": "./bin/cli.js"
   },
-  "main" : "./lib/stdlib.js"
+  "main": "./lib/stdlib.js",
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "author": "Peter Sugihara <peter@campsh.com> (campsh.com/peter), Nick Pizzoferrato",
+  "description": "A hand-rolled real-time JS web framework for single page apps.",
+  "homepage": "https://github.com/ptrsghr/joint",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ptrsghr/joint.git"
+  }
 }

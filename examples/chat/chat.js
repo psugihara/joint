@@ -1,6 +1,6 @@
 /*jshint node: true*/
 
-var sp = require('spliff');
+var joint = require('joint');
 
 var server = {};
 
@@ -9,7 +9,7 @@ server.arrive = function (msgCallback) {
 };
 
 server.broadcast = function (msg) {
-  sp.conns().map(function (c) {
+  joint.conns().map(function (c) {
     c.onMsg(msg);
   });
 };
