@@ -79,7 +79,7 @@ function run (sourcePath) {
   // Wrap dnode in pass.js, wih a little extra sugar at the end.
   process.chdir(base); 
   var b = browserify({
-    require: 'dnode'
+    require: 'dnode',
     mount: '/pass.js'
   });
   b.append(fs.readFileSync(lib + '/browser/pass_client.js'));

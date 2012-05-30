@@ -1,10 +1,10 @@
 {
   "name": "joint",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
-    "dnode": "latest",
-    "browserify": "latest",
-    "connect": "latest"
+    "dnode": "0.9.11",
+    "browserify": "1.10.17",
+    "connect": "2.3.0"
   },
   "bin": {
     "joint": "./bin/cli.js"
