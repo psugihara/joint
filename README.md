@@ -16,7 +16,7 @@ Joint requires *node.js* and *npm*. Once you have these dependencies, simply:
 
 ##Logger
 
-To give a peak at the power and simplicity of Joint, we first present a simple connection logger. Our logger program will write to stdout when a new user connects.
+To give a peek at the power and simplicity of Joint, we first present a simple connection logger. Our logger program will write to stdout when a new user connects.
 
 ####Server
 Joint allows us to write functions on the server which can be called from the client HTML as if they were included in the client side code. These functions run on the server but in a bit, we’ll show you how easy it is to get the results back in the client. The following two lines are the entire code listing for our *logger.js* program.
