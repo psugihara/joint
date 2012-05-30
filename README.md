@@ -115,7 +115,7 @@ The bare bones GUI will consist of a text input box and a submit button. When th
 We assume basic familiarity with JavaScript and HTML but again there are a few important lines specific to Joint that the reader should note. Namely, the first `script` tag includes the client side *pass.js* file which gives access to `server` functions inside of `pass.connect()`'s callback.
 
 ####Chat!
-This program can be run in the same matter as the previous few examples. Try opening the page in two browser windows and watch as your chat instantly appears in the console of one after you send it from the other.
+This program can be run in the same matter as the previous example. Try opening the page in two browser windows and watch as your chat instantly appears in the console of one after you send it from the other.
 
 ###Why callbacks?
 An astute reader may have noticed that our `server` functions never "return" values. Rather they are written in a continuation-passing style. A callback function is passed to the server which passes results as arguments to the callback function when it is done with the computation. This style, which should be familiar to JavaScript programmers who have written event-oriented user interfaces, has a number of advantages. For instance, without "return" values, it impossible to make blocking calls to the server.
