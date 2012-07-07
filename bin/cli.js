@@ -32,7 +32,7 @@ if (process.argv.length !== 5) {
 
 sourcePath = path.resolve(process.argv[2]);
 // Verify that the source path exists and has a valid extension.
-if (!path.existsSync(sourcePath))
+if (!fs.existsSync(sourcePath))
   usageDie('file not found: ' + sourcePath);
 if (path.extname(sourcePath) !== '.coffee' && path.extname(sourcePath) !== '.js')
   usageDie('Server program must have .coffee or .js extension');
@@ -45,7 +45,7 @@ if (path.extname(sourcePath) !== '.coffee' && path.extname(sourcePath) !== '.js'
 
 // Verify that the static path exists and points to a directory.
 staticPath = path.resolve(process.argv[4]);
-if (!path.existsSync(staticPath))
+if (!fs.existsSync(staticPath))
   usageDie('file not found: ' + staticPath);
 if (!fs.statSync(staticPath).isDirectory())
   usageDie('static arg must be directory');
